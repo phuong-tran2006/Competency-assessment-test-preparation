@@ -56,20 +56,20 @@
   "testRegex": ".*\\.spec\\.ts$",
   "transform": {
     "^.+\\.(t|j)s$": [
-      "@swc/jest",
-      {
-        "jsc": {
-          "parser": {
-            "syntax": "typescript",
-            "decorators": true
-          },
-          "transform": {
-            "legacyDecorator": true,
-            "decoratorMetadata": true
-          }
+    "@swc/jest",
+    {
+      "jsc": {
+        "parser": {
+          "syntax": "typescript",
+          "decorators": true
+        },
+        "transform": {
+          "legacyDecorator": true,
+          "decoratorMetadata": true
         }
       }
-    ]
+    }
+  ]
   },
   "transformIgnorePatterns": [
     "node_modules/(?!(.*?/)?(@nestjs/testing|@nestjs/common|@nestjs/core)/)"
