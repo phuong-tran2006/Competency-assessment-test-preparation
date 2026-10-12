@@ -67,9 +67,12 @@
           "legacyDecorator": true,
           "decoratorMetadata": true
         }
+      },
+      "module": {
+        "type": "commonjs"
       }
     }
-  ]
+    ]
   },
   "transformIgnorePatterns": [
     "node_modules/(?!(.*?/)?(@nestjs/testing|@nestjs/common|@nestjs/core)/)"
