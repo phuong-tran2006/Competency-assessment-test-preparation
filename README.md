@@ -1,7 +1,3 @@
-Để hướng dẫn một người mới (onboard) tham gia dự án nhanh nhất mà không mất nhiều thời gian giải thích lại từ đầu, bạn nên chuẩn bị **3 thành phần chính**: file `README.md` hướng dẫn chạy code ở gốc repo, quy tắc phối hợp qua **Git Workflow**, và **Checklist ngày đầu tiên**.
-
----
-
 ## 1. Mẫu file `README.md` ở thư mục gốc dự án
 
 Bạn tạo file `README.md` ngay tại thư mục gốc (`Competency-assessment-test-preparation/`) với nội dung bên dưới. Thành viên mới chỉ cần đọc file này là có thể tự dựng môi trường chạy code:
