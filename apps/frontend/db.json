@@ -1,0 +1,51 @@
+{
+  "courses": [
+    {
+      "id": "os-101",
+      "title": "Nguyên lý Hệ Điều Hành",
+      "description": "Tìm hiểu sâu về System Calls, Quản lý bộ nhớ và Multi-level Queue Scheduling.",
+      "thumbnail": "https://placehold.co/600x400/e2e8f0/475569?text=OS",
+      "lessonsCount": 2,
+      "lessons": [
+        {
+          "id": "lesson-1",
+          "title": "Giới thiệu về System Calls",
+          "duration": "12:30",
+          "isCompleted": true,
+          "content": "Đây là tài liệu đính kèm cho bài System Calls..."
+        },
+        {
+          "id": "lesson-2",
+          "title": "Thuật toán lập lịch MLQ",
+          "duration": "18:45",
+          "isCompleted": false,
+          "content": "Đây là tài liệu đính kèm cho bài MLQ..."
+        }
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "examId": "exam-1",
+      "content": "Đâu là đặc trưng của mô hình phát triển phần mềm Agile?",
+      "options": [
+        { "id": "a", "text": "Làm tài liệu cực kỳ chi tiết trước khi code" },
+        { "id": "b", "text": "Phát triển lặp (Iterative) và tăng dần (Incremental)" },
+        { "id": "c", "text": "Hoàn thành code 100% rồi mới test" },
+        { "id": "d", "text": "Không cho phép thay đổi yêu cầu" }
+      ]
+    },
+    {
+      "id": "q2",
+      "examId": "exam-1",
+      "content": "Trong hệ quản trị CSDL, thuộc tính nào dùng để định danh duy nhất một bản ghi?",
+      "options": [
+        { "id": "a", "text": "Foreign Key (Khóa ngoại)" },
+        { "id": "b", "text": "Index (Chỉ mục)" },
+        { "id": "c", "text": "Primary Key (Khóa chính)" },
+        { "id": "d", "text": "Unique Constraint" }
+      ]
+    }
+  ]
+}
