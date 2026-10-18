@@ -1,21 +1,13 @@
 import {
-  ConflictException,
   Injectable,
   UnauthorizedException,
+  ConflictException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { PrismaService } from '../prisma/prisma.service';
 import { LoginDto } from './dto/login.dto';
 import { RegisterDto } from './dto/register.dto';
-
-function toPublicUser(user: {
-  id: string;
-  email: string;
-  name: string | null;
-}) {
-  return { id: user.id, email: user.email, name: user.name };
-}
 
 @Injectable()
 export class AuthService {
@@ -28,38 +20,40 @@ export class AuthService {
     const existing = await this.prisma.user.findUnique({
       where: { email: dto.email },
     });
-    if (existing) {
-      throw new ConflictException('Email already registered');
-    }
-    const password = await bcrypt.hash(dto.password, 10);
+    if (existing) throw new ConflictException('Email đã tồn tại');
+
+    const passwordHash = await bcrypt.hash(dto.password, 10);
     const user = await this.prisma.user.create({
-      data: { email: dto.email, password, name: dto.name },
+      data: {
+        email: dto.email,
+        passwordHash,
+        fullName: dto.fullName,
+        targetScore: dto.targetScore,
+      },
+      select: { id: true, email: true, fullName: true, role: true },
     });
-    return {
-      ...toPublicUser(user),
-      accessToken: this.sign(user.id, user.email),
-    };
+    return user;
   }
 
   async login(dto: LoginDto) {
     const user = await this.prisma.user.findUnique({
       where: { email: dto.email },
     });
-    if (!user || !(await bcrypt.compare(dto.password, user.password))) {
-      throw new UnauthorizedException('Invalid credentials');
-    }
+    if (!user) throw new UnauthorizedException('Sai email hoặc mật khẩu');
+    if (user.status === 'LOCKED')
+      throw new UnauthorizedException('Tài khoản đã bị khóa');
+
+    const ok = await bcrypt.compare(dto.password, user.passwordHash);
+    if (!ok) throw new UnauthorizedException('Sai email hoặc mật khẩu');
+
+    const token = await this.jwt.signAsync({
+      sub: user.id,
+      email: user.email,
+      role: user.role,
+    });
     return {
-      ...toPublicUser(user),
-      accessToken: this.sign(user.id, user.email),
+      accessToken: token,
+      user: { id: user.id, email: user.email, role: user.role },
     };
-  }
-
-  logout() {
-    // Stateless JWT over Bearer header: client discards the token.
-    return { message: 'Logged out' };
-  }
-
-  private sign(sub: string, email: string): string {
-    return this.jwt.sign({ sub, email });
   }
 }

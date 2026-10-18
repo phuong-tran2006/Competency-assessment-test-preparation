@@ -5,19 +5,19 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { CoursesModule } from './courses/courses.module';
 import { HealthController } from './health/health.controller';
-import { LessonsModule } from './lessons/lessons.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { QuestionsModule } from './questions/questions.module';
+import { TopicsModule } from './topics/topics.module';
 import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }),
+    ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' }),
     PrismaModule,
     AuthModule,
     UsersModule,
     CoursesModule,
-    LessonsModule,
+    TopicsModule,
     QuestionsModule,
   ],
   controllers: [AppController, HealthController],

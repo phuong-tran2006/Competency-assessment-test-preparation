@@ -1,22 +1,21 @@
-import { Body, Controller, Get, Patch, UseGuards } from '@nestjs/common';
-import { CurrentUser } from '../auth/current-user.decorator';
-import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-import type { JwtPayload } from '../auth/jwt-auth.guard';
-import { UpdateProfileDto } from './dto/update-profile.dto';
+import { Body, Controller, Get, Patch, UseGuards, Req } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { UsersService } from './users.service';
+import { UpdateUserDto } from './dto/update-user.dto';
 
-@UseGuards(JwtAuthGuard)
 @Controller('users')
 export class UsersController {
   constructor(private readonly users: UsersService) {}
 
+  @UseGuards(AuthGuard('jwt'))
   @Get('me')
-  me(@CurrentUser() user: JwtPayload) {
-    return this.users.me(user.sub);
+  me(@Req() req: any) {
+    return this.users.me(req.user.id);
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Patch('me')
-  updateMe(@CurrentUser() user: JwtPayload, @Body() dto: UpdateProfileDto) {
-    return this.users.updateMe(user.sub, dto);
+  update(@Req() req: any, @Body() dto: UpdateUserDto) {
+    return this.users.update(req.user.id, dto);
   }
 }
