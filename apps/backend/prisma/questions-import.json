@@ -1,0 +1,1170 @@
+[
+  {
+    "topicName": "Toán - Giới hạn",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.3,
+    "content": "Tính giới hạn: lim (x→2) (x^2 - 4) / (x - 2)",
+    "explanation": "Phân tích tử số: x^2 - 4 = (x-2)(x+2). Triệt tiêu (x-2) ta được lim (x→2) (x+2) = 4.",
+    "options": [
+      { "content": "0", "isCorrect": false },
+      { "content": "2", "isCorrect": false },
+      { "content": "4", "isCorrect": true },
+      { "content": "Không tồn tại", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Giới hạn",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.4,
+    "content": "Tính giới hạn: lim (x→+∞) (3x^2 + 2x + 1) / (x^2 - x + 5)",
+    "explanation": "Chia cả tử và mẫu cho x^2 (bậc cao nhất). Ta được lim (3 + 2/x + 1/x^2) / (1 - 1/x + 5/x^2) = 3/1 = 3.",
+    "options": [
+      { "content": "0", "isCorrect": false },
+      { "content": "1", "isCorrect": false },
+      { "content": "3", "isCorrect": true },
+      { "content": "+∞", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Giới hạn",
+    "type": "TRUE_FALSE",
+    "difficulty": 0.2,
+    "content": "Giới hạn của hàm số tại một điểm luôn bằng giá trị của hàm số tại điểm đó.",
+    "explanation": "Sai. Điều này chỉ đúng với hàm số liên tục tại điểm đó. Nếu hàm số gián đoạn, giới hạn có thể khác giá trị hàm số.",
+    "options": [
+      { "content": "Đúng", "isCorrect": false },
+      { "content": "Sai", "isCorrect": true }
+    ]
+  },
+  {
+    "topicName": "Toán - Giới hạn",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.5,
+    "content": "Tính giới hạn: lim (x→0) (sin x) / x",
+    "explanation": "Đây là giới hạn vô định dạng 0/0 cơ bản. Sử dụng định lý kẹp hoặc quy tắc L'Hopital, kết quả bằng 1.",
+    "options": [
+      { "content": "0", "isCorrect": false },
+      { "content": "1", "isCorrect": true },
+      { "content": "π", "isCorrect": false },
+      { "content": "Không tồn tại", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Giới hạn",
+    "type": "FILL_IN_THE_BLANK",
+    "difficulty": 0.6,
+    "content": "Điền giá trị giới hạn: lim (x→+∞) (1 + 1/x)^x = ___",
+    "explanation": "Đây là định nghĩa của số e (cơ số logarit tự nhiên).",
+    "options": [
+      { "content": "e", "isCorrect": true },
+      { "content": "1", "isCorrect": false },
+      { "content": "0", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Giới hạn",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.4,
+    "content": "Tính giới hạn: lim (x→1) (x^3 - 1) / (x - 1)",
+    "explanation": "x^3 - 1 = (x-1)(x^2 + x + 1). Rút gọn (x-1) ta được 1^2 + 1 + 1 = 3.",
+    "options": [
+      { "content": "1", "isCorrect": false },
+      { "content": "2", "isCorrect": false },
+      { "content": "3", "isCorrect": true },
+      { "content": "0", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Giới hạn",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.7,
+    "content": "Tính giới hạn: lim (x→0) (√(x+1) - 1) / x",
+    "explanation": "Nhân cả tử và mẫu với biểu thức liên hợp (√(x+1) + 1). Tử số trở thành (x+1)-1 = x. Rút gọn x ta được 1/2.",
+    "options": [
+      { "content": "1/2", "isCorrect": true },
+      { "content": "0", "isCorrect": false },
+      { "content": "1", "isCorrect": false },
+      { "content": "2", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Giới hạn",
+    "type": "MULTI_SELECT",
+    "difficulty": 0.6,
+    "content": "Đâu là các dạng vô định thường gặp khi tính giới hạn?",
+    "explanation": "Các dạng vô định cơ bản bao gồm 0/0, ∞/∞, 0*∞, ∞-∞, 1^∞.",
+    "options": [
+      { "content": "0/0", "isCorrect": true },
+      { "content": "∞/∞", "isCorrect": true },
+      { "content": "0/∞", "isCorrect": false },
+      { "content": "∞ - ∞", "isCorrect": true }
+    ]
+  },
+  {
+    "topicName": "Toán - Giới hạn",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.2,
+    "content": "Giới hạn của dãy số u_n = 1/n khi n tiến tới vô cùng là:",
+    "explanation": "Khi n càng lớn, 1 chia cho một số rất lớn sẽ tiến dần về 0.",
+    "options": [
+      { "content": "1", "isCorrect": false },
+      { "content": "0", "isCorrect": true },
+      { "content": "+∞", "isCorrect": false },
+      { "content": "-∞", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Giới hạn",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.5,
+    "content": "Tính giới hạn: lim (x→-∞) (2x^3 - x) / (x^3 + 4)",
+    "explanation": "Chia cả tử và mẫu cho x^3. Ta được lim (2 - 1/x^2) / (1 + 4/x^3) = 2.",
+    "options": [
+      { "content": "-2", "isCorrect": false },
+      { "content": "2", "isCorrect": true },
+      { "content": "0", "isCorrect": false },
+      { "content": "1", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Giới hạn",
+    "type": "TRUE_FALSE",
+    "difficulty": 0.3,
+    "content": "Nếu lim (x→a) f(x) = L và lim (x→a) g(x) = M thì lim (x→a) [f(x) + g(x)] = L + M.",
+    "explanation": "Đúng. Đây là một trong các định lý cơ bản về giới hạn của tổng.",
+    "options": [
+      { "content": "Đúng", "isCorrect": true },
+      { "content": "Sai", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Giới hạn",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.4,
+    "content": "Tính giới hạn: lim (x→2) (x^2 - 3x + 2) / (x^2 - 4)",
+    "explanation": "Tử: (x-1)(x-2). Mẫu: (x-2)(x+2). Rút gọn (x-2) ta được (x-1)/(x+2). Thay x=2 được 1/4.",
+    "options": [
+      { "content": "1/4", "isCorrect": true },
+      { "content": "0", "isCorrect": false },
+      { "content": "1/2", "isCorrect": false },
+      { "content": "1", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Giới hạn",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.8,
+    "content": "Tính giới hạn: lim (x→0) (1 - cos x) / x^2",
+    "explanation": "Dùng quy tắc L'Hopital 2 lần hoặc tương đương lượng giác 1-cosx ~ x^2/2. Kết quả là 1/2.",
+    "options": [
+      { "content": "1/2", "isCorrect": true },
+      { "content": "1", "isCorrect": false },
+      { "content": "0", "isCorrect": false },
+      { "content": "2", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Giới hạn",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.5,
+    "content": "Tính giới hạn: lim (x→+∞) (√(x^2 + 1) - x)",
+    "explanation": "Nhân liên hợp: (x^2+1 - x^2)/(√(x^2+1)+x) = 1/(√(x^2+1)+x). Khi x→+∞, mẫu → +∞, nên giới hạn bằng 0.",
+    "options": [
+      { "content": "0", "isCorrect": true },
+      { "content": "1", "isCorrect": false },
+      { "content": "+∞", "isCorrect": false },
+      { "content": "1/2", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Giới hạn",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.6,
+    "content": "Tính giới hạn: lim (x→0) tan(x) / x",
+    "explanation": "tanx = sinx/cosx. Biểu thức thành (sinx/x) * (1/cosx). Khi x→0, sinx/x → 1 và 1/cosx → 1. Kết quả là 1.",
+    "options": [
+      { "content": "0", "isCorrect": false },
+      { "content": "1", "isCorrect": true },
+      { "content": "π", "isCorrect": false },
+      { "content": "Không tồn tại", "isCorrect": false }
+    ]
+  },
+
+  {
+    "topicName": "Toán - Đạo hàm",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.3,
+    "content": "Tính đạo hàm của hàm số y = x^3 tại x = 2.",
+    "explanation": "Ta có y' = 3x^2. Thay x = 2 vào ta được 3*(2^2) = 12.",
+    "options": [
+      { "content": "6", "isCorrect": false },
+      { "content": "8", "isCorrect": false },
+      { "content": "12", "isCorrect": true },
+      { "content": "9", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Đạo hàm",
+    "type": "TRUE_FALSE",
+    "difficulty": 0.2,
+    "content": "Đạo hàm của một hằng số bất kỳ luôn bằng 0.",
+    "explanation": "Đúng. Theo định nghĩa, hàm hằng f(x) = C không thay đổi giá trị nên tốc độ thay đổi bằng 0.",
+    "options": [
+      { "content": "Đúng", "isCorrect": true },
+      { "content": "Sai", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Đạo hàm",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.3,
+    "content": "Đạo hàm của hàm số y = sin(x) là:",
+    "explanation": "Công thức đạo hàm cơ bản: (sin x)' = cos x.",
+    "options": [
+      { "content": "cos(x)", "isCorrect": true },
+      { "content": "-cos(x)", "isCorrect": false },
+      { "content": "-sin(x)", "isCorrect": false },
+      { "content": "tan(x)", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Đạo hàm",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.4,
+    "content": "Đạo hàm của hàm số y = e^x là:",
+    "explanation": "Hàm số mũ e^x có đạo hàm bằng chính nó.",
+    "options": [
+      { "content": "x * e^(x-1)", "isCorrect": false },
+      { "content": "e^x", "isCorrect": true },
+      { "content": "ln(x)", "isCorrect": false },
+      { "content": "e^(x+1)", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Đạo hàm",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.5,
+    "content": "Đạo hàm của hàm số y = x * sin(x) là:",
+    "explanation": "Sử dụng quy tắc đạo hàm của tích (uv)' = u'v + uv'. Ta có (1)*sinx + x*(cosx) = sinx + x*cosx.",
+    "options": [
+      { "content": "sin(x) + x*cos(x)", "isCorrect": true },
+      { "content": "cos(x)", "isCorrect": false },
+      { "content": "x*cos(x)", "isCorrect": false },
+      { "content": "sin(x) - x*cos(x)", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Đạo hàm",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.6,
+    "content": "Đạo hàm của hàm số y = (x^2 + 1) / (x - 1) là:",
+    "explanation": "Quy tắc đạo hàm phân thức (u/v)' = (u'v - uv')/v^2. Kết quả là (x^2 - 2x - 1)/(x-1)^2.",
+    "options": [
+      { "content": "(x^2 - 2x - 1) / (x - 1)^2", "isCorrect": true },
+      { "content": "(x^2 + 2x - 1) / (x - 1)^2", "isCorrect": false },
+      { "content": "2x / 1", "isCorrect": false },
+      { "content": "(x^2 - 1) / (x - 1)^2", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Đạo hàm",
+    "type": "FILL_IN_THE_BLANK",
+    "difficulty": 0.4,
+    "content": "Hệ số góc của tiếp tuyến với đồ thị hàm số y = x^2 tại điểm x = 1 là ___",
+    "explanation": "Đạo hàm y' = 2x. Tại x=1, y'(1) = 2. Hệ số góc của tiếp tuyến chính là đạo hàm tại điểm đó.",
+    "options": [
+      { "content": "2", "isCorrect": true },
+      { "content": "1", "isCorrect": false },
+      { "content": "0", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Đạo hàm",
+    "type": "TRUE_FALSE",
+    "difficulty": 0.4,
+    "content": "Nếu đạo hàm f'(x) > 0 trên một khoảng thì hàm số f(x) đồng biến trên khoảng đó.",
+    "explanation": "Đúng. Đây là định lý cơ bản về tính đơn điệu của hàm số dựa vào dấu của đạo hàm.",
+    "options": [
+      { "content": "Đúng", "isCorrect": true },
+      { "content": "Sai", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Đạo hàm",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.5,
+    "content": "Đạo hàm của hàm số y = cos(2x) là:",
+    "explanation": "Sử dụng quy tắc đạo hàm hàm hợp (chain rule): y' = -sin(2x) * (2x)' = -2sin(2x).",
+    "options": [
+      { "content": "-2sin(2x)", "isCorrect": true },
+      { "content": "2sin(2x)", "isCorrect": false },
+      { "content": "-sin(2x)", "isCorrect": false },
+      { "content": "cos(2x)", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Đạo hàm",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.3,
+    "content": "Đạo hàm của hàm số y = √x là:",
+    "explanation": "y = x^(1/2). y' = (1/2)*x^(-1/2) = 1 / (2√x).",
+    "options": [
+      { "content": "1 / (2√x)", "isCorrect": true },
+      { "content": "2√x", "isCorrect": false },
+      { "content": "1 / √x", "isCorrect": false },
+      { "content": "√x / 2", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Đạo hàm",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.5,
+    "content": "Đạo hàm của hàm số y = ln(x) là:",
+    "explanation": "Công thức cơ bản: (ln x)' = 1/x (với x > 0).",
+    "options": [
+      { "content": "1/x", "isCorrect": true },
+      { "content": "x", "isCorrect": false },
+      { "content": "e^x", "isCorrect": false },
+      { "content": "ln(x)/x", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Đạo hàm",
+    "type": "MULTI_SELECT",
+    "difficulty": 0.7,
+    "content": "Trong các phát biểu sau, đâu là những phát biểu ĐÚNG về đạo hàm?",
+    "explanation": "Đạo hàm thể hiện tốc độ thay đổi tức thời. Đạo hàm của hằng số bằng 0. Các quy tắc tính đạo hàm của tổng, hiệu, tích, thương đều có công thức riêng.",
+    "options": [
+      {
+        "content": "Đạo hàm biểu thị tốc độ thay đổi tức thời của hàm số",
+        "isCorrect": true
+      },
+      {
+        "content": "Đạo hàm của tổng bằng tổng các đạo hàm",
+        "isCorrect": true
+      },
+      {
+        "content": "Đạo hàm của tích bằng tích các đạo hàm",
+        "isCorrect": false
+      },
+      {
+        "content": "Hàm số có đạo hàm tại một điểm thì liên tục tại điểm đó",
+        "isCorrect": true
+      }
+    ]
+  },
+  {
+    "topicName": "Toán - Đạo hàm",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.8,
+    "content": "Đạo hàm của hàm số y = x^x (với x > 0) là:",
+    "explanation": "Viết lại y = e^(x*lnx). y' = e^(x*lnx) * (x*lnx)' = x^x * (lnx + 1).",
+    "options": [
+      { "content": "x^x * (ln(x) + 1)", "isCorrect": true },
+      { "content": "x * x^(x-1)", "isCorrect": false },
+      { "content": "x^x * ln(x)", "isCorrect": false },
+      { "content": "x^x", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Đạo hàm",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.6,
+    "content": "Đạo hàm của hàm số y = tan(x) là:",
+    "explanation": "Công thức đạo hàm lượng giác: (tan x)' = 1 / cos^2(x) = 1 + tan^2(x).",
+    "options": [
+      { "content": "1 / cos^2(x)", "isCorrect": true },
+      { "content": "-1 / sin^2(x)", "isCorrect": false },
+      { "content": "cot(x)", "isCorrect": false },
+      { "content": "-sin(x)", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Đạo hàm",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.5,
+    "content": "Phương trình tiếp tuyến của đồ thị hàm số y = x^2 tại điểm có hoành độ x = 2 là:",
+    "explanation": "Tọa độ tiếp điểm: x=2, y=4. Hệ số góc k = y'(2) = 4. Phương trình: y - 4 = 4(x - 2) => y = 4x - 4.",
+    "options": [
+      { "content": "y = 4x - 4", "isCorrect": true },
+      { "content": "y = 2x - 4", "isCorrect": false },
+      { "content": "y = 4x + 4", "isCorrect": false },
+      { "content": "y = x - 2", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Đạo hàm",
+    "type": "TRUE_FALSE",
+    "difficulty": 0.3,
+    "content": "Đạo hàm của hàm số y = 5 là y' = 0.",
+    "explanation": "Đúng. Đạo hàm của một hằng số luôn bằng 0.",
+    "options": [
+      { "content": "Đúng", "isCorrect": true },
+      { "content": "Sai", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Đạo hàm",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.5,
+    "content": "Đạo hàm của hàm số y = e^(2x) là:",
+    "explanation": "Sử dụng quy tắc hàm hợp: y' = e^(2x) * (2x)' = 2e^(2x).",
+    "options": [
+      { "content": "2e^(2x)", "isCorrect": true },
+      { "content": "e^(2x)", "isCorrect": false },
+      { "content": "2x * e^(2x-1)", "isCorrect": false },
+      { "content": "e^(2x) / 2", "isCorrect": false }
+    ]
+  },
+
+  {
+    "topicName": "Toán - Tích phân",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.3,
+    "content": "Tính nguyên hàm: ∫ x^2 dx",
+    "explanation": "Áp dụng công thức ∫ x^n dx = x^(n+1)/(n+1) + C. Ta được x^3/3 + C.",
+    "options": [
+      { "content": "x^3/3 + C", "isCorrect": true },
+      { "content": "2x + C", "isCorrect": false },
+      { "content": "x^3 + C", "isCorrect": false },
+      { "content": "3x^2 + C", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Tích phân",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.3,
+    "content": "Tính nguyên hàm: ∫ e^x dx",
+    "explanation": "Nguyên hàm của e^x là chính nó.",
+    "options": [
+      { "content": "e^x + C", "isCorrect": true },
+      { "content": "x*e^(x-1) + C", "isCorrect": false },
+      { "content": "ln(x) + C", "isCorrect": false },
+      { "content": "e^(x+1) + C", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Tích phân",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.4,
+    "content": "Tính nguyên hàm: ∫ (1/x) dx (với x ≠ 0)",
+    "explanation": "Nguyên hàm của 1/x là ln|x| + C.",
+    "options": [
+      { "content": "ln|x| + C", "isCorrect": true },
+      { "content": "1/x^2 + C", "isCorrect": false },
+      { "content": "x*ln(x) - x + C", "isCorrect": false },
+      { "content": "-1/x^2 + C", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Tích phân",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.4,
+    "content": "Tính tích phân xác định: ∫[0->1] x dx",
+    "explanation": "Nguyên hàm của x là x^2/2. Thay cận: (1^2/2) - (0^2/2) = 1/2.",
+    "options": [
+      { "content": "1/2", "isCorrect": true },
+      { "content": "1", "isCorrect": false },
+      { "content": "0", "isCorrect": false },
+      { "content": "2", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Tích phân",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.4,
+    "content": "Tính nguyên hàm: ∫ cos(x) dx",
+    "explanation": "Nguyên hàm của cos x là sin x + C.",
+    "options": [
+      { "content": "sin(x) + C", "isCorrect": true },
+      { "content": "-sin(x) + C", "isCorrect": false },
+      { "content": "cos(x) + C", "isCorrect": false },
+      { "content": "-cos(x) + C", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Tích phân",
+    "type": "TRUE_FALSE",
+    "difficulty": 0.3,
+    "content": "Tích phân của một tổng bằng tổng các tích phân: ∫(f(x) + g(x))dx = ∫f(x)dx + ∫g(x)dx.",
+    "explanation": "Đúng. Đây là tính chất tuyến tính của tích phân.",
+    "options": [
+      { "content": "Đúng", "isCorrect": true },
+      { "content": "Sai", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Tích phân",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.5,
+    "content": "Tính tích phân: ∫[0->π] sin(x) dx",
+    "explanation": "Nguyên hàm của sin x là -cos x. Thay cận: (-cos π) - (-cos 0) = (-(-1)) - (-1) = 1 + 1 = 2.",
+    "options": [
+      { "content": "2", "isCorrect": true },
+      { "content": "0", "isCorrect": false },
+      { "content": "1", "isCorrect": false },
+      { "content": "-2", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Tích phân",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.6,
+    "content": "Tính tích phân: ∫[1->e] (1/x) dx",
+    "explanation": "Nguyên hàm của 1/x là ln|x|. Thay cận: ln(e) - ln(1) = 1 - 0 = 1.",
+    "options": [
+      { "content": "1", "isCorrect": true },
+      { "content": "e", "isCorrect": false },
+      { "content": "e - 1", "isCorrect": false },
+      { "content": "0", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Tích phân",
+    "type": "MULTI_SELECT",
+    "difficulty": 0.6,
+    "content": "Trong các tính chất sau của tích phân xác định, tính chất nào ĐÚNG?",
+    "explanation": "Tích phân có tính chất tuyến tính và cận đảo ngược sẽ đổi dấu. Tích phân từ a đến a luôn bằng 0.",
+    "options": [
+      { "content": "∫[a->b] f(x)dx = -∫[b->a] f(x)dx", "isCorrect": true },
+      { "content": "∫[a->a] f(x)dx = 1", "isCorrect": false },
+      {
+        "content": "∫[a->b] (f(x) + g(x))dx = ∫[a->b] f(x)dx + ∫[a->b] g(x)dx",
+        "isCorrect": true
+      },
+      { "content": "∫[a->a] f(x)dx = 0", "isCorrect": true }
+    ]
+  },
+  {
+    "topicName": "Toán - Tích phân",
+    "type": "FILL_IN_THE_BLANK",
+    "difficulty": 0.4,
+    "content": "Điền hằng số C vào kết quả: ∫ 0 dx = ___",
+    "explanation": "Nguyên hàm của 0 là một hằng số bất kỳ C.",
+    "options": [
+      { "content": "C", "isCorrect": true },
+      { "content": "0", "isCorrect": false },
+      { "content": "1", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Tích phân",
+    "type": "TRUE_FALSE",
+    "difficulty": 0.3,
+    "content": "Tích phân xác định của một hàm số luôn luôn là một số dương.",
+    "explanation": "Sai. Tích phân có thể âm nếu hàm số nằm dưới trục hoành (f(x) < 0).",
+    "options": [
+      { "content": "Đúng", "isCorrect": false },
+      { "content": "Sai", "isCorrect": true }
+    ]
+  },
+  {
+    "topicName": "Toán - Tích phân",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.7,
+    "content": "Tính tích phân: ∫[-1->1] x^3 dx",
+    "explanation": "Hàm y = x^3 là hàm lẻ, cận đối xứng từ -1 đến 1. Tích phân của hàm lẻ trên khoảng đối xứng luôn bằng 0.",
+    "options": [
+      { "content": "0", "isCorrect": true },
+      { "content": "1/2", "isCorrect": false },
+      { "content": "1/4", "isCorrect": false },
+      { "content": "2", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Tích phân",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.8,
+    "content": "Tính nguyên hàm: ∫ x * e^x dx",
+    "explanation": "Sử dụng phương pháp nguyên hàm từng phần: u=x, dv=e^x dx. Kết quả là x*e^x - e^x + C = e^x(x - 1) + C.",
+    "options": [
+      { "content": "e^x * (x - 1) + C", "isCorrect": true },
+      { "content": "e^x * (x + 1) + C", "isCorrect": false },
+      { "content": "x^2 * e^x / 2 + C", "isCorrect": false },
+      { "content": "e^x + C", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Toán - Tích phân",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.4,
+    "content": "Tính nguyên hàm: ∫ (2x + 1) dx",
+    "explanation": "Áp dụng công thức cơ bản: x^2 + x + C.",
+    "options": [
+      { "content": "x^2 + x + C", "isCorrect": true },
+      { "content": "2x^2 + x + C", "isCorrect": false },
+      { "content": "x^2 + 1 + C", "isCorrect": false },
+      { "content": "x^2/2 + x + C", "isCorrect": false }
+    ]
+  },
+
+  {
+    "topicName": "Tiếng Việt - Đọc hiểu",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.3,
+    "content": "Câu thơ 'Mặt trời xuống biển như hòn lửa' sử dụng biện pháp tu từ gì?",
+    "explanation": "Tác giả dùng từ 'như' để so sánh mặt trời với hòn lửa.",
+    "options": [
+      { "content": "Nhân hóa", "isCorrect": false },
+      { "content": "Ẩn dụ", "isCorrect": false },
+      { "content": "So sánh", "isCorrect": true },
+      { "content": "Hoán dụ", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Tiếng Việt - Đọc hiểu",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.4,
+    "content": "Trong câu 'Áo nâu liền với áo xanh', hình ảnh 'áo nâu', 'áo xanh' dùng để chỉ ai?",
+    "explanation": "Áo nâu chỉ nông dân, áo xanh chỉ công nhân. Đây là biện pháp hoán dụ dùng dấu hiệu để gọi sự vật.",
+    "options": [
+      { "content": "Người nông dân và công nhân", "isCorrect": true },
+      { "content": "Màu sắc quần áo", "isCorrect": false },
+      { "content": "Người già và trẻ em", "isCorrect": false },
+      { "content": "Bộ đội và công an", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Tiếng Việt - Đọc hiểu",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.4,
+    "content": "Cụm từ 'Làn thu thủy, nét xuân sơn' trong Truyện Kiều sử dụng biện pháp tu từ nào?",
+    "explanation": "Ẩn dụ: 'thu thủy' (nước mùa thu) ẩn dụ cho đôi mắt trong sáng, 'xuân sơn' (núi mùa xuân) ẩn dụ cho đôi lông mày thanh tú.",
+    "options": [
+      { "content": "So sánh", "isCorrect": false },
+      { "content": "Ẩn dụ", "isCorrect": true },
+      { "content": "Nhân hóa", "isCorrect": false },
+      { "content": "Nói quá", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Tiếng Việt - Đọc hiểu",
+    "type": "TRUE_FALSE",
+    "difficulty": 0.3,
+    "content": "Biện pháp nhân hóa là biện pháp gọi hoặc tả con vật, cây cối, đồ vật bằng những từ ngữ vốn được dùng để gọi hoặc tả con người.",
+    "explanation": "Đúng. Đây là định nghĩa cơ bản của biện pháp tu từ nhân hóa.",
+    "options": [
+      { "content": "Đúng", "isCorrect": true },
+      { "content": "Sai", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Tiếng Việt - Đọc hiểu",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.2,
+    "content": "Từ 'lấp lánh' thuộc loại từ nào?",
+    "explanation": "'Lấp lánh' là từ láy (láy âm đầu L và láy vần 'anh').",
+    "options": [
+      { "content": "Từ ghép", "isCorrect": false },
+      { "content": "Từ đơn", "isCorrect": false },
+      { "content": "Từ láy", "isCorrect": true },
+      { "content": "Thành ngữ", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Tiếng Việt - Đọc hiểu",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.4,
+    "content": "Biện pháp tu từ trong câu: 'Tre giữ làng, giữ nước, giữ mái nhà tranh, giữ đồng lúa chín' là gì?",
+    "explanation": "Từ 'giữ' được dùng cho người, ở đây dùng cho 'tre' -> Nhân hóa. Ngoài ra có điệp từ 'giữ'.",
+    "options": [
+      { "content": "Nhân hóa", "isCorrect": true },
+      { "content": "So sánh", "isCorrect": false },
+      { "content": "Hoán dụ", "isCorrect": false },
+      { "content": "Nói giảm, nói tránh", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Tiếng Việt - Đọc hiểu",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.5,
+    "content": "Từ 'xuân' trong 'mùa xuân' và 'tuổi xuân' có quan hệ gì?",
+    "explanation": "Đây là hiện tượng từ nhiều nghĩa. 'Mùa xuân' là nghĩa gốc (chỉ mùa), 'tuổi xuân' là nghĩa chuyển (chỉ sự trẻ trung).",
+    "options": [
+      { "content": "Từ đồng âm", "isCorrect": false },
+      { "content": "Từ đồng nghĩa", "isCorrect": false },
+      { "content": "Từ nhiều nghĩa", "isCorrect": true },
+      { "content": "Từ trái nghĩa", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Tiếng Việt - Đọc hiểu",
+    "type": "TRUE_FALSE",
+    "difficulty": 0.3,
+    "content": "Từ đồng nghĩa là những từ có nghĩa giống nhau hoặc gần giống nhau.",
+    "explanation": "Đúng. Đây là định nghĩa của từ đồng nghĩa.",
+    "options": [
+      { "content": "Đúng", "isCorrect": true },
+      { "content": "Sai", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Tiếng Việt - Đọc hiểu",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.4,
+    "content": "Chọn từ thích hợp điền vào câu: 'Chị em tôi có một tình cảm rất ___.' (Gợi ý: gắn bó, thân thiết)",
+    "explanation": "Từ phù hợp nhất về ngữ nghĩa và sắc thái là 'thân thiết' hoặc 'gắn bó'.",
+    "options": [
+      { "content": "thân thiết", "isCorrect": true },
+      { "content": "xa cách", "isCorrect": false },
+      { "content": "lạnh nhạt", "isCorrect": false },
+      { "content": "thù địch", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Tiếng Việt - Đọc hiểu",
+    "type": "MULTI_SELECT",
+    "difficulty": 0.6,
+    "content": "Trong các câu sau, câu nào sử dụng biện pháp tu từ hoán dụ?",
+    "explanation": "Hoán dụ là gọi tên sự vật, hiện tượng này bằng tên sự vật, hiện tượng khác có quan hệ gần gũi. 'Bàn tay' chỉ người lao động. 'Đầu xanh' chỉ người trẻ tuổi.",
+    "options": [
+      { "content": "Bàn tay ta làm nên tất cả", "isCorrect": true },
+      { "content": "Mặt trời xuống biển như hòn lửa", "isCorrect": false },
+      { "content": "Đầu xanh đã tội tình gì", "isCorrect": true },
+      { "content": "Tre giữ làng, giữ nước", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Tiếng Việt - Đọc hiểu",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.5,
+    "content": "Trong câu 'Bác đã đi rồi sao, Bác ơi!', tác giả sử dụng biện pháp tu từ gì để nói về cái chết của Bác Hồ?",
+    "explanation": "Dùng từ 'đi' để nói về cái chết nhằm giảm nhẹ sự đau thương, mất mát. Đó là nói giảm, nói tránh.",
+    "options": [
+      { "content": "Nói giảm, nói tránh", "isCorrect": true },
+      { "content": "Nhân hóa", "isCorrect": false },
+      { "content": "So sánh", "isCorrect": false },
+      { "content": "Nói quá", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Tiếng Việt - Đọc hiểu",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.3,
+    "content": "Xác định lỗi sai trong câu: 'Qua tác phẩm Chí Phèo đã cho ta thấy xã hội phong kiến thối nát.'",
+    "explanation": "Câu thiếu chủ ngữ. 'Qua tác phẩm Chí Phèo' là trạng ngữ, 'đã cho ta thấy' là vị ngữ nhưng không có chủ ngữ thực sự.",
+    "options": [
+      { "content": "Thiếu chủ ngữ", "isCorrect": true },
+      { "content": "Thiếu vị ngữ", "isCorrect": false },
+      { "content": "Sai quan hệ từ", "isCorrect": false },
+      { "content": "Câu đúng ngữ pháp", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Tiếng Việt - Đọc hiểu",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.5,
+    "content": "Từ nào sau đây KHÔNG phải là từ láy?",
+    "explanation": "'Sách vở' là từ ghép (ghép các tiếng có nghĩa). Các từ còn lại đều là từ láy.",
+    "options": [
+      { "content": "Sách vở", "isCorrect": true },
+      { "content": "Lung linh", "isCorrect": false },
+      { "content": "Rì rào", "isCorrect": false },
+      { "content": "Thăm thẳm", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Tiếng Việt - Đọc hiểu",
+    "type": "TRUE_FALSE",
+    "difficulty": 0.4,
+    "content": "Biện pháp tu từ so sánh luôn luôn phải có từ 'như'.",
+    "explanation": "Sai. So sánh có thể dùng các từ so sánh khác như 'là', 'tựa', 'hơn', 'kém', 'bằng', hoặc so sánh ngầm (ẩn dụ).",
+    "options": [
+      { "content": "Đúng", "isCorrect": false },
+      { "content": "Sai", "isCorrect": true }
+    ]
+  },
+  {
+    "topicName": "Tiếng Việt - Đọc hiểu",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.6,
+    "content": "Thành ngữ 'Chân cứng đá mềm' có nghĩa là gì?",
+    "explanation": "Thành ngữ này chỉ ý chí kiên cường, vượt qua mọi khó khăn gian khổ để đạt được mục tiêu.",
+    "options": [
+      { "content": "Ý chí kiên cường, vượt qua khó khăn", "isCorrect": true },
+      { "content": "Sự yếu đuối, dễ gục ngã", "isCorrect": false },
+      { "content": "Tính cách bốc đồng, thiếu suy nghĩ", "isCorrect": false },
+      { "content": "Sự khéo léo trong lao động", "isCorrect": false }
+    ]
+  },
+
+  {
+    "topicName": "Tiếng Anh - Ngữ pháp",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.2,
+    "content": "If I ___ you, I would study harder for the V-ACT exam.",
+    "explanation": "Câu điều kiện loại 2 (không có thật ở hiện tại), dùng 'were' cho tất cả các ngôi.",
+    "options": [
+      { "content": "am", "isCorrect": false },
+      { "content": "was", "isCorrect": false },
+      { "content": "were", "isCorrect": true },
+      { "content": "be", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Tiếng Anh - Ngữ pháp",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.5,
+    "content": "She suggested that we ___ a break after two hours of studying.",
+    "explanation": "Cấu trúc 'suggest that + S + (should) V-inf'. Động từ giữ nguyên mẫu.",
+    "options": [
+      { "content": "take", "isCorrect": true },
+      { "content": "takes", "isCorrect": false },
+      { "content": "took", "isCorrect": false },
+      { "content": "taking", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Tiếng Anh - Ngữ pháp",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.4,
+    "content": "By the time we arrived at the cinema, the movie ___.",
+    "explanation": "Hành động phim bắt đầu (had started) trước hành động chúng tôi đến (arrived). Dùng thì quá khứ hoàn thành.",
+    "options": [
+      { "content": "started", "isCorrect": false },
+      { "content": "had started", "isCorrect": true },
+      { "content": "has started", "isCorrect": false },
+      { "content": "was starting", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Tiếng Anh - Ngữ pháp",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.5,
+    "content": "He is used to ___ up early in the morning.",
+    "explanation": "Cấu trúc 'be used to + V-ing' (quen với việc gì đó). Phân biệt với 'used to + V-inf' (từng làm gì trong quá khứ).",
+    "options": [
+      { "content": "get", "isCorrect": false },
+      { "content": "getting", "isCorrect": true },
+      { "content": "got", "isCorrect": false },
+      { "content": "gets", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Tiếng Anh - Ngữ pháp",
+    "type": "TRUE_FALSE",
+    "difficulty": 0.2,
+    "content": "The sentence 'He don't like playing football' is grammatically correct.",
+    "explanation": "Sai. Chủ ngữ 'He' là ngôi thứ 3 số ít, phải dùng 'doesn't', không dùng 'don't'.",
+    "options": [
+      { "content": "True", "isCorrect": false },
+      { "content": "False", "isCorrect": true }
+    ]
+  },
+  {
+    "topicName": "Tiếng Anh - Ngữ pháp",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.4,
+    "content": "The book ___ I bought yesterday is very interesting.",
+    "explanation": "Dùng đại từ quan hệ 'which' hoặc 'that' để thay thế cho danh từ chỉ vật 'the book' làm tân ngữ.",
+    "options": [
+      { "content": "who", "isCorrect": false },
+      { "content": "whom", "isCorrect": false },
+      { "content": "which", "isCorrect": true },
+      { "content": "whose", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Tiếng Anh - Ngữ pháp",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.4,
+    "content": "They built this house in 1990. (Change to passive voice)",
+    "explanation": "Câu bị động thì quá khứ đơn: S + was/were + V3/ed + (by O). 'This house was built in 1990.'",
+    "options": [
+      { "content": "This house was built in 1990.", "isCorrect": true },
+      { "content": "This house is built in 1990.", "isCorrect": false },
+      { "content": "This house were built in 1990.", "isCorrect": false },
+      { "content": "This house has been built in 1990.", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Tiếng Anh - Ngữ pháp",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.6,
+    "content": "Despite ___ hard, he failed the final exam.",
+    "explanation": "Sau 'Despite/In spite of' là một cụm danh từ hoặc V-ing. Ở đây dùng V-ing 'working'.",
+    "options": [
+      { "content": "study", "isCorrect": false },
+      { "content": "to study", "isCorrect": false },
+      { "content": "working", "isCorrect": true },
+      { "content": "worked", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Tiếng Anh - Ngữ pháp",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.5,
+    "content": "Neither John ___ his friends were present at the party.",
+    "explanation": "Cấu trúc 'Neither... nor...'. Động từ chia theo chủ ngữ gần nhất (his friends -> were).",
+    "options": [
+      { "content": "or", "isCorrect": false },
+      { "content": "nor", "isCorrect": true },
+      { "content": "and", "isCorrect": false },
+      { "content": "but", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Tiếng Anh - Ngữ pháp",
+    "type": "FILL_IN_THE_BLANK",
+    "difficulty": 0.3,
+    "content": "Điền giới từ: She has been studying English ___ 5 years.",
+    "explanation": "Dùng 'for' trước một khoảng thời gian (5 years). Dùng 'since' trước một mốc thời gian (since 2018).",
+    "options": [
+      { "content": "for", "isCorrect": true },
+      { "content": "since", "isCorrect": false },
+      { "content": "in", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Tiếng Anh - Ngữ pháp",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.6,
+    "content": "It's high time we ___ something about air pollution.",
+    "explanation": "Cấu trúc 'It's high time + S + V-ed/V2' (đã đến lúc ai đó phải làm gì).",
+    "options": [
+      { "content": "do", "isCorrect": false },
+      { "content": "did", "isCorrect": true },
+      { "content": "will do", "isCorrect": false },
+      { "content": "have done", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Tiếng Anh - Ngữ pháp",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.5,
+    "content": "The teacher made us ___ the essay again.",
+    "explanation": "Cấu trúc 'make somebody do something' (buộc ai đó làm gì). Động từ theo sau là V-inf không 'to'.",
+    "options": [
+      { "content": "to rewrite", "isCorrect": false },
+      { "content": "rewriting", "isCorrect": false },
+      { "content": "rewrite", "isCorrect": true },
+      { "content": "rewrote", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Tiếng Anh - Ngữ pháp",
+    "type": "MULTI_SELECT",
+    "difficulty": 0.4,
+    "content": "Which of the following words are prepositions?",
+    "explanation": "In, on, at, under, between are prepositions (giới từ). 'Quickly' is an adverb. 'And' is a conjunction.",
+    "options": [
+      { "content": "in", "isCorrect": true },
+      { "content": "quickly", "isCorrect": false },
+      { "content": "between", "isCorrect": true },
+      { "content": "and", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Tiếng Anh - Ngữ pháp",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.7,
+    "content": "Hardly ___ the phone rang.",
+    "explanation": "Cấu trúc đảo ngữ với 'Hardly... when...': Hardly + had + S + V3/ed + when + S + V-ed. 'Hardly had I arrived when the phone rang.'",
+    "options": [
+      { "content": "I had arrived when", "isCorrect": false },
+      { "content": "had I arrived when", "isCorrect": true },
+      { "content": "I arrived than", "isCorrect": false },
+      { "content": "did I arrive when", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Tiếng Anh - Ngữ pháp",
+    "type": "TRUE_FALSE",
+    "difficulty": 0.4,
+    "content": "The word 'Barely' has a negative meaning in English.",
+    "explanation": "True. 'Barely' (hiếm khi, vừa mới) mang nghĩa phủ định, thường dùng trong cấu trúc đảo ngữ.",
+    "options": [
+      { "content": "True", "isCorrect": true },
+      { "content": "False", "isCorrect": false }
+    ]
+  },
+
+  {
+    "topicName": "Logic - Suy luận",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.6,
+    "content": "Tìm số tiếp theo trong dãy sau: 2, 6, 12, 20, 30, ?",
+    "explanation": "Quy luật: n*(n+1). 1*2=2, 2*3=6, 3*4=12, 4*5=20, 5*6=30, 6*7=42.",
+    "options": [
+      { "content": "36", "isCorrect": false },
+      { "content": "40", "isCorrect": false },
+      { "content": "42", "isCorrect": true },
+      { "content": "48", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Logic - Suy luận",
+    "type": "TRUE_FALSE",
+    "difficulty": 0.3,
+    "content": "Mệnh đề 'Nếu trời mưa thì đường ướt' có mệnh đề đảo là 'Nếu đường ướt thì trời mưa'.",
+    "explanation": "Đúng. Mệnh đề đảo của P => Q là Q => P.",
+    "options": [
+      { "content": "Đúng", "isCorrect": true },
+      { "content": "Sai", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Logic - Suy luận",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.5,
+    "content": "Cho tiền đề: 'Tất cả học sinh giỏi đều chăm chỉ'. Minh là học sinh giỏi. Kết luận nào sau đây đúng?",
+    "explanation": "Suy luận diễn dịch (Modus Ponens): A => B, A đúng => B đúng.",
+    "options": [
+      { "content": "Minh chăm chỉ", "isCorrect": true },
+      { "content": "Minh lười biếng", "isCorrect": false },
+      { "content": "Minh có thể chăm chỉ hoặc không", "isCorrect": false },
+      { "content": "Không thể kết luận", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Logic - Suy luận",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.4,
+    "content": "Điền số còn thiếu: 1, 1, 2, 3, 5, 8, ?",
+    "explanation": "Dãy Fibonacci: Mỗi số bằng tổng 2 số liền trước. 5 + 8 = 13.",
+    "options": [
+      { "content": "11", "isCorrect": false },
+      { "content": "12", "isCorrect": false },
+      { "content": "13", "isCorrect": true },
+      { "content": "15", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Logic - Suy luận",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.7,
+    "content": "Nếu A cao hơn B, B cao hơn C. Khẳng định nào sau đây là SAI?",
+    "explanation": "A > B > C. Vậy A cao nhất, C thấp nhất. Khẳng định 'C cao hơn A' là sai.",
+    "options": [
+      { "content": "A cao nhất", "isCorrect": false },
+      { "content": "C thấp nhất", "isCorrect": false },
+      { "content": "C cao hơn A", "isCorrect": true },
+      { "content": "B thấp hơn A", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Logic - Suy luận",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.6,
+    "content": "Tìm số tiếp theo: 3, 6, 11, 18, 27, ?",
+    "explanation": "Hiệu giữa các số là dãy số lẻ tăng dần: 3, 5, 7, 9, 11. 27 + 11 = 38.",
+    "options": [
+      { "content": "36", "isCorrect": false },
+      { "content": "38", "isCorrect": true },
+      { "content": "40", "isCorrect": false },
+      { "content": "42", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Logic - Suy luận",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.5,
+    "content": "Một số con mèo là màu đen. Một số đồ vật màu đen là chó. Kết luận nào là chắc chắn đúng?",
+    "explanation": "Tiền đề không đủ để liên kết mèo và chó. Không thể kết luận mèo là chó hay ngược lại.",
+    "options": [
+      { "content": "Một số con mèo là chó", "isCorrect": false },
+      { "content": "Tất cả chó đều màu đen", "isCorrect": false },
+      { "content": "Không có kết luận chắc chắn nào", "isCorrect": true },
+      { "content": "Mèo không thể màu đen", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Logic - Suy luận",
+    "type": "TRUE_FALSE",
+    "difficulty": 0.4,
+    "content": "Một mệnh đề và mệnh đề phủ định của nó không thể cùng đúng tại một thời điểm.",
+    "explanation": "Đúng. Đây là nguyên lý phi mâu thuẫn trong logic hình thức.",
+    "options": [
+      { "content": "Đúng", "isCorrect": true },
+      { "content": "Sai", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Logic - Suy luận",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.5,
+    "content": "Lúc 3 giờ đúng, kim giờ và kim phút tạo với nhau một góc bao nhiêu độ?",
+    "explanation": "Mỗi giờ trên đồng hồ tương ứng 30 độ (360/12). Khoảng cách giữa kim giờ (số 3) và kim phút (số 12) là 3 giờ. 3 * 30 = 90 độ.",
+    "options": [
+      { "content": "60 độ", "isCorrect": false },
+      { "content": "90 độ", "isCorrect": true },
+      { "content": "120 độ", "isCorrect": false },
+      { "content": "180 độ", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Logic - Suy luận",
+    "type": "MULTI_SELECT",
+    "difficulty": 0.7,
+    "content": "Đâu là các phương pháp suy luận diễn dịch hợp lệ?",
+    "explanation": "Modus Ponens (P=>Q, P => Q) và Modus Tollens (P=>Q, not Q => not P) là các quy tắc suy luận diễn dịch cơ bản và hợp lệ.",
+    "options": [
+      { "content": "Modus Ponens (Khẳng định tiền đề)", "isCorrect": true },
+      { "content": "Khái quát hóa từ một vài trường hợp", "isCorrect": false },
+      { "content": "Modus Tollens (Phủ định hậu đề)", "isCorrect": true },
+      { "content": "Suy luận tương tự", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Logic - Suy luận",
+    "type": "FILL_IN_THE_BLANK",
+    "difficulty": 0.4,
+    "content": "Điền số còn thiếu vào dãy số bình phương: 1, 4, 9, 16, ___, 36",
+    "explanation": "Dãy các số chính phương: 1^2, 2^2, 3^2, 4^2, 5^2, 6^2. Số còn thiếu là 25.",
+    "options": [
+      { "content": "20", "isCorrect": false },
+      { "content": "25", "isCorrect": true },
+      { "content": "30", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Logic - Suy luận",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.5,
+    "content": "Nếu P thì Q. P đúng. Theo quy tắc suy luận logic, ta kết luận được gì?",
+    "explanation": "Quy tắc Modus Ponens: Từ P => Q và P, ta suy ra Q.",
+    "options": [
+      { "content": "Q đúng", "isCorrect": true },
+      { "content": "Q sai", "isCorrect": false },
+      { "content": "P sai", "isCorrect": false },
+      { "content": "Không kết luận được", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Logic - Suy luận",
+    "type": "TRUE_FALSE",
+    "difficulty": 0.5,
+    "content": "Sự tương quan (correlation) luôn luôn ngụ ý quan hệ nhân quả (causation).",
+    "explanation": "Sai. Đây là ngụy biện phổ biến. Hai biến có thể tương quan do biến thứ 3 gây ra, hoặc tương quan ngẫu nhiên.",
+    "options": [
+      { "content": "Đúng", "isCorrect": false },
+      { "content": "Sai", "isCorrect": true }
+    ]
+  },
+  {
+    "topicName": "Logic - Suy luận",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.4,
+    "content": "Tìm số tiếp theo trong dãy: 10, 20, 40, 80, ?",
+    "explanation": "Quy luật: Mỗi số gấp đôi số liền trước. 80 * 2 = 160.",
+    "options": [
+      { "content": "100", "isCorrect": false },
+      { "content": "120", "isCorrect": false },
+      { "content": "160", "isCorrect": true },
+      { "content": "200", "isCorrect": false }
+    ]
+  },
+  {
+    "topicName": "Logic - Suy luận",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": 0.6,
+    "content": "Tất cả các loài chim đều biết bay. Đà điểu là một loài chim. Kết luận nào sau đây rút ra từ 2 tiền đề trên?",
+    "explanation": "Về mặt logic hình thức, từ 'Tất cả A là B' và 'C là A', suy ra 'C là B'. (Dù thực tế đà điểu không biết bay, nhưng tiền đề đã cho là như vậy).",
+    "options": [
+      { "content": "Đà điểu biết bay", "isCorrect": true },
+      { "content": "Đà điểu không biết bay", "isCorrect": false },
+      { "content": "Đà điểu không phải là chim", "isCorrect": false },
+      { "content": "Không thể kết luận", "isCorrect": false }
+    ]
+  }
+]
