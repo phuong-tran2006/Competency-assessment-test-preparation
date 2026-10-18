@@ -1,0 +1,259 @@
+// =====================================================================
+//  Prisma Schema - V-ACT Learning Platform
+//  Bao gồm: Giai đoạn 1 (Auth & User) + Giai đoạn 2 (Content & Question)
+// =====================================================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+/// Vai trò người dùng trong hệ thống
+enum Role {
+  LEARNER
+  INSTRUCTOR
+  ADMIN
+}
+
+/// Trạng thái tài khoản
+enum UserStatus {
+  ACTIVE
+  LOCKED
+}
+
+/// Trạng thái xuất bản của khóa học
+enum CourseStatus {
+  DRAFT      // Bản nháp, chỉ instructor/admin thấy
+  PUBLISHED  // Đã xuất bản, learner thấy và enroll được
+  HIDDEN     // Tạm ẩn khỏi danh sách công khai
+}
+
+/// Loại tài liệu học tập (MVP yêu cầu >= 2 loại, ở đây hỗ trợ 4)
+enum MaterialType {
+  TEXT   // Nội dung văn bản thuần (dùng trường `content`)
+  VIDEO  // Link video (dùng trường `url`)
+  PDF    // Link file PDF (dùng trường `url`)
+  LINK   // Link tham khảo ngoài (dùng trường `url`)
+}
+
+/// Loại câu hỏi
+enum QuestionType {
+  MULTIPLE_CHOICE    // Trắc nghiệm 1 đáp án đúng
+  MULTI_SELECT       // Trắc nghiệm nhiều đáp án đúng
+  TRUE_FALSE         // Đúng / Sai
+  FILL_IN_THE_BLANK  // Điền vào chỗ trống
+}
+
+// =====================================================================
+//  GIAI ĐOẠN 1 - USER & AUTH
+// =====================================================================
+
+model User {
+  id           String     @id @default(cuid())
+  email        String     @unique
+  passwordHash String
+  fullName     String?
+  targetScore  Int?       // MVP: hồ sơ có điểm mục tiêu
+  role         Role       @default(LEARNER)
+  status       UserStatus @default(ACTIVE)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  // ----- Relations (mở rộng ở Giai đoạn 2) -----
+  coursesTaught Course[] @relation("InstructorCourses")
+
+  @@index([role])
+  @@index([status])
+  @@map("users")
+}
+
+// =====================================================================
+//  GIAI ĐOẠN 2 - COURSE STRUCTURE (Course → Chapter → Lesson → Material)
+// =====================================================================
+
+model Course {
+  id           String       @id @default(cuid())
+  title        String
+  description  String?      @db.Text
+  instructorId String
+  status       CourseStatus @default(DRAFT)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  // ----- Relations -----
+  instructor   User          @relation("InstructorCourses", fields: [instructorId], references: [id])
+  chapters     Chapter[]
+  courseTopics CourseTopic[] // N:M với Topic qua bảng trung gian tường minh
+  prerequisites CoursePrerequisite[] @relation("CoursePrerequisites")
+  requiredBy    CoursePrerequisite[] @relation("CourseRequiredBy")
+
+  @@index([instructorId])
+  @@index([status])
+  @@map("courses")
+}
+
+model Chapter {
+  id        String   @id @default(cuid())
+  courseId  String
+  title     String
+  order     Int      // Thứ tự chương trong khóa học
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // ----- Relations -----
+  course  Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  lessons Lesson[]
+
+  @@unique([courseId, order]) // thứ tự chương là duy nhất trong 1 khóa
+  @@index([courseId])
+  @@map("chapters")
+}
+
+model Lesson {
+  id        String   @id @default(cuid())
+  chapterId String
+  title     String
+  content   String?  @db.Text // Nội dung text chính của bài học
+  order     Int      // Thứ tự bài học trong chương
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // ----- Relations -----
+  chapter   Chapter    @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  materials Material[]
+
+  @@unique([chapterId, order]) // thứ tự bài học là duy nhất trong 1 chương
+  @@index([chapterId])
+  @@map("lessons")
+}
+
+model Material {
+  id        String       @id @default(cuid())
+  lessonId  String
+  type      MaterialType
+  title     String?
+  content   String?      @db.Text // Dùng khi type = TEXT
+  url       String?               // Dùng khi type = VIDEO | PDF | LINK
+  order     Int          @default(0)
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+
+  // ----- Relations -----
+  lesson Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  @@index([lessonId])
+  @@index([type])
+  @@map("materials")
+}
+
+// =====================================================================
+//  GIAI ĐOẠN 2 - TOPIC & PREREQUISITE KNOWLEDGE GRAPH
+// =====================================================================
+
+model Topic {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  description String?  @db.Text
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // ----- Relations -----
+  questions    Question[]
+  courseTopics CourseTopic[]
+
+  // Self-relation N:M có hướng: prerequisites của topic này
+  prerequisites   TopicPrerequisite[] @relation("TopicIsDependent")
+  // Self-relation N:M có hướng: những topic phụ thuộc vào topic này
+  dependentTopics TopicPrerequisite[] @relation("TopicIsPrerequisite")
+
+  @@map("topics")
+}
+
+/// Bảng trung gian cho Prerequisite Knowledge Graph
+/// Ví dụ: Topic("Tích phân") có prerequisite là Topic("Đạo hàm")
+model TopicPrerequisite {
+  topicId        String   // Topic phụ thuộc (con)
+  prerequisiteId String   // Topic được yêu cầu trước (cha)
+  createdAt      DateTime @default(now())
+
+  // ----- Relations -----
+  topic        Topic @relation("TopicIsDependent",    fields: [topicId],        references: [id], onDelete: Cascade)
+  prerequisite Topic @relation("TopicIsPrerequisite", fields: [prerequisiteId], references: [id], onDelete: Cascade)
+
+  @@id([topicId, prerequisiteId]) // Khóa chính phức hợp: không trùng cặp
+  @@index([prerequisiteId])
+  @@map("topic_prerequisites")
+}
+
+/// Bảng trung gian cho quan hệ N:M Course <-> Topic
+/// Dùng bảng tường minh để có thể thêm metadata (order, isCore, addedAt...)
+model CourseTopic {
+  courseId  String
+  topicId   String
+  order     Int      @default(0) // Thứ tự topic trong khóa (tuỳ chọn)
+  createdAt DateTime @default(now())
+
+  // ----- Relations -----
+  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  topic  Topic  @relation(fields: [topicId],  references: [id], onDelete: Cascade)
+
+  @@id([courseId, topicId])
+  @@index([topicId])
+  @@map("course_topics")
+}
+
+/// Bảng trung gian cho Prerequisite Knowledge Graph
+model CoursePrerequisite {
+  courseId       String
+  prerequisiteId String
+
+//----- Relations -----
+course Course @relation("CoursePrerequisites",fields: [courseId],references: [id],onDelete: Cascade)
+prerequisite Course @relation("CourseRequiredBy",fields: [prerequisiteId],references: [id],onDelete: Cascade)
+
+  @@id([courseId, prerequisiteId])
+  @@index([prerequisiteId])
+  @@map("course_prerequisites")
+}
+// =====================================================================
+//  GIAI ĐOẠN 2 - QUESTION & QUESTION OPTION
+// =====================================================================
+
+model Question {
+  id          String       @id @default(cuid())
+  content     String       @db.Text // Nội dung câu hỏi
+  explanation String?      @db.Text // Giải thích đáp án
+  type        QuestionType @default(MULTIPLE_CHOICE)
+  difficulty  Float        @default(0.0) // d_i ban đầu, gán bởi instructor (Elo)
+  source      String?      // Nguồn câu hỏi
+  license     String?      // Giấy phép
+  topicId     String
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  // ----- Relations -----
+  topic   Topic            @relation(fields: [topicId], references: [id])
+  options QuestionOption[]
+
+  @@index([topicId])
+  @@index([topicId, difficulty]) // Phục vụ recommender giai đoạn sau
+  @@index([type])
+  @@map("questions")
+}
+
+model QuestionOption {
+  id         String  @id @default(cuid())
+  questionId String
+  content    String  @db.Text
+  isCorrect  Boolean @default(false)
+  order      Int     @default(0)
+
+  // ----- Relations -----
+  question Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@index([questionId])
+  @@map("question_options")
+}
