@@ -9,6 +9,7 @@ import { PrismaModule } from './prisma/prisma.module';
 import { QuestionsModule } from './questions/questions.module';
 import { TopicsModule } from './topics/topics.module';
 import { UsersModule } from './users/users.module';
+import { ExamsModule } from './exams/exams.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { UsersModule } from './users/users.module';
     CoursesModule,
     TopicsModule,
     QuestionsModule,
+    ExamsModule,
   ],
   controllers: [AppController, HealthController],
   providers: [AppService],

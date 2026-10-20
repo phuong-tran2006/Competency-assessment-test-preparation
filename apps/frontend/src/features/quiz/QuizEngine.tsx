@@ -1,145 +1,166 @@
-import { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useEffect, useState, useRef } from 'react';
 import { useQuizStore } from '../../store/quizStore';
-import { CountdownTimer } from '../../components/CountdownTimer';
-import { quizService } from '../../services/quiz.service';
 
 export const QuizEngine = () => {
-  const { examId } = useParams<{ examId: string }>();
-  const navigate = useNavigate();
-  const [loading, setLoading] = useState(true);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
   const { 
-    questions, answers, currentIndex, 
-    setQuestions, setAnswer, nextQuestion, prevQuestion, jumpToQuestion 
+    questions, answers, reviewList,
+    setAnswer, toggleReview, jumpToQuestion, submitQuiz 
   } = useQuizStore();
 
-  // Gọi API lấy đề thi thật
+  const [timeLeft, setTimeLeft] = useState(3600); // 60 phút
+  const questionRefs = useRef<(HTMLDivElement | null)[]>([]);
+
   useEffect(() => {
-    const fetchQuestions = async () => {
-      if (!examId) return;
-      try {
-        setLoading(true);
-        const data = await quizService.getExamQuestions(examId);
-        setQuestions(data);
-      } catch (error) {
-        console.error('Lỗi khi tải đề thi:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchQuestions();
-  }, [examId, setQuestions]);
-
-  const handleSubmit = async () => {
-    if (!examId) return;
-    try {
-      setIsSubmitting(true);
-      // Gửi dữ liệu đáp án lên API
-      await quizService.submitExam(examId, answers);
-      alert('Nộp bài thành công! Điểm của bạn đã được ghi nhận.');
-      navigate('/courses'); // Điều hướng về trang danh sách khóa học sau khi nộp
-    } catch (error) {
-      console.error('Lỗi khi nộp bài:', error);
-      alert('Có lỗi xảy ra khi nộp bài. Vui lòng thử lại.');
-    } finally {
-      setIsSubmitting(false);
+    if (timeLeft <= 0) {
+      submitQuiz();
+      return;
     }
+    const timer = setInterval(() => setTimeLeft((prev) => prev - 1), 1000);
+    return () => clearInterval(timer);
+  }, [timeLeft, submitQuiz]);
+
+  const formatTime = (seconds: number) => {
+    const m = Math.floor(seconds / 60).toString().padStart(2, '0');
+    const s = (seconds % 60).toString().padStart(2, '0');
+    return `${m}:${s}`;
   };
 
-  const handleTimeUp = () => {
-    alert('Hết giờ! Hệ thống tự động nộp bài.');
-    handleSubmit();
+  const handleScrollToQuestion = (index: number) => {
+    jumpToQuestion(index);
+    questionRefs.current[index]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
-  if (loading) return <div className="p-10 text-center font-medium text-gray-500">Đang tải đề thi...</div>;
-  if (questions.length === 0) return <div className="p-10 text-center text-red-500 font-medium">Không tìm thấy dữ liệu đề thi!</div>;
-
-  const currentQ = questions[currentIndex];
+  const answeredCount = Object.keys(answers).length;
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
-      <div className="bg-white shadow-sm border-b p-4 flex justify-between items-center px-10">
-        <h1 className="text-xl font-bold text-gray-800">Mã đề thi: {examId}</h1>
-        <CountdownTimer initialSeconds={600} onTimeUp={handleTimeUp} />
-      </div>
+    <div className="flex flex-col lg:flex-row gap-6 max-w-7xl mx-auto">
+      
+      {/* CỘT TRÁI: DANH SÁCH CÂU HỎI CUỘN DỌC */}
+      <div className="flex-1 space-y-6 lg:max-h-[calc(100vh-40px)] lg:overflow-y-auto pr-2">
+        <h1 className="text-center text-xl font-black text-amber-600 uppercase tracking-wide py-3 bg-amber-50 rounded-xl border border-amber-200">
+          ĐỀ LUYỆN THI ĐGNL 2026 V-ACT – ĐỀ 1 (PHẦN TOÁN HỌC)
+        </h1>
 
-      <div className="flex gap-6 p-6 max-w-6xl mx-auto w-full flex-1">
-        <div className="flex-1 bg-white p-8 shadow-sm rounded-lg border flex flex-col">
-          <h2 className="text-xl font-bold mb-6 text-gray-800">
-            Câu {currentIndex + 1}: <span className="font-normal">{currentQ.content}</span>
-          </h2>
-          
-          <div className="space-y-4 flex-1">
-            {currentQ.options.map(opt => (
-              <label 
-                key={opt.id} 
-                className={`flex items-center gap-3 p-4 border rounded-lg cursor-pointer transition-all ${
-                  answers[currentQ.id] === opt.id ? 'border-blue-500 bg-blue-50 ring-1 ring-blue-500' : 'hover:bg-gray-50'
-                }`}
+        {questions.map((q, idx) => (
+            <div 
+              key={q.id} 
+              ref={(el) => { questionRefs.current[idx] = el; }} // Thêm dấu {} và chấm phẩy ;
+              className="..."
+>
+            <div className="flex justify-between items-start mb-4">
+              <h3 className="text-lg font-bold text-gray-800">Câu {idx + 1}</h3>
+              <span className="px-3 py-1 bg-green-600 text-white text-xs font-semibold rounded-md shadow-sm">
+                Nhận biết
+              </span>
+            </div>
+
+            <p className="text-gray-700 text-base mb-6 leading-relaxed font-medium">
+              {q.content}
+            </p>
+
+            <div className="space-y-3 pl-2">
+              {q.options.map((opt, oIdx) => {
+                const optLabels = ['A', 'B', 'C', 'D'];
+                const isSelected = answers[q.id] === opt.id;
+                return (
+                  <label 
+                    key={opt.id} 
+                    className={`flex items-start p-3 rounded-lg border cursor-pointer transition-all ${
+                      isSelected ? 'bg-blue-50 border-blue-400' : 'bg-white border-transparent hover:bg-gray-50'
+                    }`}
+                  >
+                    <input 
+                      type="radio" 
+                      name={`q-${q.id}`} 
+                      checked={isSelected}
+                      onChange={() => setAnswer(q.id, opt.id)}
+                      className="mt-1 w-4 h-4 text-blue-600"
+                    />
+                    <span className="ml-3 text-gray-700 font-medium">
+                      {optLabels[oIdx]}. {opt.text}
+                    </span>
+                  </label>
+                );
+              })}
+            </div>
+
+            {/* Nút lát kiểm tra lại */}
+            <div className="flex justify-end mt-4 pt-4 border-t border-gray-100">
+              <button 
+                onClick={() => toggleReview(q.id)}
+                className="flex items-center gap-2 text-sm font-semibold text-gray-500 hover:text-purple-600 transition"
               >
-                <input
-                  type="radio"
-                  name={currentQ.id}
-                  value={opt.id}
-                  checked={answers[currentQ.id] === opt.id}
-                  onChange={() => setAnswer(currentQ.id, opt.id)}
-                  className="w-5 h-5 text-blue-600 cursor-pointer"
-                />
-                <span className="text-gray-700">{opt.text}</span>
-              </label>
-            ))}
+                <span>Lát kiểm tra lại</span>
+                <span className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all ${
+                  reviewList[q.id] ? 'border-purple-600 bg-purple-600' : 'border-gray-300 bg-transparent'
+                }`}>
+                  {reviewList[q.id] && <span className="w-2 h-2 rounded-full bg-white"></span>}
+                </span>
+              </button>
+            </div>
           </div>
-          
-          <div className="mt-8 flex justify-between border-t pt-6">
-            <button 
-              onClick={prevQuestion} 
-              disabled={currentIndex === 0} 
-              className="px-6 py-2 bg-gray-200 text-gray-700 rounded-md disabled:opacity-50 hover:bg-gray-300 font-medium"
-            >
-              Quay lại
-            </button>
-            <button 
-              onClick={nextQuestion} 
-              disabled={currentIndex === questions.length - 1} 
-              className="px-6 py-2 bg-blue-600 text-white rounded-md disabled:opacity-50 hover:bg-blue-700 font-medium shadow-sm"
-            >
-              Câu tiếp theo
-            </button>
-          </div>
-        </div>
+        ))}
+      </div>
 
-        <div className="w-80 bg-white p-6 shadow-sm rounded-lg border flex flex-col h-fit">
-          <h3 className="font-bold text-gray-800 mb-4 pb-2 border-b">Bảng câu hỏi</h3>
-          <div className="grid grid-cols-5 gap-2 mb-6">
-            {questions.map((q, idx) => {
-              const isAnswered = !!answers[q.id];
-              const isCurrent = idx === currentIndex;
-              return (
-                <button
-                  key={q.id}
-                  onClick={() => jumpToQuestion(idx)}
-                  className={`w-10 h-10 rounded text-sm font-semibold transition-all ${
-                    isCurrent ? 'ring-2 ring-blue-600 ring-offset-2' : ''
-                  } ${
-                    isAnswered ? 'bg-green-500 text-white border-green-600' : 'bg-gray-100 text-gray-600 border hover:bg-gray-200'
-                  }`}
-                >
-                  {idx + 1}
-                </button>
-              );
-            })}
+      {/* CỘT PHẢI: BẢNG TRẠNG THÁI STICKY */}
+      <div className="w-full lg:w-[320px]">
+        <div className="bg-white p-5 rounded-2xl border border-gray-200 shadow-md sticky top-6">
+          <div className="grid grid-cols-2 gap-4 text-center border-b pb-4 mb-5">
+            <div>
+              <span className="text-gray-500 text-xs font-bold block mb-1">Số câu đã làm</span>
+              <span className="text-2xl font-black text-gray-800">{answeredCount}/{questions.length}</span>
+            </div>
+            <div className="border-l border-gray-100">
+              <span className="text-gray-500 text-xs font-bold block mb-1">Thời gian còn lại</span>
+              <span className="text-2xl font-black text-slate-600">{formatTime(timeLeft)}</span>
+            </div>
           </div>
+
+          <div className="max-h-[250px] overflow-y-auto mb-6 pr-1">
+            <div className="grid grid-cols-5 gap-2">
+              {questions.map((q, idx) => {
+                const isAnswered = !!answers[q.id];
+                const isReviewed = !!reviewList[q.id];
+                
+                let btnStyle = "w-full aspect-square rounded-full flex items-center justify-center font-bold text-sm border transition-all ";
+                if (isReviewed) btnStyle += "bg-purple-500 border-purple-500 text-white";
+                else if (isAnswered) btnStyle += "bg-green-500 border-green-500 text-white";
+                else btnStyle += "bg-white border-gray-200 text-gray-700 hover:bg-gray-100";
+
+                return (
+                  <button key={q.id} onClick={() => handleScrollToQuestion(idx)} className={btnStyle}>
+                    {idx + 1}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
           <button 
-            onClick={handleSubmit}
-            disabled={isSubmitting}
-            className="w-full bg-red-500 hover:bg-red-600 disabled:bg-red-300 text-white py-3 rounded-md font-bold shadow-sm transition-colors"
+            onClick={() => { if (window.confirm("Bạn có chắc chắn muốn nộp bài không?")) submitQuiz(); }}
+            className="w-full py-3 bg-amber-500 hover:bg-amber-600 text-white font-extrabold text-base rounded-full shadow-md transition-all mb-6 uppercase"
           >
-            {isSubmitting ? 'Đang nộp...' : 'Nộp bài'}
+            NỘP BÀI
           </button>
+
+          {/* Chú giải màu sắc */}
+          <div className="space-y-2 border-t pt-4">
+            <div className="flex items-center gap-3">
+              <span className="w-4 h-4 rounded-full bg-green-500 inline-block"></span>
+              <span className="text-xs font-semibold text-gray-600">Câu đã làm</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="w-4 h-4 rounded-full border border-gray-300 bg-white inline-block"></span>
+              <span className="text-xs font-semibold text-gray-600">Câu chưa làm</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="w-4 h-4 rounded-full bg-purple-500 inline-block"></span>
+              <span className="text-xs font-semibold text-gray-600">Câu cần kiểm tra lại</span>
+            </div>
+          </div>
         </div>
       </div>
+
     </div>
   );
 };

@@ -237,6 +237,8 @@ model Question {
   // ----- Relations -----
   topic   Topic            @relation(fields: [topicId], references: [id])
   options QuestionOption[]
+  //Update by marcy
+  exams ExamQuestion[]
 
   @@index([topicId])
   @@index([topicId, difficulty]) // Phục vụ recommender giai đoạn sau
@@ -256,4 +258,29 @@ model QuestionOption {
 
   @@index([questionId])
   @@map("question_options")
+}
+
+//Update
+model Exam {
+  id          String       @id @default(cuid())
+  title       String
+  description String?      @db.Text
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  questions   ExamQuestion[]
+
+  @@map("exams")
+}
+
+// Bảng trung gian giữa Đề thi và Câu hỏi (Quan hệ N:M)
+model ExamQuestion {
+  examId     String
+  questionId String
+
+  exam     Exam     @relation(fields: [examId], references: [id], onDelete: Cascade)
+  question Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@id([examId, questionId])
+  @@map("exam_questions")
 }
