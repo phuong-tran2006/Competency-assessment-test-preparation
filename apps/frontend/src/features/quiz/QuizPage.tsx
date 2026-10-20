@@ -93,12 +93,16 @@ export const QuizPage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Tự động tải trước dữ liệu từ Backend khi vào trang
-    quizService.getExamQuestions('exam-1')
-      .then((data) => {
+    // Lấy đề thi đầu tiên từ Backend rồi tải câu hỏi của đề đó
+    (async () => {
+      try {
+        const exams = await quizService.getExams();
+        if (!exams.length) throw new Error('Chưa có đề thi nào');
+        const examId = exams[0].id;
+        const data = await quizService.getExamQuestions(examId);
         const formatted = data.map((q: any) => ({
           id: q.id,
-          examId: 'exam-1',
+          examId,
           content: q.content,
           options: q.options.map((opt: any) => ({
             id: opt.id,
@@ -107,9 +111,12 @@ export const QuizPage = () => {
           })),
         }));
         setQuestions(formatted);
-      })
-      .catch((err) => console.error("Lỗi tải đề:", err))
-      .finally(() => setLoading(false));
+      } catch (err) {
+        console.error('Lỗi tải đề:', err);
+      } finally {
+        setLoading(false);
+      }
+    })();
   }, [setQuestions]);
 
   if (loading) {

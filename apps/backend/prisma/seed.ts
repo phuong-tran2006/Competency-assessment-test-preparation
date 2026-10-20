@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { PrismaClient } from '@prisma/client';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { Pool } from 'pg';
@@ -108,7 +109,12 @@ async function main() {
   console.log('✅ Prerequisites: Đạo hàm ← Giới hạn, Tích phân ← Đạo hàm');
 
   // ==================== 4. COURSES ====================
-  const course1 = await prisma.course.create({
+  // Idempotent: tìm theo title, chưa có mới tạo (chạy lại seed không nhân bản)
+  let course1 = await prisma.course.findFirst({
+    where: { title: 'Khóa luyện Toán V-ACT' },
+  });
+  if (!course1) {
+    course1 = await prisma.course.create({
     data: {
       title: 'Khóa luyện Toán V-ACT',
       description: 'Khóa học cấp tốc ôn Toán cho kỳ thi V-ACT',
@@ -122,9 +128,14 @@ async function main() {
         ],
       },
     },
-  });
+    });
+  }
 
-  const course2 = await prisma.course.create({
+  let course2 = await prisma.course.findFirst({
+    where: { title: 'Khóa luyện Tiếng Anh V-ACT' },
+  });
+  if (!course2) {
+    course2 = await prisma.course.create({
     data: {
       title: 'Khóa luyện Tiếng Anh V-ACT',
       description: 'Ôn ngữ pháp và đọc hiểu tiếng Anh',
@@ -134,11 +145,14 @@ async function main() {
         create: [{ topicId: topics['Tiếng Anh - Ngữ pháp'].id, order: 1 }],
       },
     },
-  });
+    });
+  }
 
   console.log(`✅ Courses: ${course1.title}, ${course2.title}`);
 
   // ==================== 5. CHAPTERS + LESSONS + MATERIALS ====================
+  // Idempotent: khóa học đã có chapter thì bỏ qua
+  if ((await prisma.chapter.count({ where: { courseId: course1.id } })) === 0) {
   const chapter1 = await prisma.chapter.create({
     data: {
       courseId: course1.id,
@@ -220,8 +234,11 @@ async function main() {
   console.log(
     `   - Lesson: ${lesson1.title}, ${lesson2.title}, ${lesson3.title}`,
   );
+  }
 
   // ==================== 6. QUESTIONS ====================
+  // Idempotent: đã có câu hỏi thì tái sử dụng, tránh nhân bản khi chạy lại seed
+  if ((await prisma.question.count()) === 0) {
   // Câu hỏi 1: MULTIPLE_CHOICE
   const q1 = await prisma.question.create({
     data: {
@@ -355,7 +372,30 @@ async function main() {
     },
   });
 
-  console.log(`✅ Questions: 6 câu hỏi đã tạo`);
+    console.log(`✅ Questions: 6 câu hỏi đã tạo`);
+  }
+  const [q1, q2, q3, q4, q5, q6] = await prisma.question.findMany({
+    orderBy: { createdAt: 'asc' },
+  });
+
+  // ==================== 7. EXAM ====================
+  let exam = await prisma.exam.findFirst({
+    where: { title: 'Đề luyện thi ĐGNL 2026 V-ACT – Đề 1' },
+  });
+  if (!exam) {
+    exam = await prisma.exam.create({
+      data: {
+        title: 'Đề luyện thi ĐGNL 2026 V-ACT – Đề 1',
+        description: 'Đề thi mẫu gồm 6 câu hỏi demo',
+        questions: {
+          create: [q1, q2, q3, q4, q5, q6]
+            .filter(Boolean)
+            .map((q) => ({ questionId: q.id })),
+        },
+      },
+    });
+  }
+  console.log(`✅ Exam: ${exam.title} (${exam.id})`);
 
   // ==================== SUMMARY ====================
   const counts = {

@@ -53,6 +53,32 @@ export class LessonsService {
     });
   }
 
+  // Danh sách toàn bộ lesson của 1 course (theo spec GET /courses/:id/lessons)
+  async findByCourse(courseId: string) {
+    const course = await this.prisma.course.findUnique({
+      where: { id: courseId },
+      include: {
+        chapters: {
+          orderBy: { order: 'asc' },
+          include: {
+            lessons: {
+              orderBy: { order: 'asc' },
+              include: { materials: { orderBy: { order: 'asc' } } },
+            },
+          },
+        },
+      },
+    });
+    if (!course) throw new NotFoundException('Không tìm thấy khóa học');
+    // Trả phẳng kèm thông tin chapter để FE render theo thứ tự
+    return course.chapters.flatMap((ch) =>
+      ch.lessons.map((l) => ({
+        ...l,
+        chapter: { id: ch.id, title: ch.title, order: ch.order },
+      })),
+    );
+  }
+
   // Chi tiết 1 lesson
   async findOne(id: string) {
     const lesson = await this.prisma.lesson.findUnique({

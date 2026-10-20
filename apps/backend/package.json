@@ -91,7 +91,7 @@
       ]
     },
     "transformIgnorePatterns": [
-      "node_modules/(?!(.*?/)?(@nestjs/testing|@nestjs/common|@nestjs/core)/)"
+      "node_modules/(?!(.*?/)?(@nestjs|passport|passport-jwt|passport-strategy)/)"
     ],
     "collectCoverageFrom": [
       "**/*.(t|j)s"

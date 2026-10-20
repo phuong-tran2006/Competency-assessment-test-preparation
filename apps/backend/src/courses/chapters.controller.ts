@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Delete,
+  Get,
   Param,
   Patch,
   Post,
@@ -16,11 +17,24 @@ import { ChaptersService } from './chapters.service';
 import { CreateChapterDto } from './dto/create-chapter.dto';
 import { UpdateChapterDto } from './dto/update-chapter.dto';
 
-@UseGuards(AuthGuard('jwt'), RolesGuard)
-@Roles(Role.INSTRUCTOR, Role.ADMIN)
 @Controller()
 export class ChaptersController {
   constructor(private readonly chapters: ChaptersService) {}
+
+  // ===== Public: đọc cấu trúc khóa học =====
+  @Get('courses/:courseId/chapters')
+  findByCourse(@Param('courseId') courseId: string) {
+    return this.chapters.findByCourse(courseId);
+  }
+
+  @Get('chapters/:id')
+  findOne(@Param('id') id: string) {
+    return this.chapters.findOne(id);
+  }
+
+  // ===== Instructor / Admin: ghi =====
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles(Role.INSTRUCTOR, Role.ADMIN)
 
   @Post('courses/:courseId/chapters')
   create(

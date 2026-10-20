@@ -26,25 +26,25 @@ enum UserStatus {
 
 /// Trạng thái xuất bản của khóa học
 enum CourseStatus {
-  DRAFT      // Bản nháp, chỉ instructor/admin thấy
-  PUBLISHED  // Đã xuất bản, learner thấy và enroll được
-  HIDDEN     // Tạm ẩn khỏi danh sách công khai
+  DRAFT // Bản nháp, chỉ instructor/admin thấy
+  PUBLISHED // Đã xuất bản, learner thấy và enroll được
+  HIDDEN // Tạm ẩn khỏi danh sách công khai
 }
 
 /// Loại tài liệu học tập (MVP yêu cầu >= 2 loại, ở đây hỗ trợ 4)
 enum MaterialType {
-  TEXT   // Nội dung văn bản thuần (dùng trường `content`)
-  VIDEO  // Link video (dùng trường `url`)
-  PDF    // Link file PDF (dùng trường `url`)
-  LINK   // Link tham khảo ngoài (dùng trường `url`)
+  TEXT // Nội dung văn bản thuần (dùng trường `content`)
+  VIDEO // Link video (dùng trường `url`)
+  PDF // Link file PDF (dùng trường `url`)
+  LINK // Link tham khảo ngoài (dùng trường `url`)
 }
 
 /// Loại câu hỏi
 enum QuestionType {
-  MULTIPLE_CHOICE    // Trắc nghiệm 1 đáp án đúng
-  MULTI_SELECT       // Trắc nghiệm nhiều đáp án đúng
-  TRUE_FALSE         // Đúng / Sai
-  FILL_IN_THE_BLANK  // Điền vào chỗ trống
+  MULTIPLE_CHOICE // Trắc nghiệm 1 đáp án đúng
+  MULTI_SELECT // Trắc nghiệm nhiều đáp án đúng
+  TRUE_FALSE // Đúng / Sai
+  FILL_IN_THE_BLANK // Điền vào chỗ trống
 }
 
 // =====================================================================
@@ -56,14 +56,15 @@ model User {
   email        String     @unique
   passwordHash String
   fullName     String?
-  targetScore  Int?       // MVP: hồ sơ có điểm mục tiêu
+  targetScore  Int? // MVP: hồ sơ có điểm mục tiêu
   role         Role       @default(LEARNER)
   status       UserStatus @default(ACTIVE)
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
 
   // ----- Relations (mở rộng ở Giai đoạn 2) -----
-  coursesTaught Course[] @relation("InstructorCourses")
+  coursesTaught Course[]      @relation("InstructorCourses")
+  attempts      ExamAttempt[]
 
   @@index([role])
   @@index([status])
@@ -84,9 +85,9 @@ model Course {
   updatedAt    DateTime     @updatedAt
 
   // ----- Relations -----
-  instructor   User          @relation("InstructorCourses", fields: [instructorId], references: [id])
-  chapters     Chapter[]
-  courseTopics CourseTopic[] // N:M với Topic qua bảng trung gian tường minh
+  instructor    User                 @relation("InstructorCourses", fields: [instructorId], references: [id])
+  chapters      Chapter[]
+  courseTopics  CourseTopic[] // N:M với Topic qua bảng trung gian tường minh
   prerequisites CoursePrerequisite[] @relation("CoursePrerequisites")
   requiredBy    CoursePrerequisite[] @relation("CourseRequiredBy")
 
@@ -99,7 +100,7 @@ model Chapter {
   id        String   @id @default(cuid())
   courseId  String
   title     String
-  order     Int      // Thứ tự chương trong khóa học
+  order     Int // Thứ tự chương trong khóa học
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -117,7 +118,7 @@ model Lesson {
   chapterId String
   title     String
   content   String?  @db.Text // Nội dung text chính của bài học
-  order     Int      // Thứ tự bài học trong chương
+  order     Int // Thứ tự bài học trong chương
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -136,7 +137,7 @@ model Material {
   type      MaterialType
   title     String?
   content   String?      @db.Text // Dùng khi type = TEXT
-  url       String?               // Dùng khi type = VIDEO | PDF | LINK
+  url       String? // Dùng khi type = VIDEO | PDF | LINK
   order     Int          @default(0)
   createdAt DateTime     @default(now())
   updatedAt DateTime     @updatedAt
@@ -175,12 +176,12 @@ model Topic {
 /// Bảng trung gian cho Prerequisite Knowledge Graph
 /// Ví dụ: Topic("Tích phân") có prerequisite là Topic("Đạo hàm")
 model TopicPrerequisite {
-  topicId        String   // Topic phụ thuộc (con)
-  prerequisiteId String   // Topic được yêu cầu trước (cha)
+  topicId        String // Topic phụ thuộc (con)
+  prerequisiteId String // Topic được yêu cầu trước (cha)
   createdAt      DateTime @default(now())
 
   // ----- Relations -----
-  topic        Topic @relation("TopicIsDependent",    fields: [topicId],        references: [id], onDelete: Cascade)
+  topic        Topic @relation("TopicIsDependent", fields: [topicId], references: [id], onDelete: Cascade)
   prerequisite Topic @relation("TopicIsPrerequisite", fields: [prerequisiteId], references: [id], onDelete: Cascade)
 
   @@id([topicId, prerequisiteId]) // Khóa chính phức hợp: không trùng cặp
@@ -198,7 +199,7 @@ model CourseTopic {
 
   // ----- Relations -----
   course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
-  topic  Topic  @relation(fields: [topicId],  references: [id], onDelete: Cascade)
+  topic  Topic  @relation(fields: [topicId], references: [id], onDelete: Cascade)
 
   @@id([courseId, topicId])
   @@index([topicId])
@@ -210,14 +211,15 @@ model CoursePrerequisite {
   courseId       String
   prerequisiteId String
 
-//----- Relations -----
-course Course @relation("CoursePrerequisites",fields: [courseId],references: [id],onDelete: Cascade)
-prerequisite Course @relation("CourseRequiredBy",fields: [prerequisiteId],references: [id],onDelete: Cascade)
+  //----- Relations -----
+  course       Course @relation("CoursePrerequisites", fields: [courseId], references: [id], onDelete: Cascade)
+  prerequisite Course @relation("CourseRequiredBy", fields: [prerequisiteId], references: [id], onDelete: Cascade)
 
   @@id([courseId, prerequisiteId])
   @@index([prerequisiteId])
   @@map("course_prerequisites")
 }
+
 // =====================================================================
 //  GIAI ĐOẠN 2 - QUESTION & QUESTION OPTION
 // =====================================================================
@@ -228,8 +230,8 @@ model Question {
   explanation String?      @db.Text // Giải thích đáp án
   type        QuestionType @default(MULTIPLE_CHOICE)
   difficulty  Float        @default(0.0) // d_i ban đầu, gán bởi instructor (Elo)
-  source      String?      // Nguồn câu hỏi
-  license     String?      // Giấy phép
+  source      String? // Nguồn câu hỏi
+  license     String? // Giấy phép
   topicId     String
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
@@ -238,7 +240,8 @@ model Question {
   topic   Topic            @relation(fields: [topicId], references: [id])
   options QuestionOption[]
   //Update by marcy
-  exams ExamQuestion[]
+  exams   ExamQuestion[]
+  answers ExamAnswer[]
 
   @@index([topicId])
   @@index([topicId, difficulty]) // Phục vụ recommender giai đoạn sau
@@ -262,13 +265,14 @@ model QuestionOption {
 
 //Update
 model Exam {
-  id          String       @id @default(cuid())
+  id          String   @id @default(cuid())
   title       String
-  description String?      @db.Text
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
+  description String?  @db.Text
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
-  questions   ExamQuestion[]
+  questions ExamQuestion[]
+  attempts  ExamAttempt[]
 
   @@map("exams")
 }
@@ -283,4 +287,38 @@ model ExamQuestion {
 
   @@id([examId, questionId])
   @@map("exam_questions")
+}
+
+// Lượt làm bài của learner — nguồn dữ liệu cho recommendation (M4)
+model ExamAttempt {
+  id         String   @id @default(cuid())
+  examId     String
+  userId     String
+  score      Int
+  total      Int
+  percentage Int
+  createdAt  DateTime @default(now())
+
+  exam    Exam         @relation(fields: [examId], references: [id], onDelete: Cascade)
+  user    User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  answers ExamAnswer[]
+
+  @@index([examId])
+  @@index([userId])
+  @@map("exam_attempts")
+}
+
+model ExamAnswer {
+  id          String   @id @default(cuid())
+  attemptId   String
+  questionId  String
+  isCorrect   Boolean
+  selectedIds String[] @default([])
+
+  attempt  ExamAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  question Question    @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@index([attemptId])
+  @@index([questionId])
+  @@map("exam_answers")
 }

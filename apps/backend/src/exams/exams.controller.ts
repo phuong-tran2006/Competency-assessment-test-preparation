@@ -26,12 +26,28 @@ export class ExamsController {
   }
 } */
 
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { OptionalAuthGuard } from '../common/guards/optional-auth.guard';
 import { ExamsService } from './exams.service';
 
 @Controller('exams')
 export class ExamsController {
   constructor(private readonly examsService: ExamsService) {}
+
+  // API lấy danh sách đề thi: GET /exams
+  @Get()
+  async getExams() {
+    return this.examsService.findAll();
+  }
 
   // API lấy câu hỏi đề thi: GET /exams/:id/questions
   @Get(':id/questions')
@@ -39,12 +55,21 @@ export class ExamsController {
     return this.examsService.getQuestionsByExamId(id);
   }
 
-  // API nộp bài thi: POST /exams/:id/submit
+  // API nộp bài thi: POST /exams/:id/submit (lưu attempt nếu đã đăng nhập)
+  @UseGuards(OptionalAuthGuard)
   @Post(':id/submit')
   async submitExam(
     @Param('id') id: string,
-    @Body() body: { answers: Record<string, string> },
+    @Body() body: { answers: Record<string, string | string[]> },
+    @Req() req: any,
   ) {
-    return this.examsService.submitExam(id, body.answers);
+    return this.examsService.submitExam(id, body.answers, req.user?.id);
+  }
+
+  // Lịch sử làm bài của chính mình: GET /exams/:id/attempts
+  @UseGuards(AuthGuard('jwt'))
+  @Get(':id/attempts')
+  async getAttempts(@Param('id') id: string, @Req() req: any) {
+    return this.examsService.getAttempts(id, req.user.id);
   }
 }

@@ -22,6 +22,11 @@ export class LessonsController {
   constructor(private readonly lessons: LessonsService) {}
 
   // ===== Public: đọc nội dung =====
+  @Get('courses/:courseId/lessons')
+  findByCourse(@Param('courseId') courseId: string) {
+    return this.lessons.findByCourse(courseId);
+  }
+
   @Get('chapters/:chapterId/lessons')
   findByChapter(@Param('chapterId') chapterId: string) {
     return this.lessons.findByChapter(chapterId);

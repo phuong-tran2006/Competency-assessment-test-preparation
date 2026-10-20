@@ -14,18 +14,22 @@ import { AuthGuard } from '@nestjs/passport';
 import { Role, CourseStatus } from '@prisma/client';
 import { Roles } from '../common/decorators/roles.decorator';
 import { RolesGuard } from '../common/guards/roles.guard';
+import { OptionalAuthGuard } from '../common/guards/optional-auth.guard';
 import { CoursesService } from './courses.service';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
 import { AttachTopicsDto } from './dto/attach-topics.dto';
+import { AddPrerequisiteDto } from '../topics/dto/add-prerequisite.dto';
 
 @Controller('courses')
 export class CoursesController {
   constructor(private readonly courses: CoursesService) {}
 
-  // ===== Public =====
+  // ===== Public (lọc PUBLISHED với khách/learner) =====
+  @UseGuards(OptionalAuthGuard)
   @Get()
   findAll(
+    @Req() req: any,
     @Query('search') search?: string,
     @Query('status') status?: CourseStatus,
     @Query('page') page?: string,
@@ -36,12 +40,15 @@ export class CoursesController {
       status,
       page: page ? parseInt(page, 10) : undefined,
       limit: limit ? parseInt(limit, 10) : undefined,
+      viewerRole: req.user?.role,
+      viewerId: req.user?.id,
     });
   }
 
+  @UseGuards(OptionalAuthGuard)
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.courses.findOne(id);
+  findOne(@Param('id') id: string, @Req() req: any) {
+    return this.courses.findOne(id, req.user?.id, req.user?.role);
   }
 
   // ===== Instructor / Admin =====
@@ -96,5 +103,38 @@ export class CoursesController {
     @Req() req: any,
   ) {
     return this.courses.detachTopic(id, topicId, req.user.id, req.user.role);
+  }
+
+  // ===== Prerequisite của khóa học =====
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles(Role.INSTRUCTOR, Role.ADMIN)
+  @Post(':id/prerequisites')
+  addPrerequisite(
+    @Param('id') id: string,
+    @Req() req: any,
+    @Body() dto: AddPrerequisiteDto,
+  ) {
+    return this.courses.addPrerequisite(
+      id,
+      dto.prerequisiteId,
+      req.user.id,
+      req.user.role,
+    );
+  }
+
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles(Role.INSTRUCTOR, Role.ADMIN)
+  @Delete(':id/prerequisites/:prerequisiteId')
+  removePrerequisite(
+    @Param('id') id: string,
+    @Param('prerequisiteId') prerequisiteId: string,
+    @Req() req: any,
+  ) {
+    return this.courses.removePrerequisite(
+      id,
+      prerequisiteId,
+      req.user.id,
+      req.user.role,
+    );
   }
 }
