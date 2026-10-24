@@ -281,7 +281,7 @@ export class AttemptsService {
       where: { attemptId_questionId: { attemptId, questionId } },
       data: {
         selectedOptionIds,
-        timeSpent: dto.timeSpent,
+        ...(dto.timeSpent !== undefined ? { timeSpent: dto.timeSpent } : {}),
       },
     });
 
