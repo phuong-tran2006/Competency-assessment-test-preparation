@@ -1,22 +1,33 @@
 // import { Controller, Get } from '@nestjs/common';
 import { Controller, Get, Param, NotFoundException } from '@nestjs/common';
 import { AppService } from './app.service';
-
 import { PrismaService } from './prisma/prisma.service';
+import { errorContext } from 'rxjs/internal/util/errorContext';
 
 @Controller()
 export class AppController {
   constructor(
     //update
     private readonly appService: AppService,
-    private readonly prisma: PrismaService
-              
+    private readonly prisma: PrismaService,
   ) {}
 
   @Get('health')
   async health() {
-    await this.prisma.$queryRaw`SELECT 1`;
-    return { status: 'ok', timestamp: new Date().toISOString() };
+    try {
+      await this.prisma.$queryRaw`SELECT 1`;
+      return {
+        status: 'ok',
+        database: 'connected',
+        timestamp: new Date().toISOString(),
+      };
+    } catch (error) {
+      return {
+        status: 'degraded',
+        database: 'disconnected',
+        error: errorContext,
+      };
+    }
   }
   //update
   @Get()
@@ -25,6 +36,7 @@ export class AppController {
   }
 
   // API lấy câu hỏi cho đề thi
+  /*
   @Get('exams/:id/questions')
   async getExamQuestions(@Param('id') id: string) {
     // Truy vấn danh sách câu hỏi trong Database kèm theo danh sách lựa chọn đáp án (options)
@@ -54,5 +66,5 @@ export class AppController {
       })),
     }));
   }
+    */
 }
-

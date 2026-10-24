@@ -1,47 +1,162 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
+import { AttemptsService } from '../attempts/attempts.service';
+import {
+  isAnswerCorrect,
+  questionWeight,
+  roundScore,
+} from '../attempts/scoring';
 
 @Injectable()
 export class ExamsService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly attempts: AttemptsService,
+  ) {}
 
-  // Lấy danh sách câu hỏi của đề thi
+  async getAllExams() {
+    return this.prisma.exam.findMany({
+      include: { _count: { select: { questions: true } } },
+    });
+  }
+
   async getQuestionsByExamId(examId: string) {
-    const questions = await this.prisma.question.findMany({
+    const exam = await this.prisma.exam.findUnique({
+      where: { id: examId },
       include: {
-        options: {
-          orderBy: {
-            order: 'asc',
+        questions: {
+          include: {
+            question: {
+              include: { options: { orderBy: { order: 'asc' } } },
+            },
           },
         },
       },
-      take: 10, // Lấy tối đa câu hỏi sẵn có
     });
 
-    if (!questions || questions.length === 0) {
-      throw new NotFoundException(`Chưa có dữ liệu câu hỏi trong cơ sở dữ liệu`);
+    if (!exam) {
+      throw new NotFoundException('Không tìm thấy đề');
     }
 
-    // Map dữ liệu từ DB (content) sang định dạng Frontend yêu cầu (text)
-    return questions.map((q) => ({
-      id: q.id,
-      examId: examId,
-      content: q.content,
-      options: q.options.map((opt) => ({
+    return exam.questions.map((eq) => ({
+      id: eq.question.id,
+      examId,
+      content: eq.question.content,
+      options: eq.question.options.map((opt) => ({
         id: opt.id,
-        text: opt.content, // Đổi tên thuộc tính `content` thành `text`
-        isCorrect: opt.isCorrect,
+        text: opt.content,
       })),
     }));
   }
 
-  // Xử lý nộp bài thi (khi học sinh ấn Nộp bài)
-  async submitExam(examId: string, answers: Record<string, string>) {
+  async submitExam(
+    examId: string,
+    userId: string | null,
+    answers: Record<string, string[]>,
+  ) {
+    const exam = await this.prisma.exam.findUnique({
+      where: { id: examId },
+      include: {
+        questions: {
+          include: { question: { include: { options: true } } },
+        },
+      },
+    });
+    if (!exam) throw new NotFoundException('Không tìm thấy đề thi');
+
+    let score = 0;
+    let weightedScore = 0;
+
+    const details: Array<{
+      questionId: string;
+      isCorrect: boolean;
+      correctOptionIds: string[];
+      selectedOptionIds: string[];
+      explanation: string | null;
+    }> = [];
+
+    const examAnswersToCreate: Array<{
+      questionId: string;
+      isCorrect: boolean;
+      selectedOptionIds: string[];
+    }> = [];
+
+    for (const eq of exam.questions) {
+      const question = eq.question;
+      const selectedOptionIds = answers[question.id] || [];
+      const correctOptionIds = question.options
+        .filter((o) => o.isCorrect)
+        .map((o) => o.id);
+
+      const isCorrect = isAnswerCorrect(
+        selectedOptionIds,
+        correctOptionIds,
+      );
+
+      if (isCorrect) {
+        score += 1;
+        weightedScore += questionWeight(question.difficulty);
+      }
+
+      details.push({
+        questionId: question.id,
+        isCorrect,
+        correctOptionIds,
+        selectedOptionIds,
+        explanation: question.explanation,
+      });
+
+      examAnswersToCreate.push({
+        questionId: question.id,
+        isCorrect,
+        selectedOptionIds,
+      });
+    }
+
+    const total = exam.questions.length;
+
+    let attemptId: string | null = null;
+    let finalScore = score;
+    let finalWeightedScore = roundScore(weightedScore);
+
+    if (userId) {
+      const now = new Date();
+      const attempt = await this.prisma.examAttempt.create({
+        data: {
+          userId,
+          examId,
+          status: 'IN_PROGRESS',
+          startedAt: now,
+          deadlineAt: null,
+          timeLimit: null,
+          total,
+          answers: { create: examAnswersToCreate },
+        },
+      });
+
+      const finalized = await this.attempts.finalizeAttempt(attempt.id);
+      finalScore = finalized.score;
+      finalWeightedScore = finalized.weightedScore;
+      attemptId = attempt.id;
+    }
+
+    const percentage = total > 0 ? (finalScore / total) * 100 : 0;
+
     return {
-      success: true,
-      examId,
-      submittedAt: new Date(),
-      message: 'Nộp bài thi thành công!',
+      score: finalScore,
+      weightedScore: finalWeightedScore,
+      total,
+      percentage,
+      details,
+      attemptId,
     };
+  }
+
+  async getAttempts(examId: string, userId: string) {
+    return this.prisma.examAttempt.findMany({
+      where: { examId, userId },
+      include: { answers: true },
+      orderBy: { submittedAt: 'desc' },
+    });
   }
 }

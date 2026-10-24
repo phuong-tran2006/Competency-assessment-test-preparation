@@ -14,7 +14,7 @@ build/
 *.log
 
 # Prisma & Test
-apps/backend/prisma/migrations/
+# apps/backend/prisma/migrations/
 coverage/
 test-results/
 playwright-report/

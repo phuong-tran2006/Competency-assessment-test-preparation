@@ -47,6 +47,10 @@ enum QuestionType {
   FILL_IN_THE_BLANK  // Điền vào chỗ trống
 }
 
+enum AttemptStatus {
+  IN_PROGRESS
+  SUBMITTED
+}
 // =====================================================================
 //  GIAI ĐOẠN 1 - USER & AUTH
 // =====================================================================
@@ -64,6 +68,7 @@ model User {
 
   // ----- Relations (mở rộng ở Giai đoạn 2) -----
   coursesTaught Course[] @relation("InstructorCourses")
+  examAttempts  ExamAttempt[]
 
   @@index([role])
   @@index([status])
@@ -104,7 +109,7 @@ model Chapter {
   updatedAt DateTime @updatedAt
 
   // ----- Relations -----
-  course  Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  course  Course   @relation(fields: [courseId], references: [id], onDelete: Restrict)
   lessons Lesson[]
 
   @@unique([courseId, order]) // thứ tự chương là duy nhất trong 1 khóa
@@ -122,7 +127,7 @@ model Lesson {
   updatedAt DateTime @updatedAt
 
   // ----- Relations -----
-  chapter   Chapter    @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  chapter   Chapter    @relation(fields: [chapterId], references: [id], onDelete: Restrict)
   materials Material[]
 
   @@unique([chapterId, order]) // thứ tự bài học là duy nhất trong 1 chương
@@ -142,7 +147,7 @@ model Material {
   updatedAt DateTime     @updatedAt
 
   // ----- Relations -----
-  lesson Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  lesson Lesson @relation(fields: [lessonId], references: [id], onDelete: Restrict)
 
   @@index([lessonId])
   @@index([type])
@@ -160,59 +165,49 @@ model Topic {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  // ----- Relations -----
   questions    Question[]
   courseTopics CourseTopic[]
-
-  // Self-relation N:M có hướng: prerequisites của topic này
+  attemptTopicResults AttemptTopicResult[]
+  
   prerequisites   TopicPrerequisite[] @relation("TopicIsDependent")
-  // Self-relation N:M có hướng: những topic phụ thuộc vào topic này
   dependentTopics TopicPrerequisite[] @relation("TopicIsPrerequisite")
-
   @@map("topics")
 }
 
-/// Bảng trung gian cho Prerequisite Knowledge Graph
-/// Ví dụ: Topic("Tích phân") có prerequisite là Topic("Đạo hàm")
 model TopicPrerequisite {
-  topicId        String   // Topic phụ thuộc (con)
-  prerequisiteId String   // Topic được yêu cầu trước (cha)
+  topicId        String
+  prerequisiteId String 
   createdAt      DateTime @default(now())
 
-  // ----- Relations -----
-  topic        Topic @relation("TopicIsDependent",    fields: [topicId],        references: [id], onDelete: Cascade)
-  prerequisite Topic @relation("TopicIsPrerequisite", fields: [prerequisiteId], references: [id], onDelete: Cascade)
+  topic        Topic @relation("TopicIsDependent",    fields: [topicId],        references: [id], onDelete: Restrict)
+  prerequisite Topic @relation("TopicIsPrerequisite", fields: [prerequisiteId], references: [id], onDelete: Restrict)
 
-  @@id([topicId, prerequisiteId]) // Khóa chính phức hợp: không trùng cặp
+  @@id([topicId, prerequisiteId])
   @@index([prerequisiteId])
   @@map("topic_prerequisites")
 }
 
-/// Bảng trung gian cho quan hệ N:M Course <-> Topic
-/// Dùng bảng tường minh để có thể thêm metadata (order, isCore, addedAt...)
+
 model CourseTopic {
   courseId  String
   topicId   String
-  order     Int      @default(0) // Thứ tự topic trong khóa (tuỳ chọn)
+  order     Int      @default(0)
   createdAt DateTime @default(now())
 
-  // ----- Relations -----
-  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
-  topic  Topic  @relation(fields: [topicId],  references: [id], onDelete: Cascade)
+  course Course @relation(fields: [courseId], references: [id], onDelete: Restrict)
+  topic  Topic  @relation(fields: [topicId],  references: [id], onDelete: Restrict)
 
   @@id([courseId, topicId])
   @@index([topicId])
   @@map("course_topics")
 }
 
-/// Bảng trung gian cho Prerequisite Knowledge Graph
 model CoursePrerequisite {
   courseId       String
   prerequisiteId String
 
-//----- Relations -----
-course Course @relation("CoursePrerequisites",fields: [courseId],references: [id],onDelete: Cascade)
-prerequisite Course @relation("CourseRequiredBy",fields: [prerequisiteId],references: [id],onDelete: Cascade)
+course Course @relation("CoursePrerequisites",fields: [courseId],references: [id],onDelete: Restrict)
+prerequisite Course @relation("CourseRequiredBy",fields: [prerequisiteId],references: [id],onDelete: Restrict)
 
   @@id([courseId, prerequisiteId])
   @@index([prerequisiteId])
@@ -224,24 +219,22 @@ prerequisite Course @relation("CourseRequiredBy",fields: [prerequisiteId],refere
 
 model Question {
   id          String       @id @default(cuid())
-  content     String       @db.Text // Nội dung câu hỏi
-  explanation String?      @db.Text // Giải thích đáp án
+  content     String       @db.Text
+  explanation String?      @db.Text 
   type        QuestionType @default(MULTIPLE_CHOICE)
-  difficulty  Float        @default(0.0) // d_i ban đầu, gán bởi instructor (Elo)
-  source      String?      // Nguồn câu hỏi
-  license     String?      // Giấy phép
+  difficulty  Float        @default(0.0) 
+  source      String?     
+  license     String?      
   topicId     String
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
-
-  // ----- Relations -----
-  topic   Topic            @relation(fields: [topicId], references: [id])
-  options QuestionOption[]
-  //Update by marcy
-  exams ExamQuestion[]
+  answers     ExamAnswer[]
+  topic       Topic            @relation(fields: [topicId], references: [id])
+  options     QuestionOption[]
+  exams       ExamQuestion[]
 
   @@index([topicId])
-  @@index([topicId, difficulty]) // Phục vụ recommender giai đoạn sau
+  @@index([topicId, difficulty])
   @@index([type])
   @@map("questions")
 }
@@ -253,34 +246,90 @@ model QuestionOption {
   isCorrect  Boolean @default(false)
   order      Int     @default(0)
 
-  // ----- Relations -----
-  question Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  question Question @relation(fields: [questionId], references: [id], onDelete: Restrict)
 
   @@index([questionId])
   @@map("question_options")
 }
 
-//Update
 model Exam {
   id          String       @id @default(cuid())
   title       String
   description String?      @db.Text
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
-
+  attempts     ExamAttempt[]
   questions   ExamQuestion[]
 
   @@map("exams")
 }
 
-// Bảng trung gian giữa Đề thi và Câu hỏi (Quan hệ N:M)
 model ExamQuestion {
   examId     String
   questionId String
 
-  exam     Exam     @relation(fields: [examId], references: [id], onDelete: Cascade)
-  question Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  exam     Exam     @relation(fields: [examId], references: [id], onDelete: Restrict)
+  question Question @relation(fields: [questionId], references: [id], onDelete: Restrict)
 
   @@id([examId, questionId])
   @@map("exam_questions")
+}
+
+model ExamAttempt {
+  id          String   @id @default(cuid())
+  userId      String?  
+  examId      String?
+  status      AttemptStatus  @default(IN_PROGRESS)
+
+  startedAt     DateTime      @default(now())
+  deadlineAt    DateTime?
+  submittedAt   DateTime?
+  timeLimit     Int?
+
+  score       Float    @default(0)
+  weightedScore Float  @default(0)
+  total       Int      @default(0)
+
+  user    User?        @relation(fields: [userId], references: [id], onDelete: SetNull)
+  exam    Exam?         @relation(fields: [examId], references: [id], onDelete: Restrict)
+  answers ExamAnswer[]
+  topicResults AttemptTopicResult[]
+
+  @@index([status, deadlineAt])
+  @@index([userId, status, submittedAt])
+  @@map("exam_attempts")
+}
+
+model ExamAnswer {
+  id                String   @id @default(cuid())
+  attemptId         String
+  questionId        String
+  isCorrect         Boolean   @default(false)
+  timeSpent         Int       @default(0) 
+
+  selectedOptionIds String[] 
+
+  attempt ExamAttempt @relation(fields: [attemptId], references: [id], onDelete: Restrict)
+  question Question    @relation(fields: [questionId], references: [id], onDelete: Restrict)
+  @@unique([attemptId, questionId])
+  @@map("exam_answers")
+}
+
+model AttemptTopicResult {
+  id            String   @id @default(cuid())
+  attemptId     String
+  topicId       String
+  correct       Int      @default(0)
+  total         Int      @default(0)
+  weightedScore Float    @default(0)
+  timeSpent     Int      @default(0)
+  createdAt     DateTime @default(now())
+
+  attempt ExamAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  topic   Topic       @relation(fields: [topicId], references: [id], onDelete: Restrict)
+
+  @@unique([attemptId, topicId])
+  @@index([attemptId])
+  @@index([topicId])
+  @@map("attempt_topic_results")
 }

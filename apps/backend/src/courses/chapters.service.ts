@@ -12,6 +12,48 @@ import { Role } from '@prisma/client';
 export class ChaptersService {
   constructor(private readonly prisma: PrismaService) {}
 
+  async findByCourse(courseId: string) {
+    const course = await this.prisma.course.findUnique({
+      where: { id: courseId },
+      select: { id: true },
+    });
+    if (!course) throw new NotFoundException('Không tìm thấy khóa học');
+
+    return this.prisma.chapter.findMany({
+      where: { courseId },
+      orderBy: { order: 'asc' },
+      include: {
+        lessons: {
+          orderBy: { order: 'asc' },
+          select: {
+            id: true,
+            title: true,
+            order: true,
+            _count: { select: { materials: true } },
+          },
+        },
+      },
+    });
+  }
+  async findOne(id: string) {
+    const chapter = await this.prisma.chapter.findUnique({
+      where: { id },
+      include: {
+        lessons: {
+          orderBy: { order: 'asc' },
+          include: {
+            materials: {
+              orderBy: { order: 'asc' },
+            },
+          },
+        },
+      },
+    });
+
+    if (!chapter) throw new NotFoundException('Không tìm thấy chương');
+    return chapter;
+  }
+
   async create(
     courseId: string,
     userId: string,

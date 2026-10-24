@@ -26,14 +26,28 @@ export class ExamsController {
   }
 } */
 
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
 import { ExamsService } from './exams.service';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('exams')
 export class ExamsController {
   constructor(private readonly examsService: ExamsService) {}
 
   // API lấy câu hỏi đề thi: GET /exams/:id/questions
+  @Get()
+  getAllExam() {
+    return this.examsService.getAllExams();
+  }
+
   @Get(':id/questions')
   async getExamQuestions(@Param('id') id: string) {
     return this.examsService.getQuestionsByExamId(id);
@@ -43,8 +57,15 @@ export class ExamsController {
   @Post(':id/submit')
   async submitExam(
     @Param('id') id: string,
-    @Body() body: { answers: Record<string, string> },
+    @Body() body: { answers: Record<string, string[]> },
+    @Req() req: any,
   ) {
-    return this.examsService.submitExam(id, body.answers);
+    return this.examsService.submitExam(id, req.user?.id || null, body.answers);
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Get(':id/attempts')
+  async getAttempts(@Param('id') id: string, @Req() req: any) {
+    return this.examsService.getAttempts(id, req.user.id);
   }
 }
