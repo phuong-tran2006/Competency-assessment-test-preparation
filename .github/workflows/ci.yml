@@ -20,6 +20,14 @@ jobs:
       - name: Install Dependencies
         run: cd apps/backend && npm ci
 
+      - name: Generate Prisma Client
+        run: cd apps/backend && npx prisma generate
+        env:
+          DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/app_db?schema=public"
+
+      - name: Build Backend
+        run: cd apps/backend && npm run build
+
       - name: Run Unit Tests
         run: cd apps/backend && npm run test
 
