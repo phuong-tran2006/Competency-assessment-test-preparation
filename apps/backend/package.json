@@ -92,7 +92,7 @@
       ]
     },
     "transformIgnorePatterns": [
-      "node_modules/(?!(.*?/)?(@nestjs/testing|@nestjs/common|@nestjs/core)/)"
+      "node_modules/(?!(.*?/)?(@nestjs/testing|@nestjs/common|@nestjs/core|@nestjs/passport)/)"
     ],
     "collectCoverageFrom": [
       "**/*.(t|j)s"
