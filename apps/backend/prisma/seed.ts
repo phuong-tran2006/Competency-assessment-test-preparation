@@ -214,16 +214,10 @@ async function main() {
             order: 1,
           },
           {
-            type: 'VIDEO',
-            title: 'Video bài giảng',
-            url: 'https://www.youtube.com/watch?v=demo',
-            order: 2,
-          },
-          {
             type: 'PDF',
             title: 'Bài tập tự luyện',
             url: 'https://example.com/exercises.pdf',
-            order: 3,
+            order: 2,
           },
         ],
       },
@@ -263,16 +257,6 @@ async function main() {
       content:
         'Đạo hàm là giới hạn của tỉ số giữa số gia hàm số và số gia đối số...',
       order: 1,
-      materials: {
-        create: [
-          {
-            type: 'LINK',
-            title: 'Tham khảo Wikipedia',
-            url: 'https://vi.wikipedia.org/wiki/Đạo_hàm',
-            order: 1,
-          },
-        ],
-      },
     },
   });
 
@@ -307,7 +291,7 @@ async function main() {
     },
   });
 
-  // Câu hỏi 2: TRUE_FALSE
+  // Câu hỏi 2: MULTIPLE_CHOICE
   const q2 = await prisma.question.upsert({
     where: { id: 'q-2' },
     update: {},
@@ -315,7 +299,7 @@ async function main() {
       id: 'q-2',
       content: 'Đạo hàm của hàm số y = x² tại x = 3 là 6.',
       explanation: "y' = 2x. Tại x = 3 → y' = 6. Đúng.",
-      type: 'TRUE_FALSE',
+      type: 'MULTIPLE_CHOICE',
       difficulty: 0.2,
       topicId: topics['Toán - Đạo hàm'],
       options: {
@@ -327,15 +311,16 @@ async function main() {
     },
   });
 
-  // Câu hỏi 3: MULTI_SELECT
+  // Câu hỏi 3: MULTIPLE_CHOICE
   const q3 = await prisma.question.upsert({
     where: { id: 'q-3' },
     update: {},
     create: {
       id: 'q-3',
-      content: 'Trong các phát biểu sau, phát biểu nào ĐÚNG về tích phân?',
-      explanation: 'a, c đúng. b sai (tích phân xác định có thể âm). d sai.',
-      type: 'MULTI_SELECT',
+      content: 'Phát biểu nào sau đây ĐÚNG về tích phân?',
+      explanation:
+        'Tích phân là phép toán ngược của đạo hàm. Các phát biểu còn lại đều sai.',
+      type: 'MULTIPLE_CHOICE',
       difficulty: 0.6,
       topicId: topics['Toán - Tích phân'],
       options: {
@@ -351,12 +336,12 @@ async function main() {
             order: 1,
           },
           {
-            content: 'Tích phân bất định có hằng số C',
-            isCorrect: true,
+            content: 'Tích phân bất định không có hằng số C',
+            isCorrect: false,
             order: 2,
           },
           {
-            content: 'Tích phân không áp dụng được cho hàm số liên tục',
+            content: 'Tích phân chỉ áp dụng cho hàm số gián đoạn',
             isCorrect: false,
             order: 3,
           },
@@ -542,7 +527,7 @@ async function main() {
           },
           {
             questionId: 'q-3',
-            selectedOptionIds: [correctOptionIds('q-3')[0]],
+            selectedOptionIds: [wrongOptionId('q-3')],
             isCorrect: false,
             timeSpent: 80,
           },
