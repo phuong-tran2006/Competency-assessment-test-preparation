@@ -16,6 +16,7 @@ export interface Course {
   thumbnail: string;
   lessonsCount: number;
   lessons?: Lesson[]; // Optional vì danh sách tổng quát có thể không kèm chi tiết bài học
+  chapters?: any[]; // Thêm dòng này để TypeScript nhận diện chapters
 }
 
 export interface Option {
