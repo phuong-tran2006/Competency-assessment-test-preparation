@@ -27,7 +27,7 @@ export class CreateMaterialDto {
   @IsString()
   content?: string;
 
-  // url bắt buộc khi type ∈ {VIDEO, PDF, LINK}
+  // url bắt buộc khi type = PDF
   @ValidateIf((o) => o.type !== MaterialType.TEXT)
   @IsString()
   @IsUrl({ require_tld: false })

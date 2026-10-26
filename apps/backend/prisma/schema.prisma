@@ -1,72 +1,46 @@
-// =====================================================================
-//  Prisma Schema - V-ACT Learning Platform
-//  Bao gồm: Giai đoạn 1 (Auth & User) + Giai đoạn 2 (Content & Question)
-// =====================================================================
 
 generator client {
   provider = "prisma-client-js"
 }
-
 datasource db {
   provider = "postgresql"
 }
-
-/// Vai trò người dùng trong hệ thống
 enum Role {
   LEARNER
   INSTRUCTOR
   ADMIN
 }
-
-/// Trạng thái tài khoản
 enum UserStatus {
   ACTIVE
   LOCKED
 }
-
-/// Trạng thái xuất bản của khóa học
 enum CourseStatus {
-  DRAFT      // Bản nháp, chỉ instructor/admin thấy
-  PUBLISHED  // Đã xuất bản, learner thấy và enroll được
-  HIDDEN     // Tạm ẩn khỏi danh sách công khai
+  DRAFT      
+  PUBLISHED  
+  HIDDEN     
 }
-
-/// Loại tài liệu học tập (MVP yêu cầu >= 2 loại, ở đây hỗ trợ 4)
 enum MaterialType {
-  TEXT   // Nội dung văn bản thuần (dùng trường `content`)
-  VIDEO  // Link video (dùng trường `url`)
-  PDF    // Link file PDF (dùng trường `url`)
-  LINK   // Link tham khảo ngoài (dùng trường `url`)
+  TEXT   
+  PDF    
 }
-
-/// Loại câu hỏi
 enum QuestionType {
-  MULTIPLE_CHOICE    // Trắc nghiệm 1 đáp án đúng
-  MULTI_SELECT       // Trắc nghiệm nhiều đáp án đúng
-  TRUE_FALSE         // Đúng / Sai
-  FILL_IN_THE_BLANK  // Điền vào chỗ trống
+  MULTIPLE_CHOICE
 }
-
 enum AttemptStatus {
   IN_PROGRESS
   SUBMITTED
 }
-// =====================================================================
-//  GIAI ĐOẠN 1 - USER & AUTH
-// =====================================================================
-
 model User {
   id           String     @id @default(cuid())
   email        String     @unique
   passwordHash String
   fullName     String?
-  targetScore  Int?       // MVP: hồ sơ có điểm mục tiêu
+  targetScore  Int?       
   role         Role       @default(LEARNER)
   status       UserStatus @default(ACTIVE)
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
 
-  // ----- Relations (mở rộng ở Giai đoạn 2) -----
   coursesTaught Course[] @relation("InstructorCourses")
   examAttempts  ExamAttempt[]
 
@@ -74,10 +48,6 @@ model User {
   @@index([status])
   @@map("users")
 }
-
-// =====================================================================
-//  GIAI ĐOẠN 2 - COURSE STRUCTURE (Course → Chapter → Lesson → Material)
-// =====================================================================
 
 model Course {
   id           String       @id @default(cuid())
@@ -88,10 +58,9 @@ model Course {
   createdAt    DateTime     @default(now())
   updatedAt    DateTime     @updatedAt
 
-  // ----- Relations -----
   instructor   User          @relation("InstructorCourses", fields: [instructorId], references: [id])
   chapters     Chapter[]
-  courseTopics CourseTopic[] // N:M với Topic qua bảng trung gian tường minh
+  courseTopics CourseTopic[] 
   prerequisites CoursePrerequisite[] @relation("CoursePrerequisites")
   requiredBy    CoursePrerequisite[] @relation("CourseRequiredBy")
 
@@ -104,15 +73,14 @@ model Chapter {
   id        String   @id @default(cuid())
   courseId  String
   title     String
-  order     Int      // Thứ tự chương trong khóa học
+  order     Int      
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  // ----- Relations -----
   course  Course   @relation(fields: [courseId], references: [id], onDelete: Restrict)
   lessons Lesson[]
 
-  @@unique([courseId, order]) // thứ tự chương là duy nhất trong 1 khóa
+  @@unique([courseId, order])
   @@index([courseId])
   @@map("chapters")
 }
@@ -121,16 +89,15 @@ model Lesson {
   id        String   @id @default(cuid())
   chapterId String
   title     String
-  content   String?  @db.Text // Nội dung text chính của bài học
-  order     Int      // Thứ tự bài học trong chương
+  content   String?  @db.Text
+  order     Int      
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  // ----- Relations -----
   chapter   Chapter    @relation(fields: [chapterId], references: [id], onDelete: Restrict)
   materials Material[]
 
-  @@unique([chapterId, order]) // thứ tự bài học là duy nhất trong 1 chương
+  @@unique([chapterId, order])
   @@index([chapterId])
   @@map("lessons")
 }
@@ -140,23 +107,18 @@ model Material {
   lessonId  String
   type      MaterialType
   title     String?
-  content   String?      @db.Text // Dùng khi type = TEXT
-  url       String?               // Dùng khi type = VIDEO | PDF | LINK
+  content   String?      @db.Text // type = TEXT
+  url       String?               // type = PDF
   order     Int          @default(0)
   createdAt DateTime     @default(now())
   updatedAt DateTime     @updatedAt
 
-  // ----- Relations -----
   lesson Lesson @relation(fields: [lessonId], references: [id], onDelete: Restrict)
 
   @@index([lessonId])
   @@index([type])
   @@map("materials")
 }
-
-// =====================================================================
-//  GIAI ĐOẠN 2 - TOPIC & PREREQUISITE KNOWLEDGE GRAPH
-// =====================================================================
 
 model Topic {
   id          String   @id @default(cuid())
@@ -213,10 +175,6 @@ prerequisite Course @relation("CourseRequiredBy",fields: [prerequisiteId],refere
   @@index([prerequisiteId])
   @@map("course_prerequisites")
 }
-// =====================================================================
-//  GIAI ĐOẠN 2 - QUESTION & QUESTION OPTION
-// =====================================================================
-
 model Question {
   id          String       @id @default(cuid())
   content     String       @db.Text

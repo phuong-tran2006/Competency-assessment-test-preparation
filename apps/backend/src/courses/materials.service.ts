@@ -115,12 +115,6 @@ export class MaterialsService {
   }
 
   // ===== Helpers =====
-
-  /**
-   * Kiểm tra tính hợp lệ của content/url theo type:
-   * - TEXT  → bắt buộc có content, không có url
-   * - VIDEO, PDF, LINK → bắt buộc có url, không có content
-   */
   private validateByType(type: MaterialType, content?: string, url?: string) {
     if (type === MaterialType.TEXT) {
       if (!content || content.trim().length === 0) {
