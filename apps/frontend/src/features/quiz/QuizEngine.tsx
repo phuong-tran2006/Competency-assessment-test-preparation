@@ -1,23 +1,27 @@
 import { useEffect, useState, useRef } from 'react';
+import { useParams } from 'react-router-dom';
 import { useQuizStore } from '../../store/quizStore';
+import { quizService } from '../../services/quiz.service';
 
 export const QuizEngine = () => {
   const { 
     questions, answers, reviewList,
-    setAnswer, toggleReview, jumpToQuestion, submitQuiz 
+    setAnswer, toggleReview, jumpToQuestion, submitQuiz, setResultData 
   } = useQuizStore();
+  const { examId } = useParams();
 
   const [timeLeft, setTimeLeft] = useState(3600); // 60 phút
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const questionRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     if (timeLeft <= 0) {
-      submitQuiz();
+      handleSubmit();
       return;
     }
     const timer = setInterval(() => setTimeLeft((prev) => prev - 1), 1000);
     return () => clearInterval(timer);
-  }, [timeLeft, submitQuiz]);
+  }, [timeLeft]);
 
   const formatTime = (seconds: number) => {
     const m = Math.floor(seconds / 60).toString().padStart(2, '0');
@@ -30,6 +34,36 @@ export const QuizEngine = () => {
     questionRefs.current[index]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
+  // Hàm nộp bài tích hợp gọi API thật theo chuẩn Contract mới
+  const handleSubmit = async () => {
+    const confirm = window.confirm("Bạn có chắc chắn muốn nộp bài không?");
+    if (!confirm) return;
+    
+    if (!examId) {
+      alert("Không tìm thấy mã đề thi hợp lệ!");
+      return;
+    }
+
+    try { 
+      setIsSubmitting(true);
+      const result = await quizService.submitExam(examId, answers);
+
+      // Xử lý linh hoạt trường hợp quizService trả về toàn bộ response của axios hoặc chỉ trả về data
+      const finalResultData = result.data ? result.data : result;
+
+      // Lưu kết quả (correctAnswers, totalQuestions, score) vào Zustand Store
+      setResultData(finalResultData);
+
+      // Chuyển sang màn hình kết quả
+      submitQuiz();
+    } catch (error) {
+      console.error("Lỗi khi nộp bài:", error);
+      alert("Có lỗi xảy ra khi nộp bài lên hệ thống. Vui lòng thử lại!");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const answeredCount = Object.keys(answers).length;
 
   return (
@@ -38,19 +72,19 @@ export const QuizEngine = () => {
       {/* CỘT TRÁI: DANH SÁCH CÂU HỎI CUỘN DỌC */}
       <div className="flex-1 space-y-6 lg:max-h-[calc(100vh-40px)] lg:overflow-y-auto pr-2">
         <h1 className="text-center text-xl font-black text-amber-600 uppercase tracking-wide py-3 bg-amber-50 rounded-xl border border-amber-200">
-          ĐỀ LUYỆN THI ĐGNL 2026 V-ACT – ĐỀ 1 (PHẦN TOÁN HỌC)
+          ĐỀ LUYỆN THI ĐGNL 2026 V-ACT – ĐỀ 1
         </h1>
 
         {questions.map((q, idx) => (
-            <div 
-              key={q.id} 
-              ref={(el) => { questionRefs.current[idx] = el; }} // Thêm dấu {} và chấm phẩy ;
-              className="..."
->
+          <div 
+            key={q.id} 
+            ref={(el) => { questionRefs.current[idx] = el; }}
+            className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm"
+          >
             <div className="flex justify-between items-start mb-4">
               <h3 className="text-lg font-bold text-gray-800">Câu {idx + 1}</h3>
               <span className="px-3 py-1 bg-green-600 text-white text-xs font-semibold rounded-md shadow-sm">
-                Nhận biết
+                Trắc nghiệm
               </span>
             </div>
 
@@ -137,10 +171,11 @@ export const QuizEngine = () => {
           </div>
 
           <button 
-            onClick={() => { if (window.confirm("Bạn có chắc chắn muốn nộp bài không?")) submitQuiz(); }}
-            className="w-full py-3 bg-amber-500 hover:bg-amber-600 text-white font-extrabold text-base rounded-full shadow-md transition-all mb-6 uppercase"
+            onClick={handleSubmit}
+            disabled={isSubmitting}
+            className="w-full py-3 bg-amber-500 hover:bg-amber-600 disabled:bg-amber-300 text-white font-extrabold text-base rounded-full shadow-md transition-all mb-6 uppercase"
           >
-            NỘP BÀI
+            {isSubmitting ? 'ĐANG NỘP BÀI...' : 'NỘP BÀI'}
           </button>
 
           {/* Chú giải màu sắc */}
