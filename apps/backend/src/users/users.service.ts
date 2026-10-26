@@ -1,4 +1,5 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { UserStatus } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 
@@ -31,6 +32,24 @@ export class UsersService {
         fullName: true,
         role: true,
         targetScore: true,
+        updatedAt: true,
+      },
+    });
+  }
+
+  updateStatus(userId: string, status: UserStatus) {
+    if (!Object.values(UserStatus).includes(status)) {
+      throw new BadRequestException('Trạng thái không hợp lệ');
+    }
+    return this.prisma.user.update({
+      where: { id: userId },
+      data: { status },
+      select: {
+        id: true,
+        email: true,
+        fullName: true,
+        role: true,
+        status: true,
         updatedAt: true,
       },
     });

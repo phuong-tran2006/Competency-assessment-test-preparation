@@ -22,6 +22,14 @@ export class CreateAttemptDto {
   @Max(14400)
   timeLimit?: number;
 
+  // Alias theo phút cho practice: durationMin * 60 = timeLimit (giây)
+  @IsOptional()
+  @Type(() => Number)
+  @IsInt()
+  @Min(1)
+  @Max(240)
+  durationMin?: number;
+
   @IsOptional()
   @IsArray()
   @ArrayUnique()

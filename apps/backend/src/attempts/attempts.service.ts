@@ -13,8 +13,14 @@ import { isAnswerCorrect, questionWeight, roundScore } from './scoring';
 export class AttemptsService {
   constructor(private prisma: PrismaService) {}
 
+  private resolveTimeLimit(dto: { timeLimit?: number; durationMin?: number }, fallback: number) {
+    if (dto.timeLimit !== undefined) return dto.timeLimit;
+    if (dto.durationMin !== undefined) return dto.durationMin * 60;
+    return fallback;
+  }
+
   async startAttempt(userId: string | null, dto: CreateAttemptDto) {
-    const timeLimit = dto.timeLimit ?? 3600;
+    const timeLimit = this.resolveTimeLimit(dto, 3600);
 
     if (dto.examId) {
       const exam = await this.prisma.exam.findUnique({
@@ -60,7 +66,7 @@ export class AttemptsService {
 
   async startPlacement(userId: string, dto: CreatePlacementDto) {
     const requestedCount = dto.questionCount ?? 20;
-    const timeLimit = dto.timeLimit ?? 1800;
+    const timeLimit = this.resolveTimeLimit(dto, 1800);
 
     const topicIds = dto.topicIds?.length
       ? dto.topicIds

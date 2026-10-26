@@ -14,7 +14,7 @@ async function main() {
   const hashedPassword = await bcrypt.hash('admin123', 10);
 
   // 1. Tạo tài khoản mẫu
-  await prisma.user.upsert({
+  const admin = await prisma.user.upsert({
     where: { email: 'admin@vact.com' },
     update: {},
     create: {
@@ -36,15 +36,31 @@ async function main() {
     },
   });
 
-  // 2. Tạo Chủ đề (Topic)
-  const topic = await prisma.topic.upsert({
-    where: { name: 'Toán học & Ngôn ngữ tổng hợp' },
-    update: {},
-    create: { 
-      name: 'Toán học & Ngôn ngữ tổng hợp', 
-      description: 'Chủ đề trọng tâm ôn thi Đánh giá năng lực' 
-    },
-  });
+  // 2. Tạo Chủ đề (Topic) theo đúng format ĐGNL: mỗi câu 1 topic
+  const topicDefs = [
+    { name: 'Toán', description: 'Toán học và tư duy định lượng' },
+    { name: 'Tiếng Việt', description: 'Ngữ văn và đọc hiểu tiếng Việt' },
+    { name: 'Tiếng Anh', description: 'Ngữ pháp và đọc hiểu tiếng Anh' },
+    { name: 'Logic - Suy luận', description: 'Tư duy logic và phân tích số liệu' },
+  ];
+  const topics: Record<string, { id: string }> = {};
+  for (const t of topicDefs) {
+    topics[t.name] = await prisma.topic.upsert({
+      where: { name: t.name },
+      update: {},
+      create: t,
+    });
+  }
+
+  // Map questionId -> topic
+  const questionTopics: Record<string, string> = {
+    'q-2026-1': 'Toán', 'q-2026-2': 'Tiếng Việt', 'q-2026-3': 'Toán',
+    'q-2026-4': 'Tiếng Anh', 'q-2026-5': 'Toán', 'q-2026-6': 'Toán',
+    'q-2025-1': 'Tiếng Việt', 'q-2025-2': 'Toán', 'q-2025-3': 'Tiếng Việt',
+    'q-2025-4': 'Toán', 'q-2025-5': 'Toán', 'q-2025-6': 'Tiếng Việt',
+    'q-2024-1': 'Toán', 'q-2024-2': 'Toán', 'q-2024-3': 'Tiếng Việt',
+    'q-2024-4': 'Toán', 'q-2024-5': 'Toán', 'q-2024-6': 'Tiếng Việt',
+  };
 
   // 3. Cấu hình 3 bộ đề khớp đúng với giao diện
   const examsConfig = [
@@ -58,8 +74,8 @@ async function main() {
         { id: 'q-2026-3', content: 'Đạo hàm của hàm số y = x^3 tại điểm x = 2 bằng bao nhiêu?', correct: 3, options: ['6', '8', '9', '12'] },
         { id: 'q-2026-4', content: 'Choose the correct answer: "She ___ to school every day."', correct: 1, options: ['go', 'goes', 'going', 'gone'] },
         { id: 'q-2026-5', content: 'Trong không gian Oxyz, mặt phẳng (P): x + y + z - 3 = 0 có véctơ pháp tuyến là:', correct: 0, options: ['n = (1, 1, 1)', 'n = (1, 1, -3)', 'n = (0, 0, 1)', 'n = (1, -1, 1)'] },
-        { id: 'q-2026-6', content: 'Một hình chữ nhật có chu vi bằng 40cm, chiều dài hơn chiều rộng 4cm. Diện tích là:', correct: 0, options: ['96 cm²', '100 cm²', '84 cm²', '120 cm²'] }
-      ]
+        { id: 'q-2026-6', content: 'Một hình chữ nhật có chu vi bằng 40cm, chiều dài hơn chiều rộng 4cm. Diện tích là:', correct: 0, options: ['96 cm²', '100 cm²', '84 cm²', '120 cm²'] },
+      ],
     },
     {
       id: 'vact-exam-2025',
@@ -71,8 +87,8 @@ async function main() {
         { id: 'q-2025-3', content: 'Từ "long lanh" trong câu "Nước hồ long lanh" thuộc loại từ nào?', correct: 2, options: ['Từ đơn', 'Từ ghép', 'Từ láy', 'Từ phức'] },
         { id: 'q-2025-4', content: 'Tích phân từ 0 đến 1 của hàm số f(x) = 2xdx có giá trị bằng:', correct: 0, options: ['1', '2', '0.5', '0'] },
         { id: 'q-2025-5', content: 'Giải phương trình log2(x) = 3. Nghiệm của phương trình là:', correct: 2, options: ['6', '9', '8', '3'] },
-        { id: 'q-2025-6', content: 'Thị Phương là nhân vật trong vở chèo cổ nào?', correct: 3, options: ['Quan Âm Thị Kính', 'Lưu Bình - Dương Lễ', 'Súy Vân', 'Trương Viên'] }
-      ]
+        { id: 'q-2025-6', content: 'Thị Phương là nhân vật trong vở chèo cổ nào?', correct: 3, options: ['Quan Âm Thị Kính', 'Lưu Bình - Dương Lễ', 'Súy Vân', 'Trương Viên'] },
+      ],
     },
     {
       id: 'vact-exam-2024',
@@ -84,13 +100,13 @@ async function main() {
         { id: 'q-2024-3', content: 'Tác giả của đoạn trích "Đất nước" trong chương trình Ngữ văn là ai?', correct: 2, options: ['Tố Hữu', 'Huy Cận', 'Nguyễn Khoa Điềm', 'Xuân Quỳnh'] },
         { id: 'q-2024-4', content: 'Cho tam giác ABC vuông tại A có AB = 3cm, AC = 4cm. Độ dài cạnh huyền BC là:', correct: 1, options: ['6 cm', '5 cm', '7 cm', 'sqrt(7) cm'] },
         { id: 'q-2024-5', content: 'Hàm số y = -x^3 + 3x nghịch biến trên khoảng nào dưới đây?', correct: 3, options: ['(-1; 1)', '(0; +inf)', '(-inf; -1)', '(-inf; -1) và (1; +inf)'] },
-        { id: 'q-2024-6', content: 'Điền từ còn thiếu vào câu tục ngữ: "Uống nước nhớ ..."', correct: 0, options: ['nguồn', 'nơi', 'ông', 'cha'] }
-      ]
-    }
+        { id: 'q-2024-6', content: 'Điền từ còn thiếu vào câu tục ngữ: "Uống nước nhớ ..."', correct: 0, options: ['nguồn', 'nơi', 'ông', 'cha'] },
+      ],
+    },
   ];
 
   for (const exData of examsConfig) {
-    const exam = await prisma.exam.upsert({
+    await prisma.exam.upsert({
       where: { id: exData.id },
       update: {},
       create: {
@@ -100,9 +116,7 @@ async function main() {
       },
     });
 
-    for (let i = 0; i < exData.questions.length; i++) {
-      const qInfo = exData.questions[i];
-
+    for (const qInfo of exData.questions) {
       await prisma.question.upsert({
         where: { id: qInfo.id },
         update: {},
@@ -111,7 +125,7 @@ async function main() {
           content: qInfo.content,
           type: QuestionType.MULTIPLE_CHOICE,
           difficulty: 0.5,
-          topicId: topic.id,
+          topicId: topics[questionTopics[qInfo.id] ?? 'Toán'].id,
           options: {
             create: qInfo.options.map((optText, optIdx) => ({
               content: optText,
@@ -122,22 +136,49 @@ async function main() {
         },
       });
 
-  await prisma.courseTopic.upsert({
-    where: {
-      courseId_topicId: {
-        courseId: course2Record.id,
-        topicId: topics['Tiếng Anh - Ngữ pháp'],
-      },
-    },
+      await prisma.examQuestion.upsert({
+        where: {
+          examId_questionId: { examId: exData.id, questionId: qInfo.id },
+        },
+        update: {},
+        create: { examId: exData.id, questionId: qInfo.id },
+      });
+    }
+  }
+
+  console.log('✅ Exams + Questions đã tạo (3 đề, mỗi đề 6 câu, gắn đúng topic Toán/Tiếng Việt/Tiếng Anh)');
+
+  // ==================== 4. COURSES ====================
+  const course1 = await prisma.course.upsert({
+    where: { id: 'course-1' },
     update: {},
     create: {
-      courseId: course2Record.id,
-      topicId: topics['Tiếng Anh - Ngữ pháp'],
-      order: 1,
+      id: 'course-1',
+      title: 'Toán nền tảng ĐGNL',
+      description: 'Khóa học giới hạn, đạo hàm, tích phân',
+      instructorId: admin.id,
     },
   });
 
-  console.log(`✅ Courses: ${course1.title}, ${course2Record.title}`);
+  // Gắn course với topic Toán (upsert từng topic để rerun an toàn)
+  for (const [idx, topicName] of ['Toán', 'Tiếng Việt', 'Tiếng Anh', 'Logic - Suy luận'].entries()) {
+    await prisma.courseTopic.upsert({
+      where: {
+        courseId_topicId: {
+          courseId: course1.id,
+          topicId: topics[topicName].id,
+        },
+      },
+      update: {},
+      create: {
+        courseId: course1.id,
+        topicId: topics[topicName].id,
+        order: idx + 1,
+      },
+    });
+  }
+
+  console.log(`✅ Courses: ${course1.title}`);
 
   // ==================== 5. CHAPTERS + LESSONS + MATERIALS ====================
   const chapter1 = await prisma.chapter.upsert({
@@ -221,160 +262,7 @@ async function main() {
     `   - Lesson: ${lesson1.title}, ${lesson2.title}, ${lesson3.title}`,
   );
 
-  // ==================== 6. QUESTIONS ====================
-  // Câu hỏi 1: MULTIPLE_CHOICE
-  const q1 = await prisma.question.upsert({
-    where: { id: 'q-1' },
-    update: {},
-    create: {
-      id: 'q-1',
-      content:
-        'Giới hạn của hàm số f(x) = (x² - 1)/(x - 1) khi x → 1 là bao nhiêu?',
-      explanation:
-        'Phân tích tử: x² - 1 = (x-1)(x+1). Rút gọn (x-1) → còn x+1. Thay x = 1 → 2.',
-      type: 'MULTIPLE_CHOICE',
-      difficulty: 0.4,
-      topicId: topics['Toán - Giới hạn'],
-      options: {
-        create: [
-          { content: '0', isCorrect: false, order: 0 },
-          { content: '1', isCorrect: false, order: 1 },
-          { content: '2', isCorrect: true, order: 2 },
-          { content: 'Không tồn tại', isCorrect: false, order: 3 },
-        ],
-      },
-    },
-  });
-
-  // Câu hỏi 2: MULTIPLE_CHOICE
-  const q2 = await prisma.question.upsert({
-    where: { id: 'q-2' },
-    update: {},
-    create: {
-      id: 'q-2',
-      content: 'Đạo hàm của hàm số y = x² tại x = 3 là 6.',
-      explanation: "y' = 2x. Tại x = 3 → y' = 6. Đúng.",
-      type: 'MULTIPLE_CHOICE',
-      difficulty: 0.2,
-      topicId: topics['Toán - Đạo hàm'],
-      options: {
-        create: [
-          { content: 'Đúng', isCorrect: true, order: 0 },
-          { content: 'Sai', isCorrect: false, order: 1 },
-        ],
-      },
-    },
-  });
-
-  // Câu hỏi 3: MULTIPLE_CHOICE
-  const q3 = await prisma.question.upsert({
-    where: { id: 'q-3' },
-    update: {},
-    create: {
-      id: 'q-3',
-      content: 'Phát biểu nào sau đây ĐÚNG về tích phân?',
-      explanation:
-        'Tích phân là phép toán ngược của đạo hàm. Các phát biểu còn lại đều sai.',
-      type: 'MULTIPLE_CHOICE',
-      difficulty: 0.6,
-      topicId: topics['Toán - Tích phân'],
-      options: {
-        create: [
-          {
-            content: 'Tích phân là phép toán ngược của đạo hàm',
-            isCorrect: true,
-            order: 0,
-          },
-          {
-            content: 'Tích phân xác định luôn dương',
-            isCorrect: false,
-            order: 1,
-          },
-          {
-            content: 'Tích phân bất định không có hằng số C',
-            isCorrect: false,
-            order: 2,
-          },
-          {
-            content: 'Tích phân chỉ áp dụng cho hàm số gián đoạn',
-            isCorrect: false,
-            order: 3,
-          },
-        ],
-      },
-    },
-  });
-
-  // Câu hỏi 4: Tiếng Việt
-  const q4 = await prisma.question.upsert({
-    where: { id: 'q-4' },
-    update: {},
-    create: {
-      id: 'q-4',
-      content:
-        'Từ "long lanh" trong câu "Nước hồ long lanh dưới ánh nắng" thuộc loại từ nào?',
-      explanation: 'Đây là từ láy âm đầu (l) và vần (anh).',
-      type: 'MULTIPLE_CHOICE',
-      difficulty: 0.3,
-      topicId: topics['Tiếng Việt - Đọc hiểu'],
-      options: {
-        create: [
-          { content: 'Từ đơn', isCorrect: false, order: 0 },
-          { content: 'Từ ghép', isCorrect: false, order: 1 },
-          { content: 'Từ láy', isCorrect: true, order: 2 },
-          { content: 'Từ phức', isCorrect: false, order: 3 },
-        ],
-      },
-    },
-  });
-
-  // Câu hỏi 5: Tiếng Anh
-  const q5 = await prisma.question.upsert({
-    where: { id: 'q-5' },
-    update: {},
-    create: {
-      id: 'q-5',
-      content: 'Choose the correct answer: "She ___ to school every day."',
-      explanation: 'Thì hiện tại đơn, chủ ngữ số ít → động từ thêm "es".',
-      type: 'MULTIPLE_CHOICE',
-      difficulty: 0.1,
-      topicId: topics['Tiếng Anh - Ngữ pháp'],
-      options: {
-        create: [
-          { content: 'go', isCorrect: false, order: 0 },
-          { content: 'goes', isCorrect: true, order: 1 },
-          { content: 'going', isCorrect: false, order: 2 },
-          { content: 'gone', isCorrect: false, order: 3 },
-        ],
-      },
-    },
-  });
-
-  // Câu hỏi 6: Logic
-  const q6 = await prisma.question.upsert({
-    where: { id: 'q-6' },
-    update: {},
-    create: {
-      id: 'q-6',
-      content: 'Nếu tất cả A là B, và tất cả B là C, thì kết luận nào đúng?',
-      explanation: 'Suy luận bắc cầu: A ⊆ B ⊆ C ⟹ A ⊆ C.',
-      type: 'MULTIPLE_CHOICE',
-      difficulty: 0.3,
-      topicId: topics['Logic - Suy luận'],
-      options: {
-        create: [
-          { content: 'Tất cả A là C', isCorrect: true, order: 0 },
-          { content: 'Tất cả C là A', isCorrect: false, order: 1 },
-          { content: 'Không A nào là C', isCorrect: false, order: 2 },
-          { content: 'Không kết luận được', isCorrect: false, order: 3 },
-        ],
-      },
-    },
-  });
-
-  console.log(`✅ Questions: 6 câu hỏi đã tạo`);
-
-  //==================== 7. EXAMS ====================
+  // ==================== 6. EXAM + ATTEMPTS (dùng câu hỏi 2026) ====================
   const exam1 = await prisma.exam.upsert({
     where: { id: 'exam-1' },
     update: {},
@@ -382,18 +270,26 @@ async function main() {
       id: 'exam-1',
       title: 'Đề thi thử V-ACT số 1',
       description: 'Đề thi mẫu',
-      questions: {
-        create: [
-          { questionId: q1.id },
-          { questionId: q2.id },
-          { questionId: q3.id }, // Tích phân
-          { questionId: q4.id }, // Tiếng Việt
-          { questionId: q5.id }, // Tiếng Anh
-          { questionId: q6.id }, // Logic
-        ],
-      },
     },
   });
+
+  // Gắn 6 câu 2026 vào exam-1 để attempts có dữ liệu chấm điểm
+  const exam1QuestionIds = [
+    'q-2026-1',
+    'q-2026-2',
+    'q-2026-3',
+    'q-2026-4',
+    'q-2026-5',
+    'q-2026-6',
+  ];
+  for (const questionId of exam1QuestionIds) {
+    await prisma.examQuestion.upsert({
+      where: { examId_questionId: { examId: exam1.id, questionId } },
+      update: {},
+      create: { examId: exam1.id, questionId },
+    });
+  }
+
   const testPasswordHash = await bcrypt.hash('Test@123', 10);
   const testUser = await prisma.user.upsert({
     where: { email: 'test.learner@vact.com' },
@@ -412,7 +308,7 @@ async function main() {
   });
 
   const seededQuestions = await prisma.question.findMany({
-    where: { id: { in: ['q-1', 'q-2', 'q-3', 'q-4', 'q-5', 'q-6'] } },
+    where: { id: { in: exam1QuestionIds } },
     include: { options: { orderBy: { order: 'asc' } } },
   });
 
@@ -450,6 +346,7 @@ async function main() {
 
   const now = Date.now();
   const minutes = (value: number) => value * 60 * 1000;
+  const [aq1, aq2, aq3, aq4, aq5, aq6] = exam1QuestionIds;
 
   const submittedAt1 = new Date(now - 36 * 60 * 60 * 1000);
   const startedAt1 = new Date(submittedAt1.getTime() - minutes(25));
@@ -469,38 +366,38 @@ async function main() {
       answers: {
         create: [
           {
-            questionId: 'q-1',
-            selectedOptionIds: correctOptionIds('q-1'),
+            questionId: aq1,
+            selectedOptionIds: correctOptionIds(aq1),
             isCorrect: true,
             timeSpent: 45,
           },
           {
-            questionId: 'q-2',
-            selectedOptionIds: correctOptionIds('q-2'),
+            questionId: aq2,
+            selectedOptionIds: correctOptionIds(aq2),
             isCorrect: true,
             timeSpent: 20,
           },
           {
-            questionId: 'q-3',
-            selectedOptionIds: [wrongOptionId('q-3')],
+            questionId: aq3,
+            selectedOptionIds: [wrongOptionId(aq3)],
             isCorrect: false,
             timeSpent: 80,
           },
           {
-            questionId: 'q-4',
-            selectedOptionIds: correctOptionIds('q-4'),
+            questionId: aq4,
+            selectedOptionIds: correctOptionIds(aq4),
             isCorrect: true,
             timeSpent: 30,
           },
           {
-            questionId: 'q-5',
-            selectedOptionIds: [wrongOptionId('q-5')],
+            questionId: aq5,
+            selectedOptionIds: [wrongOptionId(aq5)],
             isCorrect: false,
             timeSpent: 25,
           },
           {
-            questionId: 'q-6',
-            selectedOptionIds: correctOptionIds('q-6'),
+            questionId: aq6,
+            selectedOptionIds: correctOptionIds(aq6),
             isCorrect: true,
             timeSpent: 40,
           },
@@ -525,14 +422,12 @@ async function main() {
       score: 6,
       weightedScore: 7.9,
       answers: {
-        create: ['q-1', 'q-2', 'q-3', 'q-4', 'q-5', 'q-6'].map(
-          (questionId, index) => ({
-            questionId,
-            selectedOptionIds: correctOptionIds(questionId),
-            isCorrect: true,
-            timeSpent: [30, 18, 55, 22, 15, 35][index],
-          }),
-        ),
+        create: exam1QuestionIds.map((questionId, index) => ({
+          questionId,
+          selectedOptionIds: correctOptionIds(questionId),
+          isCorrect: true,
+          timeSpent: [30, 18, 55, 22, 15, 35][index],
+        })),
       },
     },
   });
@@ -553,19 +448,19 @@ async function main() {
       answers: {
         create: [
           {
-            questionId: 'q-1',
-            selectedOptionIds: correctOptionIds('q-1'),
+            questionId: aq1,
+            selectedOptionIds: correctOptionIds(aq1),
             isCorrect: false,
             timeSpent: 15,
           },
           {
-            questionId: 'q-2',
+            questionId: aq2,
             selectedOptionIds: [],
             isCorrect: false,
             timeSpent: 0,
           },
           {
-            questionId: 'q-3',
+            questionId: aq3,
             selectedOptionIds: [],
             isCorrect: false,
             timeSpent: 0,
@@ -590,8 +485,8 @@ async function main() {
       weightedScore: 0,
       answers: {
         create: [
-          { questionId: 'q-1', selectedOptionIds: [], isCorrect: false },
-          { questionId: 'q-2', selectedOptionIds: [], isCorrect: false },
+          { questionId: aq1, selectedOptionIds: [], isCorrect: false },
+          { questionId: aq2, selectedOptionIds: [], isCorrect: false },
         ],
       },
     },
@@ -613,6 +508,7 @@ async function main() {
     attemptAnswers: await prisma.examAnswer.count(),
     attemptTopicResults: await prisma.attemptTopicResult.count(),
   };
+  console.log('Counts:', counts);
 
   console.log('🚀 Seed thành công toàn bộ đề thi kèm đáp án chuẩn để làm bài và chấm điểm tự động!');
 }

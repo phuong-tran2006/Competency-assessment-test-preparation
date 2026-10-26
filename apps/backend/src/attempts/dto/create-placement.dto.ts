@@ -29,4 +29,11 @@ export class CreatePlacementDto {
   @Min(60)
   @Max(14400)
   timeLimit?: number;
+
+  @IsOptional()
+  @Type(() => Number)
+  @IsInt()
+  @Min(1)
+  @Max(240)
+  durationMin?: number;
 }
