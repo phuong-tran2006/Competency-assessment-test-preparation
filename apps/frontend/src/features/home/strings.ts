@@ -25,10 +25,10 @@ export const STR = {
   },
 
   hero: {
-    badge: "Luyện thi đánh giá năng lực",
-    title: "Ôn thi V-ACT đúng chủ đề, vừa với thời gian của bạn",
+    badge: "Luyện thi Đánh giá Năng lực ĐHQG TP.HCM",
+    title: "Bứt phá điểm số V-ACT – Ôn trọng tâm, chuẩn nhịp thời gian!",
     subtitle:
-      "Luyện đề theo cấu trúc đề đánh giá năng lực, có đồng hồ đếm ngược và chấm điểm tự động.",
+      "Lộ trình bài bản, cá nhân hóa, luyện đề sát cấu trúc ĐGNL và hệ thống chấm điểm tự động giúp bạn bứt phá mỗi ngày.",
     ctaPrimary: "Bắt đầu làm bài",
     ctaSecondary: "Đăng ký miễn phí",
   },
@@ -111,24 +111,6 @@ export const STR = {
     questions: "câu hỏi",
     open: "Vào học",
     all: "Xem tất cả bộ đề",
-  },
-
-  roles: {
-    title: "Dành cho mọi vai trò",
-    items: [
-      {
-        title: "Học viên",
-        text: "Làm đề, xem kết quả và theo dõi tiến độ ôn tập của mình.",
-      },
-      {
-        title: "Giảng viên",
-        text: "Soạn khóa học và ngân hàng câu hỏi gắn chủ đề, độ khó, giải thích.",
-      },
-      {
-        title: "Quản trị viên",
-        text: "Quản lý tài khoản, khóa học, nội dung bị báo cáo và thống kê.",
-      },
-    ],
   },
 
   footer: {

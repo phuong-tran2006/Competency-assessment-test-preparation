@@ -207,41 +207,23 @@ function FeaturedExams() {
 function Courses() {
   return (
     <section className="section">
-        <div className="container">
-            <h2 className="section__title">{STR.courses.title}</h2>
-            <div className="grid grid--3">
-                {STR.courses.items.map((course) => (
-                    <article key={course.title} className="card">
-                        <h3 className="card__title">{course.title}</h3>
-                        <p className="card__text">{course.text}</p>
-                        <Link to={course.link} className="btn btn--primary">
-                            {STR.courses.open}
-                        </Link>
-                    </article>
-                ))}
-            </div>
-            {STR.courses.loading && <p className="note">{STR.courses.loading}</p>}
-            {!STR.courses.loading && STR.courses.items.length === 0 && (
-                <p className="note">{STR.courses.empty}</p>
-            )}
-        </div>
-    </section>
-    );
-}
-
-function Roles() {
-  return (
-    <section className="section">
       <div className="container">
-        <h2 className="section__title">{STR.roles.title}</h2>
+        <h2 className="section__title">{STR.courses.title}</h2>
         <div className="grid grid--3">
-          {STR.roles.items.map((role) => (
-            <article key={role.title} className="card">
-              <h3 className="card__title">{role.title}</h3>
-              <p className="card__text">{role.text}</p>
+          {STR.courses.items.map((course) => (
+            <article key={course.title} className="card">
+              <h3 className="card__title">{course.title}</h3>
+              <p className="card__text">{course.text}</p>
+              <Link to={course.link} className="btn btn--primary">
+                {STR.courses.open}
+              </Link>
             </article>
           ))}
         </div>
+        {STR.courses.loading && <p className="note">{STR.courses.loading}</p>}
+        {!STR.courses.loading && STR.courses.items.length === 0 && (
+          <p className="note">{STR.courses.empty}</p>
+        )}
       </div>
     </section>
   );
@@ -268,9 +250,8 @@ export function HomePage({ user = null }: HomePageProps) {
         <Hero user={user} />
         <HowItWorks />
         <ExamStructure />
-        <Courses/>
+        <Courses />
         <FeaturedExams />
-        <Roles />
       </main>
       <Footer />
     </div>
