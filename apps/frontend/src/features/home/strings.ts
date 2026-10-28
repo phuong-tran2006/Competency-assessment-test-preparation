@@ -35,23 +35,6 @@ export const STR = {
 
   // Pain points P1-P3 from the proposal. They are marked "to be validated by a
   // survey", so keep the wording as difficulties, not as statistics.
-  problems: {
-    title: "Ôn thi đánh giá năng lực không dễ",
-    items: [
-      {
-        title: "Quỹ thời gian ngắn",
-        text: "Chỉ có khoảng 30 phút mỗi ngày nhưng không biết chọn chủ đề và bộ câu hỏi nào cho vừa.",
-      },
-      {
-        title: "Không biết bắt đầu từ đâu",
-        text: "Đề có nhiều phần và nhiều chủ đề, khó xác định nên ưu tiên phần nào trước.",
-      },
-      {
-        title: "Kết quả chỉ có tổng điểm",
-        text: "Không biết mình yếu ở chủ đề nào và mất bao lâu cho mỗi câu hỏi.",
-      },
-    ],
-  },
 
   // Set available: true only for steps that really work in the deployed demo.
   how: {

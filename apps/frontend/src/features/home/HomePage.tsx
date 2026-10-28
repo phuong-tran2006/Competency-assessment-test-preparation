@@ -113,24 +113,6 @@ function Hero({ user }: { user: CurrentUser }) {
   );
 }
 
-function Problems() {
-  return (
-    <section className="section">
-      <div className="container">
-        <h2 className="section__title">{STR.problems.title}</h2>
-        <div className="grid grid--3">
-          {STR.problems.items.map((item) => (
-            <article key={item.title} className="card">
-              <h3 className="card__title">{item.title}</h3>
-              <p className="card__text">{item.text}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function HowItWorks() {
   return (
     <section id="how" className="section section--tint">
@@ -284,7 +266,6 @@ export function HomePage({ user = null }: HomePageProps) {
       <Navbar user={user} />
       <main>
         <Hero user={user} />
-        <Problems />
         <HowItWorks />
         <ExamStructure />
         <Courses/>
