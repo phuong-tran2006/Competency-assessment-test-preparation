@@ -116,11 +116,11 @@ export const QuizPage = () => {
 
   useEffect(() => {
     if (!examId) {
-       setLoading(false);
+       setTimeout(() => setLoading(false), 0);
        return;
     }
 
-    setLoading(true);
+    setTimeout(() => setLoading(true), 0);
     
     quizService.getExamQuestions(examId)
       .then((data) => {
