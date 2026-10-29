@@ -13,16 +13,19 @@ export const QuizEngine = () => {
     jumpToQuestion,
     submitQuiz,
     setResultData,
+    resultData,
+    currentStep,
+    setStep,
   } = useQuizStore();
   const { examId } = useParams();
 
-  const [timeLeft, setTimeLeft] = useState(3600); // 60 phút
+  const [timeLeft, setTimeLeft] = useState(3600);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const questionRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  // Hàm nộp bài tích hợp gọi API thật theo chuẩn Contract mới
+  const isReviewMode = currentStep === "review";
+
   const handleSubmit = async (isAutoSubmit = false) => {
-    // Chỉ hiện bảng hỏi nếu người dùng tự bấm nút nộp bài
     if (!isAutoSubmit) {
       const confirm = window.confirm("Bạn có chắc chắn muốn nộp bài không?");
       if (!confirm) return;
@@ -36,11 +39,8 @@ export const QuizEngine = () => {
     try {
       setIsSubmitting(true);
       const result = await quizService.submitExam(examId, answers);
-
       const finalResultData = result.data ? result.data : result;
-
       setResultData(finalResultData);
-
       submitQuiz();
     } catch (error) {
       console.error("Lỗi khi nộp bài:", error);
@@ -51,6 +51,7 @@ export const QuizEngine = () => {
   };
 
   useEffect(() => {
+    if (isReviewMode) return;
     if (timeLeft <= 0) {
       setTimeout(() => {
         handleSubmit(true);
@@ -59,7 +60,7 @@ export const QuizEngine = () => {
     }
     const timer = setInterval(() => setTimeLeft((prev) => prev - 1), 1000);
     return () => clearInterval(timer);
-  }, [timeLeft]);
+  }, [timeLeft, isReviewMode]);
 
   const formatTime = (seconds: number) => {
     const m = Math.floor(seconds / 60)
@@ -97,9 +98,20 @@ export const QuizEngine = () => {
     return titles;
   };
 
+  useEffect(() => {
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      if (currentStep === "playing") {
+        e.preventDefault();
+        e.returnValue = "";
+      }
+    };
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+  }, [currentStep]);
+
   return (
     <div className="flex flex-col lg:flex-row gap-6 max-w-7xl mx-auto">
-      {/* CỘT TRÁI: DANH SÁCH CÂU HỎI CUỘN DỌC */}
+      {/* CỘT TRÁI */}
       <div className="flex-1 space-y-6 lg:max-h-[calc(100vh-40px)] lg:overflow-y-auto pr-2">
         <h1 className="text-center text-xl font-black text-amber-600 uppercase tracking-wide py-3 bg-amber-50 rounded-xl border border-amber-200">
           ĐỀ LUYỆN THI ĐGNL 2026 V-ACT – ĐỀ 1
@@ -108,9 +120,31 @@ export const QuizEngine = () => {
         {questions.map((q, idx) => {
           const sectionTitles = getSectionTitles(idx);
 
+          const questionDetail = resultData?.details?.find(
+            (d: any) => String(d.questionId) === String(q.id),
+          );
+          const explanation = questionDetail?.explanation || q.explanation;
+          const selectedOptionId = answers[q.id];
+
+          const correctOption = q.options.find(
+            (opt) =>
+              opt.isCorrect === true ||
+              opt.isCorrect === "true" ||
+              opt.isCorrect === 1,
+          );
+
+          // Bắt buộc phải có selectedOptionId mới chấm là ĐÚNG
+          const isUserCorrect =
+            !!selectedOptionId &&
+            ((correctOption &&
+              String(correctOption.id) === String(selectedOptionId)) ||
+              questionDetail?.isCorrect === true ||
+              String(questionDetail?.correctOptionId) ===
+                String(selectedOptionId) ||
+              questionDetail?.correctAnswers?.includes(selectedOptionId));
+
           return (
             <div key={q.id}>
-              {/* Render Tiêu đề phần */}
               {sectionTitles.map((title, i) => (
                 <h2
                   key={i}
@@ -124,7 +158,6 @@ export const QuizEngine = () => {
                 </h2>
               ))}
 
-              {/* Box chứa từng câu hỏi */}
               <div
                 ref={(el) => {
                   questionRefs.current[idx] = el;
@@ -147,32 +180,88 @@ export const QuizEngine = () => {
 
                 <div className="space-y-3 pl-2">
                   {q.options.map((opt) => {
-                    const isSelected = answers[q.id] === opt.id;
+                    const isSelected = selectedOptionId === opt.id;
+
+                    const isThisOptionCorrect =
+                      opt.isCorrect === true ||
+                      opt.isCorrect === "true" ||
+                      opt.isCorrect === 1 ||
+                      (isReviewMode && questionDetail && opt.id !== undefined
+                        ? String(questionDetail.correctOptionId) ===
+                            String(opt.id) ||
+                          String(questionDetail.correctAnswer) ===
+                            String(opt.id) ||
+                          questionDetail.correctAnswers?.includes(opt.id)
+                        : false);
+
+                    let itemClass =
+                      "bg-white border-transparent hover:bg-gray-50 cursor-pointer";
+
+                    if (isReviewMode) {
+                      if (isThisOptionCorrect) {
+                        itemClass =
+                          "bg-green-100 border-green-500 text-green-900 cursor-default font-bold";
+                      } else if (isSelected) {
+                        itemClass =
+                          "bg-red-100 border-red-500 text-red-900 cursor-default";
+                      } else {
+                        itemClass = "bg-gray-50 opacity-50 cursor-default";
+                      }
+                    } else if (isSelected) {
+                      itemClass = "bg-blue-50 border-blue-400 cursor-pointer";
+                    }
+
                     return (
                       <label
                         key={opt.id}
-                        className={`flex items-start p-3 rounded-lg border cursor-pointer transition-all ${
-                          isSelected
-                            ? "bg-blue-50 border-blue-400"
-                            : "bg-white border-transparent hover:bg-gray-50"
-                        }`}
+                        className={`flex items-start p-3 rounded-lg border transition-all ${itemClass}`}
                       >
                         <input
                           type="radio"
                           name={`q-${q.id}`}
                           checked={isSelected}
-                          onChange={() => setAnswer(q.id, opt.id)}
-                          className="mt-1 w-4 h-4 text-blue-600"
+                          onChange={() =>
+                            !isReviewMode && setAnswer(q.id, opt.id)
+                          }
+                          disabled={isReviewMode}
+                          readOnly={isReviewMode}
+                          className={`mt-1 w-4 h-4 ${isReviewMode ? "cursor-default" : "cursor-pointer"} text-blue-600`}
                         />
-                        <span className="ml-3 text-gray-700 font-medium">
-                          {opt.text}
-                        </span>
+                        <span className="ml-3 font-medium">{opt.text}</span>
                       </label>
                     );
                   })}
                 </div>
 
-                {/* Nút lát kiểm tra lại */}
+                {/* KHỐI HIỂN THỊ TRẠNG THÁI & GIẢI THÍCH (LUÔN HIỆN KHI XEM LẠI) */}
+                {isReviewMode && (
+                  <div
+                    className={`mt-4 p-4 rounded-lg text-sm border ${
+                      isUserCorrect
+                        ? "bg-green-50 border-green-200 text-green-900"
+                        : "bg-red-50 border-red-200 text-red-900"
+                    }`}
+                  >
+                    <div
+                      className={`font-bold text-base mb-1 ${isUserCorrect ? "text-green-700" : "text-red-700"}`}
+                    >
+                      {isUserCorrect
+                        ? "✅ Chính xác!"
+                        : !selectedOptionId
+                          ? "⚠️ Bạn chưa làm câu này!"
+                          : "❌ Sai!"}
+                    </div>
+                    {explanation && (
+                      <div className="mt-1">
+                        <span className="font-semibold">Giải thích: </span>
+                        <span
+                          dangerouslySetInnerHTML={{ __html: explanation }}
+                        />
+                      </div>
+                    )}
+                  </div>
+                )}
+
                 <div className="flex justify-end mt-4 pt-4 border-t border-gray-100">
                   <button
                     onClick={() => toggleReview(q.id)}
@@ -198,7 +287,7 @@ export const QuizEngine = () => {
         })}
       </div>
 
-      {/* CỘT PHẢI: BẢNG TRẠNG THÁI STICKY */}
+      {/* CỘT PHẢI */}
       <div className="w-full lg:w-[320px]">
         <div className="bg-white p-5 rounded-2xl border border-gray-200 shadow-md sticky top-6">
           <div className="grid grid-cols-2 gap-4 text-center border-b pb-4 mb-5">
@@ -225,21 +314,51 @@ export const QuizEngine = () => {
               {questions.map((q, idx) => {
                 const isAnswered = !!answers[q.id];
                 const isReviewed = !!reviewList[q.id];
-                const sectionTitles = getSectionTitles(idx); // <-- Gọi hàm mới ở đây
+                const sectionTitles = getSectionTitles(idx);
 
                 let btnStyle =
                   "w-full aspect-square rounded-full flex items-center justify-center font-bold text-sm border transition-all ";
-                if (isReviewed)
-                  btnStyle += "bg-purple-500 border-purple-500 text-white";
-                else if (isAnswered)
-                  btnStyle += "bg-green-500 border-green-500 text-white";
-                else
-                  btnStyle +=
-                    "bg-white border-gray-200 text-gray-700 hover:bg-gray-100";
+
+                if (isReviewMode) {
+                  const selectedOptionId = answers[q.id];
+                  const questionDetail = resultData?.details?.find(
+                    (d: any) => String(d.questionId) === String(q.id),
+                  );
+                  const correctOption = q.options.find(
+                    (opt) =>
+                      opt.isCorrect === true ||
+                      opt.isCorrect === "true" ||
+                      opt.isCorrect === 1,
+                  );
+
+                  const isUserCorrect =
+                    !!selectedOptionId &&
+                    ((correctOption &&
+                      String(correctOption.id) === String(selectedOptionId)) ||
+                      questionDetail?.isCorrect === true ||
+                      String(questionDetail?.correctOptionId) ===
+                        String(selectedOptionId) ||
+                      questionDetail?.correctAnswers?.includes(
+                        selectedOptionId,
+                      ));
+
+                  if (isUserCorrect) {
+                    btnStyle += "bg-green-500 border-green-500 text-white"; // ĐÚNG
+                  } else {
+                    btnStyle += "bg-red-500 border-red-500 text-white"; // SAI HOẶC BỎ TRỐNG
+                  }
+                } else {
+                  if (isReviewed)
+                    btnStyle += "bg-purple-500 border-purple-500 text-white";
+                  else if (isAnswered)
+                    btnStyle += "bg-green-500 border-green-500 text-white";
+                  else
+                    btnStyle +=
+                      "bg-white border-gray-200 text-gray-700 hover:bg-gray-100";
+                }
 
                 return (
                   <React.Fragment key={`nav-${q.id}`}>
-                    {/* Render Tiêu đề xen kẽ vào bảng số */}
                     {sectionTitles.map((title, i) => (
                       <div
                         key={`title-${idx}-${i}`}
@@ -265,34 +384,53 @@ export const QuizEngine = () => {
             </div>
           </div>
 
-          <button
-            onClick={() => handleSubmit(false)}
-            disabled={isSubmitting}
-            className="w-full py-3 bg-amber-500 hover:bg-amber-600 disabled:bg-amber-300 text-white font-extrabold text-base rounded-full shadow-md transition-all mb-6 uppercase"
-          >
-            {isSubmitting ? "ĐANG NỘP BÀI..." : "NỘP BÀI"}
-          </button>
+          {isReviewMode ? (
+            <button
+              onClick={() => setStep("result")}
+              className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-base rounded-full shadow-md transition-all mb-6 uppercase"
+            >
+              Về bảng kết quả
+            </button>
+          ) : (
+            <button
+              onClick={() => handleSubmit(false)}
+              disabled={isSubmitting}
+              className="w-full py-3 bg-amber-500 hover:bg-amber-600 disabled:bg-amber-300 text-white font-extrabold text-base rounded-full shadow-md transition-all mb-6 uppercase"
+            >
+              {isSubmitting ? "ĐANG NỘP BÀI..." : "NỘP BÀI"}
+            </button>
+          )}
 
-          {/* Chú giải màu sắc */}
           <div className="space-y-2 border-t pt-4">
             <div className="flex items-center gap-3">
               <span className="w-4 h-4 rounded-full bg-green-500 inline-block"></span>
               <span className="text-xs font-semibold text-gray-600">
-                Câu đã làm
+                {isReviewMode ? "Câu làm đúng" : "Câu đã làm"}
               </span>
             </div>
-            <div className="flex items-center gap-3">
-              <span className="w-4 h-4 rounded-full border border-gray-300 bg-white inline-block"></span>
-              <span className="text-xs font-semibold text-gray-600">
-                Câu chưa làm
-              </span>
-            </div>
-            <div className="flex items-center gap-3">
-              <span className="w-4 h-4 rounded-full bg-purple-500 inline-block"></span>
-              <span className="text-xs font-semibold text-gray-600">
-                Câu cần kiểm tra lại
-              </span>
-            </div>
+            {isReviewMode ? (
+              <div className="flex items-center gap-3">
+                <span className="w-4 h-4 rounded-full bg-red-500 inline-block"></span>
+                <span className="text-xs font-semibold text-gray-600">
+                  Câu làm sai hoặc chưa làm
+                </span>
+              </div>
+            ) : (
+              <>
+                <div className="flex items-center gap-3">
+                  <span className="w-4 h-4 rounded-full border border-gray-300 bg-white inline-block"></span>
+                  <span className="text-xs font-semibold text-gray-600">
+                    Câu chưa làm
+                  </span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="w-4 h-4 rounded-full bg-purple-500 inline-block"></span>
+                  <span className="text-xs font-semibold text-gray-600">
+                    Câu cần kiểm tra lại
+                  </span>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>

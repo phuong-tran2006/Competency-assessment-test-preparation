@@ -70,7 +70,7 @@ const QuizIntro = () => {
 
 // --- MÀN HÌNH 3: KẾT QUẢ ---
 const QuizResult = () => {
-  const { resultData, resetQuiz } = useQuizStore();
+  const { resultData, resetQuiz, setStep } = useQuizStore();
 
   return (
     <div className="max-w-xl mx-auto mt-20 p-8 bg-white rounded-2xl shadow-sm border text-center font-sans">
@@ -83,14 +83,12 @@ const QuizResult = () => {
         <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6 text-left">
           <div className="flex justify-between mb-2">
             <span className="text-gray-600 font-medium">Số câu đúng:</span>
-            {/* SỬA LẠI TÊN BIẾN: correctAnswers và totalQuestions */}
             <span className="font-bold text-gray-800">
               {resultData.correctAnswers !== undefined ? resultData.correctAnswers : 0} / {resultData.totalQuestions !== undefined ? resultData.totalQuestions : 0}
             </span>
           </div>
           <div className="flex justify-between">
             <span className="text-gray-600 font-medium">Tỷ lệ đạt được:</span>
-            {/* SỬA LẠI TÊN BIẾN: score */}
             <span className="font-bold text-amber-600">
               {resultData.score !== undefined ? resultData.score : 0}%
             </span>
@@ -98,12 +96,21 @@ const QuizResult = () => {
         </div>
       )}
 
-      <button
-        onClick={resetQuiz}
-        className="px-8 py-3 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl shadow transition uppercase tracking-wider"
-      >
-        Làm lại từ đầu
-      </button>
+      {/* Đưa các nút xuống dưới và sửa lại cấu trúc thẻ */}
+      <div className="flex flex-col sm:flex-row justify-center gap-4">
+        <button
+          onClick={() => setStep('review')}
+          className="px-8 py-3 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-xl shadow transition uppercase tracking-wider"
+        >
+          Xem chi tiết đáp án
+        </button>
+        <button
+          onClick={resetQuiz}
+          className="px-8 py-3 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl shadow transition uppercase tracking-wider"
+        >
+          Làm lại từ đầu
+        </button>
+      </div>
     </div>
   );
 };
@@ -116,8 +123,8 @@ export const QuizPage = () => {
 
   useEffect(() => {
     if (!examId) {
-       setTimeout(() => setLoading(false), 0);
-       return;
+      setTimeout(() => setLoading(false), 0);
+      return;
     }
 
     setTimeout(() => setLoading(true), 0);
@@ -128,11 +135,21 @@ export const QuizPage = () => {
           id: q.id,
           examId: examId,
           content: q.content,
-          options: q.options.map((opt: any) => ({
-            id: opt.id,
-            text: opt.text || opt.content,
-            isCorrect: opt.isCorrect,
-          })),
+          options: q.options.map((opt: any, index: number) => {
+            // Ép kiểu an toàn: Xử lý triệt để vụ "3" (string) và 3 (number)
+            const isCorrect = 
+              opt.isCorrect === true || 
+              opt.isCorrect === "true" || 
+              opt.isCorrect === 1 || 
+              Number(q.correct) === index; // Ép q.correct về số trước khi so sánh
+
+            return {
+              id: opt.id !== undefined ? String(opt.id) : String(index),
+              text: opt.text || opt.content || String(opt), // Dự phòng mảng string
+              isCorrect: isCorrect,
+            };
+          }),
+          explanation: q.explanation || "" // Nạp biến giải thích
         }));
         setQuestions(formatted);
       })
@@ -162,7 +179,7 @@ export const QuizPage = () => {
   return (
     <div className="min-h-screen bg-[#fdfbf7] py-6 px-4">
       {currentStep === 'intro' && <QuizIntro />}
-      {currentStep === 'playing' && <QuizEngine />}
+      {(currentStep === 'playing' || currentStep === 'review') && <QuizEngine />}
       {currentStep === 'result' && <QuizResult />}
     </div>
   );

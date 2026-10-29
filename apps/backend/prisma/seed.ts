@@ -60,12 +60,6 @@ async function main() {
 
   // Map questionId -> topic
   const questionTopics: Record<string, string> = {
-    'q-2026-1': 'Toán',
-    'q-2026-2': 'Tiếng Việt',
-    'q-2026-3': 'Toán',
-    'q-2026-4': 'Tiếng Anh',
-    'q-2026-5': 'Toán',
-    'q-2026-6': 'Toán',
     'q-2025-1': 'Tiếng Việt',
     'q-2025-2': 'Toán',
     'q-2025-3': 'Tiếng Việt',
@@ -205,24 +199,51 @@ async function main() {
       },
     });
 
-    for (const qInfo of exData.questions) {
-      await prisma.question.upsert({
-        where: { id: qInfo.id },
-        update: {},
-        create: {
-          id: qInfo.id,
-          content: qInfo.content,
-          type: QuestionType.MULTIPLE_CHOICE,
-          difficulty: 0.5,
-          topicId: topics[questionTopics[qInfo.id] ?? 'Toán'].id,
-          options: {
-            create: qInfo.options.map((optText, optIdx) => ({
-              content: optText,
-              isCorrect: optIdx === qInfo.correct,
-              order: optIdx,
-            })),
+    for (const qInfo of exData.questions as any[]) {
+      const topicKey = qInfo.topicId || questionTopics[qInfo.id];
+      const topic = topics[topicKey];
+      if (!topic) {
+        throw new Error(
+          `Câu ${qInfo.id}: không có topic "${topicKey}". Hiện có: ${Object.keys(topics).join(', ')}`,
+        );
+      }
+
+      const opts = qInfo.options.map((opt: any, i: number) => {
+        const isString = typeof opt === 'string';
+        return {
+          content: (isString ? opt : opt.text || opt.content || '').replace(
+            /^[A-D]\.\s*/,
+            '',
+          ),
+          isCorrect: isString ? i === qInfo.correct : !!opt.isCorrect,
+          order: i,
+        };
+      });
+      if (opts.filter((o: any) => o.isCorrect).length !== 1) {
+        throw new Error(`Câu ${qInfo.id}: phải có đúng 1 đáp án đúng`);
+      }
+
+      const fields = {
+        content: qInfo.content,
+        explanation: qInfo.explanation || null,
+        topicId: topic.id,
+      };
+
+      await prisma.$transaction(async (tx) => {
+        await tx.question.upsert({
+          where: { id: qInfo.id },
+          update: fields,
+          create: {
+            id: qInfo.id,
+            type: QuestionType.MULTIPLE_CHOICE,
+            difficulty: 1200,
+            ...fields,
           },
-        },
+        });
+        await tx.questionOption.deleteMany({ where: { questionId: qInfo.id } });
+        await tx.questionOption.createMany({
+          data: opts.map((o: any) => ({ questionId: qInfo.id, ...o })),
+        });
       });
 
       await prisma.examQuestion.upsert({
@@ -377,6 +398,20 @@ async function main() {
     'q-2026-4',
     'q-2026-5',
     'q-2026-6',
+    'q-2026-7',
+    'q-2026-8',
+    'q-2026-9',
+    'q-2026-10',
+    'q-2026-11',
+    'q-2026-12',
+    'q-2026-13',
+    'q-2026-14',
+    'q-2026-15',
+    'q-2026-16',
+    'q-2026-17',
+    'q-2026-18',
+    'q-2026-19',
+    'q-2026-20',
   ];
   for (const questionId of exam1QuestionIds) {
     await prisma.examQuestion.upsert({
