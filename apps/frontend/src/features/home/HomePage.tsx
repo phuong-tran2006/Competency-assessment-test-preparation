@@ -58,29 +58,57 @@ function Navbar() {
   };
 
   return (
-    <header className="nav">
-      <div className="container nav__inner">
-        <Link to={ROUTES.home} className="nav__brand">
+    <header className="w-full bg-white border-b border-gray-100 sticky top-0 z-50">
+      <div className="w-full px-4 lg:px-12 py-4 flex items-center justify-between mx-auto">
+        {/* LOGO */}
+        <Link
+          to={ROUTES.home}
+          className="text-2xl font-black text-blue-900 tracking-wide hover:opacity-80 transition"
+        >
           {BRAND}
         </Link>
-        <nav className="nav__links" aria-label="Điều hướng chính">
-          <Link to={ROUTES.exams}>{STR.nav.exams}</Link>
-          <a href="#how">{STR.nav.how}</a>
-          <a href="#structure">{STR.nav.structure}</a>
+
+        {/* MENU LINK CHÍNH */}
+        <nav
+          className="hidden md:flex gap-8 items-center"
+          aria-label="Điều hướng chính"
+        >
+          <Link
+            to={ROUTES.exams}
+            className="font-semibold text-gray-600 hover:text-amber-500 transition-colors"
+          >
+            {STR.nav.exams}
+          </Link>
+          <a
+            href="#how"
+            className="font-semibold text-gray-600 hover:text-amber-500 transition-colors"
+          >
+            {STR.nav.how}
+          </a>
+          <a
+            href="#structure"
+            className="font-semibold text-gray-600 hover:text-amber-500 transition-colors"
+          >
+            {STR.nav.structure}
+          </a>
         </nav>
 
-        <div className="nav__actions">
+        {/* KHU VỰC TÀI KHOẢN */}
+        <div>
           {isAuthenticated ? (
-            // NẾU ĐÃ ĐĂNG NHẬP: Hiện Avatar, Tên và nút Đăng xuất
             <div className="flex items-center gap-5">
-              <div className="flex items-center gap-2 cursor-default">
+              {/* KHỐI AVATAR ĐÃ ĐƯỢC BỌC LINK CHUẨN */}
+              <Link
+                to="/profile"
+                className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-all"
+              >
                 <div className="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold shadow-sm">
                   {user?.name?.charAt(0)?.toUpperCase() || "U"}
                 </div>
-                <span className="font-bold text-gray-800">
+                <span className="font-bold text-gray-800 hover:text-amber-600">
                   {user?.name || "Học viên"}
                 </span>
-              </div>
+              </Link>
 
               <button
                 onClick={handleLogout}
@@ -90,7 +118,6 @@ function Navbar() {
               </button>
             </div>
           ) : (
-            // NẾU CHƯA ĐĂNG NHẬP
             <div className="flex items-center gap-4">
               <Link
                 to={ROUTES.login}

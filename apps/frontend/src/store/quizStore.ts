@@ -20,11 +20,14 @@ interface QuizStore extends QuizState {
   // State lưu kết quả thi trả về từ Backend
   resultData: any;
   setResultData: (data: any) => void;
+
+  timeLeft: number;
+  setTimeLeft: (updater: number | ((prev: number) => number)) => void;
 }
 
 export const useQuizStore = create<QuizStore>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       questions: [],
       loading: true,
       currentIndex: 0,
@@ -33,6 +36,7 @@ export const useQuizStore = create<QuizStore>()(
       currentStep: "intro",
       score: 0,
       resultData: null,
+      timeLeft: 3600,
 
       setLoading: (loading) => set({ loading }),
       setQuestions: (questions) => set({ questions }),
@@ -73,24 +77,31 @@ export const useQuizStore = create<QuizStore>()(
 
       setResultData: (data) => set({ resultData: data }),
 
-      resetQuiz: () =>
+      setTimeLeft: (updater) =>
+        set((state) => ({
+          timeLeft:
+            typeof updater === "function" ? updater(state.timeLeft) : updater,
+        })),
+
+      resetQuiz: () => {
         set({
           answers: {},
           reviewList: {},
           currentStep: "intro",
           score: 0,
-          currentIndex: 0,
-          loading: false,
-          resultData: null,
-        }),
+          timeLeft: 3600,
+        });
+        localStorage.removeItem("vact-exam-progress");
+      },
     }),
     {
-      name: "vact-exam-storage", // Tên key dùng để lưu trữ dưới LocalStorage
+      name: "vact-exam-progress", // Tên key dùng để lưu trữ dưới LocalStorage
       partialize: (state) => ({
         // Chỉ định lưu lại các state quan trọng nhất
         answers: state.answers,
         reviewList: state.reviewList,
         currentStep: state.currentStep,
+        timeLeft: state.timeLeft,
       }),
     },
   ),
