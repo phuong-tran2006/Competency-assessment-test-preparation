@@ -34,8 +34,8 @@ export class CoursesController {
     return this.courses.findOne(id, req.user);
   }
 
-  @Get(':courseId/lessons')
-  getLessons(@Param('courseId') courseId: string) {
+  @Get(':id/lessons')
+  getLessons(@Param('id') courseId: string) {
     return this.courses.findLessonsByCourse(courseId);
   }
 
