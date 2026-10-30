@@ -1,0 +1,1302 @@
+[
+ {
+  "n": 1,
+  "content": "Một cửa hàng có 250 quyển vở. Số vở đã bán chiếm 18% tổng số vở. Cửa hàng đã bán bao nhiêu quyển?",
+  "options": [
+   "40",
+   "45",
+   "50",
+   "55"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 0
+ },
+ {
+  "n": 2,
+  "content": "Tỉ số số học sinh nam và nữ của một lớp là 3 : 5. Lớp có 64 học sinh. Số học sinh nam là bao nhiêu?",
+  "options": [
+   "24",
+   "32",
+   "40",
+   "48"
+  ],
+  "correctLetter": "A",
+  "correct": 0,
+  "difficulty": 0
+ },
+ {
+  "n": 3,
+  "content": "Trung bình cộng của bốn số 6, 8, 10 và 12 bằng bao nhiêu?",
+  "options": [
+   "8",
+   "8,5",
+   "9",
+   "9,5"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 0
+ },
+ {
+  "n": 4,
+  "content": "Giá trị của biểu thức (2³ × 2⁴) : 2⁵ bằng bao nhiêu?",
+  "options": [
+   "1",
+   "2",
+   "4",
+   "8"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 0
+ },
+ {
+  "n": 5,
+  "content": "Nghiệm của phương trình 3x − 7 = 11 là:",
+  "options": [
+   "4",
+   "5",
+   "6",
+   "7"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 0
+ },
+ {
+  "n": 6,
+  "content": "Một hình vuông có diện tích 49 cm². Chu vi hình vuông bằng:",
+  "options": [
+   "21 cm",
+   "28 cm",
+   "35 cm",
+   "49 cm"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 0
+ },
+ {
+  "n": 7,
+  "content": "Tập nghiệm của phương trình |x − 3| = 2 là:",
+  "options": [
+   "{2; 5}",
+   "{1; 3}",
+   "{1; 5}",
+   "{−1; 5}"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 0
+ },
+ {
+  "n": 8,
+  "content": "Cho cấp số cộng có số hạng đầu u₁ = 4 và công sai d = 3. Số hạng thứ 8 bằng:",
+  "options": [
+   "22",
+   "25",
+   "28",
+   "31"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 0
+ },
+ {
+  "n": 9,
+  "content": "Gieo một con xúc xắc cân đối một lần. Xác suất xuất hiện mặt có số chấm chẵn là:",
+  "options": [
+   "1/6",
+   "1/3",
+   "1/2",
+   "2/3"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 0
+ },
+ {
+  "n": 10,
+  "content": "Một hình chữ nhật có chiều dài 9 cm và chiều rộng 6 cm. Diện tích hình chữ nhật là:",
+  "options": [
+   "30 cm²",
+   "45 cm²",
+   "54 cm²",
+   "60 cm²"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 0
+ },
+ {
+  "n": 11,
+  "content": "Cho hàm số y = 2x + 1. Giá trị của y khi x = 3 là:",
+  "options": [
+   "5",
+   "6",
+   "7",
+   "8"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 0
+ },
+ {
+  "n": 12,
+  "content": "Giá trị của √81 + √16 bằng:",
+  "options": [
+   "11",
+   "12",
+   "13",
+   "14"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 0
+ },
+ {
+  "n": 13,
+  "content": "Một món hàng giá 80.000 đồng được giảm giá 25%. Giá bán sau khi giảm là:",
+  "options": [
+   "55.000 đồng",
+   "60.000 đồng",
+   "65.000 đồng",
+   "70.000 đồng"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 0
+ },
+ {
+  "n": 14,
+  "content": "Nghiệm của phương trình 2x + 5 = 17 là:",
+  "options": [
+   "4",
+   "5",
+   "6",
+   "7"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 0
+ },
+ {
+  "n": 15,
+  "content": "Một tam giác có hai góc lần lượt bằng 45° và 65°. Góc còn lại bằng:",
+  "options": [
+   "60°",
+   "65°",
+   "70°",
+   "75°"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 0
+ },
+ {
+  "n": 16,
+  "content": "Phương trình x² − 9 = 0 có tập nghiệm là:",
+  "options": [
+   "{−9; 9}",
+   "{0; 3}",
+   "{−3; 3}",
+   "{−3}"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 0
+ },
+ {
+  "n": 17,
+  "content": "Một đường tròn có bán kính 3 cm. Chu vi đường tròn là:",
+  "options": [
+   "3π cm",
+   "6π cm",
+   "9π cm",
+   "12π cm"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 0
+ },
+ {
+  "n": 18,
+  "content": "Tập nghiệm của bất phương trình 2x < 10 là:",
+  "options": [
+   "x > 5",
+   "x < 5",
+   "x ≥ 5",
+   "x ≤ 5"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 0
+ },
+ {
+  "n": 19,
+  "content": "Ba công nhân làm xong một công việc trong 4 ngày với năng suất như nhau. Nếu có 6 công nhân cùng làm thì cần bao nhiêu ngày để hoàn thành công việc đó?",
+  "options": [
+   "1 ngày",
+   "2 ngày",
+   "3 ngày",
+   "4 ngày"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 0
+ },
+ {
+  "n": 20,
+  "content": "Trung vị của dãy số đã sắp xếp 2, 4, 5, 7, 12 là:",
+  "options": [
+   "4",
+   "4,5",
+   "5",
+   "7"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 0
+ },
+ {
+  "n": 21,
+  "content": "Gửi 10 triệu đồng với lãi suất đơn 6%/năm trong 1 năm. Tổng số tiền nhận được là:",
+  "options": [
+   "10,3 triệu đồng",
+   "10,6 triệu đồng",
+   "11 triệu đồng",
+   "11,6 triệu đồng"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 0
+ },
+ {
+  "n": 22,
+  "content": "Một hộp có 3 viên bi đỏ và 5 viên bi xanh, các viên bi có kích thước như nhau. Lấy ngẫu nhiên một viên. Xác suất lấy được bi đỏ là:",
+  "options": [
+   "1/8",
+   "3/8",
+   "5/8",
+   "3/5"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 0
+ },
+ {
+  "n": 23,
+  "content": "Biết 1/x = 1/4. Giá trị của x là:",
+  "options": [
+   "−4",
+   "−1/4",
+   "1/4",
+   "4"
+  ],
+  "correctLetter": "D",
+  "correct": 3,
+  "difficulty": 0
+ },
+ {
+  "n": 24,
+  "content": "Đường thẳng có hệ số góc bằng 3 và đi qua điểm (0; 2) có phương trình là:",
+  "options": [
+   "y = 2x + 3",
+   "y = 3x − 2",
+   "y = 3x + 2",
+   "y = 2x − 3"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 0
+ },
+ {
+  "n": 25,
+  "content": "Nghiệm của phương trình 2ˣ = 16 là:",
+  "options": [
+   "2",
+   "3",
+   "4",
+   "5"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 0
+ },
+ {
+  "n": 26,
+  "content": "Giá trị của log₁₀(1000) bằng:",
+  "options": [
+   "2",
+   "3",
+   "10",
+   "100"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 0
+ },
+ {
+  "n": 27,
+  "content": "Một tam giác có đáy 8 cm và chiều cao tương ứng 5 cm. Diện tích tam giác là:",
+  "options": [
+   "13 cm²",
+   "20 cm²",
+   "26 cm²",
+   "40 cm²"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 0
+ },
+ {
+  "n": 28,
+  "content": "Một hình hộp chữ nhật có kích thước 2 cm, 3 cm và 4 cm. Thể tích hình hộp là:",
+  "options": [
+   "9 cm³",
+   "12 cm³",
+   "18 cm³",
+   "24 cm³"
+  ],
+  "correctLetter": "D",
+  "correct": 3,
+  "difficulty": 0
+ },
+ {
+  "n": 29,
+  "content": "Giá trị của sin 30° bằng:",
+  "options": [
+   "0",
+   "1/2",
+   "√2/2",
+   "√3/2"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 0
+ },
+ {
+  "n": 30,
+  "content": "Trung bình cộng của năm số 3, 5, 7, 9 và x bằng 7. Giá trị của x là:",
+  "options": [
+   "9",
+   "10",
+   "11",
+   "12"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 0
+ },
+ {
+  "n": 31,
+  "content": "Một sản phẩm có giá chưa thuế là 200.000 đồng. Thuế giá trị gia tăng là 10%. Giá thanh toán là:",
+  "options": [
+   "210.000 đồng",
+   "215.000 đồng",
+   "220.000 đồng",
+   "230.000 đồng"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 0
+ },
+ {
+  "n": 32,
+  "content": "Cho hệ phương trình x + y = 7 và x − y = 1. Giá trị của tích xy là:",
+  "options": [
+   "10",
+   "11",
+   "12",
+   "14"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 0
+ },
+ {
+  "n": 33,
+  "content": "Phương trình x² − 5x + 6 = 0 có hai nghiệm. Tổng hai nghiệm bằng:",
+  "options": [
+   "2",
+   "3",
+   "5",
+   "6"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 0
+ },
+ {
+  "n": 34,
+  "content": "Cho hàm số f(x) = x² − 2x. Giá trị f(3) bằng:",
+  "options": [
+   "1",
+   "3",
+   "5",
+   "9"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 0
+ },
+ {
+  "n": 35,
+  "content": "Một tam giác vuông có hai cạnh góc vuông dài 6 cm và 8 cm. Độ dài cạnh huyền là:",
+  "options": [
+   "9 cm",
+   "10 cm",
+   "12 cm",
+   "14 cm MỨC ĐỘ 2 - VỪA Câu 36 đến câu 75"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 0
+ },
+ {
+  "n": 36,
+  "content": "Nghiệm của phương trình (x − 1)/(x + 2) = 2 là:",
+  "options": [
+   "−5",
+   "−3",
+   "1",
+   "5"
+  ],
+  "correctLetter": "A",
+  "correct": 0,
+  "difficulty": 1
+ },
+ {
+  "n": 37,
+  "content": "Giá trị nhỏ nhất của biểu thức x² − 4x + 7 trên tập số thực là:",
+  "options": [
+   "2",
+   "3",
+   "4",
+   "7"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 1
+ },
+ {
+  "n": 38,
+  "content": "Nghiệm của phương trình log₂(x − 1) = 3 là:",
+  "options": [
+   "7",
+   "8",
+   "9",
+   "10"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 1
+ },
+ {
+  "n": 39,
+  "content": "Nghiệm của phương trình 3^(x + 1) = 81 là:",
+  "options": [
+   "1",
+   "2",
+   "3",
+   "4"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 1
+ },
+ {
+  "n": 40,
+  "content": "Cho cấp số cộng có u₃ = 7 và u₈ = 22. Số hạng u₁₀ bằng:",
+  "options": [
+   "25",
+   "27",
+   "28",
+   "31"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 1
+ },
+ {
+  "n": 41,
+  "content": "Cho cấp số nhân có u₁ = 2 và công bội q = 3. Tổng bốn số hạng đầu bằng:",
+  "options": [
+   "40",
+   "60",
+   "72",
+   "80"
+  ],
+  "correctLetter": "D",
+  "correct": 3,
+  "difficulty": 1
+ },
+ {
+  "n": 42,
+  "content": "Cho hệ phương trình 2x + 3y = 13 và x − y = 1. Giá trị xy bằng:",
+  "options": [
+   "121/25",
+   "144/25",
+   "176/25",
+   "196/25"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 1
+ },
+ {
+  "n": 43,
+  "content": "Tập nghiệm của bất phương trình x² − 5x + 6 ≤ 0 là:",
+  "options": [
+   "(−∞; 2] [3; +∞) ∪",
+   "[2; 3]",
+   "(2; 3)",
+   "(−∞; 2) (3; +∞) ∪"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 1
+ },
+ {
+  "n": 44,
+  "content": "Tập xác định của hàm số y = √(2x − 6) là:",
+  "options": [
+   "(−∞; 3]",
+   "[3; +∞)",
+   "(−∞; 6]",
+   "[6; +∞)"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 1
+ },
+ {
+  "n": 45,
+  "content": "Nghiệm của phương trình sin x = √3/2 trên đoạn [0; 2π) là:",
+  "options": [
+   "π/3 và 2π/3",
+   "π/6 và 5π/6",
+   "π/3 và 5π/3",
+   "2π/3 và 4π/3"
+  ],
+  "correctLetter": "A",
+  "correct": 0,
+  "difficulty": 1
+ },
+ {
+  "n": 46,
+  "content": "Nghiệm của phương trình cos 2x = 0 trên đoạn [0; π] là:",
+  "options": [
+   "π/6 và 5π/6",
+   "π/4 và 3π/4",
+   "π/3 và 2π/3",
+   "π/2"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 1
+ },
+ {
+  "n": 47,
+  "content": "Cho f(x) = x³ − 3x² + 2. Hàm số đạt cực tiểu tại điểm có hoành độ:",
+  "options": [
+   "−1",
+   "0",
+   "2",
+   "3"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 1
+ },
+ {
+  "n": 48,
+  "content": "Phương trình tiếp tuyến của parabol y = x² tại điểm có hoành độ x = 1 là:",
+  "options": [
+   "y = x − 1",
+   "y = 2x − 1",
+   "y = 2x + 1",
+   "y = x + 1"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 1
+ },
+ {
+  "n": 49,
+  "content": "Giá trị của tích phân ∫₀² (3x² + 1) dx bằng:",
+  "options": [
+   "8",
+   "9",
+   "10",
+   "11"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 1
+ },
+ {
+  "n": 50,
+  "content": "Diện tích hình phẳng giới hạn bởi đồ thị y = 2x, trục hoành, x = 0 và x = 3 là:",
+  "options": [
+   "6",
+   "9",
+   "12",
+   "18"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 1
+ },
+ {
+  "n": 51,
+  "content": "Khoảng cách giữa hai điểm A(1; 2) và B(4; 6) bằng:",
+  "options": [
+   "4",
+   "5",
+   "6",
+   "7"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 1
+ },
+ {
+  "n": 52,
+  "content": "Đường tròn x² + y² − 4x + 6y − 12 = 0 có bán kính bằng:",
+  "options": [
+   "3",
+   "4",
+   "5",
+   "6"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 1
+ },
+ {
+  "n": 53,
+  "content": "Nghiệm lớn hơn của phương trình 2x² − 3x − 2 = 0 là:",
+  "options": [
+   "−2",
+   "−1/2",
+   "1",
+   "2"
+  ],
+  "correctLetter": "D",
+  "correct": 3,
+  "difficulty": 1
+ },
+ {
+  "n": 54,
+  "content": "Tập nghiệm của bất phương trình log₃(x − 1) > 2 là:",
+  "options": [
+   "x > 8",
+   "x > 9",
+   "x > 10",
+   "x ≥ 10"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 1
+ },
+ {
+  "n": 55,
+  "content": "Một món hàng có giá niêm yết 1.000.000 đồng, được giảm 20%, sau đó tính thuế 10% trên giá đã giảm. Số tiền phải trả là:",
+  "options": [
+   "800.000 đồng",
+   "880.000 đồng",
+   "900.000 đồng",
+   "1.100.000 đồng"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 1
+ },
+ {
+  "n": 56,
+  "content": "Hai vòi nước cùng chảy vào một bể. Vòi thứ nhất chảy một mình đầy bể trong 6 giờ, vòi thứ hai trong 3 giờ. Hai vòi cùng chảy thì sau bao lâu đầy bể?",
+  "options": [
+   "1 giờ",
+   "2 giờ",
+   "3 giờ",
+   "4 giờ"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 1
+ },
+ {
+  "n": 57,
+  "content": "Lớp A có 20 học sinh, điểm trung bình là 7. Lớp B có 30 học sinh, điểm trung bình là 8. Điểm trung bình của cả hai lớp là:",
+  "options": [
+   "7,2",
+   "7,4",
+   "7,6",
+   "7,8"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 1
+ },
+ {
+  "n": 58,
+  "content": "Tung đồng thời hai đồng xu cân đối. Xác suất có ít nhất một mặt ngửa là:",
+  "options": [
+   "1/4",
+   "1/2",
+   "3/4",
+   "1"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 1
+ },
+ {
+  "n": 59,
+  "content": "Từ 5 học sinh, chọn ngẫu nhiên 2 học sinh. Có bao nhiêu cách chọn?",
+  "options": [
+   "5",
+   "8",
+   "10",
+   "20"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 1
+ },
+ {
+  "n": 60,
+  "content": "Một hộp có 4 bi trắng và 6 bi đen. Lấy liên tiếp 2 viên không hoàn lại. Xác suất để hai viên cùng màu là:",
+  "options": [
+   "1/3",
+   "7/15",
+   "1/2",
+   "2/3"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 1
+ },
+ {
+  "n": 61,
+  "content": "Một bài kiểm tra có điểm 5, 6, 7, 8 với tần số tương ứng 2, 3, 4, 1. Điểm trung bình của nhóm là:",
+  "options": [
+   "6,2",
+   "6,4",
+   "6,5",
+   "6,6"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 1
+ },
+ {
+  "n": 62,
+  "content": "Giá trị nhỏ nhất của hàm số f(x) = x² − 4x + 7 trên đoạn [0; 5] là:",
+  "options": [
+   "2",
+   "3",
+   "7",
+   "12"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 1
+ },
+ {
+  "n": 63,
+  "content": "Nghiệm của phương trình √(x + 1) = x − 1 là:",
+  "options": [
+   "1",
+   "2",
+   "3",
+   "4"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 1
+ },
+ {
+  "n": 64,
+  "content": "Tập nghiệm của bất phương trình (x − 1)/(x + 2) ≥ 0 là:",
+  "options": [
+   "(−∞; −2) [1; +∞) ∪",
+   "(−2; 1]",
+   "(−∞; −2] [1; +∞) ∪",
+   "(−2; 1)"
+  ],
+  "correctLetter": "A",
+  "correct": 0,
+  "difficulty": 1
+ },
+ {
+  "n": 65,
+  "content": "Gửi 20 triệu đồng với lãi suất 5%/năm, lãi nhập vốn hằng năm. Sau 2 năm, số tiền nhận được là:",
+  "options": [
+   "21 triệu đồng",
+   "22 triệu đồng",
+   "22,05 triệu đồng",
+   "22,5 triệu đồng"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 1
+ },
+ {
+  "n": 66,
+  "content": "Một dây chuyền có 12 máy hoạt động trong 5 giờ sản xuất được 600 sản phẩm. Với năng suất mỗi máy không đổi, 15 máy hoạt động trong 4 giờ sản xuất được:",
+  "options": [
+   "600 sản phẩm",
+   "650 sản phẩm",
+   "700 sản phẩm",
+   "750 sản phẩm"
+  ],
+  "correctLetter": "A",
+  "correct": 0,
+  "difficulty": 1
+ },
+ {
+  "n": 67,
+  "content": "Một tam giác có hai cạnh dài 5 cm và 6 cm, góc xen giữa bằng 60°. Cạnh còn lại có độ dài là:",
+  "options": [
+   "√19 cm",
+   "√25 cm",
+   "√31 cm",
+   "√37 cm"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 1
+ },
+ {
+  "n": 68,
+  "content": "Một hình hộp chữ nhật có ba kích thước 3 cm, 4 cm và 12 cm. Độ dài đường chéo không gian là:",
+  "options": [
+   "12 cm",
+   "13 cm",
+   "14 cm",
+   "15 cm"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 1
+ },
+ {
+  "n": 69,
+  "content": "Một hình nón có bán kính đáy 3 cm và chiều cao 4 cm. Thể tích hình nón là:",
+  "options": [
+   "9π cm³",
+   "12π cm³",
+   "15π cm³",
+   "36π cm³"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 1
+ },
+ {
+  "n": 70,
+  "content": "Từ các chữ số 1, 2, 3, 4 lập các số tự nhiên có 4 chữ số khác nhau. Có bao nhiêu số chẵn được lập?",
+  "options": [
+   "6",
+   "8",
+   "12",
+   "24"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 1
+ },
+ {
+  "n": 71,
+  "content": "Một mạng lưới có 5 thị trấn A, B, C, D, E; các tuyến đường nối trực tiếp là AB, AC, BC, BD, CD, CE và DE. Tổng số tuyến đường là:",
+  "options": [
+   "5",
+   "6",
+   "7",
+   "8"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 1
+ },
+ {
+  "n": 72,
+  "content": "Một mạng cáp gồm 5 điểm A, B, C, D, E với chi phí các cạnh: AB = 2, AC = 3, BC = 1, BD = 4, CD = 5, CE = 6, DE = 2. Chi phí nhỏ nhất để nối tất cả các điểm là:",
+  "options": [
+   "7",
+   "8",
+   "9",
+   "10"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 1
+ },
+ {
+  "n": 73,
+  "content": "Đạo hàm của hàm số y = ln x tại x = e bằng:",
+  "options": [
+   "1/e",
+   "1",
+   "e",
+   "0"
+  ],
+  "correctLetter": "A",
+  "correct": 0,
+  "difficulty": 1
+ },
+ {
+  "n": 74,
+  "content": "Giá trị của tích phân ∫₁³ (1/x) dx bằng:",
+  "options": [
+   "ln 2",
+   "ln 3",
+   "2",
+   "3"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 1
+ },
+ {
+  "n": 75,
+  "content": "Một thiết bị có giá trị 10 triệu đồng và giảm 20% giá trị sau mỗi năm. Sau 2 năm, giá trị còn lại là:",
+  "options": [
+   "6 triệu đồng",
+   "6,2 triệu đồng",
+   "6,4 triệu đồng",
+   "8 triệu đồng MỨC ĐỘ 3 - KHÓ Câu 76 đến câu 100"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 1
+ },
+ {
+  "n": 76,
+  "content": "Tìm m để phương trình x² − (m + 1)x + m = 0 có hai nghiệm phân biệt.",
+  "options": [
+   "m = 1",
+   "m ≠ 1",
+   "m > 1",
+   "m < 1"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 2
+ },
+ {
+  "n": 77,
+  "content": "Nghiệm của phương trình log₂x + log₂(x − 2) = 3 là:",
+  "options": [
+   "2",
+   "3",
+   "4",
+   "5"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 2
+ },
+ {
+  "n": 78,
+  "content": "Nghiệm của phương trình 2ˣ + 2^(x + 1) = 24 là:",
+  "options": [
+   "1",
+   "2",
+   "3",
+   "4"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 2
+ },
+ {
+  "n": 79,
+  "content": "Cho f(x) = x³ − 3x + 1. Giá trị cực đại địa phương của hàm số là:",
+  "options": [
+   "−1",
+   "1",
+   "2",
+   "3"
+  ],
+  "correctLetter": "D",
+  "correct": 3,
+  "difficulty": 2
+ },
+ {
+  "n": 80,
+  "content": "Một mảnh vườn hình chữ nhật có chu vi 40 m. Diện tích lớn nhất có thể đạt được là:",
+  "options": [
+   "80 m²",
+   "90 m²",
+   "100 m²",
+   "120 m²"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 2
+ },
+ {
+  "n": 81,
+  "content": "Phương trình tiếp tuyến của đồ thị y = ln x tại điểm có hoành độ x = e là:",
+  "options": [
+   "y = ex",
+   "y = x/e",
+   "y = x + 1",
+   "y = x/e + 1"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 2
+ },
+ {
+  "n": 82,
+  "content": "Giá trị của tích phân ∫₀^π sin x dx bằng:",
+  "options": [
+   "0",
+   "1",
+   "2",
+   "π"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 2
+ },
+ {
+  "n": 83,
+  "content": "Giá trị của tích phân ∫₀¹ (2x + 1) dx bằng:",
+  "options": [
+   "1",
+   "3/2",
+   "2",
+   "5/2"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 2
+ },
+ {
+  "n": 84,
+  "content": "Diện tích hình phẳng giới hạn bởi hai đồ thị y = x và y = x² trên đoạn [0; 1] bằng:",
+  "options": [
+   "1/3",
+   "1/4",
+   "1/6",
+   "1/8"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 2
+ },
+ {
+  "n": 85,
+  "content": "Số nghiệm của phương trình sin 2x = cos x trên đoạn [0; 2π) là:",
+  "options": [
+   "2",
+   "3",
+   "4",
+   "5"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 2
+ },
+ {
+  "n": 86,
+  "content": "Trong tam giác ABC, các cạnh đối diện A, B, C lần lượt là a, b, c. Biết b(b² − a²) = c(a² − c²). Góc A bằng:",
+  "options": [
+   "30°",
+   "45°",
+   "60°",
+   "90°"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 2
+ },
+ {
+  "n": 87,
+  "content": "Thể tích khối cầu bán kính 3 cm là:",
+  "options": [
+   "9π cm³",
+   "18π cm³",
+   "27π cm³",
+   "36π cm³"
+  ],
+  "correctLetter": "D",
+  "correct": 3,
+  "difficulty": 2
+ },
+ {
+  "n": 88,
+  "content": "Một hộp có 5 bi đỏ và 4 bi xanh. Lấy ngẫu nhiên 2 viên cùng lúc. Xác suất để lấy được đúng 1 bi đỏ và 1 bi xanh là:",
+  "options": [
+   "4/9",
+   "5/9",
+   "2/3",
+   "7/9"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 2
+ },
+ {
+  "n": 89,
+  "content": "Nhà máy A sản xuất 60% sản phẩm, tỉ lệ lỗi 2%; nhà máy B sản xuất 40%, tỉ lệ lỗi 5%. Chọn ngẫu nhiên một sản phẩm bị lỗi. Xác suất sản phẩm đó do nhà máy B sản xuất là:",
+  "options": [
+   "1/2",
+   "5/8",
+   "2/3",
+   "3/4"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 2
+ },
+ {
+  "n": 90,
+  "content": "Ba con xúc xắc cân đối được gieo độc lập. Giá trị kỳ vọng của tổng số chấm nhận được là:",
+  "options": [
+   "7",
+   "9",
+   "10,5",
+   "12"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 2
+ },
+ {
+  "n": 91,
+  "content": "Doanh thu cửa hàng A tăng từ 120 triệu lên 150 triệu đồng; cửa hàng B tăng từ 200 triệu lên 230 triệu đồng. Cửa hàng nào có tốc độ tăng doanh thu theo phần trăm cao hơn?",
+  "options": [
+   "Cửa hàng A",
+   "Cửa hàng B",
+   "Hai cửa hàng bằng nhau",
+   "Không đủ dữ liệu"
+  ],
+  "correctLetter": "A",
+  "correct": 0,
+  "difficulty": 2
+ },
+ {
+  "n": 92,
+  "content": "Gửi 50 triệu đồng với lãi suất danh nghĩa 6%/năm, nhập lãi mỗi quý. Số tiền sau một năm được tính theo biểu thức nào?",
+  "options": [
+   "50 × 1,06",
+   "50 × (1,015)²",
+   "50 × (1,015)⁴",
+   "50 × (1,06)⁴"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 2
+ },
+ {
+  "n": 93,
+  "content": "Cho mạng đường có các độ dài: AB = 4, AC = 2, CB = 1, BD = 5, CD = 8, CE = 10, DE = 2. Độ dài đường đi ngắn nhất từ A đến E là:",
+  "options": [
+   "8",
+   "9",
+   "10",
+   "11"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 2
+ },
+ {
+  "n": 94,
+  "content": "Tập nghiệm của bất phương trình log_(1/2)(x − 1) ≥ −2 là:",
+  "options": [
+   "1 < x < 5",
+   "1 < x ≤ 5",
+   "x ≥ 5",
+   "0 < x ≤ 5"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 2
+ },
+ {
+  "n": 95,
+  "content": "Giá trị nhỏ nhất của biểu thức x + 4/x với x > 0 là:",
+  "options": [
+   "2",
+   "4",
+   "5",
+   "8"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 2
+ },
+ {
+  "n": 96,
+  "content": "Giá trị của tích phân ∫₀² |x − 1| dx bằng:",
+  "options": [
+   "1/2",
+   "1",
+   "3/2",
+   "2"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 2
+ },
+ {
+  "n": 97,
+  "content": "Tìm m để hai đồ thị y = x² và y = 2x + m tiếp xúc nhau.",
+  "options": [
+   "m = −2",
+   "m = −1",
+   "m = 0",
+   "m = 1"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 2
+ },
+ {
+  "n": 98,
+  "content": "Có 5 học sinh xếp thành một hàng ngang. Số cách xếp sao cho hai học sinh A và B không đứng cạnh nhau là:",
+  "options": [
+   "48",
+   "60",
+   "72",
+   "96"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 2
+ },
+ {
+  "n": 99,
+  "content": "Chọn ngẫu nhiên một điểm trong hình vuông cạnh 2. Hình tròn nội tiếp hình vuông có bán kính 1. Xác suất điểm được chọn nằm trong hình tròn là:",
+  "options": [
+   "π/8",
+   "π/4",
+   "π/2",
+   "π"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "difficulty": 2
+ },
+ {
+  "n": 100,
+  "content": "Giá trị lớn nhất của hàm số f(x) = x³ − 6x² + 9x + 1 trên đoạn [0; 4] là:",
+  "options": [
+   "1",
+   "4",
+   "5",
+   "9"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "difficulty": 2
+ }
+]
