@@ -1,5 +1,6 @@
-import { create } from 'zustand';
-import type { QuizState, Question } from '../types/quiz.types';
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
+import type { QuizState, Question } from "../types/quiz.types";
 
 // Mở rộng giao diện QuizStore để bao gồm đầy đủ các hàm, trạng thái và dữ liệu kết quả từ BE
 interface QuizStore extends QuizState {
@@ -7,70 +8,90 @@ interface QuizStore extends QuizState {
   setLoading: (loading: boolean) => void;
   setQuestions: (questions: Question[]) => void;
   setAnswer: (questionId: string, optionId: string) => void;
-  toggleReview: (questionId: string) => void; 
-  setStep: (step: 'intro' | 'playing' | 'result') => void;
+  toggleReview: (questionId: string) => void;
+  setStep: (step: "intro" | "playing" | "result" | "review") => void;
+  currentStep: "intro" | "playing" | "result" | "review";
   jumpToQuestion: (index: number) => void;
   nextQuestion: () => void;
   prevQuestion: () => void;
   submitQuiz: () => void;
   resetQuiz: () => void;
-  
+
   // State lưu kết quả thi trả về từ Backend
-  resultData: any; 
+  resultData: any;
   setResultData: (data: any) => void;
 }
 
-export const useQuizStore = create<QuizStore>((set) => ({
-  questions: [],
-  loading: true,
-  currentIndex: 0,
-  answers: {},
-  reviewList: {}, 
-  currentStep: 'intro',
-  score: 0,
-  resultData: null, // Khởi tạo ban đầu là null
+export const useQuizStore = create<QuizStore>()(
+  persist(
+    (set) => ({
+      questions: [],
+      loading: true,
+      currentIndex: 0,
+      answers: {},
+      reviewList: {},
+      currentStep: "intro",
+      score: 0,
+      resultData: null,
 
-  setLoading: (loading) => set({ loading }),
-  setQuestions: (questions) => set({ questions }),
-  
-  setAnswer: (questionId, optionId) => 
-    set((state) => ({ answers: { ...state.answers, [questionId]: optionId } })),
+      setLoading: (loading) => set({ loading }),
+      setQuestions: (questions) => set({ questions }),
 
-  toggleReview: (questionId) => 
-    set((state) => ({
-      reviewList: { 
-        ...state.reviewList, 
-        [questionId]: !state.reviewList[questionId] 
-      }
-    })),
-  
-  setStep: (step) => set({ currentStep: step }),
+      setAnswer: (questionId, optionId) =>
+        set((state) => ({
+          answers: { ...state.answers, [questionId]: optionId },
+        })),
 
-  jumpToQuestion: (index) => set({ currentIndex: index }),
+      toggleReview: (questionId) =>
+        set((state) => ({
+          reviewList: {
+            ...state.reviewList,
+            [questionId]: !state.reviewList[questionId],
+          },
+        })),
 
-  nextQuestion: () =>
-    set((state) => ({
-      currentIndex: Math.min(state.currentIndex + 1, state.questions.length - 1),
-    })),
+      setStep: (step) => set({ currentStep: step }),
 
-  prevQuestion: () =>
-    set((state) => ({
-      currentIndex: Math.max(state.currentIndex - 1, 0), // Đã sửa lỗi thiếu dấu phẩy
-    })),
+      jumpToQuestion: (index) => set({ currentIndex: index }),
 
-  submitQuiz: () => {
-    set({ currentStep: 'result' });
-  },
+      nextQuestion: () =>
+        set((state) => ({
+          currentIndex: Math.min(
+            state.currentIndex + 1,
+            state.questions.length - 1,
+          ),
+        })),
 
-  setResultData: (data) => set({ resultData: data }),
+      prevQuestion: () =>
+        set((state) => ({
+          currentIndex: Math.max(state.currentIndex - 1, 0),
+        })),
 
-  resetQuiz: () => set({ 
-    answers: {}, 
-    reviewList: {},
-    currentStep: 'intro', 
-    score: 0,
-    currentIndex: 0,
-    loading: false,
-    resultData: null
-  }),
-}));
+      submitQuiz: () => {
+        set({ currentStep: "result" });
+      },
+
+      setResultData: (data) => set({ resultData: data }),
+
+      resetQuiz: () =>
+        set({
+          answers: {},
+          reviewList: {},
+          currentStep: "intro",
+          score: 0,
+          currentIndex: 0,
+          loading: false,
+          resultData: null,
+        }),
+    }),
+    {
+      name: "vact-exam-storage", // Tên key dùng để lưu trữ dưới LocalStorage
+      partialize: (state) => ({
+        // Chỉ định lưu lại các state quan trọng nhất
+        answers: state.answers,
+        reviewList: state.reviewList,
+        currentStep: state.currentStep,
+      }),
+    },
+  ),
+);

@@ -1,6 +1,7 @@
 export interface Option {
   id: string;
   text: string;
+  isCorrect?: boolean | string | number;
 }
 
 export interface Question {
@@ -9,6 +10,7 @@ export interface Question {
   content: string;
   options: Option[];
   level?: string; // Ví dụ: "Nhận biết", "Thông hiểu", "Vận dụng"
+  explanation?: string;
 }
 
 export interface QuizState {
@@ -16,6 +18,6 @@ export interface QuizState {
   currentIndex: number;
   answers: Record<string, string>; // { questionId: optionId }
   reviewList: Record<string, boolean>; // Lưu trạng thái cần kiểm tra lại { questionId: true/false }
-  currentStep: 'intro' | 'playing' | 'result';
+  currentStep: 'intro' | 'playing' | 'result' | 'review';
   score: number;
 }

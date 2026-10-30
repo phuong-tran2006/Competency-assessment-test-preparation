@@ -1,41 +1,48 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { authService } from '../../services/auth.service';
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { authService } from "../../services/auth.service";
+import { useAuthStore } from "../../store/authStore"; // 1. IMPORT STORE VÀO ĐÂY
 
 export const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  // 2. LẤY HÀM setAuth TỪ ZUSTAND STORE
+  const setAuth = useAuthStore((state) => state.setAuth);
+
   const handleLogin = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setError('');
-  setLoading(true);
+    e.preventDefault();
+    setError("");
+    setLoading(true);
 
-  try {
-    const response = await authService.login(email, password);
-    
-    // Lấy token linh hoạt từ response của backend
-    const token = response.access_token || response.token || response.accessToken;
-    const user = response.user;
+    try {
+      const response = await authService.login(email, password);
 
-    if (token) {
-      localStorage.setItem('token', token); // Lưu đúng key 'token'
+      const token =
+        response.access_token || response.token || response.accessToken;
+      const user = response.user;
+
+      // 3. GỌI GLOBAL STATE ZUSTAND (Nó sẽ tự động lưu localStorage cho bạn)
+      if (token && user) {
+        setAuth(user, token);
+      }
+
+      alert("Đăng nhập thành công!");
+      navigate("/");
+    } catch (err: any) {
+      console.error("Lỗi đăng nhập:", err);
+      // 4. BẮT LỖI CHI TIẾT TỪ BACKEND NHƯ BÊN REGISTER
+      setError(
+        err.response?.data?.message ||
+          "Email hoặc mật khẩu không chính xác. Vui lòng kiểm tra lại.",
+      );
+    } finally {
+      setLoading(false);
     }
-    if (user) {
-      localStorage.setItem('user', JSON.stringify(user));
-    }
-
-    alert('Đăng nhập thành công!');
-    navigate('/courses');
-  } catch (err: any) {
-    setError('Email hoặc mật khẩu không chính xác.');
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 font-sans">
@@ -58,7 +65,9 @@ export const Login = () => {
 
           <form className="space-y-6" onSubmit={handleLogin}>
             <div>
-              <label className="block text-sm font-bold text-gray-700">Email</label>
+              <label className="block text-sm font-bold text-gray-700">
+                Email
+              </label>
               <div className="mt-1">
                 <input
                   type="email"
@@ -72,7 +81,9 @@ export const Login = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-bold text-gray-700">Mật khẩu</label>
+              <label className="block text-sm font-bold text-gray-700">
+                Mật khẩu
+              </label>
               <div className="mt-1">
                 <input
                   type="password"
@@ -91,15 +102,18 @@ export const Login = () => {
                 disabled={loading}
                 className="w-full flex justify-center py-3 px-4 border border-transparent rounded-full shadow-md text-sm font-bold text-white bg-amber-500 hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 transition-all disabled:opacity-50 uppercase tracking-wider"
               >
-                {loading ? 'Đang đăng nhập...' : 'Đăng Nhập'}
+                {loading ? "Đang đăng nhập..." : "Đăng Nhập"}
               </button>
             </div>
           </form>
 
           <div className="mt-6 text-center">
             <p className="text-sm text-gray-600">
-              Chưa có tài khoản?{' '}
-              <Link to="/register" className="font-bold text-amber-600 hover:text-amber-500">
+              Chưa có tài khoản?{" "}
+              <Link
+                to="/register"
+                className="font-bold text-amber-600 hover:text-amber-500"
+              >
                 Đăng ký ngay
               </Link>
             </p>

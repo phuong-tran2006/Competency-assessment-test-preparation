@@ -1,12 +1,10 @@
 // src/features/home/HomePage.tsx
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuthStore } from "../../store/authStore";
 import "./home.css";
 import { BRAND, ROUTES, STR } from "./strings";
 
-type CurrentUser = { name: string } | null;
-
-// Adjust these field names to match what GET /exams really returns.
 type ExamSummary = {
   id: string | number;
   title: string;
@@ -14,12 +12,7 @@ type ExamSummary = {
   questionCount?: number;
 };
 
-type HomePageProps = {
-  /** Pass the logged-in user from your auth context, or null for a guest. */
-  user?: CurrentUser;
-};
-
-/* ---------- data ---------- */
+/* ---------- hooks ---------- */
 
 function useFeaturedExams(limit = 3) {
   const [exams, setExams] = useState<ExamSummary[]>([]);
@@ -55,7 +48,15 @@ function useFeaturedExams(limit = 3) {
 
 /* ---------- sections ---------- */
 
-function Navbar({ user }: { user: CurrentUser }) {
+function Navbar() {
+  const { isAuthenticated, user, logout } = useAuthStore();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
+
   return (
     <header className="nav">
       <div className="container nav__inner">
@@ -67,23 +68,43 @@ function Navbar({ user }: { user: CurrentUser }) {
           <a href="#how">{STR.nav.how}</a>
           <a href="#structure">{STR.nav.structure}</a>
         </nav>
+
         <div className="nav__actions">
-          {user ? (
-            <>
-              <span className="nav__user">{user.name}</span>
-              <Link to={ROUTES.exams} className="btn btn--primary">
-                {STR.nav.enter}
-              </Link>
-            </>
+          {isAuthenticated ? (
+            // NẾU ĐÃ ĐĂNG NHẬP: Hiện Avatar, Tên và nút Đăng xuất
+            <div className="flex items-center gap-5">
+              <div className="flex items-center gap-2 cursor-default">
+                <div className="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold shadow-sm">
+                  {user?.name?.charAt(0)?.toUpperCase() || "U"}
+                </div>
+                <span className="font-bold text-gray-800">
+                  {user?.name || "Học viên"}
+                </span>
+              </div>
+
+              <button
+                onClick={handleLogout}
+                className="text-sm font-bold text-gray-500 hover:text-red-500 transition-colors"
+              >
+                Đăng xuất
+              </button>
+            </div>
           ) : (
-            <>
-              <Link to={ROUTES.login} className="btn btn--ghost">
-                {STR.nav.login}
+            // NẾU CHƯA ĐĂNG NHẬP
+            <div className="flex items-center gap-4">
+              <Link
+                to={ROUTES.login}
+                className="text-sm font-bold text-blue-900 hover:text-blue-700 transition"
+              >
+                Đăng nhập
               </Link>
-              <Link to={ROUTES.register} className="btn btn--primary">
-                {STR.nav.register}
+              <Link
+                to={ROUTES.register}
+                className="px-6 py-2.5 bg-amber-500 text-white text-sm font-bold rounded-lg shadow-md hover:bg-amber-600 transition"
+              >
+                Đăng ký
               </Link>
-            </>
+            </div>
           )}
         </div>
       </div>
@@ -91,7 +112,9 @@ function Navbar({ user }: { user: CurrentUser }) {
   );
 }
 
-function Hero({ user }: { user: CurrentUser }) {
+function Hero() {
+  const { isAuthenticated } = useAuthStore();
+
   return (
     <section className="hero">
       <div className="container hero__inner">
@@ -102,7 +125,8 @@ function Hero({ user }: { user: CurrentUser }) {
           <Link to={ROUTES.exams} className="btn btn--primary btn--lg">
             {STR.hero.ctaPrimary}
           </Link>
-          {!user && (
+          {/* Ẩn nút "Đăng ký miễn phí" nếu người dùng đã đăng nhập */}
+          {!isAuthenticated && (
             <Link to={ROUTES.register} className="btn btn--outline btn--lg">
               {STR.hero.ctaSecondary}
             </Link>
@@ -242,12 +266,12 @@ function Footer() {
 
 /* ---------- page ---------- */
 
-export function HomePage({ user = null }: HomePageProps) {
+export function HomePage() {
   return (
     <div className="home">
-      <Navbar user={user} />
+      <Navbar />
       <main>
-        <Hero user={user} />
+        <Hero />
         <HowItWorks />
         <ExamStructure />
         <Courses />

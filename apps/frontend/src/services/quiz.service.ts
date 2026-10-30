@@ -12,14 +12,7 @@ export const quizService = {
   getExamQuestions: async (examId: string): Promise<Question[]> => {
     const { data } = await api.get(`/exams/${examId}/questions`);
     // Map dữ liệu để đảm bảo tương thích với type FE
-    return data.map((q: any) => ({
-      id: q.id,
-      content: q.content,
-      options: q.options.map((opt: any) => ({
-        id: opt.id,
-        text: opt.text || opt.content,
-      })),
-    }));
+    return data;
   },
 
   // Nộp bài thi lên Backend, nhận về điểm số và chi tiết chấm điểm
