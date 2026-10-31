@@ -1,4 +1,3 @@
-// src/features/home/HomePage.tsx
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../store/authStore";
@@ -57,6 +56,13 @@ function Navbar() {
     navigate("/login");
   };
 
+  // Xác định đường dẫn khi click vào Avatar tùy theo Role
+  const getProfileRoute = () => {
+    if (user?.role === "INSTRUCTOR") return "/instructor";
+    if (user?.role === "ADMIN") return "/admin/dashboard";
+    return "/profile";
+  };
+
   return (
     <header className="w-full bg-white border-b border-gray-100 sticky top-0 z-50">
       <div className="w-full px-4 lg:px-12 py-4 flex items-center justify-between mx-auto">
@@ -68,38 +74,68 @@ function Navbar() {
           {BRAND}
         </Link>
 
-        {/* MENU LINK CHÍNH */}
+        {/* MENU LINK CHÍNH - Thay đổi linh hoạt theo Role */}
         <nav
           className="hidden md:flex gap-8 items-center"
           aria-label="Điều hướng chính"
         >
-          <Link
-            to={ROUTES.exams}
-            className="font-semibold text-gray-600 hover:text-amber-500 transition-colors"
-          >
-            {STR.nav.exams}
-          </Link>
-          <a
-            href="#how"
-            className="font-semibold text-gray-600 hover:text-amber-500 transition-colors"
-          >
-            {STR.nav.how}
-          </a>
-          <a
-            href="#structure"
-            className="font-semibold text-gray-600 hover:text-amber-500 transition-colors"
-          >
-            {STR.nav.structure}
-          </a>
+          {user?.role === "INSTRUCTOR" ? (
+            <>
+              <Link
+                to="/instructor"
+                className="font-semibold text-gray-600 hover:text-amber-500 transition-colors"
+              >
+                Quản lý Khóa học
+              </Link>
+              <Link
+                to="/instructor"
+                className="font-semibold text-gray-600 hover:text-amber-500 transition-colors"
+              >
+                Ngân hàng Câu hỏi
+              </Link>
+              <Link
+                to="/instructor"
+                className="font-semibold text-gray-600 hover:text-amber-500 transition-colors"
+              >
+                Kết quả Học viên
+              </Link>
+            </>
+          ) : (
+            <>
+              <a
+                href="#courses"
+                className="font-semibold text-gray-600 hover:text-amber-500 transition-colors"
+              >
+                Khóa học
+              </a>
+              <Link
+                to={ROUTES.exams}
+                className="font-semibold text-gray-600 hover:text-amber-500 transition-colors"
+              >
+                {STR.nav.exams}
+              </Link>
+              <a
+                href="#how"
+                className="font-semibold text-gray-600 hover:text-amber-500 transition-colors"
+              >
+                {STR.nav.how}
+              </a>
+              <a
+                href="#structure"
+                className="font-semibold text-gray-600 hover:text-amber-500 transition-colors"
+              >
+                {STR.nav.structure}
+              </a>
+            </>
+          )}
         </nav>
 
         {/* KHU VỰC TÀI KHOẢN */}
         <div>
           {isAuthenticated ? (
             <div className="flex items-center gap-5">
-              {/* KHỐI AVATAR ĐÃ ĐƯỢC BỌC LINK CHUẨN */}
               <Link
-                to="/profile"
+                to={getProfileRoute()}
                 className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-all"
               >
                 <div className="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold shadow-sm">
@@ -140,23 +176,41 @@ function Navbar() {
 }
 
 function Hero() {
-  const { isAuthenticated } = useAuthStore();
+  const { isAuthenticated, user } = useAuthStore();
+  const isInstructor = user?.role === "INSTRUCTOR";
 
   return (
     <section className="hero">
       <div className="container hero__inner">
-        <span className="tag">{STR.hero.badge}</span>
-        <h1 className="hero__title">{STR.hero.title}</h1>
-        <p className="hero__subtitle">{STR.hero.subtitle}</p>
+        <span className="tag">
+          {isInstructor ? "Khu vực Quản trị Giảng viên" : STR.hero.badge}
+        </span>
+        <h1 className="hero__title">
+          {isInstructor
+            ? `Xin chào, ${user?.name || "Giảng viên"}! Quản lý học tập hiệu quả.`
+            : STR.hero.title}
+        </h1>
+        <p className="hero__subtitle">
+          {isInstructor
+            ? "Hệ thống hỗ trợ biên soạn khóa học, quản lý ngân hàng câu hỏi gắn thẻ (tags) và theo dõi kết quả đánh giá năng lực của học viên."
+            : STR.hero.subtitle}
+        </p>
         <div className="hero__cta">
-          <Link to={ROUTES.exams} className="btn btn--primary btn--lg">
-            {STR.hero.ctaPrimary}
-          </Link>
-          {/* Ẩn nút "Đăng ký miễn phí" nếu người dùng đã đăng nhập */}
-          {!isAuthenticated && (
-            <Link to={ROUTES.register} className="btn btn--outline btn--lg">
-              {STR.hero.ctaSecondary}
+          {isInstructor ? (
+            <Link to="/instructor" className="btn btn--primary btn--lg">
+              Vào Bảng điều khiển Quản trị
             </Link>
+          ) : (
+            <>
+              <Link to={ROUTES.exams} className="btn btn--primary btn--lg">
+                {STR.hero.ctaPrimary}
+              </Link>
+              {!isAuthenticated && (
+                <Link to={ROUTES.register} className="btn btn--outline btn--lg">
+                  {STR.hero.ctaSecondary}
+                </Link>
+              )}
+            </>
           )}
         </div>
       </div>
@@ -165,6 +219,9 @@ function Hero() {
 }
 
 function HowItWorks() {
+  const { user } = useAuthStore();
+  if (user?.role === "INSTRUCTOR") return null; // Ẩn phần hướng dẫn học viên nếu là giảng viên
+
   return (
     <section id="how" className="section section--tint">
       <div className="container">
@@ -188,6 +245,9 @@ function HowItWorks() {
 }
 
 function ExamStructure() {
+  const { user } = useAuthStore();
+  if (user?.role === "INSTRUCTOR") return null;
+
   return (
     <section id="structure" className="section">
       <div className="container">
@@ -209,7 +269,63 @@ function ExamStructure() {
 }
 
 function FeaturedExams() {
+  const { user } = useAuthStore();
   const { exams, loading } = useFeaturedExams(3);
+
+  // Nếu là giảng viên, thay đổi tiêu đề thành danh sách khóa học do giảng viên quản lý
+  if (user?.role === "INSTRUCTOR") {
+    return (
+      <section className="section section--tint">
+        <div className="container">
+          <h2 className="section__title">
+            Khóa học & Ngân hàng câu hỏi của tôi
+          </h2>
+          <p className="section__lead text-center mb-8">
+            Truy cập nhanh vào các công cụ quản lý nội dung giảng dạy và theo
+            dõi tiến độ của học viên.
+          </p>
+          <div className="grid grid--3">
+            <div className="card exam">
+              <h3 className="card__title">Quản lý Khóa học</h3>
+              <p className="card__text">
+                Tạo mới, chỉnh sửa đề cương, xuất bản hoặc ẩn các chương trình
+                học.
+              </p>
+              <div className="exam__footer">
+                <Link to="/instructor" className="btn btn--primary">
+                  Truy cập
+                </Link>
+              </div>
+            </div>
+            <div className="card exam">
+              <h3 className="card__title">Ngân hàng Câu hỏi</h3>
+              <p className="card__text">
+                Quản lý kho câu hỏi trắc nghiệm, gắn thẻ chủ đề và độ khó[cite:
+                52].
+              </p>
+              <div className="exam__footer">
+                <Link to="/instructor" className="btn btn--primary">
+                  Quản lý kho đề
+                </Link>
+              </div>
+            </div>
+            <div className="card exam">
+              <h3 className="card__title">Kết quả Học viên</h3>
+              <p className="card__text">
+                Xem danh sách học viên đăng ký, chấm điểm và phản hồi bài
+                làm[cite: 52].
+              </p>
+              <div className="exam__footer">
+                <Link to="/instructor" className="btn btn--primary">
+                  Xem thống kê
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="section section--tint">
@@ -256,8 +372,11 @@ function FeaturedExams() {
 }
 
 function Courses() {
+  const { user } = useAuthStore();
+  if (user?.role === "INSTRUCTOR") return null; // Ẩn danh sách khóa học học viên ở trang chủ giảng viên
+
   return (
-    <section className="section">
+    <section id="courses" className="section">
       <div className="container">
         <h2 className="section__title">{STR.courses.title}</h2>
         <div className="grid grid--3">
@@ -294,6 +413,17 @@ function Footer() {
 /* ---------- page ---------- */
 
 export function HomePage() {
+  const navigate = useNavigate();
+  const { user } = useAuthStore();
+
+  useEffect(() => {
+    if (user?.role === "ADMIN") {
+      navigate("/admin/dashboard", { replace: true });
+    } else if (user?.role === "INSTRUCTOR") {
+      navigate("/instructor", { replace: true });
+    }
+  }, [user, navigate]);
+
   return (
     <div className="home">
       <Navbar />

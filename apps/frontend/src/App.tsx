@@ -26,6 +26,7 @@ function App() {
           <Route path="/practice/:examId" element={<QuizPage />} />
         </Route>
 
+
         {/* 3. Nhóm trang dành cho GIẢNG VIÊN (INSTRUCTOR) */}
         <Route element={<ProtectedRoute allowedRoles={["INSTRUCTOR"]} />}>
           <Route path="/instructor" element={<InstructorDashboard />} />

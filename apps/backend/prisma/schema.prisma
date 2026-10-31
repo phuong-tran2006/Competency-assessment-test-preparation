@@ -4,15 +4,19 @@ generator client {
 }
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")  
 }
 enum Role {
-  LEARNER
+  STUDENT
   INSTRUCTOR
   ADMIN
+  LEARNER
 }
 enum UserStatus {
   ACTIVE
+  PENDING
   LOCKED
+  REJECTED
 }
 enum CourseStatus {
   DRAFT      
@@ -36,7 +40,7 @@ model User {
   passwordHash String
   fullName     String?
   targetScore  Int?       
-  role         Role       @default(LEARNER)
+  role         Role       @default(STUDENT)
   status       UserStatus @default(ACTIVE)
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
@@ -44,6 +48,13 @@ model User {
   coursesTaught Course[] @relation("InstructorCourses")
   examAttempts  ExamAttempt[]
   topicMasteries TopicMastery[]
+
+  enrollments    Enrollment[]
+  lessonProgress LessonProgress[]
+  comments       Comment[]
+  notifications  Notification[]
+  reportsMade    Report[]
+  auditLogs      AuditLog[]
 
   @@index([role])
   @@index([status])
@@ -64,6 +75,8 @@ model Course {
   courseTopics CourseTopic[] 
   prerequisites CoursePrerequisite[] @relation("CoursePrerequisites")
   requiredBy    CoursePrerequisite[] @relation("CourseRequiredBy")
+
+  enrollments   Enrollment[]
 
   @@index([instructorId])
   @@index([status])
@@ -97,6 +110,9 @@ model Lesson {
 
   chapter   Chapter    @relation(fields: [chapterId], references: [id], onDelete: Restrict)
   materials Material[]
+
+  progress  LessonProgress[]
+  comments  Comment[]
 
   @@unique([chapterId, order])
   @@index([chapterId])
@@ -310,4 +326,97 @@ model TopicMastery {
   @@index([userId])
   @@index([topicId])
   @@map("topic_masteries")
+}
+
+// Bảng Ghi danh khóa học
+model Enrollment {
+  id         String   @id @default(cuid())
+  userId     String
+  courseId   String
+  enrolledAt DateTime @default(now())
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  course Course @relation(fields: [courseId], references: [id], onDelete: Restrict)
+
+  @@unique([userId, courseId])
+  @@index([userId])
+  @@index([courseId])
+  @@map("enrollments")
+}
+
+// Bảng Tiến độ học tập từng bài
+model LessonProgress {
+  id          String   @id @default(cuid())
+  userId      String
+  lessonId    String
+  isCompleted Boolean  @default(false)
+  completedAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lesson Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, lessonId])
+  @@index([userId])
+  @@map("lesson_progress")
+}
+
+// Bảng Bình luận / Thảo luận bài học
+model Comment {
+  id        String   @id @default(cuid())
+  userId    String
+  lessonId  String
+  content   String   @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lesson Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  @@index([lessonId])
+  @@map("comments")
+}
+
+// Bảng Thông báo cho người dùng
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  title     String
+  message   String   @db.Text
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("notifications")
+}
+
+// Bảng Báo cáo vi phạm (Dành cho Admin duyệt)
+model Report {
+  id          String   @id @default(cuid())
+  reporterId  String
+  targetId    String   // ID của nội dung bị report (VD: ID của Comment, Course)
+  targetType  String   // Loại nội dung (VD: "COMMENT", "COURSE")
+  reason      String   @db.Text
+  isResolved  Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  
+  reporter User @relation(fields: [reporterId], references: [id], onDelete: Restrict)
+
+  @@map("reports")
+}
+
+// Bảng Nhật ký thao tác quản trị viên
+model AuditLog {
+  id          String   @id @default(cuid())
+  adminId     String?
+  action      String   // Thao tác (VD: "APPROVE_INSTRUCTOR", "LOCK_USER")
+  details     String?  @db.Text
+  createdAt   DateTime @default(now())
+
+  admin User? @relation(fields: [adminId], references: [id], onDelete: SetNull)
+
+  @@map("audit_logs")
 }

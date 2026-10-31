@@ -1,121 +1,351 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import api from '../../services/api';
+import React, { useState, useEffect } from "react";
+import { useAuthStore } from "../../store/authStore";
+import { Link, useNavigate } from "react-router-dom";
+
+// 1. Cập nhật Enum in hoa cho khớp với Prisma Backend
+type UserStatus = "ACTIVE" | "PENDING" | "LOCKED" | "REJECTED";
+
+interface SystemUser {
+  id: string;
+  fullName: string; // Đổi name thành fullName theo schema của bạn
+  role: "STUDENT" | "INSTRUCTOR" | "ADMIN";
+  status: UserStatus;
+  createdAt: string;
+}
 
 export const AdminDashboard = () => {
+  const { user, token, logout } = useAuthStore(); // Lấy thêm token nếu hệ thống bạn đã có JWT
   const navigate = useNavigate();
-  const [exams, setExams] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState<
+    "users" | "courses" | "reports" | "stats"
+  >("users");
 
-  // Tải danh sách đề thi từ Backend để hiển thị trực quan lên Dashboard Admin
-  useEffect(() => {
-    const fetchExams = async () => {
-      try {
-        const response = await api.get('/exams');
-        setExams(response.data);
-      } catch (err) {
-        console.error('Lỗi khi tải danh sách đề thi cho Admin:', err);
-      } finally {
-        setLoading(false);
+  // 2. Dữ liệu thật từ State
+  const [usersList, setUsersList] = useState<SystemUser[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  // BASE_URL của NestJS backend
+  const API_URL = "http://localhost:3000/users";
+
+  // --- LOGIC GỌI API ---
+
+  // Lấy danh sách user từ Backend
+  const fetchUsers = async () => {
+    setIsLoading(true);
+    try {
+      const res = await fetch(API_URL, {
+        headers: {
+          Authorization: `Bearer ${token || ""}`, // Gắn token nếu cần Guard
+        },
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setUsersList(data);
       }
-    };
-    fetchExams();
-  }, []);
-
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    navigate('/login');
+    } catch (error) {
+      console.error("Lỗi khi tải danh sách người dùng:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
+  // Tự động chạy fetchUsers khi component được load
+  useEffect(() => {
+    if (activeTab === "users") {
+      fetchUsers();
+    }
+  }, [activeTab]);
+
+  // Xử lý Duyệt giảng viên
+  const handleApprove = async (userId: string) => {
+    if (window.confirm("Bạn có chắc chắn muốn duyệt giảng viên này?")) {
+      try {
+        await fetch(`${API_URL}/${userId}/status`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token || ""}`,
+          },
+          body: JSON.stringify({ status: "ACTIVE" }),
+        });
+        fetchUsers(); // Load lại bảng sau khi cập nhật thành công
+      } catch (error) {
+        console.error("Lỗi duyệt:", error);
+      }
+    }
+  };
+
+  // Xử lý Từ chối giảng viên
+  const handleReject = async (userId: string) => {
+    if (window.confirm("Từ chối cấp quyền cho giảng viên này?")) {
+      try {
+        await fetch(`${API_URL}/${userId}/status`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token || ""}`,
+          },
+          body: JSON.stringify({ status: "REJECTED" }),
+        });
+        fetchUsers();
+      } catch (error) {
+        console.error("Lỗi từ chối:", error);
+      }
+    }
+  };
+
+  // Xử lý Khóa / Mở khóa tài khoản
+  const handleToggleLock = async (
+    userId: string,
+    currentStatus: UserStatus,
+  ) => {
+    const isLocking = currentStatus === "ACTIVE";
+    const confirmMsg = isLocking
+      ? "Khóa tài khoản này? Người dùng sẽ không thể đăng nhập."
+      : "Mở khóa cho tài khoản này hoạt động lại?";
+
+    if (window.confirm(confirmMsg)) {
+      try {
+        await fetch(`${API_URL}/${userId}/toggle-lock`, {
+          method: "PATCH",
+          headers: { Authorization: `Bearer ${token || ""}` },
+        });
+        fetchUsers();
+      } catch (error) {
+        console.error("Lỗi thay đổi trạng thái khóa:", error);
+      }
+    }
+  };
+
+  const handleLogout = () => {
+    if (window.confirm("Bạn có chắc chắn muốn đăng xuất khỏi hệ thống?")) {
+      logout(); // Xóa token/user trong global state
+      navigate("/login"); // Đẩy về trang đăng nhập
+    }
+  };
+
+  // Hàm hiển thị Badge trạng thái (Đã cập nhật key in hoa)
+  const getStatusBadge = (status: UserStatus) => {
+    switch (status) {
+      case "ACTIVE":
+        return (
+          <span className="px-3 py-1 text-xs font-bold rounded-full bg-green-100 text-green-700">
+            Đang hoạt động
+          </span>
+        );
+      case "PENDING":
+        return (
+          <span className="px-3 py-1 text-xs font-bold rounded-full bg-yellow-100 text-yellow-700">
+            Chờ phê duyệt
+          </span>
+        );
+      case "LOCKED":
+        return (
+          <span className="px-3 py-1 text-xs font-bold rounded-full bg-red-100 text-red-700">
+            Đã bị khóa
+          </span>
+        );
+      case "REJECTED":
+        return (
+          <span className="px-3 py-1 text-xs font-bold rounded-full bg-gray-200 text-gray-600">
+            Bị từ chối
+          </span>
+        );
+      default:
+        return null;
+    }
+  };
+
+  // --- GIAO DIỆN UI (Giữ nguyên cấu trúc, chỉ cập nhật biến mapping) ---
   return (
-    <div className="min-h-screen bg-gray-50 font-sans">
-      {/* Navbar Quản trị độc lập */}
-      <nav className="bg-slate-900 text-white px-8 py-4 flex justify-between items-center shadow-md">
-        <div className="flex items-center space-x-3">
-          <span className="text-xl font-black bg-amber-500 px-3 py-1 rounded-lg text-white">V-ACT ADMIN</span>
-          <span className="text-sm text-gray-300">Hệ thống Quản lý Nền tảng Luyện thi ĐGNL</span>
-        </div>
-        <div className="flex items-center space-x-4">
-          <button 
-            onClick={() => navigate('/admin/create-exam')}
-            className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-4 py-2 rounded-lg text-sm transition shadow-sm"
+    <div className="flex h-screen bg-white font-sans overflow-hidden">
+      {/* SIDEBAR */}
+      <div className="w-64 bg-slate-900 border-r border-slate-800 flex flex-col flex-shrink-0">
+        <div className="p-6 border-b border-slate-800">
+          <Link
+            to="/"
+            className="text-xl font-black text-white uppercase tracking-wide"
           >
-            + Tạo đề thi mới
+            V-ACT Admin
+          </Link>
+          <div className="mt-4 flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold shadow-sm">
+              {user?.name?.charAt(0)?.toUpperCase() || "A"}
+            </div>
+            <div>
+              <p className="text-sm font-bold text-white">
+                {user?.name || "Quản trị viên"}
+              </p>
+              <p className="text-xs text-amber-500 font-semibold">
+                Administrator
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <nav className="flex-1 p-4 space-y-2">
+          <button
+            onClick={() => setActiveTab("users")}
+            className={`w-full text-left px-4 py-3 rounded-lg font-bold text-sm transition-colors ${activeTab === "users" ? "bg-amber-500 text-white" : "text-slate-300 hover:bg-slate-800"}`}
+          >
+            Quản lý Người dùng
           </button>
-          <button 
+          <button
+            onClick={() => setActiveTab("courses")}
+            className={`w-full text-left px-4 py-3 rounded-lg font-bold text-sm transition-colors ${activeTab === "courses" ? "bg-amber-500 text-white" : "text-slate-300 hover:bg-slate-800"}`}
+          >
+            Quản lý Khóa học
+          </button>
+          <button
+            onClick={() => setActiveTab("reports")}
+            className={`w-full text-left px-4 py-3 rounded-lg font-bold text-sm transition-colors ${activeTab === "reports" ? "bg-amber-500 text-white" : "text-slate-300 hover:bg-slate-800"}`}
+          >
+            Kiểm duyệt Nội dung
+          </button>
+          <button
+            onClick={() => setActiveTab("stats")}
+            className={`w-full text-left px-4 py-3 rounded-lg font-bold text-sm transition-colors ${activeTab === "stats" ? "bg-amber-500 text-white" : "text-slate-300 hover:bg-slate-800"}`}
+          >
+            Thống kê & Audit Log
+          </button>
+        </nav>
+        <div className="p-4 border-t border-slate-800">
+          <button
             onClick={handleLogout}
-            className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg text-sm font-medium transition"
+            className="w-full text-left px-4 py-3 rounded-lg font-bold text-sm text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-colors"
           >
             Đăng xuất
           </button>
         </div>
-      </nav>
+      </div>
 
-      {/* Nội dung Dashboard Quản trị */}
-      <div className="max-w-7xl mx-auto p-8">
-        <h1 className="text-3xl font-extrabold text-gray-800 mb-6">Tổng quan hệ thống quản trị</h1>
+      {/* CONTENT */}
+      <div className="flex-1 overflow-auto p-8 bg-gray-50 relative">
+        {activeTab === "users" && (
+          <div className="max-w-6xl mx-auto">
+            <h1 className="text-2xl font-bold text-gray-800 mb-6">
+              Quản lý Người dùng
+            </h1>
 
-        {/* Các thẻ thống kê */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-            <h3 className="text-gray-500 text-sm font-semibold uppercase">Tổng số Bộ đề thi</h3>
-            <p className="text-4xl font-extrabold text-blue-600 mt-2">{exams.length}</p>
-          </div>
-          <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-            <h3 className="text-gray-500 text-sm font-semibold uppercase">Ngân hàng Câu hỏi</h3>
-            <p className="text-4xl font-extrabold text-amber-600 mt-2">120</p>
-          </div>
-          <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-            <h3 className="text-gray-500 text-sm font-semibold uppercase">Học viên tham gia</h3>
-            <p className="text-4xl font-extrabold text-green-600 mt-2">15</p>
-          </div>
-        </div>
-
-        {/* Bảng quản lý đề thi */}
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-bold text-gray-800">Quản lý Danh sách Bộ đề thi</h2>
-            <button 
-              onClick={() => navigate('/courses')}
-              className="text-sm text-amber-600 font-semibold hover:underline"
-            >
-              Xem giao diện Học viên →
-            </button>
-          </div>
-
-          {loading ? (
-            <p className="text-gray-500 text-center py-6">Đang tải dữ liệu...</p>
-          ) : exams.length === 0 ? (
-            <p className="text-gray-500 text-center py-6">Chưa có bộ đề thi nào được tạo.</p>
-          ) : (
-            <div className="overflow-x-auto">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="border-b border-gray-200 text-gray-400 text-xs font-bold uppercase">
-                    <th className="py-3 px-4">Mã Đề (ID)</th>
-                    <th className="py-3 px-4">Tiêu đề bộ đề</th>
-                    <th className="py-3 px-4">Mô tả</th>
-                    <th className="py-3 px-4 text-center">Số câu hỏi</th>
+                  <tr className="bg-gray-50 border-b border-gray-200 text-gray-500 text-sm">
+                    <th className="p-4 font-bold uppercase tracking-wider">
+                      Họ và tên
+                    </th>
+                    <th className="p-4 font-bold uppercase tracking-wider">
+                      Vai trò
+                    </th>
+                    <th className="p-4 font-bold uppercase tracking-wider">
+                      Trạng thái
+                    </th>
+                    <th className="p-4 font-bold uppercase tracking-wider text-right">
+                      Thao tác
+                    </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-100 text-sm text-gray-700">
-                  {exams.map((exam) => (
-                    <tr key={exam.id} className="hover:bg-gray-50 transition">
-                      <td className="py-3.5 px-4 font-mono text-xs text-gray-500">{exam.id}</td>
-                      <td className="py-3.5 px-4 font-bold text-gray-900">{exam.title}</td>
-                      <td className="py-3.5 px-4 text-gray-600 truncate max-w-xs">{exam.description || 'Không có mô tả'}</td>
-                      <td className="py-3.5 px-4 text-center">
-                        <span className="bg-amber-100 text-amber-800 px-2.5 py-1 rounded-full text-xs font-bold">
-                          {exam._count?.questions || 0} câu
-                        </span>
+                <tbody>
+                  {isLoading ? (
+                    <tr>
+                      <td colSpan={4} className="p-8 text-center text-gray-500">
+                        Đang tải dữ liệu...
                       </td>
                     </tr>
-                  ))}
+                  ) : usersList.length === 0 ? (
+                    <tr>
+                      <td
+                        colSpan={4}
+                        className="p-8 text-center text-gray-500 font-medium"
+                      >
+                        Không có người dùng nào.
+                      </td>
+                    </tr>
+                  ) : (
+                    usersList.map((sysUser) => (
+                      <tr
+                        key={sysUser.id}
+                        className="border-b border-gray-100 hover:bg-gray-50"
+                      >
+                        <td className="p-4 font-bold text-gray-800">
+                          {sysUser.fullName || "Chưa cập nhật"}
+                        </td>
+                        <td className="p-4">
+                          <span
+                            className={`px-3 py-1 text-xs font-bold rounded-full ${sysUser.role === "INSTRUCTOR" ? "bg-blue-100 text-blue-700" : sysUser.role === "ADMIN" ? "bg-purple-100 text-purple-700" : "bg-gray-200 text-gray-700"}`}
+                          >
+                            {sysUser.role}
+                          </span>
+                        </td>
+                        <td className="p-4">
+                          {getStatusBadge(sysUser.status)}
+                        </td>
+                        <td className="p-4 text-right space-x-3">
+                          {/* Phê duyệt giảng viên */}
+                          {sysUser.role === "INSTRUCTOR" &&
+                            sysUser.status === "PENDING" && (
+                              <>
+                                <button
+                                  onClick={() => handleApprove(sysUser.id)}
+                                  className="text-green-600 hover:text-green-800 text-sm font-bold"
+                                >
+                                  Duyệt
+                                </button>
+                                <button
+                                  onClick={() => handleReject(sysUser.id)}
+                                  className="text-gray-500 hover:text-gray-700 text-sm font-bold"
+                                >
+                                  Từ chối
+                                </button>
+                              </>
+                            )}
+
+                          {/* Khóa/Mở khóa */}
+                          {(sysUser.status === "ACTIVE" ||
+                            sysUser.status === "LOCKED") &&
+                            sysUser.role !== "ADMIN" && (
+                              <button
+                                onClick={() =>
+                                  handleToggleLock(sysUser.id, sysUser.status)
+                                }
+                                className={`text-sm font-bold ${sysUser.status === "ACTIVE" ? "text-red-600 hover:text-red-800" : "text-blue-600 hover:text-blue-800"}`}
+                              >
+                                {sysUser.status === "ACTIVE"
+                                  ? "Khóa tài khoản"
+                                  : "Mở khóa"}
+                              </button>
+                            )}
+                        </td>
+                      </tr>
+                    ))
+                  )}
                 </tbody>
               </table>
             </div>
-          )}
-        </div>
+          </div>
+        )}
+
+        {activeTab === "courses" && (
+          <div className="max-w-6xl mx-auto">
+            <h1 className="text-2xl font-bold text-gray-800 mb-6">
+              Bao quát Khóa học
+            </h1>
+          </div>
+        )}
+        {activeTab === "reports" && (
+          <div className="max-w-6xl mx-auto">
+            <h1 className="text-2xl font-bold text-gray-800 mb-6">
+              Kiểm duyệt Nội dung
+            </h1>
+          </div>
+        )}
+        {activeTab === "stats" && (
+          <div className="max-w-6xl mx-auto">
+            <h1 className="text-2xl font-bold text-gray-800 mb-6">
+              Thống kê & Audit Log
+            </h1>
+          </div>
+        )}
       </div>
     </div>
   );

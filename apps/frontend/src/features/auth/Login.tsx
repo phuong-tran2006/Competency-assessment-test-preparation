@@ -23,15 +23,30 @@ export const Login = () => {
 
       const token =
         response.access_token || response.token || response.accessToken;
-      const user = response.user;
 
-      // 3. GỌI GLOBAL STATE ZUSTAND (Nó sẽ tự động lưu localStorage cho bạn)
+      const rawRole = response.user?.role || "STUDENT";
+      const normalizedRole =
+        rawRole.toUpperCase() === "LEARNER" ? "STUDENT" : rawRole.toUpperCase();
+
+      // Lấy user từ backend và "ép" (mock) thêm trường role để test
+      const user = {
+        ...response.user,
+        role: normalizedRole,
+      };
+
+      // 3. GỌI GLOBAL STATE ZUSTAND
       if (token && user) {
         setAuth(user, token);
       }
 
       alert("Đăng nhập thành công!");
+      if (user.role === "ADMIN") {
+      navigate("/admin/dashboard");
+    } else if (user.role === "INSTRUCTOR") {
+      navigate("/instructor"); // Điều chỉnh lại path này nếu route giảng viên của bạn khác
+    } else {
       navigate("/");
+    }
     } catch (err: any) {
       console.error("Lỗi đăng nhập:", err);
       // 4. BẮT LỖI CHI TIẾT TỪ BACKEND NHƯ BÊN REGISTER
