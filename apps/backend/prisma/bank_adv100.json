@@ -1,0 +1,1402 @@
+[
+ {
+  "n": 1,
+  "content": "Cho α và β là hai nghiệm của phương trình x² − 4x − 1 = 0. Giá trị α³ + β³ bằng",
+  "options": [
+   "68",
+   "76",
+   "64",
+   "80"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 2
+ },
+ {
+  "n": 2,
+  "content": "Nghiệm thực của phương trình (2x + 3) = x là√",
+  "options": [
+   "3",
+   "− 1",
+   "− 1 và 3",
+   "Không có nghiệm"
+  ],
+  "correctLetter": "A",
+  "correct": 0,
+  "topicId": "Toán",
+  "difficulty": 2
+ },
+ {
+  "n": 3,
+  "content": "Giá trị nhỏ nhất của biểu thức |x − 1| + |x − 5| + |x − 8| trên ℝ là",
+  "options": [
+   "6",
+   "7",
+   "8",
+   "9"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 2
+ },
+ {
+  "n": 4,
+  "content": "Nghiệm của phương trình log₂(x − 1) + log₂(x + 1) = 3 là",
+  "options": [
+   "− 3",
+   "7√",
+   "3",
+   "7"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Toán",
+  "difficulty": 2
+ },
+ {
+  "n": 5,
+  "content": "Tổng các nghiệm thực của phương trình 9ˣ − 10·3ˣ + 9 = 0 bằng",
+  "options": [
+   "0",
+   "2",
+   "3",
+   "4"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 2
+ },
+ {
+  "n": 6,
+  "content": "Một cấp số nhân có a₂ = 6, a₅ = 162 và công bội dương. Tổng 5 số hạng đầu bằng",
+  "options": [
+   "120",
+   "242",
+   "244",
+   "486"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 2
+ },
+ {
+  "n": 7,
+  "content": "Hai nghiệm của phương trình x² − 6x + 5 = 0 là x₁, x₂. Giá trị x₁² + x₂² bằng",
+  "options": [
+   "26",
+   "30",
+   "31",
+   "36"
+  ],
+  "correctLetter": "A",
+  "correct": 0,
+  "topicId": "Toán",
+  "difficulty": 2
+ },
+ {
+  "n": 8,
+  "content": "Cho f(x) = x² − 4x + 7. Có bao nhiêu giá trị nguyên của m để phương trình f(x) = m có đúng hai nghiệm thuộc đoạn [0; 5]?",
+  "options": [
+   "3",
+   "4",
+   "5",
+   "6"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 2
+ },
+ {
+  "n": 9,
+  "content": "Tiếp tuyến của đồ thị y = x³ − 3x² + 2 tại điểm có hoành độ x = 2 có phương trình",
+  "options": [
+   "y = 2x − 6",
+   "y = − 2",
+   "y = 2",
+   "y = − 2x + 2"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 2
+ },
+ {
+  "n": 10,
+  "content": "Giá trị của tích phân ₀³ (x² + 2x) dx bằng ∫",
+  "options": [
+   "15",
+   "18",
+   "21",
+   "27"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 2
+ },
+ {
+  "n": 11,
+  "content": "Phương trình 2sin²x − 3sin x + 1 = 0 có bao nhiêu nghiệm trong [0; 2π)?",
+  "options": [
+   "2",
+   "3",
+   "4",
+   "5"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 2
+ },
+ {
+  "n": 12,
+  "content": "Khoảng cách từ điểm P(2; − 1) đến đường thẳng 3x − 4y + 5 = 0 bằng",
+  "options": [
+   "1",
+   "2",
+   "3",
+   "5"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Toán",
+  "difficulty": 2
+ },
+ {
+  "n": 13,
+  "content": "Đường tròn (x − 2)² + (y + 1)² = 25 cắt trục Ox tại hai điểm. Độ dài dây cung nằm trên Ox bằng",
+  "options": [
+   "2 √ 6",
+   "4 √ 6",
+   "5 √ 6",
+   "4 √ 5"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 2
+ },
+ {
+  "n": 14,
+  "content": "Một hình nón có bán kính đáy 3 và chiều cao 4. Diện tích toàn phần của hình nón bằng",
+  "options": [
+   "18π",
+   "21π",
+   "24π",
+   "30π"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Toán",
+  "difficulty": 2
+ },
+ {
+  "n": 15,
+  "content": "Cho hai vectơ a = (1; 2; 2), b = (2; 1; 0). cosin góc giữa a và b bằng",
+  "options": [
+   "2/3",
+   "4/(3 √ 5)",
+   "1/ √ 5",
+   "4/5"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 2
+ },
+ {
+  "n": 16,
+  "content": "Một hộp có 5 bi đỏ và 4 bi xanh. Lấy ngẫu nhiên đồng thời 2 bi. Xác suất lấy được đúng 1 bi mỗi màu là",
+  "options": [
+   "4/9",
+   "5/9",
+   "1/2",
+   "2/3"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 2
+ },
+ {
+  "n": 17,
+  "content": "Một bộ dữ liệu gồm 2; 5; 5; 7; 11. Phương sai của bộ dữ liệu (tính theo công thức chia cho n) bằng",
+  "options": [
+   "8",
+   "44/5",
+   "9",
+   "10"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 2
+ },
+ {
+  "n": 18,
+  "content": "Có bao nhiêu cách sắp xếp 7 chữ cái của từ TOANHOC thành một hàng sao cho hai chữ O không đứng cạnh nhau?",
+  "options": [
+   "1440",
+   "1680",
+   "1800",
+   "2160"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Toán",
+  "difficulty": 2
+ },
+ {
+  "n": 19,
+  "content": "Hệ số của x³ trong khai triển (1 − 2x)⁵ là",
+  "options": [
+   "− 40",
+   "− 80",
+   "40",
+   "80"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 2
+ },
+ {
+  "n": 20,
+  "content": "Một mặt hàng tăng giá 10%, sau đó giảm 10% trên giá mới. So với giá ban đầu, giá cuối cùng",
+  "options": [
+   "Không đổi",
+   "Tăng 1%",
+   "Giảm 1%",
+   "Giảm 2%"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Toán",
+  "difficulty": 2
+ },
+ {
+  "n": 21,
+  "content": "Gửi 50 triệu đồng theo lãi kép 6%/năm, nhập lãi hằng năm. Sau 2 năm, số tiền nhận được (triệu đồng) là",
+  "options": [
+   "56",
+   "56,09",
+   "56,18",
+   "56,36"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Toán",
+  "difficulty": 2
+ },
+ {
+  "n": 22,
+  "content": "Vòi A có thể làm đầy bể trong 6 giờ, vòi B trong 4 giờ. Nếu mở đồng thời hai vòi, thời gian làm đầy bể là",
+  "options": [
+   "2 giờ 12 phút",
+   "2 giờ 24 phút",
+   "2 giờ 30 phút",
+   "3 giờ"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 2
+ },
+ {
+  "n": 23,
+  "content": "Hai số thực x, y thỏa mãn x + y = 8 và x² + y² = 34. Giá trị xy bằng",
+  "options": [
+   "12",
+   "15",
+   "16",
+   "17"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 2
+ },
+ {
+  "n": 24,
+  "content": "Số dư khi chia đa thức P(x) = x⁴ − 3x² + 2 cho x − 2 là",
+  "options": [
+   "4",
+   "5",
+   "6",
+   "8"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Toán",
+  "difficulty": 2
+ },
+ {
+  "n": 25,
+  "content": "Hai số thực x, y thỏa mãn x + y = 5 và x² + y² = 13. Giá trị xy bằng",
+  "options": [
+   "5",
+   "6",
+   "8",
+   "12"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 2
+ },
+ {
+  "n": 26,
+  "content": "Đồ thị hàm số y = (2x + 1)/(x − 3) cắt trục hoành tại điểm có hoành độ",
+  "options": [
+   "− 3",
+   "− 1/2",
+   "1/2",
+   "3"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 2
+ },
+ {
+  "n": 27,
+  "content": "Giá trị lớn nhất của hàm số f(x) = − 2x² + 8x − 3 trên ℝ là",
+  "options": [
+   "3",
+   "5",
+   "7",
+   "8"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 2
+ },
+ {
+  "n": 28,
+  "content": "Tập nghiệm của bất phương trình 3ˣ⁺¹ + 3ˣ > 108 là",
+  "options": [
+   "x > 2",
+   "x ≥ 3",
+   "x > 3",
+   "x < 3"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Toán",
+  "difficulty": 2
+ },
+ {
+  "n": 29,
+  "content": "Giá trị ₀¹ (3x² + 2x + 1) dx bằng ∫",
+  "options": [
+   "2",
+   "5/2",
+   "3",
+   "7/2"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Toán",
+  "difficulty": 2
+ },
+ {
+  "n": 30,
+  "content": "Tam giác có hai cạnh kề dài 7 và 8, góc xen giữa bằng 120°. Diện tích tam giác là",
+  "options": [
+   "14√3",
+   "21√3",
+   "28√3",
+   "56"
+  ],
+  "correctLetter": "A",
+  "correct": 0,
+  "topicId": "Toán",
+  "difficulty": 2
+ },
+ {
+  "n": 31,
+  "content": "Trong không gian Oxyz, khoảng cách giữa A(1; − 2; 3) và B(4; 2; 3) bằng",
+  "options": [
+   "4",
+   "5",
+   "√29",
+   "6"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 2
+ },
+ {
+  "n": 32,
+  "content": "Một lớp có 60 học sinh; 45 bạn học Toán, 32 bạn học Tiếng Anh và 18 bạn học cả hai. Số bạn chỉ học đúng một trong hai môn là",
+  "options": [
+   "41",
+   "45",
+   "59",
+   "60"
+  ],
+  "correctLetter": "A",
+  "correct": 0,
+  "topicId": "Toán",
+  "difficulty": 2
+ },
+ {
+  "n": 33,
+  "content": "Một hộp có 4 bi đỏ, 3 bi xanh và 2 bi vàng. Lấy đồng thời 2 bi. Xác suất hai bi khác màu là",
+  "options": [
+   "5/9",
+   "13/18",
+   "7/9",
+   "4/5"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 2
+ },
+ {
+  "n": 34,
+  "content": "Từ 7 học sinh, chọn lần lượt một lớp trưởng, một lớp phó và một thủ quỹ. Có bao nhiêu cách chọn?",
+  "options": [
+   "35",
+   "105",
+   "180",
+   "210"
+  ],
+  "correctLetter": "D",
+  "correct": 3,
+  "topicId": "Toán",
+  "difficulty": 2
+ },
+ {
+  "n": 35,
+  "content": "Một xe đi 120 km đầu với vận tốc 60 km/h và 120 km tiếp theo với vận tốc 80 km/h. Vận tốc trung bình trên cả quãng đường là",
+  "options": [
+   "60 km/h",
+   "480/7 km/h",
+   "70 km/h",
+   "72 km/h"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 2
+ },
+ {
+  "n": 36,
+  "content": "Phương trình x² − (m + 1)x + m = 0 có hai nghiệm phân biệt đều dương khi và chỉ khi",
+  "options": [
+   "m > 0",
+   "m ≥ 0 và m ≠ 1",
+   "m > 0 và m ≠ 1",
+   "m ≠ 1"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 37,
+  "content": "Tập nghiệm của bất phương trình log₃(x − 1) + log₃(5 − x) ≥ 1 là",
+  "options": [
+   "(1; 5)",
+   "[2; 4]",
+   "[1; 5]",
+   "(2; 4)"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 38,
+  "content": "Phương trình √(x + 1) + √(7 − x) = 4 có tập nghiệm là",
+  "options": [
+   "{3}",
+   "{ − 1; 7}",
+   "{2; 4}",
+   "∅"
+  ],
+  "correctLetter": "A",
+  "correct": 0,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 39,
+  "content": "Cho f(x) = 2x − 1, g(x) = x² + 1. Phương trình f(g(x)) = g(f(x)) có hai nghiệm x₁, x₂. Giá trị x₁ + x₂ bằng",
+  "options": [
+   "− 2",
+   "− 1",
+   "1",
+   "2"
+  ],
+  "correctLetter": "D",
+  "correct": 3,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 40,
+  "content": "Hàm số f(x) = x³ − 3x² + 3x có bao nhiêu nghiệm thực của phương trình f(x) = 2?",
+  "options": [
+   "0",
+   "1",
+   "2",
+   "3"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 41,
+  "content": "Một hình chữ nhật có chu vi 40 và đường chéo √208. Diện tích hình chữ nhật bằng",
+  "options": [
+   "80",
+   "90",
+   "96",
+   "100"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 42,
+  "content": "Giá trị tích phân ₀¹ x·e^(x²) dx bằng ∫",
+  "options": [
+   "e − 1",
+   "(e − 1)/2",
+   "e/2",
+   "1/2"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 43,
+  "content": "Phương trình cos 2x = sin x có bao nhiêu nghiệm trong [0; 2π)?",
+  "options": [
+   "2",
+   "3",
+   "4",
+   "5"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 44,
+  "content": "Dãy số thỏa mãn u₁ = 1, u₂ = 3, uₙ = 2uₙ₋₁ + uₙ₋₂ (n ≥ 3). Giá trị u₅ bằng",
+  "options": [
+   "31",
+   "39",
+   "41",
+   "43"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 45,
+  "content": "Đường tròn (x − 2)² + (y + 1)² = 9 tiếp xúc với đường thẳng nào sau đây?",
+  "options": [
+   "3x + 4y − 17 = 0",
+   "3x + 4y − 12 = 0",
+   "3x + 4y + 17 = 0",
+   "3x + 4y − 7 = 0"
+  ],
+  "correctLetter": "A",
+  "correct": 0,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 46,
+  "content": "Elip x²/9 + y²/4 = 1 có khoảng cách giữa hai tiêu điểm bằng",
+  "options": [
+   "√5",
+   "2√5",
+   "3√5",
+   "5"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 47,
+  "content": "Hình chóp tứ giác đều có cạnh đáy 6, chiều cao 4. Độ dài đường cao mặt bên bằng",
+  "options": [
+   "4",
+   "√13",
+   "5",
+   "√34"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 48,
+  "content": "Cho a = (3; 4), b = (1; 0). Độ dài hình chiếu vuông góc của a lên phương của b bằng",
+  "options": [
+   "1",
+   "3",
+   "4",
+   "5"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 49,
+  "content": "Một nhóm có 3 nam và 2 nữ. Chọn ngẫu nhiên 2 người. Xác suất chọn được một nam và một nữ là",
+  "options": [
+   "2/5",
+   "3/5",
+   "1/2",
+   "4/5"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 50,
+  "content": "Cho P(A) = 0,6; P(B) = 0,5; P(A ∩ B) = 0,3. Xác suất P(A ∪ B) bằng",
+  "options": [
+   "0,3",
+   "0,5",
+   "0,8",
+   "1,1"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 51,
+  "content": "Có 5 người ngồi quanh một bàn tròn. Số cách xếp sao cho hai người A, B không ngồi cạnh nhau là",
+  "options": [
+   "6",
+   "12",
+   "18",
+   "24"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 52,
+  "content": "Số nguyên dương nhỏ nhất n thỏa mãn n chia 5 dư 2 và chia 7 dư 3 là",
+  "options": [
+   "12",
+   "17",
+   "22",
+   "27"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 53,
+  "content": "Ba số thực x, y, z có tổng bằng 6, tổng các tích từng đôi bằng 11 và tích bằng 6. Giá trị lớn nhất trong ba số là",
+  "options": [
+   "1",
+   "2",
+   "3",
+   "6"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 54,
+  "content": "Phương trình x² − 6x + k = 0 có hai nghiệm thực cách nhau 2 đơn vị. Giá trị k bằng",
+  "options": [
+   "6",
+   "7",
+   "8",
+   "9"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 55,
+  "content": "Giá trị nhỏ nhất của f(x) = x² + 4/x với x > 0 là",
+  "options": [
+   "3",
+   "3·2^(2/3)",
+   "4",
+   "5"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 56,
+  "content": "Tập nghiệm của bất phương trình 2ˣ + 2⁻ˣ ≤ 5/2 là",
+  "options": [
+   "( − 1; 1)",
+   "[ − 1; 1]",
+   "[0; 1]",
+   "( −∞− ; 1] ∪ [1; ∞ )"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 57,
+  "content": "Diện tích hình phẳng giới hạn bởi y = 2x và y = x² trên đoạn [0; 2] bằng",
+  "options": [
+   "1",
+   "4/3",
+   "2",
+   "8/3"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 58,
+  "content": "Một quần thể tăng trưởng theo P(t) = P₀e^(kt), với k không đổi. Nếu quần thể tăng gấp đôi sau 5 năm thì sau 15 năm quy mô bằng",
+  "options": [
+   "3P₀",
+   "5P₀",
+   "6P₀",
+   "8P₀"
+  ],
+  "correctLetter": "D",
+  "correct": 3,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 59,
+  "content": "Phương sai của bộ dữ liệu 1; 3; 5; 7; 9 (tính theo công thức chia cho n) bằng",
+  "options": [
+   "4",
+   "6",
+   "8",
+   "10"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 60,
+  "content": "Gieo một xúc xắc cân đối. Gọi X là bình phương số chấm xuất hiện. Kỳ vọng E(X) bằng",
+  "options": [
+   "35/6",
+   "14",
+   "91/6",
+   "18"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 61,
+  "content": "Một bài trắc nghiệm có 4 câu, mỗi câu có 5 lựa chọn và chỉ một đáp án đúng. Thí sinh chọn ngẫu nhiên. Xác suất đúng đúng 2 câu bằng",
+  "options": [
+   "64/625",
+   "96/625",
+   "128/625",
+   "160/625"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 62,
+  "content": "Với x, y dương và x + y = 10, giá trị lớn nhất của xy bằng",
+  "options": [
+   "20",
+   "24",
+   "25",
+   "30"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 63,
+  "content": "Từ tấm bìa hình vuông cạnh 20 cm, cắt bốn hình vuông cạnh x ở bốn góc rồi gấp thành hộp không nắp. Thể tích lớn nhất của hộp bằng",
+  "options": [
+   "4000/27 cm³",
+   "8000/27 cm³",
+   "16000/27 cm³",
+   "20000/27 cm³"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 64,
+  "content": "Parabol y² = 8x có tiêu điểm và đường chuẩn lần lượt là",
+  "options": [
+   "(2; 0) và x = − 2",
+   "(4; 0) và x = − 4",
+   "(0; 2) và y = − 2",
+   "(2; 0) và x = 2"
+  ],
+  "correctLetter": "A",
+  "correct": 0,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 65,
+  "content": "Đường thẳng y = 2x + c tiếp xúc với parabol y = x² khi",
+  "options": [
+   "c = 1",
+   "c = 0",
+   "c = − 1",
+   "c = − 2"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 66,
+  "content": "Hai vectơ a = (1; 2; 2), b = (2; 1; − 2) có tính chất",
+  "options": [
+   "Cùng phương",
+   "Vuông góc",
+   "Có góc 60°",
+   "Có tích vô hướng bằng 6"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 67,
+  "content": "Khoảng cách từ điểm A(1; 2; 3) đến mặt phẳng 2x − y + 2z − 9 = 0 bằng",
+  "options": [
+   "1/3",
+   "1",
+   "2",
+   "3"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 68,
+  "content": "Đầu tư 100 triệu đồng với lãi kép 8%/năm, nhập lãi cuối mỗi năm. Số tiền sau 3 năm (triệu đồng) là",
+  "options": [
+   "124",
+   "125",
+   "125,9712",
+   "126,4"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 69,
+  "content": "Hai xe cách nhau 180 km và đi ngược chiều nhau với vận tốc lần lượt 60 km/h và 30 km/h. Thời gian đến lúc gặp nhau là",
+  "options": [
+   "1,5 giờ",
+   "2 giờ",
+   "2,5 giờ",
+   "3 giờ"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 70,
+  "content": "Ba số dương lập thành cấp số nhân, có tổng bằng 14 và tích bằng 64. Số lớn nhất là",
+  "options": [
+   "4",
+   "6",
+   "8",
+   "10"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 71,
+  "content": "Cho f(x) = (3x − 2)/(x + 1). Giá trị f⁻¹(1) bằng",
+  "options": [
+   "1",
+   "3/2",
+   "2",
+   "5/2"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 72,
+  "content": "Giá trị tích phân ₁ᵉ (ln x)/x dx bằng ∫",
+  "options": [
+   "1/4",
+   "1/2",
+   "1",
+   "e − 1"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 73,
+  "content": "Hai số thực x, y thỏa mãn x² + y² = 10 và xy = 3. Giá trị có thể của x + y là",
+  "options": [
+   "Chỉ 4",
+   "Chỉ − 4",
+   "4 hoặc − 4",
+   "2 hoặc − 2"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 74,
+  "content": "Tam giác có ba cạnh lần lượt 13, 14, 15. Diện tích tam giác bằng",
+  "options": [
+   "72",
+   "78",
+   "84",
+   "90"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 75,
+  "content": "Gieo hai xúc xắc cân đối. Biết tổng số chấm lớn hơn hoặc bằng 9. Xác suất tổng bằng 10 là",
+  "options": [
+   "1/5",
+   "3/10",
+   "2/5",
+   "1/2"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 3
+ },
+ {
+  "n": 76,
+  "content": "Với m ≥ 0, phương trình |x² − 5x + 6| = m có đúng 3 nghiệm thực phân biệt khi",
+  "options": [
+   "m = 0",
+   "m = 1/4",
+   "m > 1/4",
+   "0 < m < 1/4"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 4
+ },
+ {
+  "n": 77,
+  "content": "Ba nghiệm của phương trình x³ − 6x² + 11x − 6 = 0 là α, β, γ. Giá trị α⁴ + β⁴ + γ⁴ bằng",
+  "options": [
+   "94",
+   "96",
+   "98",
+   "100"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Toán",
+  "difficulty": 4
+ },
+ {
+  "n": 78,
+  "content": "Phương trình log₂x + logₓ16 = 5 có bao nhiêu nghiệm thực dương?",
+  "options": [
+   "0",
+   "1",
+   "2",
+   "3"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Toán",
+  "difficulty": 4
+ },
+ {
+  "n": 79,
+  "content": "Hệ phương trình 2ˣ + 2ʸ = 10, x − y = 1 có nghiệm (x; y). Giá trị 2ʸ bằng",
+  "options": [
+   "5/2",
+   "10/3",
+   "4",
+   "5"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 4
+ },
+ {
+  "n": 80,
+  "content": "Hàm số f(x) = x³ − 3ax có hai điểm cực trị. Nếu khoảng cách giữa hoành độ hai điểm cực trị bằng 4 thì a bằng",
+  "options": [
+   "1",
+   "2",
+   "4",
+   "8"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Toán",
+  "difficulty": 4
+ },
+ {
+  "n": 81,
+  "content": "Diện tích hình phẳng giới hạn bởi đồ thị y = |x² − 4| và trục Ox bằng",
+  "options": [
+   "8",
+   "16/3",
+   "32/3",
+   "16"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Toán",
+  "difficulty": 4
+ },
+ {
+  "n": 82,
+  "content": "Phương trình 2sin²x − 3sin x + 1 = 0 trên [0; 2π) có tổng các nghiệm bằng",
+  "options": [
+   "π",
+   "3π/2",
+   "5π/3",
+   "2π"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 4
+ },
+ {
+  "n": 83,
+  "content": "Đường tròn tâm I(1; − 2), bán kính 5 tiếp xúc với đường thẳng y = 2x + k. Các giá trị k có thể là",
+  "options": [
+   "− 4 ± 5 √ 5",
+   "4 ± 5 √ 5",
+   "− 2 ± 5 √ 5",
+   "2 ± 5 √ 5"
+  ],
+  "correctLetter": "A",
+  "correct": 0,
+  "topicId": "Toán",
+  "difficulty": 4
+ },
+ {
+  "n": 84,
+  "content": "Tiếp tuyến của parabol y² = 4x tại điểm P(1; 2) có phương trình",
+  "options": [
+   "y = x − 1",
+   "y = x + 1",
+   "y = 2x + 1",
+   "y = 2x − 1"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 4
+ },
+ {
+  "n": 85,
+  "content": "Trong không gian, hai đường thẳng d₁: (x; y; z) = (t; 0; 0) và d₂: (x; y; z) = (0; s; 1) là hai đường chéo nhau. Khoảng cách giữa chúng bằng",
+  "options": [
+   "0",
+   "1",
+   "√2",
+   "2"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 4
+ },
+ {
+  "n": 86,
+  "content": "Một hình chóp có đáy là tam giác đều cạnh 6 và chiều cao bằng 4. Thể tích hình chóp bằng",
+  "options": [
+   "9√3",
+   "12√3",
+   "18√3",
+   "24√3"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 4
+ },
+ {
+  "n": 87,
+  "content": "Một hộp có 5 bi đỏ và 4 bi xanh. Lấy ngẫu nhiên 3 bi không hoàn lại. Xác suất lấy đúng 2 bi đỏ bằng",
+  "options": [
+   "5/21",
+   "10/21",
+   "1/2",
+   "11/21"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 4
+ },
+ {
+  "n": 88,
+  "content": "Có 7 người phân biệt xếp thành một hàng. Số cách xếp sao cho cặp A, B không đứng cạnh nhau và cặp C, D cũng không đứng cạnh nhau là",
+  "options": [
+   "2400",
+   "2520",
+   "2640",
+   "2880"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Toán",
+  "difficulty": 4
+ },
+ {
+  "n": 89,
+  "content": "Tung đồng xu cân đối 3 lần. Biết có ít nhất một lần xuất hiện mặt ngửa. Kỳ vọng số lần xuất hiện mặt ngửa trong điều kiện đó bằng",
+  "options": [
+   "3/2",
+   "8/7",
+   "12/7",
+   "2"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Toán",
+  "difficulty": 4
+ },
+ {
+  "n": 90,
+  "content": "Số dư của 7²⁰²⁶ khi chia cho 100 là",
+  "options": [
+   "7",
+   "49",
+   "43",
+   "1"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 4
+ },
+ {
+  "n": 91,
+  "content": "Dãy số thỏa mãn a₁ = 1, a₂ = 3, aₙ = 3aₙ₋₁ − 2aₙ₋₂ (n ≥ 3). Giá trị a₁₀ bằng",
+  "options": [
+   "511",
+   "1023",
+   "1535",
+   "2047"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 4
+ },
+ {
+  "n": 92,
+  "content": "Tấm bìa hình chữ nhật 24 cm × 16 cm được cắt bốn hình vuông cạnh x ở bốn góc rồi gấp thành hộp không nắp. Giá trị x để thể tích hộp lớn nhất là",
+  "options": [
+   "(20 − 4 √ 7)/3 cm",
+   "(20 + 4 √ 7)/3 cm",
+   "(16 − 2 √ 7)/3 cm",
+   "4 cm"
+  ],
+  "correctLetter": "A",
+  "correct": 0,
+  "topicId": "Toán",
+  "difficulty": 4
+ },
+ {
+  "n": 93,
+  "content": "Với x, y thực thỏa mãn x + 2y = 6, giá trị nhỏ nhất của x² + 4y² bằng",
+  "options": [
+   "9",
+   "12",
+   "18",
+   "36"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Toán",
+  "difficulty": 4
+ },
+ {
+  "n": 94,
+  "content": "Phương trình x⁴ − 5x² + 4 = 0 có bốn nghiệm thực. Tổng lũy thừa bậc bốn của bốn nghiệm bằng",
+  "options": [
+   "17",
+   "25",
+   "34",
+   "36"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Toán",
+  "difficulty": 4
+ },
+ {
+  "n": 95,
+  "content": "Giá trị tích phân ₋₁¹ |x³ ∫ − x| dx bằng",
+  "options": [
+   "1/4",
+   "1/2",
+   "3/4",
+   "1"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 4
+ },
+ {
+  "n": 96,
+  "content": "Phương sai (chia cho n) của bộ dữ liệu 2; 4; 6; 8; 10 bằng",
+  "options": [
+   "4",
+   "6",
+   "8",
+   "10"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Toán",
+  "difficulty": 4
+ },
+ {
+  "n": 97,
+  "content": "Hàm số f: ℝ → ℝ thỏa mãn f(x + y) = f(x) + f(y) + 2xy với mọi x, y và f(1) = 5. Giá trị f(3) bằng",
+  "options": [
+   "15",
+   "18",
+   "21",
+   "27"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Toán",
+  "difficulty": 4
+ },
+ {
+  "n": 98,
+  "content": "Cho x, y là hai số thực thỏa mãn x² + y² = 10 và x + y = m. Giá trị lớn nhất của |m| bằng",
+  "options": [
+   "2√5",
+   "√10",
+   "4",
+   "5"
+  ],
+  "correctLetter": "A",
+  "correct": 0,
+  "topicId": "Toán",
+  "difficulty": 4
+ },
+ {
+  "n": 99,
+  "content": "Tam giác có các đỉnh A(0; 0), B(8; 0), C(2; 6). Bán kính đường tròn ngoại tiếp tam giác bằng",
+  "options": [
+   "√5",
+   "2√5",
+   "3√5",
+   "4√5"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 4
+ },
+ {
+  "n": 100,
+  "content": "Một nhóm có 6 nam và 5 nữ. Chọn 5 người sao cho có ít nhất 2 nữ; hai nam A, B không được cùng xuất hiện trong nhóm. Số nhóm thỏa mãn là",
+  "options": [
+   "321",
+   "331",
+   "341",
+   "351"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Toán",
+  "difficulty": 4
+ }
+]
