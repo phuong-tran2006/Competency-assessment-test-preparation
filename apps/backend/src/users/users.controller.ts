@@ -28,4 +28,18 @@ export class UsersController {
   updateStatus(@Param('id') id: string, @Body('status') status: UserStatus) {
     return this.users.updateStatus(id, status);
   }
+
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles(Role.ADMIN) // Chỉ Admin mới được xem danh sách này
+  @Get()
+  findAll() {
+    return this.users.findAll();
+  }
+  
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles(Role.ADMIN) // Chỉ Admin mới được thực hiện
+  @Patch(':id/toggle-lock')
+  toggleLock(@Param('id') id: string) {
+    return this.users.toggleLock(id);
+  }
 }

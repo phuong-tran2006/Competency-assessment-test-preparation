@@ -38,6 +38,7 @@ function App() {
           <Route path="/history" element={<HistoryPage />} />
         </Route>
 
+
         {/* 3. Nhóm trang dành cho GIẢNG VIÊN (INSTRUCTOR) */}
         <Route element={<ProtectedRoute allowedRoles={["INSTRUCTOR"]} />}>
           <Route path="/instructor" element={<InstructorDashboard />} />

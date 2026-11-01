@@ -10,7 +10,7 @@ export const UserProfile = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<'history' | 'ongoing'>('history');
 
-  // TODO: Thay thế bằng dữ liệu gọi từ API Backend (VD: quizService.getHistory())
+  // TODO: Thay thế bằng dữ liệu gọi từ API Backend
   const mockHistory = [
     { id: '1', title: 'Đề minh họa ĐGNL ĐHQG TPHCM 2026', score: 85, total: 120, date: '30/10/2026' },
     { id: '2', title: 'Đề thi thử V-ACT số 1', score: 92, total: 120, date: '25/10/2026' },
@@ -51,12 +51,23 @@ export const UserProfile = () => {
             <h2 className="text-xl font-bold text-gray-800">{user?.name || 'Học viên V-ACT'}</h2>
             <p className="text-sm text-gray-500 mb-6">{user?.email || 'Chưa cập nhật email'}</p>
             
+            {/* THÊM MỚI: Bảng Mục tiêu ĐGNL */}
+            <div className="bg-amber-50 rounded-xl p-4 mb-6 border border-amber-100 shadow-sm">
+              <p className="text-xs text-amber-800 font-bold uppercase tracking-wider mb-1">Mục tiêu ĐGNL</p>
+              <p className="text-3xl font-black text-amber-600">850<span className="text-sm text-amber-500 font-medium">/1200</span></p>
+            </div>
+
             <div className="border-t border-gray-100 pt-4 text-left space-y-3">
-              <div className="flex justify-between text-sm">
+              {/* THÊM MỚI: Trường THPT */}
+              <div className="flex justify-between text-sm items-center">
+                <span className="text-gray-500">Trường THPT:</span>
+                <span className="font-semibold text-gray-800">Chưa cập nhật</span>
+              </div>
+              <div className="flex justify-between text-sm items-center">
                 <span className="text-gray-500">Ngày tham gia:</span>
                 <span className="font-semibold text-gray-800">Tháng 10/2026</span>
               </div>
-              <div className="flex justify-between text-sm">
+              <div className="flex justify-between text-sm items-center">
                 <span className="text-gray-500">Tổng bài đã nộp:</span>
                 <span className="font-semibold text-gray-800">{mockHistory.length}</span>
               </div>
@@ -81,7 +92,30 @@ export const UserProfile = () => {
         </div>
 
         {/* CỘT PHẢI: QUẢN LÝ BÀI THI */}
-        <div className="md:col-span-3">
+        <div className="md:col-span-3 space-y-6">
+          
+          {/* THÊM MỚI: Chỉ số tổng quan năng lực */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-5 flex items-center justify-between">
+              <div>
+                <p className="text-sm font-bold text-gray-500 mb-1">Điểm Trung Bình</p>
+                <p className="text-2xl font-black text-gray-800">88.5<span className="text-base font-semibold text-gray-400">/120</span></p>
+              </div>
+              <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center text-blue-500 text-xl font-black">
+                📊
+              </div>
+            </div>
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-5 flex items-center justify-between">
+              <div>
+                <p className="text-sm font-bold text-gray-500 mb-1">Điểm Cao Nhất</p>
+                <p className="text-2xl font-black text-gray-800">92<span className="text-base font-semibold text-gray-400">/120</span></p>
+              </div>
+              <div className="w-12 h-12 rounded-full bg-green-50 flex items-center justify-center text-green-500 text-xl font-black">
+                🏆
+              </div>
+            </div>
+          </div>
+
           <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
             {/* TABS */}
             <div className="flex border-b border-gray-200">
@@ -109,14 +143,14 @@ export const UserProfile = () => {
                 <div className="space-y-4">
                   {mockHistory.length > 0 ? (
                     mockHistory.map((exam) => (
-                      <div key={exam.id} className="flex justify-between items-center p-4 border border-gray-100 rounded-xl hover:shadow-md transition">
-                        <div>
+                      <div key={exam.id} className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-5 border border-gray-100 rounded-xl hover:shadow-md hover:border-amber-100 transition-all bg-gray-50/50">
+                        <div className="mb-4 sm:mb-0">
                           <h3 className="font-bold text-gray-800 text-lg">{exam.title}</h3>
                           <p className="text-sm text-gray-500 mt-1">Hoàn thành: {exam.date}</p>
                         </div>
-                        <div className="text-right">
-                          <div className="text-xl font-black text-green-600">{exam.score}/{exam.total}</div>
-                          <Link to={`/review/${exam.id}`} className="text-sm text-blue-600 font-semibold hover:underline">Xem chi tiết</Link>
+                        <div className="text-left sm:text-right w-full sm:w-auto flex flex-row sm:flex-col justify-between items-center sm:items-end">
+                          <div className="text-2xl font-black text-green-600">{exam.score}<span className="text-lg text-gray-400">/{exam.total}</span></div>
+                          <Link to={`/review/${exam.id}`} className="text-sm text-amber-600 font-bold hover:text-amber-700 hover:underline mt-1">Xem chi tiết &rarr;</Link>
                         </div>
                       </div>
                     ))
@@ -130,14 +164,14 @@ export const UserProfile = () => {
                 <div className="space-y-4">
                   {mockOngoing.length > 0 ? (
                     mockOngoing.map((exam) => (
-                      <div key={exam.id} className="flex justify-between items-center p-4 border border-gray-100 rounded-xl hover:shadow-md transition">
-                        <div>
+                      <div key={exam.id} className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-5 border border-gray-100 rounded-xl hover:shadow-md hover:border-amber-100 transition-all bg-gray-50/50">
+                        <div className="mb-4 sm:mb-0">
                           <h3 className="font-bold text-gray-800 text-lg">{exam.title}</h3>
                           <p className="text-sm text-gray-500 mt-1">Lưu lần cuối: {exam.lastSaved}</p>
                         </div>
-                        <div className="text-right flex flex-col items-end gap-2">
-                          <span className="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-full">Đã làm {exam.progress} câu</span>
-                          <Link to={`/practice/${exam.id}`} className="px-4 py-2 bg-amber-500 text-white text-sm font-bold rounded-lg hover:bg-amber-600 transition">
+                        <div className="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-end">
+                          <span className="px-3 py-1.5 bg-blue-50 text-blue-600 text-xs font-bold rounded-lg border border-blue-100">Đã làm {exam.progress} câu</span>
+                          <Link to={`/practice/${exam.id}`} className="px-5 py-2.5 bg-amber-500 text-white text-sm font-bold rounded-lg hover:bg-amber-600 transition-colors shadow-sm">
                             Tiếp tục làm
                           </Link>
                         </div>
