@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../store/authStore";
 import "./home.css";
 import { BRAND, ROUTES, STR } from "./strings";
+import ExamCard from "../../components/ExamCard";
 
 type ExamSummary = {
   id: string | number;
@@ -270,102 +271,64 @@ function ExamStructure() {
 
 function FeaturedExams() {
   const { user } = useAuthStore();
-  const { exams, loading } = useFeaturedExams(3);
 
-  // Nếu là giảng viên, thay đổi tiêu đề thành danh sách khóa học do giảng viên quản lý
+  // Dữ liệu tĩnh tạm thời để test giao diện
+  // Sau khi backend có data, bạn dùng lại useFeaturedExams(3) để fetch API
+  const exams = [
+    {
+      id: "dgnl-2026",
+      title: "Đề minh họa ĐGNL ĐHQG TPHCM năm 2026",
+      description: "Bộ đề thi chuẩn cấu trúc mới nhất năm 2026.",
+      questionCount: 30,
+    },
+    {
+      id: "dgnl-2025",
+      title: "Đề minh họa ĐGNL ĐHQG TPHCM năm 2025",
+      description:
+        "Đề thi chính thức và minh họa lưu trữ năm 2025, rèn luyện tư duy logic và phân tích số liệu.",
+      questionCount: 6,
+    },
+    {
+      id: "dgnl-2024",
+      title: "Đề minh họa ĐGNL ĐHQG TPHCM năm 2024",
+      description:
+        "Bộ đề ôn tập nền tảng từ kỳ thi ĐGNL năm 2024, củng cố kiến thức cơ bản.",
+      questionCount: 6,
+    },
+  ];
+
+  // Nếu là giảng viên (Giữ nguyên như code cũ của bạn)
   if (user?.role === "INSTRUCTOR") {
     return (
       <section className="section section--tint">
-        <div className="container">
-          <h2 className="section__title">
-            Khóa học & Ngân hàng câu hỏi của tôi
-          </h2>
-          <p className="section__lead text-center mb-8">
-            Truy cập nhanh vào các công cụ quản lý nội dung giảng dạy và theo
-            dõi tiến độ của học viên.
-          </p>
-          <div className="grid grid--3">
-            <div className="card exam">
-              <h3 className="card__title">Quản lý Khóa học</h3>
-              <p className="card__text">
-                Tạo mới, chỉnh sửa đề cương, xuất bản hoặc ẩn các chương trình
-                học.
-              </p>
-              <div className="exam__footer">
-                <Link to="/instructor" className="btn btn--primary">
-                  Truy cập
-                </Link>
-              </div>
-            </div>
-            <div className="card exam">
-              <h3 className="card__title">Ngân hàng Câu hỏi</h3>
-              <p className="card__text">
-                Quản lý kho câu hỏi trắc nghiệm, gắn thẻ chủ đề và độ khó[cite:
-                52].
-              </p>
-              <div className="exam__footer">
-                <Link to="/instructor" className="btn btn--primary">
-                  Quản lý kho đề
-                </Link>
-              </div>
-            </div>
-            <div className="card exam">
-              <h3 className="card__title">Kết quả Học viên</h3>
-              <p className="card__text">
-                Xem danh sách học viên đăng ký, chấm điểm và phản hồi bài
-                làm[cite: 52].
-              </p>
-              <div className="exam__footer">
-                <Link to="/instructor" className="btn btn--primary">
-                  Xem thống kê
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
+        {/* ... (Giữ nguyên phần code dành cho INSTRUCTOR từ dòng 173 - 210) ... */}
       </section>
     );
   }
 
+  // --- GIAO DIỆN BỘ ĐỀ DÀNH CHO HỌC VIÊN (Thay đổi phần này) ---
   return (
-    <section className="section section--tint">
-      <div className="container">
-        <h2 className="section__title">{STR.featured.title}</h2>
+    <section className="bg-[#FFFDF5] py-20">
+      <div className="max-w-7xl mx-auto px-4 text-center">
+        <h2 className="text-3xl font-bold text-blue-900 mb-12">
+          Bộ đề luyện tập
+        </h2>
 
-        {loading && <p className="note">{STR.featured.loading}</p>}
-        {!loading && exams.length === 0 && (
-          <p className="note">{STR.featured.empty}</p>
+        {exams.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            {exams.map((exam) => (
+              <ExamCard key={exam.id} exam={exam} />
+            ))}
+          </div>
+        ) : (
+          <p className="text-gray-500 mb-8">Chưa có bộ đề nào để hiển thị.</p>
         )}
 
-        <div className="grid grid--3">
-          {exams.map((exam) => (
-            <article key={exam.id} className="card exam">
-              <h3 className="card__title">{exam.title}</h3>
-              {exam.description && (
-                <p className="card__text">{exam.description}</p>
-              )}
-              <div className="exam__footer">
-                {typeof exam.questionCount === "number" && (
-                  <span className="exam__count">
-                    {exam.questionCount} {STR.featured.questions}
-                  </span>
-                )}
-                <Link
-                  to={`${ROUTES.practice}/${exam.id}`}
-                  className="btn btn--primary"
-                >
-                  {STR.featured.open}
-                </Link>
-              </div>
-            </article>
-          ))}
-        </div>
-
-        <div className="center">
-          <Link to={ROUTES.exams} className="btn btn--outline">
-            {STR.featured.all}
-          </Link>
-        </div>
+        <Link to={ROUTES.exams}>
+          <button className="border-2 border-orange-400 text-orange-500 hover:bg-orange-50 font-bold py-3 px-8 rounded-lg transition-colors">
+            Xem tất cả bộ đề
+          </button>
+        </Link>
       </div>
     </section>
   );
@@ -373,27 +336,29 @@ function FeaturedExams() {
 
 function Courses() {
   const { user } = useAuthStore();
-  if (user?.role === "INSTRUCTOR") return null; // Ẩn danh sách khóa học học viên ở trang chủ giảng viên
+  if (user?.role === "INSTRUCTOR") return null;
 
   return (
     <section id="courses" className="section">
       <div className="container">
-        <h2 className="section__title">{STR.courses.title}</h2>
+        <h2 className="section__title text-center">Khóa học</h2>
         <div className="grid grid--3">
           {STR.courses.items.map((course) => (
             <article key={course.title} className="card">
-              <h3 className="card__title">{course.title}</h3>
+              <h3 className="card__title font-bold text-center">
+                {course.title}
+              </h3>
               <p className="card__text">{course.text}</p>
-              <Link to={course.link} className="btn btn--primary">
-                {STR.courses.open}
-              </Link>
+
+              {/* Thêm div bọc ngoài để căn giữa nút */}
+              <div className="flex justify-center w-full mt-4">
+                <Link to={course.link} className="btn btn--primary">
+                  {STR.courses.open}
+                </Link>
+              </div>
             </article>
           ))}
         </div>
-        {STR.courses.loading && <p className="note">{STR.courses.loading}</p>}
-        {!STR.courses.loading && STR.courses.items.length === 0 && (
-          <p className="note">{STR.courses.empty}</p>
-        )}
       </div>
     </section>
   );

@@ -19,7 +19,7 @@ export const QuizEngine = () => {
   } = useQuizStore();
   const { examId } = useParams();
 
-  //const [timeLeft, setTimeLeft] = useState(3600);
+  const [timeLeft, setTimeLeft] = useState(3600);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const questionRefs = useRef<(HTMLDivElement | null)[]>([]);
 
