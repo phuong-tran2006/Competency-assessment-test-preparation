@@ -21,13 +21,17 @@ interface QuizStore extends QuizState {
   resultData: any;
   setResultData: (data: any) => void;
 
+  // Mã lượt làm bài (ExamAttempt) đang mở, dùng để lưu đáp án và nộp bài
+  attemptId: string | null;
+  setAttemptId: (attemptId: string | null) => void;
+
   timeLeft: number;
   setTimeLeft: (updater: number | ((prev: number) => number)) => void;
 }
 
 export const useQuizStore = create<QuizStore>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       questions: [],
       loading: true,
       currentIndex: 0,
@@ -36,6 +40,7 @@ export const useQuizStore = create<QuizStore>()(
       currentStep: "intro",
       score: 0,
       resultData: null,
+      attemptId: null,
       timeLeft: 3600,
 
       setLoading: (loading) => set({ loading }),
@@ -77,6 +82,8 @@ export const useQuizStore = create<QuizStore>()(
 
       setResultData: (data) => set({ resultData: data }),
 
+      setAttemptId: (attemptId) => set({ attemptId }),
+
       setTimeLeft: (updater) =>
         set((state) => ({
           timeLeft:
@@ -90,6 +97,8 @@ export const useQuizStore = create<QuizStore>()(
           currentStep: "intro",
           score: 0,
           timeLeft: 3600,
+          attemptId: null,
+          resultData: null,
         });
         localStorage.removeItem("vact-exam-progress");
       },
@@ -102,6 +111,7 @@ export const useQuizStore = create<QuizStore>()(
         reviewList: state.reviewList,
         currentStep: state.currentStep,
         timeLeft: state.timeLeft,
+        attemptId: state.attemptId,
       }),
     },
   ),

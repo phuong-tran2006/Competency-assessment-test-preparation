@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../../services/api';
+import { authService } from '../../services/auth.service';
 
 export const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -22,9 +23,10 @@ export const AdminDashboard = () => {
     fetchExams();
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    navigate('/login');
+  // Phải xóa phiên trong authStore, không chỉ xóa localStorage
+  const handleLogout = async () => {
+    await authService.logout();
+    navigate('/login', { replace: true });
   };
 
   return (

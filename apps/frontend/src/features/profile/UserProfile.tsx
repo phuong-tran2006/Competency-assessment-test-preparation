@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../../store/authStore';
+import { BackButton } from '../../components/BackButton';
+import { confirmDialog, toast } from '../../store/uiStore';
+import { authService } from '../../services/auth.service';
 
 export const UserProfile = () => {
   const { user } = useAuthStore();
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<'history' | 'ongoing'>('history');
 
   // TODO: Thay thế bằng dữ liệu gọi từ API Backend (VD: quizService.getHistory())
@@ -16,10 +20,28 @@ export const UserProfile = () => {
     { id: '3', title: 'Đề thi thử V-ACT số 2', progress: 45, lastSaved: 'Hôm nay' },
   ];
 
+  const handleLogout = async () => {
+    const ok = await confirmDialog({
+      title: 'Đăng xuất khỏi tài khoản?',
+      message: 'Bạn sẽ cần đăng nhập lại để tiếp tục luyện thi.',
+      confirmLabel: 'Đăng xuất',
+      tone: 'danger',
+    });
+    if (!ok) return;
+
+    await authService.logout();
+    toast.info('Đã đăng xuất', 'Hẹn gặp lại bạn.');
+    navigate('/login', { replace: true });
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 py-10 px-4">
+      <div className="max-w-6xl mx-auto mb-6">
+        <BackButton to="/" label="Về trang chủ" />
+      </div>
+
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6">
-        
+
         {/* CỘT TRÁI: THÔNG TIN NGƯỜI DÙNG */}
         <div className="md:col-span-1">
           <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 text-center sticky top-6">
@@ -38,6 +60,22 @@ export const UserProfile = () => {
                 <span className="text-gray-500">Tổng bài đã nộp:</span>
                 <span className="font-semibold text-gray-800">{mockHistory.length}</span>
               </div>
+            </div>
+
+            <div className="border-t border-gray-100 mt-4 pt-4 space-y-2">
+              <Link
+                to="/history"
+                className="block w-full py-2.5 rounded-xl text-sm font-bold text-center text-amber-600 bg-amber-50 hover:bg-amber-100 transition"
+              >
+                Lịch sử làm bài
+              </Link>
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="block w-full py-2.5 rounded-xl text-sm font-bold text-center text-gray-600 hover:text-red-600 hover:bg-red-50 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-red-400 focus-visible:ring-offset-2"
+              >
+                Đăng xuất
+              </button>
             </div>
           </div>
         </div>

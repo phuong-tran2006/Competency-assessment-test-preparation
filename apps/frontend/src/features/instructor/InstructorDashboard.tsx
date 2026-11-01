@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuthStore } from '../../store/authStore';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { BackButton } from '../../components/BackButton';
+import { confirmDialog, toast } from '../../store/uiStore';
+import { authService } from '../../services/auth.service';
 
 interface Course {
   id: string;
@@ -11,6 +14,7 @@ interface Course {
 
 export const InstructorDashboard = () => {
   const { user } = useAuthStore();
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<'courses' | 'questions' | 'students'>('courses');
   
   const [showModal, setShowModal] = useState(false);
@@ -39,12 +43,51 @@ export const InstructorDashboard = () => {
 
     // Nối khóa học mới vào danh sách cũ
     setCourses([...courses, newCourse]);
-    
+
     // Xóa trắng form và đóng popup
     setNewTitle("");
     setNewDesc("");
     setShowModal(false);
+    toast.success('Đã tạo khóa học', `"${newCourse.title}" đang ở trạng thái bản nháp.`);
   };
+
+  // Xóa khóa học: hành động khó hoàn tác nên phải xác nhận
+  const handleDeleteCourse = async (course: Course) => {
+    const ok = await confirmDialog({
+      title: 'Xóa khóa học này?',
+      message: `"${course.title}" sẽ bị xóa khỏi danh sách. Hành động này không thể hoàn tác.`,
+      confirmLabel: 'Xóa khóa học',
+      tone: 'danger',
+    });
+    if (!ok) return;
+
+    setCourses((prev) => prev.filter((c) => c.id !== course.id));
+    toast.success('Đã xóa khóa học', course.title);
+  };
+
+  const handleLogout = async () => {
+    const ok = await confirmDialog({
+      title: 'Đăng xuất khỏi tài khoản?',
+      confirmLabel: 'Đăng xuất',
+      tone: 'danger',
+    });
+    if (!ok) return;
+
+    await authService.logout();
+    toast.info('Đã đăng xuất', 'Hẹn gặp lại bạn.');
+    navigate('/login', { replace: true });
+  };
+
+  // Modal tạo khóa học: Esc để đóng, khóa cuộn trang phía sau
+  useEffect(() => {
+    if (!showModal) return;
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setShowModal(false);
+    };
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [showModal]);
 
   return (
     <div className="flex h-screen bg-white font-sans overflow-hidden">
@@ -85,6 +128,17 @@ export const InstructorDashboard = () => {
             Kết quả Học viên
           </button>
         </nav>
+
+        {/* Điều hướng ra khỏi trang quản trị */}
+        <div className="p-4 border-t border-gray-100 space-y-2">
+          <BackButton to="/" label="Về trang chủ" variant="ghost" className="w-full justify-start" />
+          <button
+            onClick={handleLogout}
+            className="w-full text-left px-4 py-2.5 rounded-xl text-sm font-bold text-gray-600 hover:bg-red-50 hover:text-red-600 transition-colors"
+          >
+            Đăng xuất
+          </button>
+        </div>
       </div>
 
       {/* KHU VỰC NỘI DUNG CHÍNH BÊN PHẢI */}
@@ -124,7 +178,12 @@ export const InstructorDashboard = () => {
                       <td className="p-4 font-medium text-gray-600">{course.students}</td>
                       <td className="p-4 text-right space-x-3">
                         <button className="text-blue-600 hover:text-blue-800 text-sm font-bold">Chỉnh sửa</button>
-                        <button className="text-red-600 hover:text-red-800 text-sm font-bold">Xóa</button>
+                        <button
+                          onClick={() => handleDeleteCourse(course)}
+                          className="text-red-600 hover:text-red-800 text-sm font-bold"
+                        >
+                          Xóa
+                        </button>
                       </td>
                     </tr>
                   ))}
@@ -141,8 +200,15 @@ export const InstructorDashboard = () => {
 
         {/* MODAL (CỬA SỔ BẬT LÊN) ĐỂ TẠO KHÓA HỌC */}
         {showModal && (
-          <div className="absolute inset-0 bg-gray-900 bg-opacity-50 backdrop-blur-sm flex justify-center items-center z-50">
-            <div className="bg-white rounded-2xl p-8 w-full max-w-lg shadow-2xl transform transition-all">
+          <div
+            className="vact-overlay absolute inset-0 bg-gray-900/50 backdrop-blur-sm flex justify-center items-center z-50 p-4"
+            onClick={() => setShowModal(false)}
+          >
+            {/* Chặn click lan ra backdrop để không đóng modal khi bấm vào form */}
+            <div
+              className="vact-dialog bg-white rounded-2xl p-8 w-full max-w-lg shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
               <h2 className="text-2xl font-black mb-6 text-gray-800">Tạo khóa học mới</h2>
               
               {/* Gắn hàm handleCreateCourse vào form */}

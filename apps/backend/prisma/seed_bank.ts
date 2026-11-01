@@ -34,6 +34,16 @@ function stripHtml(s: string): string {
   return s.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
 }
 
+/**
+ * bank_*.json ghi difficulty theo thang nguyên 0..4.
+ * Elo (questionRating) và scoring (questionWeight) đều giả định [0,1],
+ * nên phải chuẩn hóa tại chỗ seed thay vì sửa ở nơi tiêu thụ.
+ */
+function normalizeDifficulty(d: number): number {
+  const clamped = Math.min(4, Math.max(0, d ?? 2));
+  return Math.round((clamped / 4) * 100) / 100;
+}
+
 async function main() {
   const toan = await load('bank_toan100.json');
   const lang = await load('bank_lang100.json');
@@ -75,7 +85,12 @@ async function main() {
     if (opts.filter((o) => o.isCorrect).length !== 1) {
       throw new Error(`${q.id}: must have exactly 1 correct answer`);
     }
-    const fields = { content, explanation: null as string | null, topicId, difficulty: q.difficulty };
+    const fields = {
+      content,
+      explanation: null as string | null,
+      topicId,
+      difficulty: normalizeDifficulty(q.difficulty),
+    };
     await prisma.$transaction(async (tx) => {
       await tx.question.upsert({
         where: { id: q.id },

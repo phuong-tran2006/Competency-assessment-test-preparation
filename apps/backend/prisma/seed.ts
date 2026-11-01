@@ -236,7 +236,7 @@ async function main() {
           create: {
             id: qInfo.id,
             type: QuestionType.MULTIPLE_CHOICE,
-            difficulty: 1200,
+            difficulty: 0.5, // thang [0,1]; 1200 là rating Elo, không phải difficulty
             ...fields,
           },
         });

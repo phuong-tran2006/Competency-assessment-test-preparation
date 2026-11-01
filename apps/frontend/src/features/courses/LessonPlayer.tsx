@@ -1,4 +1,5 @@
-import { useParams, Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { BackButton } from '../../components/BackButton';
 
 export const LessonPlayer = () => {
   const { courseId, lessonId } = useParams<{ courseId: string; lessonId: string }>();
@@ -8,9 +9,7 @@ export const LessonPlayer = () => {
       {/* Khu vực Video và Nội dung chính bên trái */}
       <div className="flex-1 flex flex-col p-6 overflow-y-auto">
         <div className="mb-4">
-          <Link to="/courses" className="text-blue-600 font-semibold hover:underline flex items-center gap-1 text-sm">
-            &larr; Quay lại danh sách khóa học
-          </Link>
+          <BackButton to="/courses" label="Quay lại danh sách khóa học" variant="ghost" />
         </div>
 
         <div className="bg-gray-900 w-full aspect-video rounded-2xl shadow-lg flex items-center justify-center text-white mb-6">

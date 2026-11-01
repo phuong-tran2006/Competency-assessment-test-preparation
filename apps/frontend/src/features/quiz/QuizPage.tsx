@@ -1,16 +1,47 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useQuizStore } from '../../store/quizStore';
 import { quizService } from '../../services/quiz.service';
+import { attemptService } from '../../services/attempt.service';
 import { QuizEngine } from './QuizEngine';
+import { BackButton } from '../../components/BackButton';
+import { toast } from '../../store/uiStore';
+
+/**
+ * Chuẩn hóa câu hỏi từ BE về shape FE đang dùng.
+ * Hỗ trợ cả `/exams/:id/questions` (có `options[].content`)
+ * và `/attempts` (`questions[].options[].content`, không trả isCorrect).
+ */
+function mapQuestions(data: any[]) {
+  return data.map((q: any) => ({
+    id: q.id ?? q.questionId,
+    content: q.content,
+    options: (q.options ?? []).map((opt: any, index: number) => ({
+      id: opt.id !== undefined ? String(opt.id) : String(index),
+      text: opt.text || opt.content || String(opt),
+      isCorrect: opt.isCorrect === true,
+    })),
+    explanation: q.explanation || '',
+  }));
+}
 
 // --- MÀN HÌNH 1: GIỚI THIỆU & CHỌN BẮT ĐẦU ĐỀ THI ---
-const QuizIntro = () => {
-  const setStep = useQuizStore((state) => state.setStep);
+const QuizIntro = ({
+  onStart,
+  starting,
+  startError,
+}: {
+  onStart: () => void;
+  starting: boolean;
+  startError: string;
+}) => {
   const questions = useQuizStore((state) => state.questions);
 
   return (
-    <div className="max-w-4xl mx-auto mt-10 p-8 bg-white rounded-2xl shadow-sm border border-gray-200">
+    <div className="max-w-4xl mx-auto">
+      <BackButton to="/exams" label="Chọn đề khác" />
+
+      <div className="mt-6 p-8 bg-white rounded-2xl shadow-sm border border-gray-200">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-b pb-8 mb-8">
         <div>
           <h1 className="text-2xl md:text-3xl font-extrabold text-blue-900 mb-3">
@@ -57,53 +88,68 @@ const QuizIntro = () => {
         <p className="text-gray-600 text-sm mb-4">
           Số câu: <strong className="text-gray-800">{questions.length > 0 ? questions.length : 120} câu</strong> &nbsp;|&nbsp; Thời gian làm bài: <strong className="text-gray-800">150 phút</strong>
         </p>
+        {startError && (
+          <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-600 text-sm rounded-lg font-medium">
+            {startError}
+          </div>
+        )}
         <button
-          onClick={() => setStep('playing')}
-          className="w-full py-3.5 bg-amber-500 hover:bg-amber-600 text-white font-extrabold rounded-xl shadow-md transition duration-200 uppercase tracking-wider"
+          onClick={onStart}
+          disabled={starting}
+          className="w-full py-3.5 bg-amber-500 hover:bg-amber-600 disabled:bg-amber-300 text-white font-extrabold rounded-xl shadow-md transition duration-200 uppercase tracking-wider"
         >
-          BẮT ĐẦU LÀM BÀI
+          {starting ? 'ĐANG TẠO LƯỢT THI...' : 'BẮT ĐẦU LÀM BÀI'}
         </button>
+      </div>
       </div>
     </div>
   );
 };
 
 // --- MÀN HÌNH 3: KẾT QUẢ ---
+// Điểm chi tiết hiển thị ở trang /results/:attemptId (ResultPage).
+// Màn này chỉ là bước chuyển tiếp khi người dùng quay lại từ trang khác.
 const QuizResult = () => {
-  const { resultData, resetQuiz, setStep } = useQuizStore();
+  const { resultData, resetQuiz, attemptId } = useQuizStore();
 
   return (
     <div className="max-w-xl mx-auto mt-20 p-8 bg-white rounded-2xl shadow-sm border text-center font-sans">
       <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl font-bold">✓</div>
       <h1 className="text-2xl font-bold text-gray-800 mb-2">Đã Nộp Bài Thành Công!</h1>
       <p className="text-gray-600 mb-6">Kết quả của bạn đã được ghi nhận vào hệ thống.</p>
-      
-      {/* Hiển thị điểm số thực tế từ Backend trả về */}
-      {resultData && (
+
+      {resultData?.summary && (
         <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6 text-left">
           <div className="flex justify-between mb-2">
             <span className="text-gray-600 font-medium">Số câu đúng:</span>
             <span className="font-bold text-gray-800">
-              {resultData.correctAnswers !== undefined ? resultData.correctAnswers : 0} / {resultData.totalQuestions !== undefined ? resultData.totalQuestions : 0}
+              {resultData.score} / {resultData.total}
+            </span>
+          </div>
+          <div className="flex justify-between mb-2">
+            <span className="text-gray-600 font-medium">Điểm có trọng số:</span>
+            <span className="font-bold text-gray-800">
+              {resultData.weightedScore} / {resultData.summary.maxWeightedScore}
             </span>
           </div>
           <div className="flex justify-between">
             <span className="text-gray-600 font-medium">Tỷ lệ đạt được:</span>
             <span className="font-bold text-amber-600">
-              {resultData.score !== undefined ? resultData.score : 0}%
+              {resultData.summary.percentage}%
             </span>
           </div>
         </div>
       )}
 
-      {/* Đưa các nút xuống dưới và sửa lại cấu trúc thẻ */}
       <div className="flex flex-col sm:flex-row justify-center gap-4">
-        <button
-          onClick={() => setStep('review')}
-          className="px-8 py-3 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-xl shadow transition uppercase tracking-wider"
-        >
-          Xem chi tiết đáp án
-        </button>
+        {attemptId && (
+          <Link
+            to={`/results/${attemptId}`}
+            className="px-8 py-3 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-xl shadow transition uppercase tracking-wider"
+          >
+            Xem chi tiết kết quả
+          </Link>
+        )}
         <button
           onClick={resetQuiz}
           className="px-8 py-3 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl shadow transition uppercase tracking-wider"
@@ -117,45 +163,70 @@ const QuizResult = () => {
 
 // --- COMPONENT TỔNG QUẢN LÝ ---
 export const QuizPage = () => {
-  const { currentStep, setQuestions } = useQuizStore();
+  const { currentStep, setQuestions, setStep, setAttemptId, setTimeLeft } =
+    useQuizStore();
   const [loading, setLoading] = useState(true);
+  const [starting, setStarting] = useState(false);
+  const [startError, setStartError] = useState('');
   const { examId } = useParams();
 
+  // Nạp trước danh sách câu hỏi để màn giới thiệu hiển thị đúng số câu
   useEffect(() => {
     if (!examId) {
-      setTimeout(() => setLoading(false), 0);
+      setLoading(false);
       return;
     }
 
-    setTimeout(() => setLoading(true), 0);
-    
-    quizService.getExamQuestions(examId)
+    setLoading(true);
+    quizService
+      .getExamQuestions(examId)
       .then((data) => {
-        const formatted = data.map((q: any) => ({
-          id: q.id,
-          examId: examId,
-          content: q.content,
-          options: q.options.map((opt: any, index: number) => {
-            // Ép kiểu an toàn: Xử lý triệt để vụ "3" (string) và 3 (number)
-            const isCorrect = 
-              opt.isCorrect === true || 
-              opt.isCorrect === "true" || 
-              opt.isCorrect === 1 || 
-              Number(q.correct) === index; // Ép q.correct về số trước khi so sánh
-
-            return {
-              id: opt.id !== undefined ? String(opt.id) : String(index),
-              text: opt.text || opt.content || String(opt), // Dự phòng mảng string
-              isCorrect: isCorrect,
-            };
-          }),
-          explanation: q.explanation || "" // Nạp biến giải thích
-        }));
-        setQuestions(formatted);
+        setQuestions(mapQuestions(data));
       })
-      .catch((err) => console.error("Lỗi tải đề:", err))
+      .catch((err) => {
+        console.error('Lỗi tải đề:', err);
+        toast.error(
+          'Không tải được đề thi',
+          'Vui lòng kiểm tra kết nối và thử lại.',
+        );
+      })
       .finally(() => setLoading(false));
-  }, [examId, setQuestions]); 
+  }, [examId, setQuestions]);
+
+  // Tạo ExamAttempt thật trên backend rồi mới vào phòng thi
+  const handleStart = async () => {
+    if (!examId) return;
+
+    setStarting(true);
+    setStartError('');
+    try {
+      // POST /attempts trả { attemptId, questionIds, timeLimit, ... }
+      const created = await attemptService.start(examId);
+      const newAttemptId = created.attemptId ?? created.id;
+      setAttemptId(newAttemptId);
+
+      // GET /attempts/:id trả đầy đủ nội dung câu hỏi kèm option id thật
+      const detail = await attemptService.getAttempt(newAttemptId);
+      if (Array.isArray(detail.questions) && detail.questions.length) {
+        setQuestions(mapQuestions(detail.questions));
+      }
+
+      setTimeLeft(
+        detail.remainingSeconds ?? created.timeLimit ?? 3600,
+      );
+      setStep('playing');
+      toast.info('Bài thi đã bắt đầu', 'Chúc bạn làm bài tốt. Hết giờ hệ thống sẽ tự nộp.');
+    } catch (err: any) {
+      console.error('Lỗi tạo lượt làm bài:', err);
+      const message =
+        err.response?.data?.message ||
+        'Không tạo được lượt làm bài. Vui lòng đăng nhập và thử lại.';
+      setStartError(message);
+      // Lỗi ở đây đã hiển thị ngay trên màn hình, không cần toast
+    } finally {
+      setStarting(false);
+    }
+  };
 
   if (loading) {
     return (
@@ -170,15 +241,24 @@ export const QuizPage = () => {
 
   if (!examId) {
     return (
-      <div className="flex justify-center items-center min-h-screen">
-        <p className="text-red-500 font-medium">Không tìm thấy mã đề thi. Vui lòng quay lại trang danh sách!</p>
+      <div className="min-h-screen bg-[#fdfbf7] flex flex-col items-center justify-center gap-5 px-4">
+        <p className="text-red-500 font-medium text-center">
+          Không tìm thấy mã đề thi. Vui lòng quay lại trang danh sách.
+        </p>
+        <BackButton to="/exams" label="Về danh sách đề thi" />
       </div>
     );
   }
 
   return (
     <div className="min-h-screen bg-[#fdfbf7] py-6 px-4">
-      {currentStep === 'intro' && <QuizIntro />}
+      {currentStep === 'intro' && (
+        <QuizIntro
+          onStart={handleStart}
+          starting={starting}
+          startError={startError}
+        />
+      )}
       {(currentStep === 'playing' || currentStep === 'review') && <QuizEngine />}
       {currentStep === 'result' && <QuizResult />}
     </div>

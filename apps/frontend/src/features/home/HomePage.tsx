@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../store/authStore";
+import { toast, confirmDialog } from "../../store/uiStore";
+import { authService } from "../../services/auth.service";
 import "./home.css";
 import { BRAND, ROUTES, STR } from "./strings";
 
@@ -49,12 +51,22 @@ function useFeaturedExams(limit = 3) {
 /* ---------- sections ---------- */
 
 function Navbar() {
-  const { isAuthenticated, user, logout } = useAuthStore();
+  const { isAuthenticated, user } = useAuthStore();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    logout();
-    navigate("/login");
+  // Đăng xuất qua service: xóa phiên store lẫn token, tránh trạng thái treo
+  const handleLogout = async () => {
+    const ok = await confirmDialog({
+      title: "Đăng xuất khỏi tài khoản?",
+      message: "Bạn sẽ cần đăng nhập lại để tiếp tục luyện thi.",
+      confirmLabel: "Đăng xuất",
+      tone: "danger",
+    });
+    if (!ok) return;
+
+    await authService.logout();
+    toast.info("Đã đăng xuất", "Hẹn gặp lại bạn.");
+    navigate("/login", { replace: true });
   };
 
   return (

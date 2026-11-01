@@ -3,9 +3,11 @@ import { persist } from 'zustand/middleware';
 
 interface User {
   id?: string | number;
-  name: string;
+  name?: string;
+  fullName?: string | null;
   email: string;
-  role: 'STUDENT' | 'INSTRUCTOR' | 'ADMIN';
+  // 'STUDENT' giữ lại cho dữ liệu cũ còn trong localStorage
+  role: 'LEARNER' | 'STUDENT' | 'INSTRUCTOR' | 'ADMIN';
 }
 
 interface AuthState {

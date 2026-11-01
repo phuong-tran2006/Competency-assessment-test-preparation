@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../../services/api';
+import { BackButton } from '../../components/BackButton';
+import { toast } from '../../store/uiStore';
 
 export const CreateExamPage = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [durationMinutes, setDurationMinutes] = useState(45);
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
   const handleCreateExam = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setMessage('');
 
     try {
       const response = await api.post('/exams', {
@@ -22,16 +22,14 @@ export const CreateExamPage = () => {
         durationMinutes: Number(durationMinutes),
       });
 
-      setMessage(`✅ Tạo bộ đề thi thành công! Mã đề: ${response.data.id}`);
+      toast.success('Tạo bộ đề thi thành công', `Mã đề: ${response.data.id}`);
       setTitle('');
       setDescription('');
-      setTimeout(() => {
-        navigate('/courses');
-      }, 1500);
+      navigate('/courses');
     } catch (err: any) {
       console.error('Lỗi khi tạo đề:', err);
       const errorMsg = err.response?.data?.message || 'Tạo đề thi thất bại. Vui lòng kiểm tra lại.';
-      setMessage(`❌ ${Array.isArray(errorMsg) ? errorMsg.join(', ') : errorMsg}`);
+      toast.error('Tạo đề thi thất bại', Array.isArray(errorMsg) ? errorMsg.join(', ') : errorMsg);
     } finally {
       setLoading(false);
     }
@@ -41,20 +39,9 @@ export const CreateExamPage = () => {
     <div className="min-h-screen bg-gray-50 p-8 font-sans">
       <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-extrabold text-gray-800">Trang Giảng viên: Tạo bộ đề thi mới</h1>
-          <button 
-            onClick={() => navigate('/courses')}
-            className="text-sm font-semibold text-amber-600 hover:underline"
-          >
-            ← Quay lại trang danh sách
-          </button>
+          <h1 className="text-2xl font-extrabold text-gray-800">Tạo bộ đề thi mới</h1>
+          <BackButton to="/admin/dashboard" label="Bảng quản trị" variant="ghost" />
         </div>
-
-        {message && (
-          <div className={`p-4 mb-6 rounded-xl text-sm font-medium ${message.startsWith('✅') ? 'bg-green-50 text-green-700 border border-green-200' : 'bg-red-50 text-red-700 border border-red-200'}`}>
-            {message}
-          </div>
-        )}
 
         <form onSubmit={handleCreateExam} className="space-y-5">
           <div>

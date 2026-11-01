@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { authService } from '../../services/auth.service';
+import { toast } from '../../store/uiStore';
+import { BackButton } from '../../components/BackButton';
 
 export const Register = () => {
   const [name, setName] = useState('');
@@ -23,17 +25,31 @@ export const Register = () => {
 
     if (password !== confirmPassword) {
       setError('Mật khẩu xác nhận không khớp!');
+      toast.error('Mật khẩu xác nhận không khớp', 'Vui lòng nhập lại hai ô mật khẩu.');
+      setLoading(false);
+      return;
+    }
+
+    // Backend yêu cầu mật khẩu tối thiểu 6 ký tự, chặn sớm ở client
+    if (password.length < 6) {
+      setError('Mật khẩu phải có ít nhất 6 ký tự.');
+      toast.error('Mật khẩu quá ngắn', 'Mật khẩu cần ít nhất 6 ký tự.');
       setLoading(false);
       return;
     }
 
     try {
       await authService.register(name, email, password);
-      alert('Đăng ký tài khoản thành công! Vui lòng đăng nhập.');
-      navigate('/login');
+      toast.success('Đăng ký thành công', 'Bạn có thể đăng nhập ngay bây giờ.');
+      navigate('/login', { replace: true });
     } catch (err: any) {
       console.error(err);
-      setError(err.response?.data?.message || 'Đăng ký thất bại. Vui lòng kiểm tra lại thông tin.');
+      const message =
+        err.response?.data?.message ||
+        'Đăng ký thất bại. Vui lòng kiểm tra lại thông tin.';
+      const text = Array.isArray(message) ? message.join(' ') : message;
+      setError(text);
+      toast.error('Đăng ký thất bại', text);
     } finally {
       setLoading(false);
     }
@@ -41,6 +57,10 @@ export const Register = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 font-sans">
+      <div className="sm:mx-auto sm:w-full sm:max-w-md mb-6">
+        <BackButton to="/" label="Về trang chủ" />
+      </div>
+
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 className="text-center text-3xl font-black text-amber-500 uppercase tracking-wide">
           V-ACT Luyện Thi ĐGNL

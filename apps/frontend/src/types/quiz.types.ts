@@ -6,7 +6,8 @@ export interface Option {
 
 export interface Question {
   id: string;
-  examId: string;
+  // Attempt tự sinh đề không gắn với exam nào nên examId là optional
+  examId?: string;
   content: string;
   options: Option[];
   level?: string; // Ví dụ: "Nhận biết", "Thông hiểu", "Vận dụng"
