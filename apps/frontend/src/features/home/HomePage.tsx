@@ -1,174 +1,94 @@
-import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuthStore } from "../../store/authStore";
-import "./home.css";
 import { BRAND, ROUTES, STR } from "./strings";
-import ExamCard from "../../components/ExamCard";
+import { useAuthStore } from "../../store/authStore";
 
-type ExamSummary = {
-  id: string | number;
+interface FeaturedExam {
+  id: string;
   title: string;
-  description?: string;
-  questionCount?: number;
-};
-
-/* ---------- hooks ---------- */
-
-function useFeaturedExams(limit = 3) {
-  const [exams, setExams] = useState<ExamSummary[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const controller = new AbortController();
-    const base = import.meta.env.VITE_API_URL ?? "";
-
-    fetch(`${base}/exams`, { signal: controller.signal })
-      .then((res) => {
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        return res.json();
-      })
-      .then((data) => {
-        const list: ExamSummary[] = Array.isArray(data)
-          ? data
-          : (data.items ?? []);
-        setExams(list.slice(0, limit));
-        setLoading(false);
-      })
-      .catch((err) => {
-        if (err.name === "AbortError") return;
-        setExams([]);
-        setLoading(false);
-      });
-
-    return () => controller.abort();
-  }, [limit]);
-
-  return { exams, loading };
+  description: string | null;
+  _count?: { questions: number };
 }
 
-/* ---------- sections ---------- */
-
-function Navbar() {
+function Header() {
   const { isAuthenticated, user, logout } = useAuthStore();
   const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
-    navigate("/login");
+    navigate("/");
   };
 
-  // Xác định đường dẫn khi click vào Avatar tùy theo Role
-  const getProfileRoute = () => {
-    if (user?.role === "INSTRUCTOR") return "/instructor";
-    if (user?.role === "ADMIN") return "/admin/dashboard";
-    return "/profile";
-  };
+  // Chỉ coi là đã đăng nhập khi cả isAuthenticated === true VÀ có thông tin user + token
+  const isLoggedIn = isAuthenticated && !!user;
 
   return (
-    <header className="w-full bg-white border-b border-gray-100 sticky top-0 z-50">
-      <div className="w-full px-4 lg:px-12 py-4 flex items-center justify-between mx-auto">
-        {/* LOGO */}
+    <header className="sticky top-0 z-10 border-b border-amber-100 bg-[#fdfbf7]/95 backdrop-blur">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <Link
           to={ROUTES.home}
-          className="text-2xl font-black text-blue-900 tracking-wide hover:opacity-80 transition"
+          className="text-xl font-extrabold tracking-tight text-blue-900"
         >
           {BRAND}
         </Link>
 
-        {/* MENU LINK CHÍNH - Thay đổi linh hoạt theo Role */}
-        <nav
-          className="hidden md:flex gap-8 items-center"
-          aria-label="Điều hướng chính"
-        >
-          {user?.role === "INSTRUCTOR" ? (
-            <>
-              <Link
-                to="/instructor"
-                className="font-semibold text-gray-600 hover:text-amber-500 transition-colors"
-              >
-                Quản lý Khóa học
-              </Link>
-              <Link
-                to="/instructor"
-                className="font-semibold text-gray-600 hover:text-amber-500 transition-colors"
-              >
-                Ngân hàng Câu hỏi
-              </Link>
-              <Link
-                to="/instructor"
-                className="font-semibold text-gray-600 hover:text-amber-500 transition-colors"
-              >
-                Kết quả Học viên
-              </Link>
-            </>
-          ) : (
-            <>
-              <a
-                href="#courses"
-                className="font-semibold text-gray-600 hover:text-amber-500 transition-colors"
-              >
-                Khóa học
-              </a>
-              <Link
-                to={ROUTES.exams}
-                className="font-semibold text-gray-600 hover:text-amber-500 transition-colors"
-              >
-                {STR.nav.exams}
-              </Link>
-              <a
-                href="#how"
-                className="font-semibold text-gray-600 hover:text-amber-500 transition-colors"
-              >
-                {STR.nav.how}
-              </a>
-              <a
-                href="#structure"
-                className="font-semibold text-gray-600 hover:text-amber-500 transition-colors"
-              >
-                {STR.nav.structure}
-              </a>
-            </>
-          )}
+        <nav className="hidden items-center gap-7 text-sm font-semibold text-gray-700 md:flex">
+          <a href="#courses" className="hover:text-amber-600">
+            {STR.nav.course}
+          </a>
+          <a href="#featured" className="hover:text-amber-600">
+            {STR.nav.exams}
+          </a>
+          <a href="#how" className="hover:text-amber-600">
+            {STR.nav.how}
+          </a>
+          <a href="#structure" className="hover:text-amber-600">
+            {STR.nav.structure}
+          </a>
         </nav>
 
-        {/* KHU VỰC TÀI KHOẢN */}
-        <div>
-          {isAuthenticated ? (
-            <div className="flex items-center gap-5">
+        <div className="flex items-center gap-3 text-sm">
+          {isLoggedIn ? (
+            <div className="flex items-center gap-4">
+              {user?.role === "ADMIN" && (
+                <Link
+                  to="/admin/dashboard"
+                  className="text-xs font-extrabold px-3 py-1.5 rounded-lg bg-purple-100 text-purple-800 hover:bg-purple-200"
+                >
+                  Quản trị viên
+                </Link>
+              )}
               <Link
-                to={getProfileRoute()}
-                className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-all"
+                to="/profile"
+                className="flex items-center gap-2 font-bold text-gray-800 hover:text-amber-600 transition-colors"
+                title="Xem Hồ sơ năng lực Elo"
               >
-                <div className="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold shadow-sm">
-                  {user?.name?.charAt(0)?.toUpperCase() || "U"}
+                <div className="w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold shadow-sm">
+                  {user?.name?.charAt(0)?.toUpperCase() || "H"}
                 </div>
-                <span className="font-bold text-gray-800 hover:text-amber-600">
-                  {user?.name || "Học viên"}
-                </span>
+                <span>{user?.name || "Học viên"}</span>
               </Link>
-
               <button
                 onClick={handleLogout}
-                className="text-sm font-bold text-gray-500 hover:text-red-500 transition-colors"
+                className="text-gray-500 hover:text-red-600 font-semibold text-xs border border-gray-200 px-3 py-1.5 rounded-lg hover:border-red-200 transition-colors"
               >
                 Đăng xuất
               </button>
             </div>
           ) : (
-            <div className="flex items-center gap-4">
+            <>
               <Link
                 to={ROUTES.login}
-                className="text-sm font-bold text-blue-900 hover:text-blue-700 transition"
+                className="px-4 py-2 font-bold text-blue-900 hover:text-amber-600 transition"
               >
-                Đăng nhập
+                {STR.nav.login}
               </Link>
               <Link
                 to={ROUTES.register}
-                className="px-6 py-2.5 bg-amber-500 text-white text-sm font-bold rounded-lg shadow-md hover:bg-amber-600 transition"
+                className="rounded-xl bg-amber-500 px-5 py-2.5 font-extrabold text-white shadow-sm transition hover:bg-amber-600"
               >
-                Đăng ký
+                {STR.nav.register}
               </Link>
-            </div>
+            </>
           )}
         </div>
       </div>
@@ -178,39 +98,51 @@ function Navbar() {
 
 function Hero() {
   const { isAuthenticated, user } = useAuthStore();
-  const isInstructor = user?.role === "INSTRUCTOR";
+  const isLoggedIn = isAuthenticated && !!user;
 
   return (
-    <section className="hero">
-      <div className="container hero__inner">
-        <span className="tag">
-          {isInstructor ? "Khu vực Quản trị Giảng viên" : STR.hero.badge}
+    <section className="border-b border-amber-100/80">
+      <div className="mx-auto max-w-4xl px-6 py-16 text-center md:py-24">
+        <span className="inline-block rounded-full bg-amber-100 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-amber-800">
+          {STR.hero.badge}
         </span>
-        <h1 className="hero__title">
-          {isInstructor
-            ? `Xin chào, ${user?.name || "Giảng viên"}! Quản lý học tập hiệu quả.`
-            : STR.hero.title}
+        <h1 className="mt-5 text-3xl font-extrabold leading-tight text-blue-900 md:text-5xl">
+          {STR.hero.title}
         </h1>
-        <p className="hero__subtitle">
-          {isInstructor
-            ? "Hệ thống hỗ trợ biên soạn khóa học, quản lý ngân hàng câu hỏi gắn thẻ (tags) và theo dõi kết quả đánh giá năng lực của học viên."
-            : STR.hero.subtitle}
+        <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-gray-600 md:text-lg">
+          {STR.hero.subtitle}
         </p>
-        <div className="hero__cta">
-          {isInstructor ? (
-            <Link to="/instructor" className="btn btn--primary btn--lg">
-              Vào Bảng điều khiển Quản trị
-            </Link>
-          ) : (
+
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+          {isLoggedIn ? (
             <>
-              <Link to={ROUTES.exams} className="btn btn--primary btn--lg">
+              <Link
+                to={ROUTES.exams}
+                className="rounded-xl bg-amber-500 px-7 py-3.5 text-sm font-extrabold text-white shadow-md transition hover:bg-amber-600"
+              >
                 {STR.hero.ctaPrimary}
               </Link>
-              {!isAuthenticated && (
-                <Link to={ROUTES.register} className="btn btn--outline btn--lg">
-                  {STR.hero.ctaSecondary}
-                </Link>
-              )}
+              <Link
+                to="/profile"
+                className="rounded-xl border-2 border-blue-900 bg-white px-7 py-3.5 text-sm font-extrabold text-blue-900 transition hover:bg-blue-50"
+              >
+                Xem Hồ sơ Năng lực Elo
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link
+                to={ROUTES.login}
+                className="rounded-xl bg-amber-500 px-7 py-3.5 text-sm font-extrabold text-white shadow-md transition hover:bg-amber-600"
+              >
+                Đăng nhập để Bắt đầu học
+              </Link>
+              <Link
+                to={ROUTES.register}
+                className="rounded-xl border-2 border-amber-500 bg-white px-7 py-3.5 text-sm font-extrabold text-amber-600 transition hover:bg-amber-50"
+              >
+                {STR.hero.ctaSecondary}
+              </Link>
             </>
           )}
         </div>
@@ -220,23 +152,35 @@ function Hero() {
 }
 
 function HowItWorks() {
-  const { user } = useAuthStore();
-  if (user?.role === "INSTRUCTOR") return null; // Ẩn phần hướng dẫn học viên nếu là giảng viên
-
   return (
-    <section id="how" className="section section--tint">
-      <div className="container">
-        <h2 className="section__title">{STR.how.title}</h2>
-        <ol className="grid grid--4 steps">
-          {STR.how.steps.map((step, index) => (
+    <section
+      id="how"
+      className="border-b border-amber-100/80 bg-amber-50/40 py-16"
+    >
+      <div className="mx-auto max-w-6xl px-6">
+        <h2 className="text-center text-2xl font-extrabold text-blue-900 md:text-3xl">
+          {STR.how.title}
+        </h2>
+
+        <ol className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {STR.how.steps.map((step, i) => (
             <li
               key={step.title}
-              className={`card step ${step.available ? "" : "step--soon"}`}
+              className="flex flex-col justify-between rounded-2xl border border-gray-200 bg-white p-6 shadow-sm"
             >
-              <span className="step__number">{index + 1}</span>
-              <h3 className="card__title">{step.title}</h3>
-              <p className="card__text">{step.text}</p>
-              {!step.available && <span className="badge">{STR.how.soon}</span>}
+              <div>
+                <div className="flex items-center justify-between">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-500 text-sm font-extrabold text-white">
+                    {i + 1}
+                  </span>
+                </div>
+                <h3 className="mt-4 text-base font-bold text-gray-900">
+                  {step.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-gray-600">
+                  {step.text}
+                </p>
+              </div>
             </li>
           ))}
         </ol>
@@ -246,118 +190,166 @@ function HowItWorks() {
 }
 
 function ExamStructure() {
-  const { user } = useAuthStore();
-  if (user?.role === "INSTRUCTOR") return null;
+  const total = STR.structure.sections.reduce((s, x) => s + x.questions, 0);
 
   return (
-    <section id="structure" className="section">
-      <div className="container">
-        <h2 className="section__title">{STR.structure.title}</h2>
-        <p className="section__lead">{STR.structure.summary}</p>
-        <div className="grid grid--5">
-          {STR.structure.sections.map((s) => (
-            <div key={s.name} className="card stat">
-              <span className="stat__number">{s.questions}</span>
-              <span className="stat__unit">{STR.structure.unit}</span>
-              <span className="stat__label">{s.name}</span>
-            </div>
-          ))}
-        </div>
-        <p className="note">{STR.structure.source}</p>
-      </div>
-    </section>
-  );
-}
-
-function FeaturedExams() {
-  const { user } = useAuthStore();
-
-  // Dữ liệu tĩnh tạm thời để test giao diện
-  // Sau khi backend có data, bạn dùng lại useFeaturedExams(3) để fetch API
-  const exams = [
-    {
-      id: "dgnl-2026",
-      title: "Đề minh họa ĐGNL ĐHQG TPHCM năm 2026",
-      description: "Bộ đề thi chuẩn cấu trúc mới nhất năm 2026.",
-      questionCount: 30,
-    },
-    {
-      id: "dgnl-2025",
-      title: "Đề minh họa ĐGNL ĐHQG TPHCM năm 2025",
-      description:
-        "Đề thi chính thức và minh họa lưu trữ năm 2025, rèn luyện tư duy logic và phân tích số liệu.",
-      questionCount: 6,
-    },
-    {
-      id: "dgnl-2024",
-      title: "Đề minh họa ĐGNL ĐHQG TPHCM năm 2024",
-      description:
-        "Bộ đề ôn tập nền tảng từ kỳ thi ĐGNL năm 2024, củng cố kiến thức cơ bản.",
-      questionCount: 6,
-    },
-  ];
-
-  // Nếu là giảng viên (Giữ nguyên như code cũ của bạn)
-  if (user?.role === "INSTRUCTOR") {
-    return (
-      <section className="section section--tint">
-        {/* ... (Giữ nguyên phần code dành cho INSTRUCTOR từ dòng 173 - 210) ... */}
-      </section>
-    );
-  }
-
-  // --- GIAO DIỆN BỘ ĐỀ DÀNH CHO HỌC VIÊN (Thay đổi phần này) ---
-  return (
-    <section className="bg-[#FFFDF5] py-20">
-      <div className="max-w-7xl mx-auto px-4 text-center">
-        <h2 className="text-3xl font-bold text-blue-900 mb-12">
-          Bộ đề luyện tập
+    <section
+      id="structure"
+      className="border-b border-amber-100/80 bg-amber-50/40 py-16"
+    >
+      <div className="mx-auto max-w-5xl px-6">
+        <h2 className="text-center text-2xl font-extrabold text-blue-900 md:text-3xl">
+          {STR.structure.title}
         </h2>
+        <p className="mt-2 text-center text-sm text-gray-600">
+          {STR.structure.summary}
+        </p>
 
-        {exams.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            {exams.map((exam) => (
-              <ExamCard key={exam.id} exam={exam} />
-            ))}
-          </div>
-        ) : (
-          <p className="text-gray-500 mb-8">Chưa có bộ đề nào để hiển thị.</p>
-        )}
+        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          {STR.structure.sections.map((s) => {
+            const pct = Math.round((s.questions / total) * 100);
+            return (
+              <div
+                key={s.name}
+                className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm"
+              >
+                <div className="text-2xl font-extrabold text-amber-600">
+                  {s.questions}{" "}
+                  <span className="text-xs font-semibold text-gray-500">
+                    {STR.structure.unit}
+                  </span>
+                </div>
+                <div className="mt-1 text-sm font-bold text-gray-800">
+                  {s.name}
+                </div>
+                <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-gray-100">
+                  <div
+                    className="h-full rounded-full bg-amber-500"
+                    style={{ width: `${pct}%` }}
+                  />
+                </div>
+              </div>
+            );
+          })}
+        </div>
 
-        <Link to={ROUTES.exams}>
-          <button className="border-2 border-orange-400 text-orange-500 hover:bg-orange-50 font-bold py-3 px-8 rounded-lg transition-colors">
-            Xem tất cả bộ đề
-          </button>
-        </Link>
+        <p className="mt-6 text-center text-xs text-gray-400">
+          {STR.structure.source}
+        </p>
       </div>
     </section>
   );
 }
 
 function Courses() {
-  const { user } = useAuthStore();
-  if (user?.role === "INSTRUCTOR") return null;
-
   return (
-    <section id="courses" className="section">
-      <div className="container">
-        <h2 className="section__title text-center">Khóa học</h2>
-        <div className="grid grid--3">
-          {STR.courses.items.map((course) => (
-            <article key={course.title} className="card">
-              <h3 className="card__title font-bold text-center">
-                {course.title}
-              </h3>
-              <p className="card__text">{course.text}</p>
+    <section id="courses" className="border-b border-amber-100/80 py-16">
+      <div className="mx-auto max-w-5xl px-6">
+        <h2 className="text-center text-2xl font-extrabold text-blue-900 md:text-3xl">
+          {STR.courses.title}
+        </h2>
 
-              {/* Thêm div bọc ngoài để căn giữa nút */}
-              <div className="flex justify-center w-full mt-4">
-                <Link to={course.link} className="btn btn--primary">
+        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+          {STR.courses.items.map((c) => (
+            <div
+              key={c.title}
+              className="flex flex-col justify-between rounded-2xl border border-gray-200 bg-white p-6 shadow-sm"
+            >
+              <div>
+                <h3 className="text-center text-lg font-bold text-gray-900">
+                  {c.title}
+                </h3>
+                <p className="mt-2 text-sm text-gray-600">{c.text}</p>
+              </div>
+              <div className="mt-6 flex justify-center">
+                <Link
+                  to={c.link}
+                  className="inline-block rounded-xl bg-amber-500 px-5 py-2.5 text-xs font-bold text-white transition hover:bg-amber-600"
+                >
                   {STR.courses.open}
                 </Link>
               </div>
-            </article>
+            </div>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FeaturedExams() {
+  const exams: FeaturedExam[] = [
+    {
+      id: "vact-exam-2026",
+      title: "Đề minh họa ĐGNL ĐHQG TPHCM năm 2026",
+      description: "Bộ đề thi chuẩn cấu trúc mới nhất năm 2026.",
+      _count: { questions: 30 },
+    },
+    {
+      id: "vact-exam-2025",
+      title: "Đề minh họa ĐGNL ĐHQG TPHCM năm 2025",
+      description:
+        "Đề thi chính thức và minh họa lưu trữ năm 2025, rèn luyện tư duy logic và phân tích số liệu.",
+      _count: { questions: 6 },
+    },
+    {
+      id: "vact-exam-2024",
+      title: "Đề minh họa ĐGNL ĐHQG TPHCM năm 2024",
+      description:
+        "Bộ đề ôn tập nền tảng từ kỳ thi ĐGNL năm 2024, củng cố kiến thức cơ bản.",
+      _count: { questions: 6 },
+    },
+  ];
+
+  return (
+    <section id="featured" className="py-16">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="flex items-end justify-between">
+          <h2 className="mx-auto text-center text-2xl font-extrabold text-blue-900 md:text-3xl">
+            {STR.featured.title}
+          </h2>
+        </div>
+
+        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
+          {exams.map((exam) => (
+            <div
+              key={exam.id}
+              className="flex flex-col justify-between rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md"
+            >
+              <div>
+                <span className="inline-block rounded-full bg-amber-100 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-amber-800">
+                  Chuẩn cấu trúc ĐGNL
+                </span>
+                <h3 className="mt-3 text-lg font-bold text-gray-900">
+                  {exam.title}
+                </h3>
+                <p className="mt-2 line-clamp-3 text-sm text-gray-600">
+                  {exam.description}
+                </p>
+              </div>
+
+              <div className="mt-6 flex items-center justify-between border-t border-gray-100 pt-4">
+                <span className="text-xs font-semibold text-gray-500">
+                  {exam._count?.questions ?? 0} {STR.featured.questions}
+                </span>
+                <Link
+                  to={`${ROUTES.practice}/${exam.id}`}
+                  className="rounded-xl bg-orange-500 px-4 py-2 text-xs font-bold text-white transition hover:bg-orange-600"
+                >
+                  VÀO HỌC
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-10 text-center">
+          <Link
+            to={ROUTES.exams}
+            className="inline-block rounded-xl border border-orange-500 px-6 py-2.5 text-sm font-bold text-orange-600 transition hover:bg-orange-50"
+          >
+            {STR.featured.all}
+          </Link>
         </div>
       </div>
     </section>
@@ -366,32 +358,22 @@ function Courses() {
 
 function Footer() {
   return (
-    <footer className="footer">
-      <div className="container">
-        <p>{STR.footer.project}</p>
-        <p className="footer__disclaimer">{STR.footer.disclaimer}</p>
+    <footer className="border-t border-gray-200 bg-white py-8 text-xs text-gray-500">
+      <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-3 px-6 sm:flex-row sm:items-center">
+        <div>
+          <span className="font-bold text-gray-700">{BRAND}</span> —{" "}
+          {STR.footer.project}
+        </div>
+        <div className="text-gray-400">{STR.footer.disclaimer}</div>
       </div>
     </footer>
   );
 }
 
-/* ---------- page ---------- */
-
 export function HomePage() {
-  const navigate = useNavigate();
-  const { user } = useAuthStore();
-
-  useEffect(() => {
-    if (user?.role === "ADMIN") {
-      navigate("/admin/dashboard", { replace: true });
-    } else if (user?.role === "INSTRUCTOR") {
-      navigate("/instructor", { replace: true });
-    }
-  }, [user, navigate]);
-
   return (
-    <div className="home">
-      <Navbar />
+    <div className="min-h-screen bg-[#fdfbf7] text-gray-800">
+      <Header />
       <main>
         <Hero />
         <HowItWorks />
@@ -403,3 +385,5 @@ export function HomePage() {
     </div>
   );
 }
+
+export default HomePage;

@@ -1,19 +1,26 @@
-// src/services/auth.service.ts
 import api from './api';
 
 export const authService = {
-  // Đăng nhập tài khoản (Gửi email & password, nhận về JWT access_token)
+  // Đăng nhập tài khoản (Nhận accessToken từ Backend NestJS)
   login: async (email: string, password: string) => {
     const response = await api.post('/auth/login', { email, password });
-    if (response.data?.access_token) {
-      localStorage.setItem('token', response.data.access_token);
+    const token =
+      response.data?.accessToken ||
+      response.data?.access_token ||
+      response.data?.token;
+    if (token) {
+      localStorage.setItem('token', token);
     }
     return response.data;
   },
 
-  // Đăng ký tài khoản học viên mới
-  register: async (name: string, email: string, password: string, role = 'LEARNER') => {
-    const response = await api.post('/auth/register', { name, email, password, role });
+  // Đăng ký tài khoản học viên mới (Gửi fullName khớp với RegisterDto của Backend)
+  register: async (name: string, email: string, password: string) => {
+    const response = await api.post('/auth/register', {
+      fullName: name,
+      email,
+      password,
+    });
     return response.data;
   },
 
@@ -24,6 +31,7 @@ export const authService = {
     } finally {
       localStorage.removeItem('token');
       localStorage.removeItem('accessToken');
+      localStorage.removeItem('auth-storage');
     }
   },
 
@@ -31,5 +39,5 @@ export const authService = {
   getCurrentUser: async () => {
     const response = await api.get('/auth/status');
     return response.data;
-  }
+  },
 };

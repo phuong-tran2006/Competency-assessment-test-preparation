@@ -1,13 +1,10 @@
 // src/features/home/strings.ts
-// All homepage text lives here. To add English later, export a second object
-// with the same shape and pick one by language.
 
-export const BRAND = "V-ACT Learning"; // TODO: replace with the group's final platform name
+export const BRAND = "V-ACT Learning";
 
-// Routes taken from App.tsx
 export const ROUTES = {
   home: "/",
-  exams: "/courses", // existing exam list page (CourseList)
+  exams: "/courses", // Trang danh sách bộ đề thi
   practice: "/practice", // /practice/:examId (QuizPage)
   login: "/login",
   register: "/register",
@@ -33,10 +30,6 @@ export const STR = {
     ctaSecondary: "Đăng ký miễn phí",
   },
 
-  // Pain points P1-P3 from the proposal. They are marked "to be validated by a
-  // survey", so keep the wording as difficulties, not as statistics.
-
-  // Set available: true only for steps that really work in the deployed demo.
   how: {
     title: "Hướng dẫn",
     soon: "Sắp ra mắt",
@@ -64,7 +57,6 @@ export const STR = {
     ],
   },
 
-  // Official structure of the exam since 2025: 120 questions, 150 minutes.
   structure: {
     title: "Cấu trúc đề đánh giá năng lực",
     summary: "120 câu trắc nghiệm, 150 phút, mỗi câu có 4 lựa chọn.",
@@ -88,18 +80,18 @@ export const STR = {
     items: [
       {
         title: "Toán tư duy",
-        text: "Ôn tập toàn diện kiến thức Toán học theo cấu trúc mới.",
-        link: ROUTES.exams,
+        text: "Ôn tập toàn diện kiến thức Toán học: Giới hạn, Đạo hàm, Tích phân theo cấu trúc mới.",
+        link: "/courses/course-1/lessons/lesson-1",
       },
       {
         title: "Phân tích số liệu & Logic",
-        text: "Rèn luyện kỹ năng suy luận logic và đọc biểu đồ.",
-        link: ROUTES.exams,
+        text: "Rèn luyện kỹ năng suy luận logic, các dạng giới hạn và đọc biểu đồ số liệu.",
+        link: "/courses/course-1/lessons/lesson-2",
       },
       {
-        title: "Tiếng Anh",
-        text: "Hệ thống lại ngữ pháp và từ vựng thường gặp trong đề.",
-        link: ROUTES.exams,
+        title: "Tiếng Anh & Ngôn ngữ",
+        text: "Hệ thống lại ngữ pháp, đọc hiểu và tư duy giải quyết vấn đề trong đề thi V-ACT.",
+        link: "/courses/course-1/lessons/lesson-3",
       },
     ],
   },
@@ -114,7 +106,7 @@ export const STR = {
   },
 
   footer: {
-    project: "Sản phẩm đồ án CO3103, học kỳ 261 (Nhóm 20).",
+    project: "Sản phẩm đồ án CO3103, Học kỳ 261 (Nhóm 20).",
     disclaimer:
       "Nền tảng luyện tập do sinh viên xây dựng, không liên kết chính thức với ĐHQG-HCM hay Trung tâm Khảo thí.",
   },

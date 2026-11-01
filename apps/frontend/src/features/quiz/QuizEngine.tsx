@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useQuizStore } from "../../store/quizStore";
 import { quizService } from "../../services/quiz.service";
@@ -16,10 +16,11 @@ export const QuizEngine = () => {
     resultData,
     currentStep,
     setStep,
+    timeLeft,
+    setTimeLeft,
   } = useQuizStore();
   const { examId } = useParams();
 
-  const [timeLeft, setTimeLeft] = useState(3600);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const questionRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -38,7 +39,11 @@ export const QuizEngine = () => {
 
     try {
       setIsSubmitting(true);
-      const result = await quizService.submitExam(examId, answers);
+      const result = await quizService.submitExam(
+            examId,
+            answers,
+            questions.map((q) => q.id),
+);
       const finalResultData = result.data ? result.data : result;
       setResultData(finalResultData);
       submitQuiz();
@@ -60,7 +65,7 @@ export const QuizEngine = () => {
     }
     const timer = setInterval(() => setTimeLeft((prev) => prev - 1), 1000);
     return () => clearInterval(timer);
-  }, [timeLeft, isReviewMode]);
+  }, [timeLeft, isReviewMode, setTimeLeft]);
 
   const formatTime = (seconds: number) => {
     const m = Math.floor(seconds / 60)
@@ -80,24 +85,6 @@ export const QuizEngine = () => {
 
   const answeredCount = Object.keys(answers).length;
 
-  const getSectionTitles = (index: number) => {
-    const titles = [];
-    if (index === 0) {
-      titles.push({ type: "main", text: "PHẦN 1: SỬ DỤNG NGÔN NGỮ" });
-      titles.push({ type: "sub", text: "1.1. TIẾNG VIỆT" });
-    } else if (index === 30) {
-      titles.push({ type: "sub", text: "1.2. TIẾNG ANH" });
-    } else if (index === 60) {
-      titles.push({ type: "main", text: "PHẦN 2: TOÁN HỌC" });
-    } else if (index === 90) {
-      titles.push({ type: "main", text: "PHẦN 3: TƯ DUY KHOA HỌC" });
-      titles.push({ type: "sub", text: "3.1. LOGIC, PHÂN TÍCH SỐ LIỆU" });
-    } else if (index === 102) {
-      titles.push({ type: "sub", text: "3.2. SUY LUẬN KHOA HỌC" });
-    }
-    return titles;
-  };
-
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
       if (currentStep === "playing") {
@@ -114,12 +101,10 @@ export const QuizEngine = () => {
       {/* CỘT TRÁI */}
       <div className="flex-1 space-y-6 lg:max-h-[calc(100vh-40px)] lg:overflow-y-auto pr-2">
         <h1 className="text-center text-xl font-black text-amber-600 uppercase tracking-wide py-3 bg-amber-50 rounded-xl border border-amber-200">
-          ĐỀ LUYỆN THI ĐGNL 2026 V-ACT – ĐỀ 1
+          PHÒNG THI & LUYỆN TẬP ĐÁNH GIÁ NĂNG LỰC V-ACT
         </h1>
 
         {questions.map((q, idx) => {
-          const sectionTitles = getSectionTitles(idx);
-
           const questionDetail = resultData?.details?.find(
             (d: any) => String(d.questionId) === String(q.id),
           );
@@ -133,7 +118,6 @@ export const QuizEngine = () => {
               opt.isCorrect === 1,
           );
 
-          // Bắt buộc phải có selectedOptionId mới chấm là ĐÚNG
           const isUserCorrect =
             !!selectedOptionId &&
             ((correctOption &&
@@ -145,19 +129,6 @@ export const QuizEngine = () => {
 
           return (
             <div key={q.id}>
-              {sectionTitles.map((title, i) => (
-                <h2
-                  key={i}
-                  className={
-                    title.type === "main"
-                      ? "text-xl font-black text-blue-800 mt-8 mb-4 border-b-2 border-blue-800 pb-2 uppercase tracking-wide"
-                      : "text-lg font-bold text-gray-700 mt-4 mb-4"
-                  }
-                >
-                  {title.text}
-                </h2>
-              ))}
-
               <div
                 ref={(el) => {
                   questionRefs.current[idx] = el;
@@ -233,7 +204,6 @@ export const QuizEngine = () => {
                   })}
                 </div>
 
-                {/* KHỐI HIỂN THỊ TRẠNG THÁI & GIẢI THÍCH (LUÔN HIỆN KHI XEM LẠI) */}
                 {isReviewMode && (
                   <div
                     className={`mt-4 p-4 rounded-lg text-sm border ${
@@ -314,7 +284,6 @@ export const QuizEngine = () => {
               {questions.map((q, idx) => {
                 const isAnswered = !!answers[q.id];
                 const isReviewed = !!reviewList[q.id];
-                const sectionTitles = getSectionTitles(idx);
 
                 let btnStyle =
                   "w-full aspect-square rounded-full flex items-center justify-center font-bold text-sm border transition-all ";
@@ -343,9 +312,9 @@ export const QuizEngine = () => {
                       ));
 
                   if (isUserCorrect) {
-                    btnStyle += "bg-green-500 border-green-500 text-white"; // ĐÚNG
+                    btnStyle += "bg-green-500 border-green-500 text-white";
                   } else {
-                    btnStyle += "bg-red-500 border-red-500 text-white"; // SAI HOẶC BỎ TRỐNG
+                    btnStyle += "bg-red-500 border-red-500 text-white";
                   }
                 } else {
                   if (isReviewed)
@@ -358,27 +327,13 @@ export const QuizEngine = () => {
                 }
 
                 return (
-                  <React.Fragment key={`nav-${q.id}`}>
-                    {sectionTitles.map((title, i) => (
-                      <div
-                        key={`title-${idx}-${i}`}
-                        className={`col-span-5 text-left border-b pb-1 ${
-                          title.type === "main"
-                            ? "mt-4 mb-1 text-[11px] font-bold text-blue-700 uppercase border-blue-200"
-                            : "mt-2 mb-1 text-[10px] font-bold text-gray-500 border-gray-100"
-                        }`}
-                      >
-                        {title.text}
-                      </div>
-                    ))}
-
-                    <button
-                      onClick={() => handleScrollToQuestion(idx)}
-                      className={btnStyle}
-                    >
-                      {idx + 1}
-                    </button>
-                  </React.Fragment>
+                  <button
+                    key={`nav-${q.id}`}
+                    onClick={() => handleScrollToQuestion(idx)}
+                    className={btnStyle}
+                  >
+                    {idx + 1}
+                  </button>
                 );
               })}
             </div>

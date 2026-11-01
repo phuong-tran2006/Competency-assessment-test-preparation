@@ -1,35 +1,71 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-interface User {
-  id?: string | number;
-  name: string;
+export interface User {
+  id: string;
   email: string;
-  role: 'STUDENT' | 'INSTRUCTOR' | 'ADMIN';
+  name?: string;
+  fullName?: string;
+  role?: string;
 }
 
 interface AuthState {
   user: User | null;
   token: string | null;
   isAuthenticated: boolean;
-  setAuth: (user: User, token: string) => void;
+  setAuth: (userData: User, token: string) => void;
+  login: (userData: User, token: string) => void;
   logout: () => void;
 }
 
 export const useAuthStore = create<AuthState>()(
   persist(
-    (set) => ({
-      user: null,
-      token: null,
-      isAuthenticated: false,
-      
-      // Hàm này sẽ thay thế cho việc bạn tự gọi localStorage
-      setAuth: (user, token) => set({ user, token, isAuthenticated: true }),
-      
-      logout: () => set({ user: null, token: null, isAuthenticated: false }),
-    }),
+    (set) => {
+      const saveSession = (userData: User, token: string) => {
+        localStorage.setItem('token', token);
+        localStorage.setItem('accessToken', token);
+        const normalizedUser: User = {
+          ...userData,
+          name: userData.name || userData.fullName || userData.email,
+        };
+        set({
+          user: normalizedUser,
+          token,
+          isAuthenticated: true,
+        });
+      };
+
+      return {
+        user: null,
+        token: null,
+        isAuthenticated: false,
+
+        setAuth: saveSession,
+        login: saveSession,
+
+        logout: () => {
+          localStorage.removeItem('token');
+          localStorage.removeItem('accessToken');
+          localStorage.removeItem('auth-storage');
+          set({
+            user: null,
+            token: null,
+            isAuthenticated: false,
+          });
+        },
+      };
+    },
     {
-      name: 'auth-storage', // Tự động lưu vào localStorage để không bị mất khi F5
-    }
-  )
+      name: 'auth-storage',
+      onRehydrateStorage: () => (state) => {
+        const storedToken =
+          localStorage.getItem('token') || localStorage.getItem('accessToken');
+        if (state && (!storedToken || !state.token)) {
+          state.user = null;
+          state.token = null;
+          state.isAuthenticated = false;
+        }
+      },
+    },
+  ),
 );

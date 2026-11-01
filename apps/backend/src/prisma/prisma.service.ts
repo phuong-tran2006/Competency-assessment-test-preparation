@@ -13,7 +13,7 @@ export class PrismaService
       connectionString: process.env.DATABASE_URL,
     });
     const adapter = new PrismaPg(pool);
-    super();
+    super({ adapter });
   }
 
   async onModuleInit() {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useAuthStore } from "../../store/authStore";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -25,7 +25,7 @@ export const AdminDashboard = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   // BASE_URL của NestJS backend
-  const API_URL = "http://localhost:3000/users";
+  const API_URL = "http://localhost:3000/api/users";
 
   // --- LOGIC GỌI API ---
 
