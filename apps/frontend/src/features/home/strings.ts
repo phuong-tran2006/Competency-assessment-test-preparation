@@ -7,7 +7,8 @@ export const BRAND = "V-ACT Learning"; // TODO: replace with the group's final p
 // Routes taken from App.tsx
 export const ROUTES = {
   home: "/",
-  exams: "/courses", // existing exam list page (CourseList)
+  courses: "/courses",
+  exams: "/exams", // Phòng thi thử (ExamList) — trước đây trỏ nhầm sang /courses
   practice: "/practice", // /practice/:examId (QuizPage)
   login: "/login",
   register: "/register",
