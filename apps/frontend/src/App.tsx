@@ -1,29 +1,59 @@
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import { QuizEngine } from './features/quiz/QuizEngine';
-
-const Home = () => (
-  <div className="p-10 text-center">
-    <h1 className="text-3xl font-bold mb-6 text-blue-700">Nền Tảng Luyện Thi ĐGNL</h1>
-    <div className="space-x-4">
-      <Link to="/courses" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Khóa học</Link>
-      <Link to="/practice/exam-1" className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">Vào thi thử</Link>
-    </div>
-  </div>
-);
-
-const CourseList = () => <div className="p-10 text-xl font-semibold">Trang Danh sách khóa học</div>;
-const LessonPlayer = () => <div className="p-10 text-xl font-semibold">Giao diện bài học (Video/Tài liệu)</div>;
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Login } from "./features/auth/Login";
+import { Register } from "./features/auth/Register";
+import { CourseList } from "./features/courses/CourseList";
+import { QuizPage } from "./features/quiz/QuizPage";
+import { CreateExamPage } from "./features/admin/CreateExamPage";
+import { AdminDashboard } from "./features/admin/AdminDashboard";
+import { HomePage } from "./features/home/HomePage";
+import { UserProfile } from "./features/profile/UserProfile";
+import { ProtectedRoute } from "./features/auth/ProtectedRoute";
+import { InstructorDashboard } from "./features/instructor/InstructorDashboard";
+import { ExamList } from "./features/attempts/ExamList";
+import { ResultPage } from "./features/attempts/ResultPage";
+import { HistoryPage } from "./features/attempts/HistoryPage";
+import { Toaster } from "./components/Toaster";
+import { ConfirmDialog } from "./components/ConfirmDialog";
 
 function App() {
   return (
     <BrowserRouter>
+      {/* Thông báo nổi và hộp xác nhận dùng chung cho toàn ứng dụng */}
+      <Toaster />
+      <ConfirmDialog />
+
       <Routes>
-        <Route path="/" element={<Home />} />
+        {/* 1. Nhóm trang Public (Ai cũng có thể truy cập) */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/courses" element={<CourseList />} />
-        <Route path="/courses/:courseId/lessons/:lessonId" element={<LessonPlayer />} />
-        
-        {/* Đã thay đổi dòng này để render QuizEngine thật */}
-        <Route path="/practice/:examId" element={<QuizEngine />} />
+        <Route path="/exams" element={<ExamList />} />
+
+        {/* 2. Nhóm trang dành cho HỌC VIÊN (LEARNER) */}
+        <Route element={<ProtectedRoute allowedRoles={["LEARNER"]} />}>
+          <Route path="/profile" element={<UserProfile />} />
+          <Route path="/practice/:examId" element={<QuizPage />} />
+          <Route path="/results/:attemptId" element={<ResultPage />} />
+          <Route path="/history" element={<HistoryPage />} />
+        </Route>
+
+
+        {/* 3. Nhóm trang dành cho GIẢNG VIÊN (INSTRUCTOR) */}
+        <Route element={<ProtectedRoute allowedRoles={["INSTRUCTOR"]} />}>
+          <Route path="/instructor" element={<InstructorDashboard />} />
+          {/* Nếu sau này giảng viên có thêm trang tạo đề thi riêng, bạn đưa vào đây */}
+        </Route>
+
+        {/* 4. Nhóm trang dành cho QUẢN TRỊ VIÊN (ADMIN) */}
+        <Route element={<ProtectedRoute allowedRoles={["ADMIN"]} />}>
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/create-exam" element={<CreateExamPage />} />
+        </Route>
+
+        {/* Catch-all: đường dẫn lạ về trang chủ, không đá về /login
+            (đá về /login khiến người đã đăng nhập tưởng bị đăng xuất) */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   );

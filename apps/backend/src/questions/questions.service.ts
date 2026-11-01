@@ -148,60 +148,20 @@ export class QuestionsService {
     return { message: 'Đã xóa câu hỏi' };
   }
 
-  /**
-   * Kiểm tra số lượng option đúng theo từng type:
-   *  - MULTIPLE_CHOICE: đúng 1 đáp án đúng
-   *  - MULTI_SELECT: >= 1 đáp án đúng
-   *  - TRUE_FALSE: đúng 2 option, 1 đúng 1 sai
-   *  - FILL_IN_THE_BLANK: >= 1 đáp án đúng (các đáp án chấp nhận)
-   */
   private validateOptions(
     type: QuestionType,
     options: Array<{ content: string; isCorrect: boolean }>,
   ) {
     const correctCount = options.filter((o) => o.isCorrect).length;
 
-    switch (type) {
-      case QuestionType.MULTIPLE_CHOICE:
-        if (correctCount !== 1) {
-          throw new BadRequestException(
-            `MULTIPLE_CHOICE yêu cầu đúng 1 đáp án đúng, hiện có ${correctCount}`,
-          );
-        }
-        if (options.length < 2) {
-          throw new BadRequestException('Cần ít nhất 2 lựa chọn');
-        }
-        break;
+    if (options.length < 2) {
+      throw new BadRequestException('Cần ít nhất 2 lựa chọn');
+    }
 
-      case QuestionType.MULTI_SELECT:
-        if (correctCount < 1) {
-          throw new BadRequestException(
-            'MULTI_SELECT cần ít nhất 1 đáp án đúng',
-          );
-        }
-        if (options.length < 2) {
-          throw new BadRequestException('Cần ít nhất 2 lựa chọn');
-        }
-        break;
-
-      case QuestionType.TRUE_FALSE:
-        if (options.length !== 2) {
-          throw new BadRequestException('TRUE_FALSE yêu cầu đúng 2 lựa chọn');
-        }
-        if (correctCount !== 1) {
-          throw new BadRequestException(
-            'TRUE_FALSE yêu cầu đúng 1 đáp án đúng',
-          );
-        }
-        break;
-
-      case QuestionType.FILL_IN_THE_BLANK:
-        if (correctCount < 1) {
-          throw new BadRequestException(
-            'FILL_IN_THE_BLANK cần ít nhất 1 đáp án chấp nhận',
-          );
-        }
-        break;
+    if (correctCount !== 1) {
+      throw new BadRequestException(
+        `${type} yêu cầu đúng 1 đáp án đúng, hiện có ${correctCount}`,
+      );
     }
   }
 }

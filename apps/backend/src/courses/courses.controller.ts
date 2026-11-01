@@ -25,23 +25,50 @@ export class CoursesController {
 
   // ===== Public =====
   @Get()
-  findAll(
-    @Query('search') search?: string,
-    @Query('status') status?: CourseStatus,
-    @Query('page') page?: string,
-    @Query('limit') limit?: string,
-  ) {
-    return this.courses.findAll({
-      search,
-      status,
-      page: page ? parseInt(page, 10) : undefined,
-      limit: limit ? parseInt(limit, 10) : undefined,
-    });
+  findAll(@Query() query: any, @Req() req: any) {
+    return this.courses.findAll(query, req.user);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.courses.findOne(id);
+  findOne(@Param('id') id: string, @Req() req: any) {
+    return this.courses.findOne(id, req.user);
+  }
+
+  @Get(':id/lessons')
+  getLessons(@Param('id') courseId: string) {
+    return this.courses.findLessonsByCourse(courseId);
+  }
+
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles(Role.INSTRUCTOR, Role.ADMIN)
+  @Post(':id/prerequisites')
+  addPrerequisite(
+    @Param('id') id: string,
+    @Body('prerequisiteId') prereqId: string,
+    @Req() req: any,
+  ) {
+    return this.courses.addPrerequisite(
+      id,
+      prereqId,
+      req.user.id,
+      req.user.role,
+    );
+  }
+
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles(Role.INSTRUCTOR, Role.ADMIN)
+  @Delete(':id/prerequisites/:prerequisiteId')
+  removePrerequisite(
+    @Param('id') id: string,
+    @Param('prerequisiteId') prereqId: string,
+    @Req() req: any,
+  ) {
+    return this.courses.removePrerequisite(
+      id,
+      prereqId,
+      req.user.id,
+      req.user.role,
+    );
   }
 
   // ===== Instructor / Admin =====

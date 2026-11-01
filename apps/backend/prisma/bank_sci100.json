@@ -1,0 +1,1402 @@
+[
+ {
+  "n": 1,
+  "content": "Dãy số 3, 8, 15, 24, 35, ... tuân theo quy luật nào? Số tiếp theo là bao nhiêu?",
+  "options": [
+   "44",
+   "46",
+   "48",
+   "50"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 2
+ },
+ {
+  "n": 2,
+  "content": "Một nhóm có 5 người A, B, C, D, E. A cao điểm hơn B; C thấp điểm hơn B; D cao điểm hơn A; E thấp điểm hơn",
+  "options": [
+   "A",
+   "B C. C",
+   "Ai có điểm cao nhất?",
+   "D"
+  ],
+  "correctLetter": "D",
+  "correct": 3,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 2
+ },
+ {
+  "n": 3,
+  "content": "Mọi mẫu thuộc lô X đều được kiểm tra. Mẫu M thuộc lô X. Kết luận nào chắc chắn đúng?",
+  "options": [
+   "Mẫu M đã được kiểm tra.",
+   "Mẫu M chắc chắn đạt chuẩn.",
+   "Mẫu M chắc chắn bị loại.",
+   "Mẫu M thuộc lô khác."
+  ],
+  "correctLetter": "A",
+  "correct": 0,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 2
+ },
+ {
+  "n": 4,
+  "content": "Trong lịch trực, An trực trước Bình; Chi trực sau Bình; Dũng trực trước An. Ai trực sớm nhất trong bốn người?",
+  "options": [
+   "An",
+   "Bình",
+   "Chi",
+   "Dũng"
+  ],
+  "correctLetter": "D",
+  "correct": 3,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 2
+ },
+ {
+  "n": 5,
+  "content": "Một cửa hàng ghi nhận số sản phẩm bán ra trong 4 ngày: 18, 24, 21, 27. Mức tăng trung bình mỗi ngày từ ngày thứ nhất đến ngày thứ tư là bao nhiêu sản phẩm/ngày?",
+  "options": [
+   "2",
+   "3",
+   "4",
+   "9"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 2
+ },
+ {
+  "n": 6,
+  "content": "Nếu mệnh đề “Nếu hệ thống mất điện thì máy chủ ngừng hoạt động” đúng, và máy chủ vẫn hoạt động, suy luận nào hợp lệ?",
+  "options": [
+   "Hệ thống chắc chắn mất điện.",
+   "Hệ thống không mất điện.",
+   "Máy chủ hoạt động vì hệ thống mất điện.",
+   "Không thể suy ra điều gì."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 2
+ },
+ {
+  "n": 7,
+  "content": "Có 4 hộp được đánh số 1 đến 4. Hộp đỏ không ở vị trí 1; hộp xanh đứng ngay bên trái hộp vàng; hộp vàng ở vị trí 4. Hộp xanh ở vị trí nào?",
+  "options": [
+   "1",
+   "2",
+   "3",
+   "Không xác định"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 2
+ },
+ {
+  "n": 8,
+  "content": "Bảng số liệu: nhóm A có 40 người, 30 người hoàn thành; nhóm B có 50 người, 35 người hoàn thành. Tỷ lệ hoàn thành của nhóm nào cao hơn?",
+  "options": [
+   "Nhóm A",
+   "Nhóm B",
+   "Hai nhóm bằng nhau",
+   "Không thể so sánh"
+  ],
+  "correctLetter": "A",
+  "correct": 0,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 2
+ },
+ {
+  "n": 9,
+  "content": "Một mã gồm hai chữ số khác nhau, chọn từ các chữ số 1, 2, 3, 4. Có bao nhiêu mã nếu chữ số đầu tiên phải lớn hơn chữ số thứ hai?",
+  "options": [
+   "4",
+   "5",
+   "6",
+   "8"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 2
+ },
+ {
+  "n": 10,
+  "content": "Trong một tổ chức có hai nhóm tách biệt: mọi thành viên nhóm nghiên cứu đều biết thống kê; một số thành viên nhóm kỹ thuật biết thống kê và thành thạo lập trình. Kết luận nào chắc chắn đúng?",
+  "options": [
+   "Mọi nhà nghiên cứu đều lập trình thành thạo.",
+   "Một số nhà nghiên cứu lập trình thành thạo.",
+   "Không thể kết luận có nhà nghiên cứu nào lập trình thành thạo.",
+   "Không ai trong nhóm biết lập trình."
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 2
+ },
+ {
+  "n": 11,
+  "content": "Một quy trình có các bước: P trước Q; R sau Q; S trước P. Thứ tự nào có thể xảy ra?",
+  "options": [
+   "P - S - Q - R",
+   "S - P - Q - R",
+   "Q - P - S - R",
+   "S - Q - R - P"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 2
+ },
+ {
+  "n": 12,
+  "content": "Giá trị trung vị của tập dữ liệu 4, 7, 7, 9, 13, 16, 20 là bao nhiêu?",
+  "options": [
+   "7",
+   "9",
+   "10",
+   "13"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 2
+ },
+ {
+  "n": 13,
+  "content": "Một kết luận được suy ra từ hai tiền đề: “Mọi thiết bị đạt chuẩn đều qua kiểm định”; “Thiết bị M không qua kiểm định”. Kết luận hợp lệ là gì?",
+  "options": [
+   "M đạt chuẩn.",
+   "M không đạt chuẩn.",
+   "M chưa từng được sản xuất.",
+   "M chắc chắn bị hỏng."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 2
+ },
+ {
+  "n": 14,
+  "content": "Trong một cuộc khảo sát, 60% chọn phương án A, 50% chọn B và 20% chọn cả A lẫn",
+  "options": [
+   "70% B. 80%",
+   "Tỷ lệ chọn ít nhất một trong hai phương án là bao nhiêu?",
+   "90%",
+   "110% Suy luận khoa học - Đọc dữ kiện và đánh giá giả thuyết"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 2
+ },
+ {
+  "n": 15,
+  "content": "Một học sinh đặt giả thuyết “cây phát triển nhanh hơn khi được chiếu sáng lâu hơn”. Muốn kiểm tra giả thuyết, phương án nào phù hợp nhất?",
+  "options": [
+   "Dùng các cây khác loài, đặt ở đất khác nhau và chiếu sáng tùy ý.",
+   "Dùng cây cùng loài, kiểm soát nước/đất/nhiệt độ và thay đổi thời gian chiếu sáng.",
+   "Chỉ quan sát một cây trong một ngày.",
+   "Bón nhiều phân hơn cho nhóm được chiếu sáng lâu."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 2
+ },
+ {
+  "n": 16,
+  "content": "Một loại thuốc được thử trên 20 tình nguyện viên và 18 người báo cáo cải thiện. Kết luận nào thận trọng nhất?",
+  "options": [
+   "Thuốc chắc chắn chữa khỏi bệnh cho mọi người.",
+   "Kết quả ban đầu đáng chú ý nhưng cần nhóm đối chứng và mẫu lớn hơn.",
+   "Thuốc không có tác dụng.",
+   "Tác dụng chắc chắn do thuốc vì 18 người cải thiện."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 2
+ },
+ {
+  "n": 17,
+  "content": "Nhiệt độ nước tăng từ 20°C lên 30°C trong khi lượng oxy hòa tan giảm. Phát biểu nào mô tả đúng dữ liệu?",
+  "options": [
+   "Hai biến tăng cùng chiều.",
+   "Hai biến có xu hướng biến thiên ngược chiều trong khoảng quan sát.",
+   "Nhiệt độ không liên quan đến oxy.",
+   "Oxy tăng 10 đơn vị."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 2
+ },
+ {
+  "n": 18,
+  "content": "Một khảo sát cho thấy học sinh ngủ đủ giấc thường đạt điểm cao hơn. Điều gì chưa thể kết luận?",
+  "options": [
+   "Hai biến có liên hệ trong mẫu khảo sát.",
+   "Ngủ đủ giấc có thể liên quan tới kết quả học tập.",
+   "Ngủ đủ giấc là nguyên nhân duy nhất làm điểm tăng.",
+   "Cần xem xét yếu tố khác như thời gian học và sức khỏe."
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 2
+ },
+ {
+  "n": 19,
+  "content": "Trong thí nghiệm kiểm tra tác dụng của phân bón, nhóm đối chứng nên được xử lý thế nào?",
+  "options": [
+   "Không nhận phân bón thử nghiệm nhưng các điều kiện khác tương đương.",
+   "Không được tưới nước.",
+   "Được nhận gấp đôi lượng phân.",
+   "Được đặt trong bóng tối hoàn toàn."
+  ],
+  "correctLetter": "A",
+  "correct": 0,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 2
+ },
+ {
+  "n": 20,
+  "content": "Một cảm biến đo độ ẩm luôn cao hơn giá trị chuẩn 4 điểm phần trăm. Sai lệch này chủ yếu là loại nào?",
+  "options": [
+   "Sai số ngẫu nhiên quanh giá trị thật.",
+   "Sai số hệ thống.",
+   "Sai số do chọn mẫu.",
+   "Không có sai số."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 2
+ },
+ {
+  "n": 21,
+  "content": "Một nghiên cứu chỉ chọn người dùng mạng xã hội để khảo sát thời gian sử dụng điện thoại. Hạn chế chính là gì?",
+  "options": [
+   "Mẫu quá đa dạng.",
+   "Sai lệch chọn mẫu, khó đại diện cho toàn bộ dân số.",
+   "Không thể ghi nhận thời gian.",
+   "Không có biến cần đo."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 2
+ },
+ {
+  "n": 22,
+  "content": "Khi một giả thuyết dự đoán kết quả A nhưng thí nghiệm lặp lại cho kết quả B, nhà nghiên cứu nên làm gì?",
+  "options": [
+   "Che giấu kết quả",
+   "B. Kiểm tra quy trình, dữ liệu và điều chỉnh hoặc bác bỏ giả thuyết khi cần.",
+   "Giữ giả thuyết vì đã công bố.",
+   "Chọn riêng lần thử cho kết quả A."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 2
+ },
+ {
+  "n": 23,
+  "content": "Một mẫu nước có pH = 5,2, mẫu khác pH = 7,0. Nhận định nào đúng?",
+  "options": [
+   "Mẫu thứ nhất có tính axit hơn.",
+   "Mẫu thứ hai có tính axit mạnh hơn.",
+   "Hai mẫu có độ axit giống nhau.",
+   "pH càng cao thì càng axit."
+  ],
+  "correctLetter": "A",
+  "correct": 0,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 2
+ },
+ {
+  "n": 24,
+  "content": "Một nhóm nghiên cứu báo cáo “tăng 50%” nhưng không nêu mức ban đầu. Vì sao thông tin này chưa đủ?",
+  "options": [
+   "Phần trăm không bao giờ có ý nghĩa.",
+   "Không biết giá trị nền nên khó đánh giá mức tăng tuyệt đối và quy mô thực tế.",
+   "Không thể tính phần trăm.",
+   "Mức tăng 50% luôn rất nhỏ."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 2
+ },
+ {
+  "n": 25,
+  "content": "Một bệnh lây qua tiếp xúc gần. Biện pháp nào trực tiếp làm giảm cơ hội truyền bệnh theo cơ chế đã nêu?",
+  "options": [
+   "Tăng tiếp xúc trong không gian kín.",
+   "Giảm tiếp xúc gần và cải thiện thông khí.",
+   "Dùng chung vật dụng cá nhân.",
+   "Tăng mật độ tập trung."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 2
+ },
+ {
+  "n": 26,
+  "content": "Một nhóm đo chiều cao cây mỗi tuần nhưng dùng thước có vạch chia 1 cm. Hạn chế đo lường chủ yếu là gì?",
+  "options": [
+   "Không thể đo cây.",
+   "Độ phân giải của phép đo giới hạn mức độ chi tiết có thể ghi nhận.",
+   "Thước luôn tạo sai số hệ thống 1 cm.",
+   "Mọi cây đều cao bằng nhau."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 2
+ },
+ {
+  "n": 27,
+  "content": "Trong chuỗi thức ăn cỏ → châu chấu → ếch → rắn, nếu số lượng ếch giảm mạnh, tác động trực tiếp có khả năng xảy ra là gì?",
+  "options": [
+   "Châu chấu giảm ngay lập tức.",
+   "Châu chấu có thể tăng do ít bị ếch ăn.",
+   "Cỏ chắc chắn biến mất.",
+   "Rắn không bị ảnh hưởng."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 2
+ },
+ {
+  "n": 28,
+  "content": "Một bài báo nói rằng “phát hiện mới chứng minh hoàn toàn giả thuyết” nhưng chỉ thử nghiệm một lần với 5 mẫu. Điểm yếu rõ nhất là gì?",
+  "options": [
+   "Không có tiêu đề.",
+   "Bằng chứng quá hạn chế so với mức độ khẳng định.",
+   "Số mẫu luôn phải đúng 5.",
+   "Thí nghiệm không cần lặp lại."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 2
+ },
+ {
+  "n": 29,
+  "content": "Để so sánh hiệu quả hai loại pin, điều kiện nào cần được giữ giống nhau?",
+  "options": [
+   "Chỉ tên nhà sản xuất.",
+   "Thiết bị sử dụng, mức tải, nhiệt độ và quy trình sạc/xả.",
+   "Màu sắc vỏ pin.",
+   "Ngày mua pin."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 2
+ },
+ {
+  "n": 30,
+  "content": "Một loại vi khuẩn phát triển tốt ở 37°C nhưng giảm mạnh ở 60°C. Dữ kiện này cho thấy điều gì?",
+  "options": [
+   "Nhiệt độ không ảnh hưởng đến sinh trưởng.",
+   "Sinh trưởng phụ thuộc điều kiện môi trường và có thể giảm ngoài khoảng tối ưu.",
+   "Vi khuẩn luôn phát triển nhanh hơn khi nóng hơn.",
+   "60°C là nhiệt độ tối ưu."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 2
+ },
+ {
+  "n": 31,
+  "content": "Một nghiên cứu về tác động của âm nhạc đến khả năng tập trung cho hai nhóm làm bài trong phòng có độ ồn khác nhau. Biến gây nhiễu là gì?",
+  "options": [
+   "Âm nhạc.",
+   "Độ ồn môi trường khác nhau giữa hai nhóm.",
+   "Điểm bài kiểm tra.",
+   "Số câu hỏi."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 2
+ },
+ {
+  "n": 32,
+  "content": "Nếu một kết quả chỉ xuất hiện ở một phòng thí nghiệm, khả năng khái quát sẽ tăng lên như thế nào khi có các nhóm độc lập lặp lại nghiên cứu?",
+  "options": [
+   "Giảm vì dữ liệu nhiều hơn.",
+   "Tăng nếu kết quả nhất quán trong các điều kiện và nhóm khác nhau.",
+   "Không thay đổi trong mọi trường hợp.",
+   "Bị bác bỏ tự động."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 2
+ },
+ {
+  "n": 33,
+  "content": "Một phép đo khối lượng được ghi là 12,0 g. Số chữ số có nghĩa cho biết gì?",
+  "options": [
+   "Khối lượng chính xác tuyệt đối.",
+   "Mức độ chính xác/độ phân giải được thể hiện trong cách ghi kết quả.",
+   "Mẫu có thể tích 12 ml.",
+   "Sai số bằng 0."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 2
+ },
+ {
+  "n": 34,
+  "content": "Trong đánh giá một nguồn tin khoa học, dấu hiệu nào đáng tin cậy nhất?",
+  "options": [
+   "Bài viết có nhiều lượt chia sẻ.",
+   "Phương pháp, dữ liệu và giới hạn nghiên cứu được trình bày minh bạch.",
+   "Tiêu đề gây bất ngờ.",
+   "Tác giả khẳng định không thể sai."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 2
+ },
+ {
+  "n": 35,
+  "content": "Một thành phố trồng cây ở một số tuyến đường rồi ghi nhận nhiệt độ giảm. Muốn khẳng định việc trồng cây gây ra mức giảm đó, cần bổ sung điều gì?",
+  "options": [
+   "Chỉ hỏi ý kiến người dân.",
+   "So sánh với khu vực tương đồng không trồng cây, đồng thời kiểm soát thời tiết và thời điểm đo.",
+   "Đo nhiệt độ duy nhất một lần sau trồng.",
+   "Không cần dữ liệu trước khi trồng. MỨC 2 - VẬN DỤNG CAO (CÂU 36-75) Logic và phân tích dữ liệu - Bài toán nhiều điều kiện"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 2
+ },
+ {
+  "n": 36,
+  "content": "Bảng doanh thu (triệu đồng): Tháng 1: 120; Tháng 2: 150; Tháng 3: 135; Tháng 4: 180. Tỷ lệ tăng từ tháng 1 đến tháng 4 là bao nhiêu?",
+  "options": [
+   "40%",
+   "45%",
+   "50%",
+   "60%"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 37,
+  "content": "Một đội có 6 người, cần chọn 3 người làm ban điều phối. An và Bình không thể cùng tham gia. Có bao nhiêu cách chọn?",
+  "options": [
+   "12",
+   "16",
+   "18",
+   "20"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 38,
+  "content": "Có ba phát biểu P, Q, R: P: “Q đúng”; Q: “R sai”; R: “P sai”. Biết đúng chính xác một phát biểu. Phát biểu nào đúng?",
+  "options": [
+   "P",
+   "Q",
+   "R",
+   "Không xác định"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 39,
+  "content": "Một biểu đồ đường biểu diễn số khách: ngày 1: 80; ngày 2: 100; ngày 3: 90; ngày 4: 120. Phần trăm tăng từ ngày 3 đến ngày 4 là bao nhiêu?",
+  "options": [
+   "25%",
+   "30%",
+   "33,3%",
+   "40%"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 40,
+  "content": "Năm người A, B, C, D, E xếp hàng. A đứng trước C; B đứng sau D; E đứng trước A; C đứng trước",
+  "options": [
+   "Chỉ D",
+   "A, C và D",
+   "E, A, C và D D. Không ai",
+   "Ai chắc chắn đứng trước B?"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 41,
+  "content": "Một lớp có 40 học sinh: 22 học tiếng Anh, 18 học tiếng Nhật, 7 học cả hai. Có bao nhiêu học sinh không học ngôn ngữ nào trong hai ngôn ngữ trên?",
+  "options": [
+   "5",
+   "7",
+   "9",
+   "11"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 42,
+  "content": "Dãy ký hiệu A1, C2, F3, J4, O5, ... có quy luật nào? Ký hiệu tiếp theo là gì?",
+  "options": [
+   "T6",
+   "U6",
+   "V6",
+   "W6"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 43,
+  "content": "Một cửa hàng giảm giá 20% rồi tăng giá sau giảm 20%. Giá cuối so với giá ban đầu như thế nào?",
+  "options": [
+   "Bằng giá ban đầu",
+   "Cao hơn 4%",
+   "Thấp hơn 4%",
+   "Thấp hơn 2%"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 44,
+  "content": "Trong khảo sát, 48% chọn A, 42% chọn B, 30% chọn C; 18% chọn cả A và B, 12% chọn cả A và C, 10% chọn cả B và C, 5% chọn cả ba. Tỷ lệ chọn ít nhất một phương án là bao nhiêu?",
+  "options": [
+   "75%",
+   "80%",
+   "85%",
+   "90%"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 45,
+  "content": "Một phép thử có 3 kết quả X, Y, Z với xác suất lần lượt 0,2; 0,5; 0,3. Nếu thực hiện độc lập hai lần, xác suất cả hai lần đều không ra Y là bao nhiêu?",
+  "options": [
+   "0,16",
+   "0,25",
+   "0,40",
+   "0,64"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 46,
+  "content": "Bảng tỷ lệ lỗi: Dây chuyền A sản xuất 1.000 sản phẩm, lỗi 2%; B sản xuất 2.000 sản phẩm, lỗi 3%. Tổng số sản phẩm lỗi là bao nhiêu?",
+  "options": [
+   "60",
+   "70",
+   "80",
+   "90"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 47,
+  "content": "Nếu “chỉ khi có giấy phép thì phòng thí nghiệm mới được vận hành”, điều kiện nào là cần thiết để phòng thí nghiệm vận hành?",
+  "options": [
+   "Có giấy phép.",
+   "Có nhiều nhân viên.",
+   "Có thiết bị mới.",
+   "Có khách tham quan."
+  ],
+  "correctLetter": "A",
+  "correct": 0,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 48,
+  "content": "Một sản phẩm đi qua 3 công đoạn với tỷ lệ đạt lần lượt 90%, 80%, 95%. Giả sử các tỷ lệ độc lập, tỷ lệ sản phẩm đạt cả ba công đoạn là bao nhiêu?",
+  "options": [
+   "65,4%",
+   "68,4%",
+   "70,0%",
+   "72,5%"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 49,
+  "content": "Có 4 bài thuyết trình P, Q, R, S. P phải trước R; Q không được đứng đầu; S phải đứng ngay sau P. Thứ tự nào hợp lệ?",
+  "options": [
+   "P-S-Q-R",
+   "Q-P-S-R",
+   "S-P-Q-R",
+   "P-R-S-Q"
+  ],
+  "correctLetter": "A",
+  "correct": 0,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 50,
+  "content": "Giá trị trung bình của 5 số là 18. Khi bỏ số lớn nhất là 30, trung bình của 4 số còn lại là bao nhiêu?",
+  "options": [
+   "14",
+   "15",
+   "16",
+   "17"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 51,
+  "content": "Một nhóm khảo sát 100 người: 60 người đi xe buýt, 45 người đi xe máy, 20 người sử dụng cả hai phương tiện trong các ngày khác nhau. Số người không sử dụng phương tiện nào trong hai loại là bao nhiêu?",
+  "options": [
+   "5",
+   "10",
+   "15",
+   "20 Suy luận khoa học - Thiết kế nghiên cứu và diễn giải dữ liệu"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 52,
+  "content": "Một thử nghiệm đánh giá ứng dụng học từ vựng: nhóm dùng ứng dụng học 20 phút/ngày, nhóm đối chứng học bằng thẻ giấy 20 phút/ngày. Cả hai nhóm làm cùng bài kiểm tra trước và sau 4 tuần. Thiết kế này chủ yếu giúp kiểm soát yếu tố nào?",
+  "options": [
+   "Thời lượng học giữa hai nhóm.",
+   "Độ tuổi của toàn bộ dân số.",
+   "Mức độ yêu thích mọi môn học.",
+   "Khả năng ghi nhớ suốt đời."
+  ],
+  "correctLetter": "A",
+  "correct": 0,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 53,
+  "content": "Một nghiên cứu quan sát thấy người uống cà phê có tỷ lệ mắc bệnh X thấp hơn. Nhóm uống cà phê cũng có thu nhập trung bình cao hơn. Thu nhập có thể đóng vai trò gì?",
+  "options": [
+   "Biến gây nhiễu.",
+   "Biến phụ thuộc duy nhất.",
+   "Nhóm đối chứng.",
+   "Sai số đo lường tất yếu."
+  ],
+  "correctLetter": "A",
+  "correct": 0,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 54,
+  "content": "Một thí nghiệm đo tác động của nhiệt độ đến tốc độ phản ứng. Khi tăng nhiệt độ, nhà nghiên cứu đồng thời tăng nồng độ chất phản ứng. Vì sao kết luận bị hạn chế?",
+  "options": [
+   "Nồng độ không ảnh hưởng phản ứng.",
+   "Không thể tách riêng tác động của nhiệt độ khỏi nồng độ.",
+   "Nhiệt độ không thể đo.",
+   "Hai biến luôn triệt tiêu nhau."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 55,
+  "content": "Một xét nghiệm có độ nhạy 95% nghĩa là gì?",
+  "options": [
+   "95% người khỏe mạnh có kết quả âm tính.",
+   "Trong số người thực sự mắc bệnh, khoảng 95% có kết quả dương tính.",
+   "95% kết quả dương tính chắc chắn là thật.",
+   "Xét nghiệm không có âm tính giả."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 56,
+  "content": "Một xét nghiệm có độ đặc hiệu 98% nghĩa là gì?",
+  "options": [
+   "Trong số người không mắc bệnh, khoảng 98% có kết quả âm tính.",
+   "Trong số người mắc bệnh, 98% có kết quả dương tính.",
+   "98% dân số mắc bệnh.",
+   "Kết quả dương tính luôn chính xác 98%."
+  ],
+  "correctLetter": "A",
+  "correct": 0,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 57,
+  "content": "Một quần thể cá giảm 40% sau khi hồ bị ô nhiễm, nhưng cùng thời gian đó mực nước hồ cũng giảm mạnh. Bước tiếp theo tốt nhất để xác định nguyên nhân là gì?",
+  "options": [
+   "Kết luận ô nhiễm là nguyên nhân duy nhất.",
+   "Thu thập dữ liệu đối chứng ở hồ tương tự và đo cả chất lượng nước lẫn mực nước.",
+   "Bỏ qua mực nước.",
+   "Chỉ hỏi ngư dân một lần."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 58,
+  "content": "Một biểu đồ có trục tung bắt đầu từ 98 thay vì 0, làm chênh lệch 99 và 100 trông rất lớn. Rủi ro là gì?",
+  "options": [
+   "Làm giảm giá trị trung bình.",
+   "Phóng đại trực quan mức độ khác biệt.",
+   "Thay đổi dữ liệu thô.",
+   "Tạo thêm quan sát mới."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 59,
+  "content": "Trong nghiên cứu lâm sàng, phân nhóm ngẫu nhiên có tác dụng chính nào?",
+  "options": [
+   "Bảo đảm mọi người đều khỏi bệnh.",
+   "Giảm nguy cơ các đặc điểm nền khác nhau có hệ thống giữa các nhóm.",
+   "Loại bỏ nhu cầu nhóm đối chứng.",
+   "Làm kết quả luôn có ý nghĩa thống kê."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 60,
+  "content": "Một nghiên cứu có p-value = 0,03. Cách diễn giải nào phù hợp nhất nếu ngưỡng ý nghĩa đặt trước là 0,05?",
+  "options": [
+   "Xác suất giả thuyết không đúng là 3%.",
+   "Nếu giả thuyết không và các giả định mô hình đúng, dữ liệu quan sát được hoặc cực đoan hơn có xác suất 3%.",
+   "Có 97% khả năng kết quả sẽ lặp lại.",
+   "Hiệu ứng chắc chắn lớn và có ý nghĩa thực tiễn."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 61,
+  "content": "Khoảng tin cậy 95% cho mức tăng trung bình là [1,2; 4,8]. Kết luận nào phù hợp ở mức kiểm định hai phía tương ứng?",
+  "options": [
+   "Khoảng tin cậy chứa 0 nên không có bằng chứng.",
+   "Khoảng tin cậy không chứa 0, nên hiệu ứng khác 0 có ý nghĩa thống kê theo mức tương ứng.",
+   "Hiệu ứng chắc chắn bằng 3.",
+   "95% cá thể có mức tăng trong khoảng này."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 62,
+  "content": "Một mẫu khảo sát được lấy từ những người tự nguyện trả lời đường link trên mạng. Rủi ro lớn nhất là gì?",
+  "options": [
+   "Không thể dùng máy tính.",
+   "Thiên lệch tự chọn, người trả lời có thể khác người không trả lời.",
+   "Mẫu chắc chắn lớn hơn dân số.",
+   "Mọi câu trả lời đều sai."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 63,
+  "content": "Một nghiên cứu báo cáo trung bình thời gian đi làm là 35 phút nhưng phân phối có một số ít người mất hơn 3 giờ. Thước đo nào thường bền vững hơn với các giá trị cực đoan?",
+  "options": [
+   "Trung bình cộng",
+   "Trung vị",
+   "Tổng",
+   "Khoảng biến thiên"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 64,
+  "content": "Một nhà nghiên cứu muốn xác định liệu vật liệu A cách nhiệt tốt hơn",
+  "options": [
+   "Đo màu sắc của hai vật liệu. B. Đặt trong cùng điều kiện nhiệt và đo tốc độ truyền nhiệt/độ giảm nhiệt phía bên kia.",
+   "Cách đo phù hợp nhất là gì?",
+   "Hỏi người bán vật liệu.",
+   "So sánh khối lượng riêng mà không xét nhiệt."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 65,
+  "content": "Một giả thuyết khoa học tốt cần có đặc điểm nào?",
+  "options": [
+   "Không thể bị bác bỏ.",
+   "Có thể tạo ra dự đoán kiểm tra được bằng quan sát hoặc thí nghiệm.",
+   "Luôn đúng với mọi trường hợp.",
+   "Chỉ dựa trên niềm tin của nhà nghiên cứu."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 66,
+  "content": "Một kết quả không có ý nghĩa thống kê nhưng ước lượng hiệu ứng khá lớn và khoảng tin cậy rất rộng. Điều này thường gợi ý điều gì?",
+  "options": [
+   "Không có bất kỳ hiệu ứng nào.",
+   "Dữ liệu chưa đủ chính xác; có thể do cỡ mẫu nhỏ hoặc biến thiên lớn.",
+   "Hiệu ứng chắc chắn bằng 0.",
+   "Nghiên cứu đã chứng minh hai nhóm giống hệt nhau."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 67,
+  "content": "Trong mô hình dịch bệnh, số ca mới tăng nhanh nhưng số ca nhập viện chưa tăng. Cách diễn giải thận trọng nhất là gì?",
+  "options": [
+   "Dịch bệnh chắc chắn đã kết thúc.",
+   "Có thể tồn tại độ trễ giữa nhiễm bệnh và nhập viện; cần theo dõi thêm.",
+   "Số ca mới là dữ liệu sai.",
+   "Nhập viện không liên quan bệnh."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 68,
+  "content": "Một nghiên cứu về cây trồng chỉ thực hiện trên một giống ở một vùng khí hậu. Hạn chế về ngoại suy là gì?",
+  "options": [
+   "Không thể đo năng suất.",
+   "Kết quả chưa chắc áp dụng cho giống và vùng khí hậu khác.",
+   "Không có biến phụ thuộc.",
+   "Không cần lặp lại thí nghiệm."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 69,
+  "content": "Hai biến X và Y có tương quan mạnh âm. Phát biểu nào đúng nhất?",
+  "options": [
+   "X tăng thì Y luôn giảm do X gây ra.",
+   "Trong dữ liệu, X cao thường đi kèm Y thấp, nhưng chưa đủ để khẳng định quan hệ nhân quả.",
+   "Y chắc chắn là nguyên nhân của X.",
+   "Không có quan hệ thống kê."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 70,
+  "content": "Một nhà nghiên cứu loại bỏ các điểm dữ liệu bất lợi sau khi xem kết quả mà không nêu tiêu chí trước. Vấn đề chính là gì?",
+  "options": [
+   "Làm dữ liệu dễ đọc hơn.",
+   "Nguy cơ chọn lọc kết quả và làm sai lệch ước lượng.",
+   "Tăng tính tái lập.",
+   "Giảm mọi sai số đo."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 71,
+  "content": "Để đánh giá tính tái lập của một phát hiện, bằng chứng nào mạnh hơn?",
+  "options": [
+   "Tác giả khẳng định phát hiện rất quan trọng.",
+   "Các nhóm độc lập thực hiện theo phương pháp minh bạch và thu được kết quả tương tự.",
+   "Bài báo có nhiều hình minh họa.",
+   "Nghiên cứu chỉ được nhắc lại trên mạng xã hội."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 72,
+  "content": "Một thiết bị được hiệu chuẩn ở 20°C nhưng sử dụng trong môi trường 45°C. Nguy cơ nào cần xem xét?",
+  "options": [
+   "Nhiệt độ không thể ảnh hưởng phép đo.",
+   "Đặc tính cảm biến có thể thay đổi theo nhiệt độ, gây sai lệch.",
+   "Thiết bị tự động chính xác hơn.",
+   "Mọi phép đo đều không hợp lệ."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 73,
+  "content": "Một báo cáo ghi “nguy cơ giảm 50%” nhưng nguy cơ tuyệt đối giảm từ 2/10.000 xuống 1/10.000. Cách trình bày đầy đủ hơn là gì?",
+  "options": [
+   "Chỉ nêu giảm 50%.",
+   "Nêu cả mức giảm tương đối 50% và mức giảm tuyệt đối 1 trường hợp trên 10.000.",
+   "Nói nguy cơ biến mất hoàn toàn.",
+   "Không công bố mẫu số."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 74,
+  "content": "Trong nghiên cứu tác động của một chương trình giáo dục, học sinh tự chọn tham gia thay vì được phân nhóm ngẫu nhiên. Mối đe dọa nào nổi bật?",
+  "options": [
+   "Thiên lệch lựa chọn: người tự chọn có thể vốn đã khác nhóm không tham gia.",
+   "Không thể chấm điểm.",
+   "Không có biến giải thích.",
+   "Mọi tác động đều bằng 0."
+  ],
+  "correctLetter": "A",
+  "correct": 0,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 75,
+  "content": "Một nhóm quan sát thấy loài chim di cư đến sớm hơn trong các năm có mùa xuân ấm hơn. Cần dữ liệu nào để củng cố giả thuyết nhiệt độ góp phần gây ra thay đổi?",
+  "options": [
+   "Chỉ số lượt khách du lịch.",
+   "Chuỗi dữ liệu nhiều năm về nhiệt độ, thời điểm di cư và các yếu tố khác như nguồn thức ăn.",
+   "Màu lông chim trong một ngày.",
+   "Số lượng cây cảnh trong thành phố. MỨC 3 - KHÓ / PHÂN HÓA MẠNH (CÂU 76-100) Logic và phân tích dữ liệu - Phân hóa cao"
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 3
+ },
+ {
+  "n": 76,
+  "content": "Một khảo sát có 3 lựa chọn A, B,",
+  "options": [
+   "0%",
+   "5% C. 10%",
+   "55% chọn A, 50% chọn B, 45% chọn C; 25% chọn cả A và B, 20% cả A và C, 15% cả B và C, 10% chọn cả ba. Tỷ lệ không chọn lựa chọn nào là bao nhiêu?",
+   "15%"
+  ],
+  "correctLetter": "A",
+  "correct": 0,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 4
+ },
+ {
+  "n": 77,
+  "content": "Bốn người P, Q, R, S phát biểu: P: “Q nói dối”; Q: “R nói dối”; R: “S nói dối”; S: “P và Q đều nói dối”. Biết đúng chính xác hai người nói thật. Ai nói thật?",
+  "options": [
+   "P và R",
+   "Q và S",
+   "P và S",
+   "Q và R"
+  ],
+  "correctLetter": "A",
+  "correct": 0,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 4
+ },
+ {
+  "n": 78,
+  "content": "Một nhóm 8 người gồm 5 nữ, 3 nam. Chọn ngẫu nhiên 3 người. Xác suất chọn được ít nhất 1 nam là bao nhiêu?",
+  "options": [
+   "5/28",
+   "18/28",
+   "23/28",
+   "25/28"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 4
+ },
+ {
+  "n": 79,
+  "content": "Một chuỗi có 5 ký tự, mỗi ký tự là 0 hoặc 1. Có bao nhiêu chuỗi chứa đúng hai chữ số 1 và không có hai số 1 đứng cạnh nhau?",
+  "options": [
+   "3",
+   "4",
+   "5",
+   "6"
+  ],
+  "correctLetter": "D",
+  "correct": 3,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 4
+ },
+ {
+  "n": 80,
+  "content": "Một công ty có ba nhà máy A, B,",
+  "options": [
+   "20%",
+   "25% C. 34,5%",
+   "A sản xuất 50% hàng, lỗi 2%; B sản xuất 30%, lỗi 3%; C sản xuất 20%, lỗi 5%. Chọn ngẫu nhiên một sản phẩm bị lỗi. Xác suất sản phẩm đến từ C gần nhất là bao nhiêu?",
+   "40%"
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 4
+ },
+ {
+  "n": 81,
+  "content": "Có 5 báo cáo P, Q, R, S, T cần xếp thành hàng. S phải đứng trước P; P phải đứng ngay trước Q; R phải đứng sau Q; T không được đứng cuối. Thứ tự nào hợp lệ?",
+  "options": [
+   "S-P-Q-T-R",
+   "P-S-Q-R-T",
+   "S-Q-P-T-R",
+   "S-P-Q-R-T"
+  ],
+  "correctLetter": "A",
+  "correct": 0,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 4
+ },
+ {
+  "n": 82,
+  "content": "Trong bảng 2×2, tổng hàng thứ nhất là 18, tổng cột thứ nhất là 17. Ô hàng 1 cột 2 bằng 11. Giá trị ô hàng 2 cột 1 là bao nhiêu?",
+  "options": [
+   "7",
+   "8",
+   "9",
+   "10"
+  ],
+  "correctLetter": "D",
+  "correct": 3,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 4
+ },
+ {
+  "n": 83,
+  "content": "Ba biến cố A, B, C có P(A)=0,6; P(B)=0,5; P(A∩B)=0,35. Biến cố C độc lập với biến cố A B và ∪ P(C)=0,2. Xác suất xảy ra ít nhất một trong A, B, C là bao nhiêu?",
+  "options": [
+   "0,72",
+   "0,76",
+   "0,78",
+   "0,80"
+  ],
+  "correctLetter": "D",
+  "correct": 3,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 4
+ },
+ {
+  "n": 84,
+  "content": "Một phép thử liên tiếp dừng khi xuất hiện hai lần liên tiếp cùng mặt của đồng xu. Với chuỗi kết quả quan sát H-T-H-T-H, kết luận nào đúng?",
+  "options": [
+   "Quy trình đã dừng ở lần 5.",
+   "Quy trình chưa dừng vì chưa có hai kết quả liên tiếp giống nhau.",
+   "Quy trình dừng ở lần 2.",
+   "Không thể xác định."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 4
+ },
+ {
+  "n": 85,
+  "content": "Một báo cáo nói tỷ lệ tăng từ 4% lên 6% là “tăng 2%”. Cách diễn đạt chính xác nhất là gì?",
+  "options": [
+   "Tăng 2 điểm phần trăm, tương đương tăng tương đối 50%.",
+   "Tăng 2 điểm phần trăm, tương đương tăng tương đối 2%.",
+   "Tăng 50 điểm phần trăm.",
+   "Giảm 2 điểm phần trăm. Suy luận khoa học - Phân tích bằng chứng và giới hạn kết luận"
+  ],
+  "correctLetter": "A",
+  "correct": 0,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 4
+ },
+ {
+  "n": 86,
+  "content": "Một thử nghiệm quan sát thấy thuốc làm giảm triệu chứng ở 70% bệnh nhân, trong khi nhóm giả dược giảm ở 60%. Mỗi nhóm có 20 người và không có thông tin về phân nhóm ngẫu nhiên. Kết luận nào hợp lí nhất?",
+  "options": [
+   "Thuốc hiệu quả tuyệt đối và chắc chắn.",
+   "Chênh lệch quan sát là 10 điểm phần trăm nhưng cần mẫu lớn hơn, phân nhóm phù hợp và phân tích bất định.",
+   "Thuốc không có tác dụng vì nhóm giả dược cũng cải thiện.",
+   "Có 70% xác suất thuốc chữa khỏi mọi bệnh nhân."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 4
+ },
+ {
+  "n": 87,
+  "content": "Trong một thử nghiệm, nhóm can thiệp biết mình đang nhận sản phẩm mới còn nhóm đối chứng không biết giả thuyết nghiên cứu. Người đánh giá kết quả cũng biết nhóm nào nhận can thiệp. Nguy cơ nào đáng lưu ý?",
+  "options": [
+   "Thiên lệch người đánh giá và hiệu ứng kỳ vọng.",
+   "Sai lệch do đơn vị đo.",
+   "Không có biến kết quả.",
+   "Mẫu chắc chắn ngẫu nhiên."
+  ],
+  "correctLetter": "A",
+  "correct": 0,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 4
+ },
+ {
+  "n": 88,
+  "content": "Một nghiên cứu báo cáo mối liên hệ giữa thời gian dùng điện thoại và lo âu. Dữ liệu được thu thập tại một thời điểm duy nhất. Hạn chế quan trọng nhất là gì?",
+  "options": [
+   "Không thể tính tương quan.",
+   "Khó xác định trình tự thời gian và chiều nhân quả.",
+   "Không thể có biến gây nhiễu.",
+   "Có thể kết luận chắc chắn điện thoại gây lo âu."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 4
+ },
+ {
+  "n": 89,
+  "content": "Một nhà khoa học đưa ra giả thuyết rằng chất X ức chế enzyme Y. Kết quả nào sẽ là bằng chứng trực tiếp nhất?",
+  "options": [
+   "Người dùng chất X báo cáo cảm thấy tốt hơn.",
+   "Trong điều kiện kiểm soát, hoạt tính enzyme Y giảm khi tăng nồng độ X so với mẫu không có X.",
+   "Sản phẩm chứa X được bán chạy.",
+   "Enzyme Y thường xuất hiện trong cơ thể."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 4
+ },
+ {
+  "n": 90,
+  "content": "Một nghiên cứu có 12 phép kiểm định độc lập, mỗi phép dùng ngưỡng p < 0,05. Nếu tất cả giả thuyết không đều đúng, vấn đề nào có thể xuất hiện?",
+  "options": [
+   "Xác suất có ít nhất một kết quả dương tính giả tăng lên.",
+   "Mọi p-value đều bằng 0.",
+   "Không thể có dương tính giả.",
+   "Cỡ mẫu tự động tăng."
+  ],
+  "correctLetter": "A",
+  "correct": 0,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 4
+ },
+ {
+  "n": 91,
+  "content": "Một phân tích gộp kết hợp 20 nghiên cứu, nhưng các nghiên cứu dùng thang đo và đối tượng rất khác nhau. Cần đánh giá vấn đề nào trước khi diễn giải kết quả chung?",
+  "options": [
+   "Màu bìa các báo cáo.",
+   "Tính không đồng nhất giữa các nghiên cứu và mức độ phù hợp của việc gộp.",
+   "Số lượng tác giả có tên ngắn.",
+   "Ngày trong tuần công bố."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 4
+ },
+ {
+  "n": 92,
+  "content": "Một mô hình dự báo đạt độ chính xác 95% trên dữ liệu huấn luyện nhưng chỉ 65% trên dữ liệu mới. Giải thích nào đáng xem xét nhất?",
+  "options": [
+   "Mô hình đã tổng quát hóa hoàn hảo.",
+   "Mô hình có thể bị quá khớp với dữ liệu huấn luyện.",
+   "Dữ liệu mới chắc chắn sai.",
+   "Độ chính xác huấn luyện luôn vô nghĩa."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 4
+ },
+ {
+  "n": 93,
+  "content": "Một mô hình dự báo thiên tai được huấn luyện trên dữ liệu của 10 năm trước, trong khi điều kiện khí hậu đã thay đổi. Rủi ro nào nổi bật?",
+  "options": [
+   "Dữ liệu cũ luôn tốt hơn dữ liệu mới.",
+   "Phân phối dữ liệu hiện tại có thể khác dữ liệu huấn luyện (data drift).",
+   "Mô hình không cần kiểm định.",
+   "Dự báo không thể sai."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 4
+ },
+ {
+  "n": 94,
+  "content": "Một can thiệp giảm ô nhiễm ở khu vực A được đánh giá bằng cách so sánh A trước-sau, không có khu vực đối chứng. Cùng thời điểm, toàn thành phố áp dụng quy định mới. Kết luận nào bị đe dọa?",
+  "options": [
+   "Mức ô nhiễm đã được đo.",
+   "Không thể tách tác động riêng của can thiệp tại A khỏi quy định áp dụng toàn thành phố.",
+   "Có thể kết luận can thiệp tại A là nguyên nhân duy nhất.",
+   "Thời gian không liên quan."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 4
+ },
+ {
+  "n": 95,
+  "content": "Một thử nghiệm về phân bón được thực hiện trên 4 ô ruộng cạnh nhau, tất cả đều cùng một nguồn nước. Vì sao việc tăng số cây trong mỗi ô chưa chắc thay thế được việc tăng số ô ruộng độc lập?",
+  "options": [
+   "Cây không phải đơn vị đo.",
+   "Các cây trong cùng ô chia sẻ điều kiện, nên có thể không độc lập về mặt thống kê.",
+   "Nhiều cây luôn làm sai kết quả.",
+   "Nguồn nước không thể ảnh hưởng."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 4
+ },
+ {
+  "n": 96,
+  "content": "Một kết quả có ý nghĩa thống kê nhưng hiệu quả thực tế rất nhỏ. Cách đánh giá tốt nhất là gì?",
+  "options": [
+   "Kết luận tác động rất quan trọng chỉ vì p < 0,05.",
+   "Đánh giá cả kích thước hiệu ứng, khoảng tin cậy, chi phí và ý nghĩa trong bối cảnh ứng dụng.",
+   "Bỏ qua kích thước hiệu ứng.",
+   "Chỉ xem p-value."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 4
+ },
+ {
+  "n": 97,
+  "content": "Một nhà nghiên cứu chỉ công bố các biến có kết quả thuận lợi trong số 30 biến đã đo. Đây là nguy cơ nào?",
+  "options": [
+   "Công bố chọn lọc và khai thác dữ liệu quá mức.",
+   "Ngẫu nhiên hóa hoàn hảo.",
+   "Tái lập độc lập.",
+   "Hiệu chuẩn thiết bị."
+  ],
+  "correctLetter": "A",
+  "correct": 0,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 4
+ },
+ {
+  "n": 98,
+  "content": "Một nghiên cứu thử nghiệm một chương trình dinh dưỡng trên nhóm tình nguyện viên khỏe mạnh. Có thể áp dụng trực tiếp kết quả cho bệnh nhân cao tuổi mắc nhiều bệnh nền không?",
+  "options": [
+   "Có, mọi nhóm dân số đều giống nhau.",
+   "Không nhất thiết; khác biệt dân số làm hạn chế khả năng khái quát.",
+   "Có, nếu p-value nhỏ.",
+   "Không, vì nghiên cứu dinh dưỡng không thể áp dụng."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 4
+ },
+ {
+  "n": 99,
+  "content": "Một mô hình khí hậu dự báo khoảng nhiệt độ thay vì một con số duy nhất. Vì sao cách biểu diễn này hữu ích?",
+  "options": [
+   "Nó che giấu dữ liệu.",
+   "Nó thể hiện bất định và nhiều kịch bản có thể xảy ra.",
+   "Nó bảo đảm một kết quả chính xác.",
+   "Nó loại bỏ nhu cầu kiểm định."
+  ],
+  "correctLetter": "B",
+  "correct": 1,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 4
+ },
+ {
+  "n": 100,
+  "content": "Một nghiên cứu về vi nhựa tìm thấy hạt trong 95% mẫu nước đóng chai. Kết luận nào vượt quá dữ liệu?",
+  "options": [
+   "Vi nhựa được phát hiện trong phần lớn mẫu đã xét.",
+   "Cần nghiên cứu thêm về mức phơi nhiễm và tác động sức khỏe.",
+   "Uống bất kỳ lượng nước đóng chai nào cũng chắc chắn gây bệnh.",
+   "Tần suất phát hiện trong mẫu là 95%."
+  ],
+  "correctLetter": "C",
+  "correct": 2,
+  "topicId": "Logic - Suy luận",
+  "difficulty": 4
+ }
+]

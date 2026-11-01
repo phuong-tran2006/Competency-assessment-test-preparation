@@ -1,6 +1,8 @@
-import { PrismaClient } from '@prisma/client';
+import 'dotenv/config';
+import { PrismaClient, QuestionType, Role } from '@prisma/client';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { Pool } from 'pg';
+import { questions2026 } from './examData2026';
 import * as bcrypt from 'bcrypt';
 
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
@@ -8,147 +10,310 @@ const adapter = new PrismaPg(pool);
 const prisma = new PrismaClient({ adapter });
 
 async function main() {
-  console.log('🌱 Bắt đầu seed...');
+  console.log(
+    '🌱 Bắt đầu seed dữ liệu chuẩn cho hệ thống V-ACT (giữ nguyên cơ chế chấm điểm)...',
+  );
 
-  // ==================== 1. USERS ====================
-  const adminPassword = await bcrypt.hash('admin123', 10);
-  const teacherPassword = await bcrypt.hash('teacher123', 10);
-  const learnerPassword = await bcrypt.hash('learner123', 10);
+  const hashedPassword = await bcrypt.hash('admin123', 10);
 
+  // 1. Tạo tài khoản mẫu
   const admin = await prisma.user.upsert({
     where: { email: 'admin@vact.com' },
     update: {},
     create: {
       email: 'admin@vact.com',
-      passwordHash: adminPassword,
-      fullName: 'Quản trị viên',
-      role: 'ADMIN',
+      passwordHash: hashedPassword,
+      fullName: 'Quản trị viên Hệ thống',
+      role: Role.ADMIN,
     },
   });
 
-  const teacher = await prisma.user.upsert({
-    where: { email: 'teacher@vact.com' },
-    update: {},
-    create: {
-      email: 'teacher@vact.com',
-      passwordHash: teacherPassword,
-      fullName: 'Nguyễn Văn Teacher',
-      role: 'INSTRUCTOR',
-    },
-  });
-
-  const learner = await prisma.user.upsert({
+  await prisma.user.upsert({
     where: { email: 'learner@vact.com' },
     update: {},
     create: {
       email: 'learner@vact.com',
-      passwordHash: learnerPassword,
-      fullName: 'Trần Thị Learner',
-      role: 'LEARNER',
-      targetScore: 850,
+      passwordHash: hashedPassword,
+      fullName: 'Học viên Test',
+      role: Role.LEARNER,
     },
   });
 
-  console.log(`✅ Users: ${admin.email}, ${teacher.email}, ${learner.email}`);
-
-  // ==================== 2. TOPICS ====================
-  const topicData = [
-    { name: 'Toán - Giới hạn', description: 'Giới hạn của hàm số, dãy số' },
-    { name: 'Toán - Đạo hàm', description: 'Đạo hàm và ứng dụng' },
-    { name: 'Toán - Tích phân', description: 'Nguyên hàm, tích phân' },
-    { name: 'Tiếng Việt - Đọc hiểu', description: 'Kỹ năng đọc hiểu văn bản' },
-    { name: 'Tiếng Anh - Ngữ pháp', description: 'Ngữ pháp tiếng Anh cơ bản' },
+  // 2. Tạo Chủ đề (Topic) theo đúng format ĐGNL: mỗi câu 1 topic
+  const topicDefs = [
+    { name: 'Toán', description: 'Toán học và tư duy định lượng' },
+    { name: 'Tiếng Việt', description: 'Ngữ văn và đọc hiểu tiếng Việt' },
+    { name: 'Tiếng Anh', description: 'Ngữ pháp và đọc hiểu tiếng Anh' },
     {
       name: 'Logic - Suy luận',
-      description: 'Suy luận logic, phân tích dữ liệu',
+      description: 'Tư duy logic và phân tích số liệu',
+    },
+  ];
+  const topics: Record<string, { id: string }> = {};
+  for (const t of topicDefs) {
+    topics[t.name] = await prisma.topic.upsert({
+      where: { name: t.name },
+      update: {},
+      create: t,
+    });
+  }
+
+  // Map questionId -> topic
+  const questionTopics: Record<string, string> = {
+    'q-2025-1': 'Tiếng Việt',
+    'q-2025-2': 'Toán',
+    'q-2025-3': 'Tiếng Việt',
+    'q-2025-4': 'Toán',
+    'q-2025-5': 'Toán',
+    'q-2025-6': 'Tiếng Việt',
+    'q-2024-1': 'Toán',
+    'q-2024-2': 'Toán',
+    'q-2024-3': 'Tiếng Việt',
+    'q-2024-4': 'Toán',
+    'q-2024-5': 'Toán',
+    'q-2024-6': 'Tiếng Việt',
+  };
+
+  // 3. Cấu hình 3 bộ đề khớp đúng với giao diện
+  const examsConfig = [
+    {
+      id: 'vact-exam-2026',
+      title: 'Đề minh họa ĐGNL ĐHQG TPHCM năm 2026',
+      description: 'Bộ đề thi chuẩn cấu trúc mới nhất năm 2026.',
+      questions: questions2026,
+    },
+    {
+      id: 'vact-exam-2025',
+      title: 'Đề minh họa ĐGNL ĐHQG TPHCM năm 2025',
+      description:
+        'Đề thi chính thức và minh họa lưu trữ năm 2025, rèn luyện tư duy logic và phân tích số liệu.',
+      questions: [
+        {
+          id: 'q-2025-1',
+          content:
+            'Thể loại của tác phẩm "Đăm Săn" trong kho tàng văn học dân gian là gì?',
+          correct: 2,
+          options: ['Thần thoại', 'Truyền thuyết', 'Sử thi', 'Truyện cổ tích'],
+        },
+        {
+          id: 'q-2025-2',
+          content:
+            'Cho cấp số cộng có u1 = 3 và công sai d = 2. Giá trị của u4 là:',
+          correct: 1,
+          options: ['7', '9', '11', '13'],
+        },
+        {
+          id: 'q-2025-3',
+          content:
+            'Từ "long lanh" trong câu "Nước hồ long lanh" thuộc loại từ nào?',
+          correct: 2,
+          options: ['Từ đơn', 'Từ ghép', 'Từ láy', 'Từ phức'],
+        },
+        {
+          id: 'q-2025-4',
+          content:
+            'Tích phân từ 0 đến 1 của hàm số f(x) = 2xdx có giá trị bằng:',
+          correct: 0,
+          options: ['1', '2', '0.5', '0'],
+        },
+        {
+          id: 'q-2025-5',
+          content: 'Giải phương trình log2(x) = 3. Nghiệm của phương trình là:',
+          correct: 2,
+          options: ['6', '9', '8', '3'],
+        },
+        {
+          id: 'q-2025-6',
+          content: 'Thị Phương là nhân vật trong vở chèo cổ nào?',
+          correct: 3,
+          options: [
+            'Quan Âm Thị Kính',
+            'Lưu Bình - Dương Lễ',
+            'Súy Vân',
+            'Trương Viên',
+          ],
+        },
+      ],
+    },
+    {
+      id: 'vact-exam-2024',
+      title: 'Đề minh họa ĐGNL ĐHQG TPHCM năm 2024',
+      description:
+        'Bộ đề ôn tập nền tảng từ kỳ thi ĐGNL năm 2024, củng cố kiến thức cơ bản.',
+      questions: [
+        {
+          id: 'q-2024-1',
+          content: 'Số phức z = 3 - 4i có phần thực và phần ảo lần lượt là:',
+          correct: 0,
+          options: ['3 và -4', '-3 và 4', '3 và 4', '-3 và -4'],
+        },
+        {
+          id: 'q-2024-2',
+          content: 'Tập nghiệm của bất phương trình 2^x > 4 là:',
+          correct: 1,
+          options: ['(1; +inf)', '(2; +inf)', '(0; 2)', '(-inf; 2)'],
+        },
+        {
+          id: 'q-2024-3',
+          content:
+            'Tác giả của đoạn trích "Đất nước" trong chương trình Ngữ văn là ai?',
+          correct: 2,
+          options: ['Tố Hữu', 'Huy Cận', 'Nguyễn Khoa Điềm', 'Xuân Quỳnh'],
+        },
+        {
+          id: 'q-2024-4',
+          content:
+            'Cho tam giác ABC vuông tại A có AB = 3cm, AC = 4cm. Độ dài cạnh huyền BC là:',
+          correct: 1,
+          options: ['6 cm', '5 cm', '7 cm', 'sqrt(7) cm'],
+        },
+        {
+          id: 'q-2024-5',
+          content: 'Hàm số y = -x^3 + 3x nghịch biến trên khoảng nào dưới đây?',
+          correct: 3,
+          options: [
+            '(-1; 1)',
+            '(0; +inf)',
+            '(-inf; -1)',
+            '(-inf; -1) và (1; +inf)',
+          ],
+        },
+        {
+          id: 'q-2024-6',
+          content: 'Điền từ còn thiếu vào câu tục ngữ: "Uống nước nhớ ..."',
+          correct: 0,
+          options: ['nguồn', 'nơi', 'ông', 'cha'],
+        },
+      ],
     },
   ];
 
-  const topics: Record<string, { id: string; name: string }> = {};
-  for (const t of topicData) {
-    const topic = await prisma.topic.upsert({
-      where: { name: t.name },
-      update: { description: t.description },
-      create: t,
+  for (const exData of examsConfig) {
+    await prisma.exam.upsert({
+      where: { id: exData.id },
+      update: {},
+      create: {
+        id: exData.id,
+        title: exData.title,
+        description: exData.description,
+      },
     });
-    topics[t.name] = { id: topic.id, name: topic.name };
+
+    for (const qInfo of exData.questions as any[]) {
+      const topicKey = qInfo.topicId || questionTopics[qInfo.id];
+      const topic = topics[topicKey];
+      if (!topic) {
+        throw new Error(
+          `Câu ${qInfo.id}: không có topic "${topicKey}". Hiện có: ${Object.keys(topics).join(', ')}`,
+        );
+      }
+
+      const opts = qInfo.options.map((opt: any, i: number) => {
+        const isString = typeof opt === 'string';
+        return {
+          content: (isString ? opt : opt.text || opt.content || '').replace(
+            /^[A-D]\.\s*/,
+            '',
+          ),
+          isCorrect: isString ? i === qInfo.correct : !!opt.isCorrect,
+          order: i,
+        };
+      });
+      if (opts.filter((o: any) => o.isCorrect).length !== 1) {
+        throw new Error(`Câu ${qInfo.id}: phải có đúng 1 đáp án đúng`);
+      }
+
+      const fields = {
+        content: qInfo.content,
+        explanation: qInfo.explanation || null,
+        topicId: topic.id,
+      };
+
+      await prisma.$transaction(async (tx) => {
+        await tx.question.upsert({
+          where: { id: qInfo.id },
+          update: fields,
+          create: {
+            id: qInfo.id,
+            type: QuestionType.MULTIPLE_CHOICE,
+            difficulty: 0.5, // thang [0,1]; 1200 là rating Elo, không phải difficulty
+            ...fields,
+          },
+        });
+        await tx.questionOption.deleteMany({ where: { questionId: qInfo.id } });
+        await tx.questionOption.createMany({
+          data: opts.map((o: any) => ({ questionId: qInfo.id, ...o })),
+        });
+      });
+
+      await prisma.examQuestion.upsert({
+        where: {
+          examId_questionId: { examId: exData.id, questionId: qInfo.id },
+        },
+        update: {},
+        create: { examId: exData.id, questionId: qInfo.id },
+      });
+    }
   }
-  console.log(`✅ Topics: ${Object.keys(topics).length} chủ đề`);
 
-  // ==================== 3. PREREQUISITES ====================
-  // Giới hạn → Đạo hàm → Tích phân
-  await prisma.topicPrerequisite.upsert({
-    where: {
-      topicId_prerequisiteId: {
-        topicId: topics['Toán - Đạo hàm'].id,
-        prerequisiteId: topics['Toán - Giới hạn'].id,
-      },
-    },
-    update: {},
-    create: {
-      topicId: topics['Toán - Đạo hàm'].id,
-      prerequisiteId: topics['Toán - Giới hạn'].id,
-    },
-  });
-
-  await prisma.topicPrerequisite.upsert({
-    where: {
-      topicId_prerequisiteId: {
-        topicId: topics['Toán - Tích phân'].id,
-        prerequisiteId: topics['Toán - Đạo hàm'].id,
-      },
-    },
-    update: {},
-    create: {
-      topicId: topics['Toán - Tích phân'].id,
-      prerequisiteId: topics['Toán - Đạo hàm'].id,
-    },
-  });
-
-  console.log('✅ Prerequisites: Đạo hàm ← Giới hạn, Tích phân ← Đạo hàm');
+  console.log(
+    '✅ Exams + Questions đã tạo (3 đề, mỗi đề 6 câu, gắn đúng topic Toán/Tiếng Việt/Tiếng Anh)',
+  );
 
   // ==================== 4. COURSES ====================
-  const course1 = await prisma.course.create({
-    data: {
-      title: 'Khóa luyện Toán V-ACT',
-      description: 'Khóa học cấp tốc ôn Toán cho kỳ thi V-ACT',
-      instructorId: teacher.id,
-      status: 'PUBLISHED',
-      courseTopics: {
-        create: [
-          { topicId: topics['Toán - Giới hạn'].id, order: 1 },
-          { topicId: topics['Toán - Đạo hàm'].id, order: 2 },
-          { topicId: topics['Toán - Tích phân'].id, order: 3 },
-        ],
-      },
+  const course1 = await prisma.course.upsert({
+    where: { id: 'course-1' },
+    update: {},
+    create: {
+      id: 'course-1',
+      title: 'Toán nền tảng ĐGNL',
+      description: 'Khóa học giới hạn, đạo hàm, tích phân',
+      instructorId: admin.id,
     },
   });
 
-  const course2 = await prisma.course.create({
-    data: {
-      title: 'Khóa luyện Tiếng Anh V-ACT',
-      description: 'Ôn ngữ pháp và đọc hiểu tiếng Anh',
-      instructorId: teacher.id,
-      status: 'PUBLISHED',
-      courseTopics: {
-        create: [{ topicId: topics['Tiếng Anh - Ngữ pháp'].id, order: 1 }],
+  // Gắn course với topic Toán (upsert từng topic để rerun an toàn)
+  for (const [idx, topicName] of [
+    'Toán',
+    'Tiếng Việt',
+    'Tiếng Anh',
+    'Logic - Suy luận',
+  ].entries()) {
+    await prisma.courseTopic.upsert({
+      where: {
+        courseId_topicId: {
+          courseId: course1.id,
+          topicId: topics[topicName].id,
+        },
       },
-    },
-  });
+      update: {},
+      create: {
+        courseId: course1.id,
+        topicId: topics[topicName].id,
+        order: idx + 1,
+      },
+    });
+  }
 
-  console.log(`✅ Courses: ${course1.title}, ${course2.title}`);
+  console.log(`✅ Courses: ${course1.title}`);
 
   // ==================== 5. CHAPTERS + LESSONS + MATERIALS ====================
-  const chapter1 = await prisma.chapter.create({
-    data: {
+  const chapter1 = await prisma.chapter.upsert({
+    where: { id: 'chapter-1' },
+    update: {},
+    create: {
+      id: 'chapter-1',
       courseId: course1.id,
       title: 'Chương 1: Giới hạn và liên tục',
       order: 1,
     },
   });
 
-  const lesson1 = await prisma.lesson.create({
-    data: {
+  const lesson1 = await prisma.lesson.upsert({
+    where: { id: 'lesson-1' },
+    update: {},
+    create: {
+      id: 'lesson-1',
       chapterId: chapter1.id,
       title: 'Bài 1: Khái niệm giới hạn',
       content: 'Giới hạn của hàm số là giá trị mà hàm số tiến tới...',
@@ -162,24 +327,21 @@ async function main() {
             order: 1,
           },
           {
-            type: 'VIDEO',
-            title: 'Video bài giảng',
-            url: 'https://www.youtube.com/watch?v=demo',
-            order: 2,
-          },
-          {
             type: 'PDF',
             title: 'Bài tập tự luyện',
             url: 'https://example.com/exercises.pdf',
-            order: 3,
+            order: 2,
           },
         ],
       },
     },
   });
 
-  const lesson2 = await prisma.lesson.create({
-    data: {
+  const lesson2 = await prisma.lesson.upsert({
+    where: { id: 'lesson-2' },
+    update: {},
+    create: {
+      id: 'lesson-2',
       chapterId: chapter1.id,
       title: 'Bài 2: Các dạng giới hạn thường gặp',
       content: 'Trong bài này ta sẽ học các dạng giới hạn vô định 0/0, ∞/∞...',
@@ -187,31 +349,27 @@ async function main() {
     },
   });
 
-  const chapter2 = await prisma.chapter.create({
-    data: {
+  const chapter2 = await prisma.chapter.upsert({
+    where: { id: 'chapter-2' },
+    update: {},
+    create: {
+      id: 'chapter-2',
       courseId: course1.id,
       title: 'Chương 2: Đạo hàm',
       order: 2,
     },
   });
 
-  const lesson3 = await prisma.lesson.create({
-    data: {
+  const lesson3 = await prisma.lesson.upsert({
+    where: { id: 'lesson-3' },
+    update: {},
+    create: {
+      id: 'lesson-3',
       chapterId: chapter2.id,
       title: 'Bài 1: Định nghĩa đạo hàm',
       content:
         'Đạo hàm là giới hạn của tỉ số giữa số gia hàm số và số gia đối số...',
       order: 1,
-      materials: {
-        create: [
-          {
-            type: 'LINK',
-            title: 'Tham khảo Wikipedia',
-            url: 'https://vi.wikipedia.org/wiki/Đạo_hàm',
-            order: 1,
-          },
-        ],
-      },
     },
   });
 
@@ -221,141 +379,249 @@ async function main() {
     `   - Lesson: ${lesson1.title}, ${lesson2.title}, ${lesson3.title}`,
   );
 
-  // ==================== 6. QUESTIONS ====================
-  // Câu hỏi 1: MULTIPLE_CHOICE
-  const q1 = await prisma.question.create({
-    data: {
-      content:
-        'Giới hạn của hàm số f(x) = (x² - 1)/(x - 1) khi x → 1 là bao nhiêu?',
-      explanation:
-        'Phân tích tử: x² - 1 = (x-1)(x+1). Rút gọn (x-1) → còn x+1. Thay x = 1 → 2.',
-      type: 'MULTIPLE_CHOICE',
-      difficulty: 0.4,
-      source: 'Đề thi thử V-ACT 2025',
-      license: 'CC BY-SA',
-      topicId: topics['Toán - Giới hạn'].id,
-      options: {
-        create: [
-          { content: '0', isCorrect: false, order: 0 },
-          { content: '1', isCorrect: false, order: 1 },
-          { content: '2', isCorrect: true, order: 2 },
-          { content: 'Không tồn tại', isCorrect: false, order: 3 },
-        ],
-      },
+  // ==================== 6. EXAM + ATTEMPTS (dùng câu hỏi 2026) ====================
+  const exam1 = await prisma.exam.upsert({
+    where: { id: 'exam-1' },
+    update: {},
+    create: {
+      id: 'exam-1',
+      title: 'Đề thi thử V-ACT số 1',
+      description: 'Đề thi mẫu',
     },
   });
 
-  // Câu hỏi 2: TRUE_FALSE
-  const q2 = await prisma.question.create({
-    data: {
-      content: 'Đạo hàm của hàm số y = x² tại x = 3 là 6.',
-      explanation: "y' = 2x. Tại x = 3 → y' = 6. Đúng.",
-      type: 'TRUE_FALSE',
-      difficulty: 0.2,
-      topicId: topics['Toán - Đạo hàm'].id,
-      options: {
-        create: [
-          { content: 'Đúng', isCorrect: true, order: 0 },
-          { content: 'Sai', isCorrect: false, order: 1 },
-        ],
-      },
+  // Gắn 6 câu 2026 vào exam-1 để attempts có dữ liệu chấm điểm
+  const exam1QuestionIds = [
+    'q-2026-1',
+    'q-2026-2',
+    'q-2026-3',
+    'q-2026-4',
+    'q-2026-5',
+    'q-2026-6',
+    'q-2026-7',
+    'q-2026-8',
+    'q-2026-9',
+    'q-2026-10',
+    'q-2026-11',
+    'q-2026-12',
+    'q-2026-13',
+    'q-2026-14',
+    'q-2026-15',
+    'q-2026-16',
+    'q-2026-17',
+    'q-2026-18',
+    'q-2026-19',
+    'q-2026-20',
+  ];
+  for (const questionId of exam1QuestionIds) {
+    await prisma.examQuestion.upsert({
+      where: { examId_questionId: { examId: exam1.id, questionId } },
+      update: {},
+      create: { examId: exam1.id, questionId },
+    });
+  }
+
+  const testPasswordHash = await bcrypt.hash('Test@123', 10);
+  const testUser = await prisma.user.upsert({
+    where: { email: 'test.learner@vact.com' },
+    update: {
+      passwordHash: testPasswordHash,
+      fullName: 'Learner Test API',
+      role: 'LEARNER',
+    },
+    create: {
+      email: 'test.learner@vact.com',
+      passwordHash: testPasswordHash,
+      fullName: 'Learner Test API',
+      role: 'LEARNER',
+      targetScore: 900,
     },
   });
 
-  // Câu hỏi 3: MULTI_SELECT
-  const q3 = await prisma.question.create({
+  const seededQuestions = await prisma.question.findMany({
+    where: { id: { in: exam1QuestionIds } },
+    include: { options: { orderBy: { order: 'asc' } } },
+  });
+
+  const questionById = new Map(seededQuestions.map((q) => [q.id, q]));
+
+  const correctOptionIds = (id: string) => {
+    const question = questionById.get(id);
+    if (!question) throw new Error(`Không tìm thấy câu hỏi ${id}`);
+    return question.options
+      .filter((option) => option.isCorrect)
+      .map((option) => option.id);
+  };
+
+  const wrongOptionId = (id: string) => {
+    const question = questionById.get(id);
+    if (!question) throw new Error(`Không tìm thấy câu hỏi ${id}`);
+    const option = question.options.find((item) => !item.isCorrect);
+    if (!option) throw new Error(`Câu hỏi ${id} không có đáp án sai`);
+    return option.id;
+  };
+
+  const attemptIds = [
+    'attempt-test-submitted',
+    'attempt-test-submitted-2',
+    'attempt-test-inprogress',
+    'attempt-test-expired',
+  ];
+
+  await prisma.examAnswer.deleteMany({
+    where: { attemptId: { in: attemptIds } },
+  });
+  await prisma.examAttempt.deleteMany({
+    where: { id: { in: attemptIds } },
+  });
+
+  const now = Date.now();
+  const minutes = (value: number) => value * 60 * 1000;
+  const [aq1, aq2, aq3, aq4, aq5, aq6] = exam1QuestionIds;
+
+  const submittedAt1 = new Date(now - 36 * 60 * 60 * 1000);
+  const startedAt1 = new Date(submittedAt1.getTime() - minutes(25));
+  await prisma.examAttempt.create({
     data: {
-      content: 'Trong các phát biểu sau, phát biểu nào ĐÚNG về tích phân?',
-      explanation: 'a, c đúng. b sai (tích phân xác định có thể âm). d sai.',
-      type: 'MULTI_SELECT',
-      difficulty: 0.6,
-      topicId: topics['Toán - Tích phân'].id,
-      options: {
+      id: 'attempt-test-submitted',
+      userId: testUser.id,
+      examId: 'exam-1',
+      status: 'SUBMITTED',
+      startedAt: startedAt1,
+      deadlineAt: new Date(startedAt1.getTime() + 1800 * 1000),
+      submittedAt: submittedAt1,
+      timeLimit: 1800,
+      total: 6,
+      score: 4,
+      weightedScore: 5.2,
+      answers: {
         create: [
           {
-            content: 'Tích phân là phép toán ngược của đạo hàm',
+            questionId: aq1,
+            selectedOptionIds: correctOptionIds(aq1),
             isCorrect: true,
-            order: 0,
+            timeSpent: 45,
           },
           {
-            content: 'Tích phân xác định luôn dương',
-            isCorrect: false,
-            order: 1,
-          },
-          {
-            content: 'Tích phân bất định có hằng số C',
+            questionId: aq2,
+            selectedOptionIds: correctOptionIds(aq2),
             isCorrect: true,
-            order: 2,
+            timeSpent: 20,
           },
           {
-            content: 'Tích phân không áp dụng được cho hàm số liên tục',
+            questionId: aq3,
+            selectedOptionIds: [wrongOptionId(aq3)],
             isCorrect: false,
-            order: 3,
+            timeSpent: 80,
+          },
+          {
+            questionId: aq4,
+            selectedOptionIds: correctOptionIds(aq4),
+            isCorrect: true,
+            timeSpent: 30,
+          },
+          {
+            questionId: aq5,
+            selectedOptionIds: [wrongOptionId(aq5)],
+            isCorrect: false,
+            timeSpent: 25,
+          },
+          {
+            questionId: aq6,
+            selectedOptionIds: correctOptionIds(aq6),
+            isCorrect: true,
+            timeSpent: 40,
           },
         ],
       },
     },
   });
 
-  // Câu hỏi 4: Tiếng Việt
-  const q4 = await prisma.question.create({
+  const submittedAt2 = new Date(now - 3 * 60 * 60 * 1000);
+  const startedAt2 = new Date(submittedAt2.getTime() - minutes(30));
+  await prisma.examAttempt.create({
     data: {
-      content:
-        'Từ "long lanh" trong câu "Nước hồ long lanh dưới ánh nắng" thuộc loại từ nào?',
-      explanation: 'Đây là từ láy âm đầu (l) và vần (anh).',
-      type: 'MULTIPLE_CHOICE',
-      difficulty: 0.3,
-      topicId: topics['Tiếng Việt - Đọc hiểu'].id,
-      options: {
+      id: 'attempt-test-submitted-2',
+      userId: testUser.id,
+      examId: 'exam-1',
+      status: 'SUBMITTED',
+      startedAt: startedAt2,
+      deadlineAt: new Date(startedAt2.getTime() + 1800 * 1000),
+      submittedAt: submittedAt2,
+      timeLimit: 1800,
+      total: 6,
+      score: 6,
+      weightedScore: 7.9,
+      answers: {
+        create: exam1QuestionIds.map((questionId, index) => ({
+          questionId,
+          selectedOptionIds: correctOptionIds(questionId),
+          isCorrect: true,
+          timeSpent: [30, 18, 55, 22, 15, 35][index],
+        })),
+      },
+    },
+  });
+
+  const startedAt3 = new Date(now - minutes(2));
+  await prisma.examAttempt.create({
+    data: {
+      id: 'attempt-test-inprogress',
+      userId: testUser.id,
+      examId: null,
+      status: 'IN_PROGRESS',
+      startedAt: startedAt3,
+      deadlineAt: new Date(startedAt3.getTime() + 1800 * 1000),
+      timeLimit: 1800,
+      total: 3,
+      score: 0,
+      weightedScore: 0,
+      answers: {
         create: [
-          { content: 'Từ đơn', isCorrect: false, order: 0 },
-          { content: 'Từ ghép', isCorrect: false, order: 1 },
-          { content: 'Từ láy', isCorrect: true, order: 2 },
-          { content: 'Từ phức', isCorrect: false, order: 3 },
+          {
+            questionId: aq1,
+            selectedOptionIds: correctOptionIds(aq1),
+            isCorrect: false,
+            timeSpent: 15,
+          },
+          {
+            questionId: aq2,
+            selectedOptionIds: [],
+            isCorrect: false,
+            timeSpent: 0,
+          },
+          {
+            questionId: aq3,
+            selectedOptionIds: [],
+            isCorrect: false,
+            timeSpent: 0,
+          },
         ],
       },
     },
   });
 
-  // Câu hỏi 5: Tiếng Anh
-  const q5 = await prisma.question.create({
+  const startedAt4 = new Date(now - minutes(10));
+  await prisma.examAttempt.create({
     data: {
-      content: 'Choose the correct answer: "She ___ to school every day."',
-      explanation: 'Thì hiện tại đơn, chủ ngữ số ít → động từ thêm "es".',
-      type: 'MULTIPLE_CHOICE',
-      difficulty: 0.1,
-      topicId: topics['Tiếng Anh - Ngữ pháp'].id,
-      options: {
+      id: 'attempt-test-expired',
+      userId: testUser.id,
+      examId: null,
+      status: 'IN_PROGRESS',
+      startedAt: startedAt4,
+      deadlineAt: new Date(startedAt4.getTime() + 60 * 1000),
+      timeLimit: 60,
+      total: 2,
+      score: 0,
+      weightedScore: 0,
+      answers: {
         create: [
-          { content: 'go', isCorrect: false, order: 0 },
-          { content: 'goes', isCorrect: true, order: 1 },
-          { content: 'going', isCorrect: false, order: 2 },
-          { content: 'gone', isCorrect: false, order: 3 },
+          { questionId: aq1, selectedOptionIds: [], isCorrect: false },
+          { questionId: aq2, selectedOptionIds: [], isCorrect: false },
         ],
       },
     },
   });
-
-  // Câu hỏi 6: Logic
-  const q6 = await prisma.question.create({
-    data: {
-      content: 'Nếu tất cả A là B, và tất cả B là C, thì kết luận nào đúng?',
-      explanation: 'Suy luận bắc cầu: A ⊆ B ⊆ C ⟹ A ⊆ C.',
-      type: 'MULTIPLE_CHOICE',
-      difficulty: 0.3,
-      topicId: topics['Logic - Suy luận'].id,
-      options: {
-        create: [
-          { content: 'Tất cả A là C', isCorrect: true, order: 0 },
-          { content: 'Tất cả C là A', isCorrect: false, order: 1 },
-          { content: 'Không A nào là C', isCorrect: false, order: 2 },
-          { content: 'Không kết luận được', isCorrect: false, order: 3 },
-        ],
-      },
-    },
-  });
-
-  console.log(`✅ Questions: 6 câu hỏi đã tạo`);
 
   // ==================== SUMMARY ====================
   const counts = {
@@ -368,20 +634,21 @@ async function main() {
     materials: await prisma.material.count(),
     questions: await prisma.question.count(),
     options: await prisma.questionOption.count(),
+    exam: await prisma.exam.count(),
+    attempts: await prisma.examAttempt.count(),
+    attemptAnswers: await prisma.examAnswer.count(),
+    attemptTopicResults: await prisma.attemptTopicResult.count(),
   };
+  console.log('Counts:', counts);
 
-  console.log('\n📊 Tổng kết database:');
-  console.table(counts);
-  console.log('\n🎉 Seed hoàn tất!');
-  console.log('\n🔑 Tài khoản demo:');
-  console.log('   Admin    : admin@vact.com    / admin123');
-  console.log('   Teacher  : teacher@vact.com  / teacher123');
-  console.log('   Learner  : learner@vact.com  / learner123');
+  console.log(
+    '🚀 Seed thành công toàn bộ đề thi kèm đáp án chuẩn để làm bài và chấm điểm tự động!',
+  );
 }
 
 main()
   .catch((e) => {
-    console.error('❌ Seed thất bại:', e);
+    console.error('❌ Lỗi seed:', e);
     process.exit(1);
   })
   .finally(async () => {

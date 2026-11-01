@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   ForbiddenException,
   Injectable,
   NotFoundException,
@@ -27,15 +28,20 @@ export class CoursesService {
     });
   }
 
-  async findAll(query: {
-    search?: string;
-    status?: CourseStatus;
-    page?: number;
-    limit?: number;
-  }) {
+  async findAll(query: any, user?: any) {
     const { search, status, page = 1, limit = 20 } = query;
     const where: any = {};
-    if (status) where.status = status;
+
+    if (!user || user.role === Role.STUDENT) {
+      where.status = CourseStatus.PUBLISHED;
+    } else if (user.role === Role.INSTRUCTOR) {
+      where.OR = [
+        { status: CourseStatus.PUBLISHED },
+        { instructorId: user.id },
+      ];
+    } else if (status) {
+      where.status = status;
+    }
     if (search) where.title = { contains: search, mode: 'insensitive' };
 
     const [items, total] = await Promise.all([
@@ -52,10 +58,28 @@ export class CoursesService {
       this.prisma.course.count({ where }),
     ]);
 
-    return { items, total, page, limit, totalPages: Math.ceil(total / limit) };
+    const itemsWithCounts = await Promise.all(
+      items.map(async (course) => {
+        const lessonsCount = await this.prisma.lesson.count({
+          where: { chapter: { courseId: course.id } },
+        });
+        return {
+          ...course,
+          thumbnail: null, // Fix lỗi thiếu thumbnail cho FE
+          lessonsCount,
+        };
+      }),
+    );
+    return {
+      items: itemsWithCounts,
+      total,
+      page,
+      limit,
+      totalPages: Math.ceil(total / limit),
+    };
   }
 
-  async findOne(id: string) {
+  async findOne(id: string, user?: any) {
     const course = await this.prisma.course.findUnique({
       where: { id },
       include: {
@@ -73,7 +97,56 @@ export class CoursesService {
       },
     });
     if (!course) throw new NotFoundException('Không tìm thấy khóa học');
+    if (
+      course.status !== CourseStatus.PUBLISHED &&
+      (!user || (user.role === Role.STUDENT && course.instructorId !== user.id))
+    ) {
+      throw new NotFoundException(
+        'Không tìm thấy khóa học (hoặc chưa xuất bản)',
+      );
+    }
     return course;
+  }
+
+  // API lấy lessons theo course (Fix Lỗi 6 & 14)
+  async findLessonsByCourse(courseId: string) {
+    const course = await this.prisma.course.findUnique({
+      where: { id: courseId },
+    });
+    if (!course) throw new NotFoundException('Không tìm thấy khóa học');
+
+    return this.prisma.lesson.findMany({
+      where: { chapter: { courseId } },
+      orderBy: [{ chapter: { order: 'asc' } }, { order: 'asc' }],
+    });
+  }
+
+  // API thêm prerequisite cho course (Fix Lỗi 16)
+  async addPrerequisite(
+    courseId: string,
+    prerequisiteId: string,
+    userId: string,
+    role: Role,
+  ) {
+    await this.assertOwnerOrAdmin(courseId, userId, role);
+    if (courseId === prerequisiteId)
+      throw new BadRequestException('Không thể tự phụ thuộc chính mình');
+
+    return this.prisma.coursePrerequisite.create({
+      data: { courseId, prerequisiteId },
+    });
+  }
+
+  async removePrerequisite(
+    courseId: string,
+    prerequisiteId: string,
+    userId: string,
+    role: Role,
+  ) {
+    await this.assertOwnerOrAdmin(courseId, userId, role);
+    return this.prisma.coursePrerequisite.delete({
+      where: { courseId_prerequisiteId: { courseId, prerequisiteId } },
+    });
   }
 
   async update(id: string, userId: string, role: Role, dto: UpdateCourseDto) {

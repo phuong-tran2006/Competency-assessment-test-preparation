@@ -1,0 +1,401 @@
+/* src/features/home/home.css
+   Everything is scoped under .home so it cannot change other pages.
+   Colours are approximations of the existing exam pages: adjust the variables
+   if the real palette differs. */
+
+.home {
+  --bg: #fdfbf7;
+  --bg-tint: #fff8e6;
+  --surface: #ffffff;
+  --border: #e8e4da;
+  --text: #1f2937;
+  --muted: #4b5563;
+  --navy: #1e3a8a;
+  --orange: #f59e0b;
+  --orange-dark: #d97706;
+  --tag-bg: #fef3c7;
+  --tag-text: #92400e;
+  --radius: 16px;
+
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+.home *,
+.home *::before,
+.home *::after {
+  box-sizing: border-box;
+}
+
+.home a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.home .container {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ---------- buttons ---------- */
+
+.home .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, transform 0.15s;
+}
+
+.home .btn:hover {
+  transform: translateY(-1px);
+}
+
+.home .btn:focus-visible {
+  outline: 3px solid var(--navy);
+  outline-offset: 2px;
+}
+
+.home .btn--primary {
+  background: var(--orange);
+  color: #fff;
+}
+
+.home .btn--primary:hover {
+  background: var(--orange-dark);
+}
+
+.home .btn--outline {
+  border-color: var(--orange);
+  color: var(--orange-dark);
+  background: transparent;
+}
+
+.home .btn--outline:hover {
+  background: var(--tag-bg);
+}
+
+.home .btn--ghost {
+  color: var(--navy);
+}
+
+.home .btn--ghost:hover {
+  background: var(--tag-bg);
+}
+
+.home .btn--lg {
+  padding: 14px 28px;
+  font-size: 1.05rem;
+}
+
+/* ---------- navbar ---------- */
+
+.home .nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(253, 251, 247, 0.92);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--border);
+}
+
+.home .nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: 64px;
+}
+
+.home .nav__brand {
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: var(--navy);
+}
+
+.home .nav__links {
+  display: flex;
+  gap: 24px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.home .nav__links a:hover {
+  color: var(--navy);
+}
+
+.home .nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.home .nav__user {
+  font-weight: 600;
+  color: var(--muted);
+}
+
+/* ---------- hero ---------- */
+
+.home .hero {
+  padding: 72px 0 56px;
+  text-align: center;
+}
+
+.home .hero__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.home .hero__title {
+  max-width: 800px;
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  line-height: 1.15;
+  color: var(--navy);
+}
+
+.home .hero__subtitle {
+  max-width: 620px;
+  margin: 0;
+  font-size: 1.15rem;
+  color: var(--muted);
+}
+
+.home .hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.home .tag {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 999px;
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ---------- sections ---------- */
+
+.home .section {
+  padding: 56px 0;
+}
+
+.home .section--tint {
+  background: var(--bg-tint);
+}
+
+.home .section__title {
+  margin: 0 0 8px;
+  text-align: center;
+  font-size: 1.75rem;
+  color: var(--navy);
+}
+
+.home .section__lead {
+  margin: 0 0 28px;
+  text-align: center;
+  color: var(--muted);
+}
+
+.home .section__title + .grid {
+  margin-top: 28px;
+}
+
+.home .note {
+  margin: 20px 0 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.home .center {
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
+}
+
+/* ---------- grids and cards ---------- */
+
+.home .grid {
+  display: grid;
+  gap: 20px;
+}
+
+.home .grid--3 {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.home .grid--4 {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.home .grid--5 {
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.home .card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.home .card__title {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+}
+
+.home .card__text {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* ---------- steps ---------- */
+
+.home .steps {
+  list-style: none;
+  padding: 0;
+  margin: 28px 0 0;
+}
+
+.home .step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.home .step__number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin-bottom: 8px;
+  border-radius: 50%;
+  background: var(--orange);
+  color: #fff;
+  font-weight: 800;
+}
+
+.home .step--soon {
+  opacity: 0.8;
+}
+
+.home .step--soon .step__number {
+  background: #9ca3af;
+}
+
+.home .badge {
+  align-self: flex-start;
+  margin-top: 12px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: #ede9fe;
+  color: #5b21b6;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+/* ---------- exam structure ---------- */
+
+.home .stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px 12px;
+}
+
+.home .stat__number {
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--orange-dark);
+}
+
+.home .stat__unit {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.home .stat__label {
+  margin-top: 8px;
+  font-weight: 700;
+}
+
+/* ---------- featured exams ---------- */
+
+.home .exam {
+  display: flex;
+  flex-direction: column;
+}
+
+.home .exam__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+.home .exam__count {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* ---------- footer ---------- */
+
+.home .footer {
+  padding: 32px 0;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.home .footer p {
+  margin: 0 0 4px;
+}
+
+.home .footer__disclaimer {
+  font-size: 0.8rem;
+}
+
+/* ---------- mobile ---------- */
+
+@media (max-width: 720px) {
+  .home .nav__links {
+    display: none;
+  }
+
+  .home .hero {
+    padding: 48px 0 32px;
+  }
+
+  .home .section {
+    padding: 40px 0;
+  }
+}
