@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../store/authStore";
 import { toast, confirmDialog } from "../../store/uiStore";
@@ -6,47 +6,6 @@ import { authService } from "../../services/auth.service";
 import "./home.css";
 import { BRAND, ROUTES, STR } from "./strings";
 import ExamCard from "../../components/ExamCard";
-
-type ExamSummary = {
-  id: string | number;
-  title: string;
-  description?: string;
-  questionCount?: number;
-};
-
-/* ---------- hooks ---------- */
-
-function useFeaturedExams(limit = 3) {
-  const [exams, setExams] = useState<ExamSummary[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const controller = new AbortController();
-    const base = import.meta.env.VITE_API_URL ?? "";
-
-    fetch(`${base}/exams`, { signal: controller.signal })
-      .then((res) => {
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        return res.json();
-      })
-      .then((data) => {
-        const list: ExamSummary[] = Array.isArray(data)
-          ? data
-          : (data.items ?? []);
-        setExams(list.slice(0, limit));
-        setLoading(false);
-      })
-      .catch((err) => {
-        if (err.name === "AbortError") return;
-        setExams([]);
-        setLoading(false);
-      });
-
-    return () => controller.abort();
-  }, [limit]);
-
-  return { exams, loading };
-}
 
 /* ---------- sections ---------- */
 
