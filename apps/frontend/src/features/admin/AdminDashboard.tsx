@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import api from "../../services/api";
 import { authService } from "../../services/auth.service";
 import { confirmDialog, toast } from "../../store/uiStore";
+import type { AppRole } from '../../types/auth.types';
 
 // Cập nhật Enum in hoa cho khớp với Prisma Backend
 type UserStatus = "ACTIVE" | "PENDING" | "LOCKED" | "REJECTED";
@@ -11,7 +12,7 @@ type UserStatus = "ACTIVE" | "PENDING" | "LOCKED" | "REJECTED";
 interface SystemUser {
   id: string;
   fullName: string;
-  role: "LEARNER" | "INSTRUCTOR" | "ADMIN";
+  role: AppRole;
   status: UserStatus;
   createdAt: string;
 }

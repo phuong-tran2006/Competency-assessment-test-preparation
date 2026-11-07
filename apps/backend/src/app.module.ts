@@ -12,6 +12,7 @@ import { UsersModule } from './users/users.module';
 import { ExamsModule } from './exams/exams.module';
 import { AttemptsModule } from './attempts/attempts.module';
 import { AssessmentsModule } from './assessments/assessments.module';
+import { MasteryModule } from './mastery/mastery.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { AssessmentsModule } from './assessments/assessments.module';
     ExamsModule,
     AttemptsModule,
     AssessmentsModule,
+    MasteryModule,
   ],
   controllers: [AppController, HealthController],
   providers: [AppService],

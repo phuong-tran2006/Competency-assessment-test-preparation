@@ -30,12 +30,12 @@ async function main() {
 
   await prisma.user.upsert({
     where: { email: 'learner@vact.com' },
-    update: {},
+    update: { role: Role.STUDENT },
     create: {
       email: 'learner@vact.com',
       passwordHash: hashedPassword,
       fullName: 'Học viên Test',
-      role: Role.LEARNER,
+      role: Role.STUDENT,
     },
   });
 
@@ -427,13 +427,13 @@ async function main() {
     update: {
       passwordHash: testPasswordHash,
       fullName: 'Learner Test API',
-      role: 'LEARNER',
+      role: Role.STUDENT,
     },
     create: {
       email: 'test.learner@vact.com',
       passwordHash: testPasswordHash,
       fullName: 'Learner Test API',
-      role: 'LEARNER',
+      role: Role.STUDENT,
       targetScore: 900,
     },
   });

@@ -1,13 +1,13 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import type { AppRole } from '../types/auth.types';
 
 interface User {
   id?: string | number;
   name?: string;
   fullName?: string | null;
   email: string;
-  // 'STUDENT' giữ lại cho dữ liệu cũ còn trong localStorage
-  role: 'LEARNER' | 'STUDENT' | 'INSTRUCTOR' | 'ADMIN';
+  role: AppRole;
 }
 
 interface AuthState {
@@ -17,6 +17,11 @@ interface AuthState {
   setAuth: (user: User, token: string) => void;
   logout: () => void;
 }
+
+type PersistedAuthState = Pick<AuthState, 'user' | 'token' | 'isAuthenticated'>;
+type LegacyAuthState = Omit<PersistedAuthState, 'user'> & {
+  user: (Omit<User, 'role'> & { role: AppRole | 'LEARNER' }) | null;
+};
 
 export const useAuthStore = create<AuthState>()(
   persist(
@@ -32,6 +37,24 @@ export const useAuthStore = create<AuthState>()(
     }),
     {
       name: 'auth-storage', // Tự động lưu vào localStorage để không bị mất khi F5
+      version: 1,
+      partialize: ({ user, token, isAuthenticated }): PersistedAuthState => ({
+        user,
+        token,
+        isAuthenticated,
+      }),
+      migrate: (persistedState): PersistedAuthState => {
+        const state = persistedState as LegacyAuthState;
+        return {
+          ...state,
+          user: state.user
+            ? {
+                ...state.user,
+                role: state.user.role === 'LEARNER' ? 'STUDENT' : state.user.role,
+              }
+            : null,
+        };
+      },
     }
   )
 );

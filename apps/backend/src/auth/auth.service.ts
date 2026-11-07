@@ -5,6 +5,7 @@ import {
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
+import { Role } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { LoginDto } from './dto/login.dto';
 import { RegisterDto } from './dto/register.dto';
@@ -29,6 +30,7 @@ export class AuthService {
         passwordHash,
         fullName: dto.fullName,
         targetScore: dto.targetScore,
+        role: Role.STUDENT,
       },
       select: { id: true, email: true, fullName: true, role: true },
     });

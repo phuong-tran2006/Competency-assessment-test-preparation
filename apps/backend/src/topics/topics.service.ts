@@ -7,6 +7,7 @@ import {
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateTopicDto } from './dto/create-topic.dto';
 import { UpdateTopicDto } from './dto/update-topic.dto';
+import { PREREQUISITE_GRAPH_LOCK_ID, prerequisiteAncestors, prerequisiteMap, wouldCreateCycle } from './prerequisite-graph';
 
 @Injectable()
 export class TopicsService {
@@ -104,38 +105,22 @@ export class TopicsService {
    *   3. Không tạo chu trình
    */
   async addPrerequisite(topicId: string, prerequisiteId: string) {
-    if (topicId === prerequisiteId) {
-      throw new BadRequestException(
-        'Chủ đề không thể là prerequisite của chính nó',
-      );
-    }
-
-    const [topic, prerequisite] = await Promise.all([
-      this.prisma.topic.findUnique({ where: { id: topicId } }),
-      this.prisma.topic.findUnique({ where: { id: prerequisiteId } }),
-    ]);
-    if (!topic) throw new NotFoundException('Không tìm thấy chủ đề');
-    if (!prerequisite)
-      throw new NotFoundException('Không tìm thấy prerequisite');
-
-    // Đã tồn tại?
-    const existing = await this.prisma.topicPrerequisite.findUnique({
-      where: { topicId_prerequisiteId: { topicId, prerequisiteId } },
-    });
-    if (existing)
-      throw new ConflictException('Quan hệ prerequisite đã tồn tại');
-
-    // Phát hiện chu trình
-    const hasCycle = await this.wouldCreateCycle(topicId, prerequisiteId);
-    if (hasCycle) {
-      throw new BadRequestException(
-        'Không thể thêm: quan hệ này tạo chu trình trong đồ thị prerequisite',
-      );
-    }
-
-    return this.prisma.topicPrerequisite.create({
-      data: { topicId, prerequisiteId },
-      include: { prerequisite: true },
+    return this.prisma.$transaction(async (tx) => {
+      // Serialize graph changes so simultaneous inverse edges cannot both pass validation.
+      await tx.$queryRaw`SELECT 1 AS locked FROM pg_advisory_xact_lock(${PREREQUISITE_GRAPH_LOCK_ID}::bigint)`;
+      const topics = await tx.topic.findMany({
+        where: { id: { in: [topicId, prerequisiteId] } }, select: { id: true },
+      });
+      if (!topics.some((topic) => topic.id === topicId)) throw new NotFoundException('Không tìm thấy chủ đề');
+      if (!topics.some((topic) => topic.id === prerequisiteId)) throw new NotFoundException('Không tìm thấy prerequisite');
+      const edges = await tx.topicPrerequisite.findMany({ select: { topicId: true, prerequisiteId: true } });
+      if (edges.some((edge) => edge.topicId === topicId && edge.prerequisiteId === prerequisiteId)) {
+        throw new ConflictException('Quan hệ prerequisite đã tồn tại');
+      }
+      if (wouldCreateCycle(edges, topicId, prerequisiteId)) {
+        throw new BadRequestException('Không thể thêm: quan hệ này tạo chu trình trong đồ thị prerequisite');
+      }
+      return tx.topicPrerequisite.create({ data: { topicId, prerequisiteId }, include: { prerequisite: true } });
     });
   }
 
@@ -159,34 +144,12 @@ export class TopicsService {
   async getGraph(topicId: string) {
     await this.ensureExists(topicId);
 
-    // BFS lấy tất cả ancestor
-    const ancestors: Array<{ id: string; name: string; level: number }> = [];
-    const visited = new Set<string>();
-    const queue: Array<{ id: string; level: number }> = [
-      { id: topicId, level: 0 },
-    ];
-
-    while (queue.length) {
-      const current = queue.shift()!;
-      if (visited.has(current.id)) continue;
-      visited.add(current.id);
-
-      const prereqs = await this.prisma.topicPrerequisite.findMany({
-        where: { topicId: current.id },
-        include: { prerequisite: { select: { id: true, name: true } } },
-      });
-
-      for (const p of prereqs) {
-        if (!visited.has(p.prerequisite.id)) {
-          ancestors.push({
-            id: p.prerequisite.id,
-            name: p.prerequisite.name,
-            level: current.level + 1,
-          });
-          queue.push({ id: p.prerequisite.id, level: current.level + 1 });
-        }
-      }
-    }
+    const edges = await this.prisma.topicPrerequisite.findMany({
+      include: { prerequisite: { select: { id: true, name: true } } },
+    });
+    const names = new Map(edges.map((edge) => [edge.prerequisiteId, edge.prerequisite.name]));
+    const ancestors = prerequisiteAncestors(prerequisiteMap(edges), topicId)
+      .map((ancestor) => ({ ...ancestor, name: names.get(ancestor.id)! }));
 
     return {
       topicId,
@@ -203,36 +166,4 @@ export class TopicsService {
     return topic;
   }
 
-  /**
-   * Kiểm tra nếu thêm edge (topicId -> prerequisiteId) có tạo chu trình không.
-   *
-   * Ý tưởng: BFS từ prerequisiteId theo hướng "prerequisites của nó".
-   * Nếu gặp lại topicId → có chu trình.
-   *
-   * Ví dụ đã có: B phụ thuộc A (edge B -> A).
-   * Muốn thêm: A phụ thuộc B (edge A -> B).
-   * Từ B, duyệt prerequisites của B → gặp A → có chu trình.
-   */
-  private async wouldCreateCycle(
-    topicId: string,
-    prerequisiteId: string,
-  ): Promise<boolean> {
-    const visited = new Set<string>();
-    const queue: string[] = [prerequisiteId];
-
-    while (queue.length > 0) {
-      const current = queue.shift()!;
-      if (current === topicId) return true;
-      if (visited.has(current)) continue;
-      visited.add(current);
-
-      const prereqs = await this.prisma.topicPrerequisite.findMany({
-        where: { topicId: current },
-        select: { prerequisiteId: true },
-      });
-      queue.push(...prereqs.map((p) => p.prerequisiteId));
-    }
-
-    return false;
-  }
 }

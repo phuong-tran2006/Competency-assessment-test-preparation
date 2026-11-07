@@ -30,8 +30,8 @@ function App() {
         <Route path="/courses" element={<CourseList />} />
         <Route path="/exams" element={<ExamList />} />
 
-        {/* 2. Nhóm trang dành cho HỌC VIÊN (LEARNER) */}
-        <Route element={<ProtectedRoute allowedRoles={["LEARNER"]} />}>
+        {/* 2. Nhóm trang dành cho HỌC VIÊN (STUDENT) */}
+        <Route element={<ProtectedRoute allowedRoles={["STUDENT"]} />}>
           <Route path="/profile" element={<UserProfile />} />
           <Route path="/practice/:examId" element={<QuizPage />} />
           <Route path="/results/:attemptId" element={<ResultPage />} />
