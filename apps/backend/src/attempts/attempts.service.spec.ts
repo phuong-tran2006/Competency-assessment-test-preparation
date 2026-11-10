@@ -1,6 +1,7 @@
 import { BadRequestException, NotFoundException } from '@nestjs/common';
 import { AttemptsService } from './attempts.service';
 import { PrismaService } from '../prisma/prisma.service';
+import { MasteryService } from '../mastery/mastery.service';
 
 function createService() {
   const prisma = {
@@ -25,10 +26,13 @@ function createService() {
       createMany: jest.fn(),
       findMany: jest.fn(),
     },
+    $queryRaw: jest.fn().mockResolvedValue([]),
     $transaction: jest.fn(),
   };
-  const service = new AttemptsService(prisma as unknown as PrismaService);
-  return { service, prisma };
+  prisma.$transaction.mockImplementation(async (callback) => callback(prisma));
+  const mastery = { updateAfterGrading: jest.fn().mockResolvedValue({ updated: true, topics: 0 }) };
+  const service = new AttemptsService(prisma as unknown as PrismaService, mastery as unknown as MasteryService);
+  return { service, prisma, mastery };
 }
 
 const past = () => new Date(Date.now() - 60_000);
@@ -76,7 +80,7 @@ describe('AttemptsService (M1)', () => {
       expect(res.attemptId).toBe('a1');
       expect(res.totalQuestions).toBe(1);
       const gap =
-        new Date(res.deadlineAt).getTime() -
+        new Date(res.deadlineAt!).getTime() -
         new Date(res.startedAt).getTime();
       expect(gap).toBe(600_000);
     });
@@ -128,7 +132,6 @@ describe('AttemptsService (M1)', () => {
         total: 0,
       });
       prisma.question.findMany.mockResolvedValue([]);
-      prisma.$transaction.mockResolvedValue([]);
 
       await expect(
         service.saveAnswer('a1', 'q1', { selectedOptionIds: ['o1'] }, 'u1'),
@@ -208,7 +211,6 @@ describe('AttemptsService (M1)', () => {
         total: 0,
       });
       prisma.question.findMany.mockResolvedValue([]);
-      prisma.$transaction.mockResolvedValue([]);
 
       const res = await service.getAttempt('a1', 'u1');
       expect(res.status).toBe('SUBMITTED');
@@ -291,7 +293,6 @@ describe('AttemptsService (M1)', () => {
           options: [{ id: 'o3', isCorrect: true }],
         },
       ]);
-      prisma.$transaction.mockResolvedValue([]);
       return { service, prisma };
     }
 
@@ -304,21 +305,19 @@ describe('AttemptsService (M1)', () => {
       expect(res.weightedScore).toBe(3);
       expect(res.total).toBe(3);
 
-      const txArgs = prisma.$transaction.mock.calls[0][0];
-      // 3 answer updates + deleteMany + createMany + attempt update
-      expect(txArgs).toHaveLength(6);
+      expect(prisma.$transaction).toHaveBeenCalledWith(expect.any(Function), { timeout: 15000 });
       expect(prisma.examAnswer.update).toHaveBeenCalledTimes(3);
       expect(prisma.examAnswer.update).toHaveBeenCalledWith({
         where: { id: 'ans1' },
-        data: { isCorrect: true },
+        data: expect.objectContaining({ isCorrect: true, difficultyAtSubmission: 2, topicIdAtSubmission: 't1' }),
       });
       expect(prisma.examAnswer.update).toHaveBeenCalledWith({
         where: { id: 'ans2' },
-        data: { isCorrect: false },
+        data: expect.objectContaining({ isCorrect: false }),
       });
       expect(prisma.examAnswer.update).toHaveBeenCalledWith({
         where: { id: 'ans3' },
-        data: { isCorrect: false },
+        data: expect.objectContaining({ isCorrect: false }),
       });
       expect(prisma.examAttempt.update).toHaveBeenCalledWith({
         where: { id: 'a1' },
@@ -358,10 +357,9 @@ describe('AttemptsService (M1)', () => {
         answers: [],
       });
       prisma.question.findMany.mockResolvedValue([]);
-      prisma.$transaction.mockResolvedValue([]);
 
       const res = await service.finalizeAttempt('a1');
-      expect(new Date(res.submittedAt).getTime()).toBe(deadline.getTime());
+      expect(new Date(res.submittedAt!).getTime()).toBe(deadline.getTime());
     });
 
     it('nộp lại bài đã nộp: idempotent, không chấm lại', async () => {
@@ -378,7 +376,7 @@ describe('AttemptsService (M1)', () => {
 
       const res = await service.finalizeAttempt('a1');
       expect(res.message).toBe('Bài thi đã được nộp trước đó');
-      expect(prisma.$transaction).not.toHaveBeenCalled();
+      expect(prisma.examAnswer.update).not.toHaveBeenCalled();
     });
 
     it('báo lỗi khi attempt không tồn tại', async () => {

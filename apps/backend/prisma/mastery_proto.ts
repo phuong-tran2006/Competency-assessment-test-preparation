@@ -7,7 +7,7 @@
  *
  * Chạy: npm run mastery:proto
  */
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, Role } from '@prisma/client';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { Pool } from 'pg';
 import * as dotenv from 'dotenv';
@@ -60,7 +60,7 @@ async function main() {
 
   // ---- B1: lấy chuỗi sự kiện trả lời theo thứ tự thời gian ----
   const attempts = await prisma.examAttempt.findMany({
-    where: { status: 'SUBMITTED' },
+    where: { status: 'SUBMITTED', user: { role: Role.STUDENT } },
     include: { answers: { orderBy: { id: 'asc' } } },
     orderBy: [{ submittedAt: 'asc' }, { startedAt: 'asc' }],
   });
@@ -94,9 +94,9 @@ async function main() {
       if (!q.topicId) continue;
       events.push({
         userId,
-        topicId: q.topicId,
+        topicId: answer.topicIdAtSubmission ?? q.topicId,
         topicName: q.topic?.name ?? q.topicId,
-        difficulty: q.difficulty ?? 0.5,
+        difficulty: answer.difficultyAtSubmission ?? q.difficulty ?? 0.5,
         correct: answer.isCorrect,
       });
     }
@@ -271,8 +271,8 @@ async function main() {
     const [userId, topicId] = key.split('::');
     await prisma.topicMastery.upsert({
       where: { userId_topicId: { userId, topicId } },
-      create: { userId, topicId, rating, attempts: counts.get(key) ?? 0 },
-      update: { rating, attempts: counts.get(key) ?? 0 },
+      create: { userId, topicId, masteryScore: rating, attempts: counts.get(key) ?? 0 },
+      update: { masteryScore: rating, attempts: counts.get(key) ?? 0 },
     });
     written += 1;
   }

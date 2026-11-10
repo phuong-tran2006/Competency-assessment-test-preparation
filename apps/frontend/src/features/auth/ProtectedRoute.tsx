@@ -1,19 +1,10 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useAuthStore } from "../../store/authStore";
-
-export type AppRole = 'LEARNER' | 'INSTRUCTOR' | 'ADMIN';
+import type { AppRole } from '../../types/auth.types';
 
 interface ProtectedRouteProps {
   allowedRoles: AppRole[];
 }
-
-// Backend trả role LEARNER; một số bản FE cũ lưu STUDENT nên cần map lại.
-const ROLE_ALIASES: Record<string, AppRole> = {
-  STUDENT: 'LEARNER',
-  LEARNER: 'LEARNER',
-  INSTRUCTOR: 'INSTRUCTOR',
-  ADMIN: 'ADMIN',
-};
 
 export const ProtectedRoute = ({ allowedRoles }: ProtectedRouteProps) => {
   const { isAuthenticated, user } = useAuthStore();
@@ -22,7 +13,7 @@ export const ProtectedRoute = ({ allowedRoles }: ProtectedRouteProps) => {
     return <Navigate to="/login" replace />;
   }
 
-  const role = ROLE_ALIASES[String(user.role).toUpperCase()];
+  const role = user.role;
 
   // ADMIN đi được mọi trang để thuận tiện demo và kiểm thử
   if (!role || (role !== 'ADMIN' && !allowedRoles.includes(role))) {

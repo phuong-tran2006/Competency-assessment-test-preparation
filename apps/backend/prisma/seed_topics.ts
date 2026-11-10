@@ -126,13 +126,14 @@ async function main() {
     });
 
     // Chỉ xóa khi không còn dữ liệu tham chiếu (tránh lỗi onDelete: Restrict)
-    const [stillQuestions, stillResults, stillMastery] = await Promise.all([
+    const [stillQuestions, stillResults, stillMastery, historicalAnswers] = await Promise.all([
       prisma.question.count({ where: { topicId: legacy.id } }),
       prisma.attemptTopicResult.count({ where: { topicId: legacy.id } }),
       prisma.topicMastery.count({ where: { topicId: legacy.id } }),
+      prisma.examAnswer.count({ where: { topicIdAtSubmission: legacy.id } }),
     ]);
 
-    if (!stillQuestions && !stillResults && !stillMastery) {
+    if (!stillQuestions && !stillResults && !stillMastery && !historicalAnswers) {
       await prisma.topic.delete({ where: { id: legacy.id } });
       removedTopics += 1;
       console.log(

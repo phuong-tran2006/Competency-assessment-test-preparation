@@ -1,6 +1,7 @@
 // src/services/auth.service.ts
 import api from './api';
 import { useAuthStore } from '../store/authStore';
+import type { AppRole } from '../types/auth.types';
 
 export interface LoginResponse {
   accessToken: string;
@@ -8,7 +9,7 @@ export interface LoginResponse {
     id: string;
     email: string;
     fullName?: string | null;
-    role: 'LEARNER' | 'INSTRUCTOR' | 'ADMIN';
+    role: AppRole;
   };
 }
 

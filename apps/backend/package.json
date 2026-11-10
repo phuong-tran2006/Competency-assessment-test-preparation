@@ -24,6 +24,7 @@
     "seed:exam": "ts-node prisma/seed_exam_demo.ts",
     "e2e:proof": "ts-node prisma/e2e_proof.ts",
     "mastery:proto": "ts-node prisma/mastery_proto.ts",
+    "seed:mastery": "ts-node prisma/seed_mastery.ts",
     "seed:all": "npm run seed && npm run seed:bank && npm run seed:topics && npm run seed:exam"
   },
   "dependencies": {
@@ -102,7 +103,7 @@
       ]
     },
     "transformIgnorePatterns": [
-      "node_modules/(?!(.*?/)?(@nestjs/testing|@nestjs/common|@nestjs/core|@nestjs/passport)/)"
+      "node_modules/(?!(.*?/)?(@nestjs/testing|@nestjs/common|@nestjs/core|@nestjs/passport|@nestjs/jwt)/)"
     ],
     "collectCoverageFrom": [
       "**/*.(t|j)s"

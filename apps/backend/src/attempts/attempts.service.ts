@@ -8,10 +8,15 @@ import { CreateAttemptDto } from './dto/create-attempt.dto';
 import { CreatePlacementDto } from './dto/create-placement.dto';
 import { SubmitAnswerDto } from './dto/submit-answer.dto';
 import { isAnswerCorrect, questionWeight, roundScore } from './scoring';
+import { Prisma } from '@prisma/client';
+import { MasteryService } from '../mastery/mastery.service';
 
 @Injectable()
 export class AttemptsService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly mastery: MasteryService,
+  ) {}
 
   private resolveTimeLimit(dto: { timeLimit?: number; durationMin?: number }, fallback: number) {
     if (dto.timeLimit !== undefined) return dto.timeLimit;
@@ -251,53 +256,58 @@ export class AttemptsService {
     dto: SubmitAnswerDto,
     userId: string,
   ) {
-    const attempt = await this.prisma.examAttempt.findFirst({
-      where: { id: attemptId, userId },
-    });
-    if (!attempt) throw new NotFoundException('Không tìm thấy lượt làm bài');
-    if (attempt.status !== 'IN_PROGRESS') {
-      throw new BadRequestException('Lượt làm bài đã kết thúc');
-    }
-
-    if (this.isExpired(attempt)) {
-      await this.finalizeAttempt(attemptId);
-      throw new BadRequestException(
-        'Đã hết thời gian làm bài, bài đã được nộp tự động',
-      );
-    }
-
-    const answer = await this.prisma.examAnswer.findUnique({
-      where: { attemptId_questionId: { attemptId, questionId } },
-    });
-    if (!answer) {
-      throw new NotFoundException('Câu hỏi không thuộc lượt làm bài này');
-    }
-
-    const selectedOptionIds = [...new Set(dto.selectedOptionIds)];
-    if (selectedOptionIds.length) {
-      const validOptions = await this.prisma.questionOption.count({
-        where: { questionId, id: { in: selectedOptionIds } },
+    const result = await this.prisma.$transaction(async (tx) => {
+      await tx.$queryRaw`SELECT "id" FROM "exam_attempts" WHERE "id" = ${attemptId} AND "userId" = ${userId} FOR UPDATE`;
+      const attempt = await tx.examAttempt.findFirst({
+        where: { id: attemptId, userId },
       });
-      if (validOptions !== selectedOptionIds.length) {
-        throw new BadRequestException('Có đáp án không thuộc câu hỏi này');
+      if (!attempt) throw new NotFoundException('Không tìm thấy lượt làm bài');
+      if (attempt.status !== 'IN_PROGRESS') {
+        throw new BadRequestException('Lượt làm bài đã kết thúc');
       }
-    }
 
-    const updated = await this.prisma.examAnswer.update({
-      where: { attemptId_questionId: { attemptId, questionId } },
-      data: {
-        selectedOptionIds,
-        ...(dto.timeSpent !== undefined ? { timeSpent: dto.timeSpent } : {}),
-      },
+      if (this.isExpired(attempt)) {
+        return { expired: true as const };
+      }
+
+      const answer = await tx.examAnswer.findUnique({
+        where: { attemptId_questionId: { attemptId, questionId } },
+      });
+      if (!answer) {
+        throw new NotFoundException('Câu hỏi không thuộc lượt làm bài này');
+      }
+
+      const selectedOptionIds = [...new Set(dto.selectedOptionIds)];
+      if (selectedOptionIds.length) {
+        const validOptions = await tx.questionOption.count({
+          where: { questionId, id: { in: selectedOptionIds } },
+        });
+        if (validOptions !== selectedOptionIds.length) {
+          throw new BadRequestException('Có đáp án không thuộc câu hỏi này');
+        }
+      }
+
+      const updated = await tx.examAnswer.update({
+        where: { attemptId_questionId: { attemptId, questionId } },
+        data: {
+          selectedOptionIds,
+          ...(dto.timeSpent !== undefined ? { timeSpent: dto.timeSpent } : {}),
+        },
+      });
+
+      return { expired: false as const, answer: {
+        id: updated.id,
+        attemptId: updated.attemptId,
+        questionId: updated.questionId,
+        selectedOptionIds: updated.selectedOptionIds,
+        timeSpent: updated.timeSpent,
+      } };
     });
-
-    return {
-      id: updated.id,
-      attemptId: updated.attemptId,
-      questionId: updated.questionId,
-      selectedOptionIds: updated.selectedOptionIds,
-      timeSpent: updated.timeSpent,
-    };
+    if (result.expired) {
+      await this.finalizeAttempt(attemptId);
+      throw new BadRequestException('Đã hết thời gian làm bài, bài đã được nộp tự động');
+    }
+    return result.answer;
   }
 
   async submitAttempt(attemptId: string, userId: string) {
@@ -313,9 +323,16 @@ export class AttemptsService {
   }
 
   async finalizeAttempt(attemptId: string) {
-    const attempt = await this.prisma.examAttempt.findUnique({
+    return this.prisma.$transaction(async (tx) => {
+      await tx.$queryRaw`SELECT "id" FROM "exam_attempts" WHERE "id" = ${attemptId} FOR UPDATE`;
+      return this.finalizeLockedAttempt(tx, attemptId);
+    }, { timeout: 15000 });
+  }
+
+  private async finalizeLockedAttempt(tx: Prisma.TransactionClient, attemptId: string) {
+    const attempt = await tx.examAttempt.findUnique({
       where: { id: attemptId },
-      include: { answers: true },
+      include: { answers: { orderBy: { id: 'asc' } } },
     });
     if (!attempt) throw new NotFoundException('Không tìm thấy bài làm');
 
@@ -336,14 +353,16 @@ export class AttemptsService {
     const submittedAt = deadline && now > deadline ? deadline : now;
 
     const questionIds = attempt.answers.map((a) => a.questionId);
-    const questions = await this.prisma.question.findMany({
+    const questions = await tx.question.findMany({
       where: { id: { in: questionIds } },
       include: { options: true },
     });
 
+    const byQuestion = new Map(questions.map((question) => [question.id, question]));
+
     let score = 0;
     let weightedScore = 0;
-    const updates: any[] = [];
+    const updates: Prisma.PrismaPromise<unknown>[] = [];
 
     const topicStats = new Map<
       string,
@@ -357,7 +376,7 @@ export class AttemptsService {
     >();
 
     for (const answer of attempt.answers) {
-      const question = questions.find((q) => q.id === answer.questionId);
+      const question = byQuestion.get(answer.questionId);
       if (!question) continue;
 
       const correctOptionIds = question.options
@@ -391,9 +410,9 @@ export class AttemptsService {
       topicStats.set(question.topicId, topic);
 
       updates.push(
-        this.prisma.examAnswer.update({
+        tx.examAnswer.update({
           where: { id: answer.id },
-          data: { isCorrect },
+          data: { isCorrect, difficultyAtSubmission: question.difficulty, topicIdAtSubmission: question.topicId },
         }),
       );
     }
@@ -410,13 +429,10 @@ export class AttemptsService {
       timeSpent: row.timeSpent,
     }));
 
-    await this.prisma.$transaction([
-      ...updates,
-      this.prisma.attemptTopicResult.deleteMany({ where: { attemptId } }),
-      ...(topicRows.length
-        ? [this.prisma.attemptTopicResult.createMany({ data: topicRows })]
-        : []),
-      this.prisma.examAttempt.update({
+    await Promise.all(updates);
+    await tx.attemptTopicResult.deleteMany({ where: { attemptId } });
+    if (topicRows.length) await tx.attemptTopicResult.createMany({ data: topicRows });
+    await tx.examAttempt.update({
         where: { id: attemptId },
         data: {
           status: 'SUBMITTED',
@@ -425,8 +441,8 @@ export class AttemptsService {
           weightedScore: roundedWeightedScore,
           total,
         },
-      }),
-    ]);
+    });
+    await this.mastery.updateAfterGrading(tx, attemptId);
 
     return {
       message: 'Nộp bài thành công',
