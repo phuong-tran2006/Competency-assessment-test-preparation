@@ -171,22 +171,13 @@ export const QuizEngine = () => {
 
   const answeredCount = Object.keys(answers).length;
 
+  // Section header động theo topic của câu hỏi, thay vì hardcode mốc index.
+  // Các câu liên tiếp cùng topic được gom chung một header.
   const getSectionTitles = (index: number) => {
-    const titles = [];
-    if (index === 0) {
-      titles.push({ type: "main", text: "PHẦN 1: SỬ DỤNG NGÔN NGỮ" });
-      titles.push({ type: "sub", text: "1.1. TIẾNG VIỆT" });
-    } else if (index === 30) {
-      titles.push({ type: "sub", text: "1.2. TIẾNG ANH" });
-    } else if (index === 60) {
-      titles.push({ type: "main", text: "PHẦN 2: TOÁN HỌC" });
-    } else if (index === 90) {
-      titles.push({ type: "main", text: "PHẦN 3: TƯ DUY KHOA HỌC" });
-      titles.push({ type: "sub", text: "3.1. LOGIC, PHÂN TÍCH SỐ LIỆU" });
-    } else if (index === 102) {
-      titles.push({ type: "sub", text: "3.2. SUY LUẬN KHOA HỌC" });
-    }
-    return titles;
+    const topic = (questions[index] as any)?.topic;
+    if (!topic) return [];
+    if (index > 0 && (questions[index - 1] as any)?.topic === topic) return [];
+    return [{ type: 'main' as const, text: String(topic).toUpperCase() }];
   };
 
   useEffect(() => {
@@ -234,7 +225,7 @@ export const QuizEngine = () => {
           )}
 
           <h1 className="flex-1 text-center text-xl font-black text-amber-600 uppercase tracking-wide py-3 bg-amber-50 rounded-xl border border-amber-200">
-            ĐỀ LUYỆN THI ĐGNL 2026 V-ACT – ĐỀ 1
+            BÀI THI THỬ
           </h1>
         </div>
 

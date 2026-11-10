@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../services/api';
 import { BackButton } from '../../components/BackButton';
+import { useAuthStore } from '../../store/authStore';
 
 interface Exam {
   id: string;
@@ -14,6 +15,7 @@ export const ExamList = () => {
   const [exams, setExams] = useState<Exam[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
 
   useEffect(() => {
     api
@@ -60,12 +62,21 @@ export const ExamList = () => {
           <p className="mt-4 text-lg text-gray-600">
             Chọn một bộ đề để bắt đầu. Hệ thống tự động chấm điểm và phân tích theo chủ đề.
           </p>
-          <Link
-            to="/history"
-            className="mt-6 inline-block text-sm font-bold text-amber-600 hover:text-amber-500 underline"
-          >
-            Xem lịch sử làm bài
-          </Link>
+          {isAuthenticated ? (
+            <Link
+              to="/history"
+              className="mt-6 inline-block text-sm font-bold text-amber-600 hover:text-amber-500 underline"
+            >
+              Xem lịch sử làm bài
+            </Link>
+          ) : (
+            <p className="mt-6 text-sm text-gray-500">
+              <Link to="/login" className="font-bold text-amber-600 hover:text-amber-500 underline">
+                Đăng nhập
+              </Link>{' '}
+              để bắt đầu làm bài và lưu lịch sử.
+            </p>
+          )}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -90,12 +101,22 @@ export const ExamList = () => {
                 <span className="text-sm font-semibold text-gray-500">
                   {exam._count?.questions ?? 0} câu hỏi
                 </span>
-                <Link
-                  to={`/practice/${exam.id}`}
-                  className="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2.5 px-6 rounded-xl transition-colors shadow-sm text-sm"
-                >
-                  VÀO THI
-                </Link>
+                {isAuthenticated ? (
+                  <Link
+                    to={`/practice/${exam.id}`}
+                    className="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2.5 px-6 rounded-xl transition-colors shadow-sm text-sm"
+                  >
+                    VÀO THI
+                  </Link>
+                ) : (
+                  <Link
+                    to={`/login?next=/practice/${exam.id}`}
+                    className="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2.5 px-6 rounded-xl transition-colors shadow-sm text-sm"
+                    title="Đăng nhập để vào thi"
+                  >
+                    ĐĂNG NHẬP ĐỂ THI
+                  </Link>
+                )}
               </div>
             </div>
           ))}

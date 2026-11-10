@@ -11,6 +11,9 @@ import { toast } from '../../store/uiStore';
  * Chuẩn hóa câu hỏi từ BE về shape FE đang dùng.
  * Hỗ trợ cả `/exams/:id/questions` (có `options[].content`)
  * và `/attempts` (`questions[].options[].content`, không trả isCorrect).
+ * BE không bao giờ trả `isCorrect` ở các endpoint này nên mọi kiểm tra
+ * đáp án ở client chỉ mang tính hiển thị lại (review), kết quả chuẩn
+ * lấy từ GET /attempts/:id/results.
  */
 function mapQuestions(data: any[]) {
   return data.map((q: any) => ({
@@ -22,20 +25,25 @@ function mapQuestions(data: any[]) {
       isCorrect: opt.isCorrect === true,
     })),
     explanation: q.explanation || '',
+    topic: q.topic?.name ?? q.topic ?? '',
   }));
 }
 
 // --- MÀN HÌNH 1: GIỚI THIỆU & CHỌN BẮT ĐẦU ĐỀ THI ---
+// Dùng metadata đề thay vì preload toàn bộ câu hỏi (tránh lộ đáp án,
+// tránh tải nặng khi đề lớn).
 const QuizIntro = ({
+  examMeta,
   onStart,
   starting,
   startError,
 }: {
+  examMeta: { title: string; questionCount: number } | null;
   onStart: () => void;
   starting: boolean;
   startError: string;
 }) => {
-  const questions = useQuizStore((state) => state.questions);
+  const questionCount = examMeta?.questionCount ?? 0;
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -45,10 +53,10 @@ const QuizIntro = ({
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-b pb-8 mb-8">
         <div>
           <h1 className="text-2xl md:text-3xl font-extrabold text-blue-900 mb-3">
-            Bộ đề Đánh Giá Năng Lực V-ACT ĐHQG TP.HCM mới nhất 2026
+            {examMeta?.title ?? 'Bộ đề Đánh Giá Năng Lực V-ACT'}
           </h1>
           <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-            Đề Đánh Giá Năng Lực V-ACT ĐHQG TP.HCM mới nhất 2026 là bộ đề ôn luyện được biên soạn theo định hướng bài thi Đánh giá năng lực của ĐHQG-HCM, giúp học sinh làm quen với cấu trúc đề và áp lực thời gian.
+            Đề ôn luyện được biên soạn theo định hướng bài thi Đánh giá năng lực, giúp học sinh làm quen với cấu trúc đề và áp lực thời gian.
           </p>
         </div>
         <div className="bg-amber-50 border border-amber-200 p-4 rounded-xl text-center min-w-[200px]">
@@ -57,36 +65,9 @@ const QuizIntro = ({
         </div>
       </div>
 
-      <div className="mb-8">
-        <h2 className="text-lg font-bold text-gray-800 mb-4">Thông tin đề thi</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-          <div className="p-4 rounded-xl border border-gray-200 bg-gray-50">
-            <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded">Môn chính</span>
-            <h3 className="font-bold text-gray-800 mt-2">Toán</h3>
-            <p className="text-xs text-gray-500 mt-1">30 câu • 40 phút</p>
-          </div>
-          <div className="p-4 rounded-xl border border-gray-200 bg-gray-50">
-            <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded">Môn chính</span>
-            <h3 className="font-bold text-gray-800 mt-2">Tiếng Việt</h3>
-            <p className="text-xs text-gray-500 mt-1">30 câu • 40 phút</p>
-          </div>
-          <div className="p-4 rounded-xl border border-gray-200 bg-gray-50">
-            <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded">Môn chính</span>
-            <h3 className="font-bold text-gray-800 mt-2">Tiếng Anh</h3>
-            <p className="text-xs text-gray-500 mt-1">30 câu • 40 phút</p>
-          </div>
-          <div className="p-4 rounded-xl border border-gray-200 bg-gray-50">
-            <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-bold rounded">Môn phụ</span>
-            <h3 className="font-bold text-gray-800 mt-2">Logic, phân tích dữ liệu</h3>
-            <p className="text-xs text-gray-500 mt-1">12 câu • 40 phút</p>
-          </div>
-        </div>
-      </div>
-
       <div className="bg-amber-50/50 border border-amber-200 rounded-2xl p-6 text-center max-w-xl mx-auto shadow-sm">
-        <h3 className="text-xl font-bold text-amber-600 mb-2">ĐỀ LUYỆN THI ĐGNL 2026 V-ACT</h3>
         <p className="text-gray-600 text-sm mb-4">
-          Số câu: <strong className="text-gray-800">{questions.length > 0 ? questions.length : 120} câu</strong> &nbsp;|&nbsp; Thời gian làm bài: <strong className="text-gray-800">150 phút</strong>
+          Số câu: <strong className="text-gray-800">{questionCount > 0 ? `${questionCount} câu` : 'Đang tải...'}</strong> &nbsp;|&nbsp; Thời gian làm bài được tính từ lúc bấm bắt đầu
         </p>
         {startError && (
           <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-600 text-sm rounded-lg font-medium">
@@ -168,9 +149,11 @@ export const QuizPage = () => {
   const [loading, setLoading] = useState(true);
   const [starting, setStarting] = useState(false);
   const [startError, setStartError] = useState('');
+  const [examMeta, setExamMeta] = useState<{ title: string; questionCount: number } | null>(null);
   const { examId } = useParams();
 
-  // Nạp trước danh sách câu hỏi để màn giới thiệu hiển thị đúng số câu
+  // Chỉ tải metadata đề cho màn giới thiệu — nội dung câu hỏi thật
+  // chỉ tải sau khi POST /attempts tạo lượt làm bài.
   useEffect(() => {
     if (!examId) {
       setLoading(false);
@@ -179,10 +162,8 @@ export const QuizPage = () => {
 
     setLoading(true);
     quizService
-      .getExamQuestions(examId)
-      .then((data) => {
-        setQuestions(mapQuestions(data));
-      })
+      .getExamMeta(examId)
+      .then(setExamMeta)
       .catch((err) => {
         console.error('Lỗi tải đề:', err);
         toast.error(
@@ -191,7 +172,7 @@ export const QuizPage = () => {
         );
       })
       .finally(() => setLoading(false));
-  }, [examId, setQuestions]);
+  }, [examId]);
 
   // Tạo ExamAttempt thật trên backend rồi mới vào phòng thi
   const handleStart = async () => {
@@ -254,6 +235,7 @@ export const QuizPage = () => {
     <div className="min-h-screen bg-[#fdfbf7] py-6 px-4">
       {currentStep === 'intro' && (
         <QuizIntro
+          examMeta={examMeta}
           onStart={handleStart}
           starting={starting}
           startError={startError}

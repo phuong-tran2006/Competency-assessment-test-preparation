@@ -8,26 +8,24 @@ export const quizService = {
     return data;
   },
 
-  // Lấy danh sách câu hỏi của một đề thi cụ thể (không còn chứa isCorrect)
-  getExamQuestions: async (examId: string): Promise<Question[]> => {
-    const { data } = await api.get(`/exams/${examId}/questions`);
-    // Map dữ liệu để đảm bảo tương thích với type FE
-    return data;
+  // Metadata đề thi để hiển thị màn giới thiệu (KHÔNG chứa nội dung câu hỏi/đáp án).
+  // Response: { id, title, description, questionCount }.
+  getExamMeta: async (
+    examId: string,
+  ): Promise<{ id: string; title: string; description: string | null; questionCount: number }> => {
+    const { data } = await api.get(`/exams/${examId}`);
+    const count = Array.isArray(data?.questions) ? data.questions.length : 0;
+    return {
+      id: data.id,
+      title: data.title,
+      description: data.description ?? null,
+      questionCount: count,
+    };
   },
 
-  // Nộp bài thi lên Backend, nhận về điểm số và chi tiết chấm điểm
-  submitExam: async (examId: string, answers: Record<string, string>) => {
-    // Chuyển đổi định dạng answers sang Record<string, string[]> theo yêu cầu của DTO backend
-    const formattedAnswers: Record<string, string[]> = {};
-    for (const [qId, optId] of Object.entries(answers)) {
-      formattedAnswers[qId] = [optId];
-    }
-
-    const { data } = await api.post(`/exams/${examId}/submit`, {
-      answers: formattedAnswers,
-    });
-    
-    // Trả về object kết quả: { score, total, percentage, details, attemptId }
+  // Lấy danh sách câu hỏi của một đề thi cụ thể (BE đã strip `isCorrect`).
+  getExamQuestions: async (examId: string): Promise<Question[]> => {
+    const { data } = await api.get(`/exams/${examId}/questions`);
     return data;
   },
 };

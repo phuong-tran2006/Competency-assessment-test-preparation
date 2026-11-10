@@ -12,28 +12,16 @@ export class ExamsController {
     return this.examsService.getAllExams();
   }
 
-  // API lấy chi tiết bộ đề thi
+  // API lấy chi tiết bộ đề thi (options đã strip `isCorrect`)
   @Get(':id')
   async getExamById(@Param('id') id: string) {
     return this.examsService.getExamById(id);
   }
 
-  // API lấy danh sách câu hỏi (để tương thích hoàn toàn với cấu trúc Frontend)
+  // API lấy danh sách câu hỏi (options đã strip `isCorrect`)
   @Get(':id/questions')
   async getQuestionsByExamId(@Param('id') id: string) {
     return this.examsService.getQuestionsByExamId(id);
-  }
-
-  // API Nộp bài thi (Nhận tín hiệu từ nút "Nộp bài" trên Frontend)
-  @Post(':id/submit')
-  async submitExam(@Param('id') id: string, @Body() body: any) {
-    return this.examsService.submitExam(id, body);
-  }
-
-  // API Lịch sử làm bài (Chống lỗi gãy luồng nếu Frontend gọi đến)
-  @Get(':id/attempts')
-  async getAttempts(@Param('id') id: string) {
-    return this.examsService.getAttempts(id);
   }
 
   // API Giảng viên/Admin tạo bộ đề thi mới

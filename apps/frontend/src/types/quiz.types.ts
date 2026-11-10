@@ -12,6 +12,8 @@ export interface Question {
   options: Option[];
   level?: string; // Ví dụ: "Nhận biết", "Thông hiểu", "Vận dụng"
   explanation?: string;
+  // Tên chủ đề — dùng để chia section động thay vì hardcode mốc câu hỏi
+  topic?: string;
 }
 
 export interface QuizState {

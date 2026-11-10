@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useSearchParams } from "react-router-dom";
 import { authService } from "../../services/auth.service";
 import { toast } from "../../store/uiStore";
 import { BackButton } from "../../components/BackButton";
@@ -10,6 +10,7 @@ export const Login = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,14 +24,18 @@ export const Login = () => {
         throw new Error("Máy chủ không trả về token đăng nhập.");
       }
 
-      // Mỗi vai trò có trang chủ riêng
+      // Mỗi vai trò có trang chủ riêng; ưu tiên quay lại trang `next`
+      // (VD: từ ExamList bấm thi khi chưa đăng nhập).
       const role = String(response.user?.role ?? "").toUpperCase();
+      const next = searchParams.get("next");
+      const safeNext = next && next.startsWith("/") && !next.startsWith("//") ? next : null;
       const landing =
-        role === "ADMIN"
+        safeNext ??
+        (role === "ADMIN"
           ? "/admin/dashboard"
           : role === "INSTRUCTOR"
             ? "/instructor"
-            : "/";
+            : "/");
 
       toast.success(
         "Đăng nhập thành công",
