@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Login } from "./features/auth/Login";
 import { Register } from "./features/auth/Register";
 import { CourseList } from "./features/courses/CourseList";
+import { LessonPlayer } from "./features/courses/LessonPlayer";
 import { QuizPage } from "./features/quiz/QuizPage";
 import { CreateExamPage } from "./features/admin/CreateExamPage";
 import { AdminDashboard } from "./features/admin/AdminDashboard";
@@ -28,21 +29,20 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/courses" element={<CourseList />} />
+        <Route path="/courses/:courseId/lessons/:lessonId" element={<LessonPlayer />} />
         <Route path="/exams" element={<ExamList />} />
 
-        {/* 2. Nhóm trang dành cho HỌC VIÊN (STUDENT) */}
-        <Route element={<ProtectedRoute allowedRoles={["STUDENT"]} />}>
+        {/* 2. Nhóm trang Học tập & Làm bài thi (Mở cho cả STUDENT, INSTRUCTOR, ADMIN) */}
+        <Route element={<ProtectedRoute allowedRoles={["STUDENT", "INSTRUCTOR", "ADMIN"]} />}>
           <Route path="/profile" element={<UserProfile />} />
           <Route path="/practice/:examId" element={<QuizPage />} />
           <Route path="/results/:attemptId" element={<ResultPage />} />
           <Route path="/history" element={<HistoryPage />} />
         </Route>
 
-
-        {/* 3. Nhóm trang dành cho GIẢNG VIÊN (INSTRUCTOR) */}
-        <Route element={<ProtectedRoute allowedRoles={["INSTRUCTOR"]} />}>
+        {/* 3. Nhóm trang dành cho GIẢNG VIÊN (INSTRUCTOR & ADMIN) */}
+        <Route element={<ProtectedRoute allowedRoles={["INSTRUCTOR", "ADMIN"]} />}>
           <Route path="/instructor" element={<InstructorDashboard />} />
-          {/* Nếu sau này giảng viên có thêm trang tạo đề thi riêng, bạn đưa vào đây */}
         </Route>
 
         {/* 4. Nhóm trang dành cho QUẢN TRỊ VIÊN (ADMIN) */}

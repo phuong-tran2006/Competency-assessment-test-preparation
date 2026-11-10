@@ -1,4 +1,3 @@
-// src/services/auth.service.ts
 import api from './api';
 import { useAuthStore } from '../store/authStore';
 import type { AppRole } from '../types/auth.types';
@@ -14,6 +13,15 @@ export interface LoginResponse {
 }
 
 export const authService = {
+  // Đăng nhập tài khoản (Nhận accessToken từ Backend NestJS)
+  login: async (email: string, password: string) => {
+    const response = await api.post('/auth/login', { email, password });
+    const token =
+      response.data?.accessToken ||
+      response.data?.access_token ||
+      response.data?.token;
+    if (token) {
+      localStorage.setItem('token', token);
   /**
    * Đăng nhập. Backend (auth.controller.ts) trả về { accessToken, user } —
    * không phải access_token, nên phải đọc đúng tên trường.
@@ -31,6 +39,10 @@ export const authService = {
     return response.data;
   },
 
+  // Đăng ký tài khoản học viên mới (Gửi fullName khớp với RegisterDto của Backend)
+  register: async (name: string, email: string, password: string) => {
+    const response = await api.post('/auth/register', {
+      fullName: name,
   // Đăng ký tài khoản học viên mới. Backend nhận fullName, không nhận name/role.
   register: async (fullName: string, email: string, password: string) => {
     const response = await api.post('/auth/register', {
@@ -52,6 +64,7 @@ export const authService = {
       // Dọn key cũ còn sót từ các bản trước
       localStorage.removeItem('token');
       localStorage.removeItem('accessToken');
+      localStorage.removeItem('auth-storage');
     }
   },
 
@@ -60,4 +73,5 @@ export const authService = {
     const response = await api.get('/auth/status');
     return response.data;
   },
+};
 };

@@ -1,3 +1,4 @@
+// apps/backend/prisma/seed_bank.ts
 import 'dotenv/config';
 import { PrismaClient, QuestionType } from '@prisma/client';
 import { PrismaPg } from '@prisma/adapter-pg';
@@ -14,77 +15,174 @@ type BankQ = {
   content: string;
   options: string[];
   correct: number;
-  topicId: string;
+  topicId?: string;
   difficulty: number;
   passage?: string;
 };
 
-async function load(name: string): Promise<BankQ[]> {
-  const raw = fs.readFileSync(path.join(__dirname, name), 'utf8');
-  return JSON.parse(raw);
-}
-
-async function loadIfExists(name: string): Promise<BankQ[]> {
-  const full = path.join(__dirname, name);
-  if (!fs.existsSync(full)) return [];
-  return JSON.parse(fs.readFileSync(full, 'utf8'));
+function readJsonFile<T>(filePath: string): T {
+  return JSON.parse(fs.readFileSync(filePath, 'utf8'));
 }
 
 function stripHtml(s: string): string {
   return s.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
 }
 
-/**
- * bank_*.json ghi difficulty theo thang nguyên 0..4.
- * Elo (questionRating) và scoring (questionWeight) đều giả định [0,1],
- * nên phải chuẩn hóa tại chỗ seed thay vì sửa ở nơi tiêu thụ.
- */
-function normalizeDifficulty(d: number): number {
-  const clamped = Math.min(4, Math.max(0, d ?? 2));
-  return Math.round((clamped / 4) * 100) / 100;
+function inferTopicByOrder(n: number, total: number, explicitTopic?: string): string {
+  if (explicitTopic) return explicitTopic;
+  // Phân bổ tự động theo tỷ lệ cấu trúc đề ĐGNL (25% Tiếng Việt, 25% Tiếng Anh, 25% Toán, 25% Logic - Suy luận)
+  const quarter = Math.ceil(total / 4);
+  if (n <= quarter) return 'Tiếng Việt';
+  if (n <= quarter * 2) return 'Tiếng Anh';
+  if (n <= quarter * 3) return 'Toán';
+  return 'Logic - Suy luận';
+}
+
+async function upsertQuestionWithOptions(
+  qId: string,
+  q: BankQ,
+  topicId: string,
+) {
+  const content = q.passage
+    ? `${stripHtml(q.content)}\n\n[Đoạn văn]\n${stripHtml(q.passage)}`
+    : stripHtml(q.content);
+
+  const opts = q.options.map((text, i) => ({
+    content: stripHtml(text),
+    isCorrect: i === q.correct,
+    order: i,
+  }));
+
+  const fields = {
+    content,
+    explanation: null as string | null,
+    topicId,
+    difficulty: q.difficulty ?? 0.5,
+  };
+
+  await prisma.$transaction(async (tx) => {
+    await tx.question.upsert({
+      where: { id: qId },
+      update: fields,
+      create: { id: qId, type: QuestionType.MULTIPLE_CHOICE, ...fields },
+    });
+    await tx.questionOption.deleteMany({ where: { questionId: qId } });
+    await tx.questionOption.createMany({
+      data: opts.map((o) => ({ questionId: qId, ...o })),
+    });
+  });
 }
 
 async function main() {
-  const toan = await load('bank_toan100.json');
-  const lang = await load('bank_lang100.json');
-  const adv = await loadIfExists('bank_adv100.json');
-  const sci = await loadIfExists('bank_sci100.json');
+  const allFiles = fs.readdirSync(__dirname);
 
-  const items: Array<BankQ & { id: string }> = [
-    ...toan.map((q, i) => ({ ...q, topicId: 'Toán', id: `q-t${i + 1}` })),
-    ...lang.map((q, i) => ({ ...q, id: `q-l${i + 1}` })),
-    ...adv.map((q, i) => ({ ...q, topicId: 'Toán', id: `q-ta${i + 1}` })),
-    ...sci.map((q, i) => ({ ...q, topicId: 'Logic - Suy luận', id: `q-s${i + 1}` })),
-  ];
-  console.log('total to seed:', items.length);
+  // 1. Tự động quét tất cả các file ngân hàng câu hỏi (bank_*.json)
+  const bankFiles = allFiles.filter(
+    (f) => f.startsWith('bank_') && f.endsWith('.json'),
+  );
 
-  // Ensure topics exist
-  const names = [...new Set(items.map((q) => q.topicId))];
-  const topics: Record<string, string> = {};
-  for (const name of names) {
-    const t = await prisma.topic.upsert({
-      where: { name },
-      update: {},
-      create: { name },
+  const items: Array<BankQ & { id: string; topicId: string }> = [];
+
+  for (const file of bankFiles) {
+    const questions = readJsonFile<BankQ[]>(path.join(__dirname, file));
+    const bankKey = file.replace(/^bank_/, '').replace(/\.json$/, '');
+
+    // Tự động suy luận chuyên đề và tiền tố ID từ dữ liệu hoặc tên file
+    questions.forEach((q, idx) => {
+      let defaultTopic = q.topicId || 'Toán';
+      let prefix = `q-${bankKey}`;
+
+      if (bankKey.includes('toan')) {
+        defaultTopic = 'Toán';
+        prefix = 'q-t';
+      } else if (bankKey.includes('adv')) {
+        defaultTopic = 'Toán';
+        prefix = 'q-ta';
+      } else if (bankKey.includes('sci')) {
+        defaultTopic = 'Logic - Suy luận';
+        prefix = 'q-s';
+      } else if (bankKey.includes('lang')) {
+        defaultTopic = q.topicId || 'Tiếng Việt';
+        prefix = 'q-l';
+      }
+
+      items.push({
+        ...q,
+        topicId: defaultTopic,
+        id: `${prefix}${idx + 1}`,
+      });
     });
-    topics[name] = t.id;
   }
-  console.log('topics:', names.join(', '));
 
-  let ok = 0;
-  for (const q of items) {
-    const topicId = topics[q.topicId];
-    const content = q.passage
-      ? `${stripHtml(q.content)}\n\n[Đoạn văn]\n${stripHtml(q.passage)}`
-      : stripHtml(q.content);
-    const opts = q.options.map((text, i) => ({
-      content: stripHtml(text),
-      isCorrect: i === q.correct,
-      order: i,
-    }));
-    if (opts.filter((o) => o.isCorrect).length !== 1) {
-      throw new Error(`${q.id}: must have exactly 1 correct answer`);
+  console.log('Tổng số câu hỏi trong Kho ngân hàng đề:', items.length);
+
+  // 2. Đồng bộ tự động danh mục Chuyên đề (Topics) trong Database
+  const existingTopics = await prisma.topic.findMany();
+  const topics: Record<string, string> = {};
+  for (const t of existingTopics) {
+    topics[t.name] = t.id;
+  }
+
+  const requiredTopicNames = [
+    ...new Set([
+      'Toán',
+      'Tiếng Việt',
+      'Tiếng Anh',
+      'Logic - Suy luận',
+      ...items.map((q) => q.topicId),
+    ]),
+  ];
+
+  for (const name of requiredTopicNames) {
+    if (!topics[name]) {
+      const created = await prisma.topic.upsert({
+        where: { name },
+        update: {},
+        create: { name },
+      });
+      topics[name] = created.id;
     }
+  }
+
+  // Nạp câu hỏi Ngân hàng luyện tập
+  let bankCount = 0;
+  for (const q of items) {
+    await upsertQuestionWithOptions(q.id, q, topics[q.topicId]);
+    bankCount++;
+  }
+  console.log(`✅ Đã nạp ${bankCount} câu hỏi vào Kho ngân hàng câu hỏi!`);
+
+  // 3. Tự động quét mọi file Đề thi (de_minh_hoa_*.json) trong thư mục prisma
+  const examFiles = allFiles.filter(
+    (f) => f.startsWith('de_minh_hoa_') && f.endsWith('.json'),
+  );
+
+  for (const file of examFiles) {
+    const rawQuestions = readJsonFile<BankQ[]>(path.join(__dirname, file));
+    if (!Array.isArray(rawQuestions) || rawQuestions.length === 0) continue;
+
+    // Tự động trích xuất mã đề từ tên file (VD: de_minh_hoa_2026.json -> slug: 2026 -> examId: vact-exam-2026)
+    const slug = file.replace(/^de_minh_hoa_/, '').replace(/\.json$/, '');
+    const examId = `vact-exam-${slug}`;
+
+    // Khử trùng lặp theo số thứ tự câu hỏi 'n' và sắp xếp tăng dần
+    const uniqueMap = new Map<number, BankQ>();
+    for (const item of rawQuestions) {
+      if (item && typeof item.n === 'number') {
+        uniqueMap.set(item.n, item);
+      }
+    }
+    const examQuestions = Array.from(uniqueMap.values()).sort(
+      (a, b) => a.n - b.n,
+    );
+
+    const examTitle = `Đề minh họa ĐGNL ĐHQG TPHCM năm ${slug.toUpperCase()}`;
+    const examDesc = `Bộ đề thi chuẩn cấu trúc ĐHQG-HCM (${examQuestions.length} câu hỏi).`;
+
+    await prisma.exam.upsert({
+      where: { id: examId },
+      update: { title: examTitle, description: examDesc },
+      create: { id: examId, title: examTitle, description: examDesc },
     const fields = {
       content,
       explanation: null as string | null,
@@ -102,15 +200,41 @@ async function main() {
         data: opts.map((o) => ({ questionId: q.id, ...o })),
       });
     });
-    ok++;
-    if (ok % 50 === 0) console.log(`  ...${ok}/${items.length}`);
-  }
 
-  const counts = {
-    questions: await prisma.question.count(),
-    options: await prisma.questionOption.count(),
-  };
-  console.log('done, inserted/updated:', ok, counts);
+    // Làm mới liên kết câu hỏi của đề thi này
+    await prisma.examQuestion.deleteMany({ where: { examId } });
+
+    for (const q of examQuestions) {
+      const qId = `q-${slug}-${String(q.n).padStart(3, '0')}`;
+      const topicName = inferTopicByOrder(
+        q.n,
+        examQuestions.length,
+        q.topicId,
+      );
+
+      if (!topics[topicName]) {
+        const newTopic = await prisma.topic.upsert({
+          where: { name: topicName },
+          update: {},
+          create: { name: topicName },
+        });
+        topics[topicName] = newTopic.id;
+      }
+
+      await upsertQuestionWithOptions(qId, q, topics[topicName]);
+
+      await prisma.examQuestion.create({
+        data: {
+          examId,
+          questionId: qId,
+        },
+      });
+    }
+
+    console.log(
+      `✅ Đã nạp đề [${examTitle}] từ file ${file}: ${examQuestions.length} câu!`,
+    );
+  }
 }
 
 main()

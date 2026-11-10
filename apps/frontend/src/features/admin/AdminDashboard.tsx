@@ -27,7 +27,12 @@ export const AdminDashboard = () => {
   const [usersList, setUsersList] = useState<SystemUser[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Lấy danh sách user từ Backend (api đã gắn sẵn baseURL + token)
+  // BASE_URL của NestJS backend
+  const API_URL = "http://localhost:3000/api/users";
+
+  // --- LOGIC GỌI API ---
+
+  // Lấy danh sách user từ Backend
   const fetchUsers = async () => {
     setIsLoading(true);
     try {

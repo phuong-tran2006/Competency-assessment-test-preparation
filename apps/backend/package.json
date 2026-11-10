@@ -66,7 +66,7 @@
     "@types/pdf-parse": "^1.1.5",
     "@types/supertest": "^2.0.12",
     "jest": "^30.5.2",
-    "prisma": "^7.10.0",
+    "prisma": "^6.19.3",
     "source-map-support": "^0.5.21",
     "ts-jest": "^29.1.0",
     "ts-loader": "^9.4.3",

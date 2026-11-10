@@ -1,25 +1,21 @@
-import 'dotenv/config';
-import { PrismaClient, QuestionType, Role } from '@prisma/client';
-import { PrismaPg } from '@prisma/adapter-pg';
-import { Pool } from 'pg';
-import { questions2026 } from './examData2026';
+import { PrismaClient, Role } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
 
-const pool = new Pool({ connectionString: process.env.DATABASE_URL });
-const adapter = new PrismaPg(pool);
-const prisma = new PrismaClient({ adapter });
+const prisma = new PrismaClient();
 
 async function main() {
-  console.log(
-    '🌱 Bắt đầu seed dữ liệu chuẩn cho hệ thống V-ACT (giữ nguyên cơ chế chấm điểm)...',
-  );
+  console.log('🌱 Bắt đầu nạp dữ liệu mẫu (Seed) cho hệ thống V-ACT...');
 
   const hashedPassword = await bcrypt.hash('admin123', 10);
 
-  // 1. Tạo tài khoản mẫu
+  // ==================== 1. USERS (ADMIN, INSTRUCTOR, STUDENT) ====================
   const admin = await prisma.user.upsert({
     where: { email: 'admin@vact.com' },
-    update: {},
+    update: {
+      passwordHash: hashedPassword,
+      fullName: 'Quản trị viên Hệ thống',
+      role: Role.ADMIN,
+    },
     create: {
       email: 'admin@vact.com',
       passwordHash: hashedPassword,
@@ -28,9 +24,28 @@ async function main() {
     },
   });
 
-  await prisma.user.upsert({
+  const instructor = await prisma.user.upsert({
+    where: { email: 'instructor@vact.com' },
+    update: {
+      passwordHash: hashedPassword,
+      fullName: 'Giảng viên Chuyên môn V-ACT',
+      role: Role.INSTRUCTOR,
+    },
+    create: {
+      email: 'instructor@vact.com',
+      passwordHash: hashedPassword,
+      fullName: 'Giảng viên Chuyên môn V-ACT',
+      role: Role.INSTRUCTOR,
+    },
+  });
+
+  const learner = await prisma.user.upsert({
     where: { email: 'learner@vact.com' },
-    update: { role: Role.STUDENT },
+    update: {
+      passwordHash: hashedPassword,
+      fullName: 'Học viên Test',
+      role: Role.STUDENT,
+    },
     create: {
       email: 'learner@vact.com',
       passwordHash: hashedPassword,
@@ -39,163 +54,77 @@ async function main() {
     },
   });
 
-  // 2. Tạo Chủ đề (Topic) theo đúng format ĐGNL: mỗi câu 1 topic
-  const topicDefs = [
-    { name: 'Toán', description: 'Toán học và tư duy định lượng' },
-    { name: 'Tiếng Việt', description: 'Ngữ văn và đọc hiểu tiếng Việt' },
-    { name: 'Tiếng Anh', description: 'Ngữ pháp và đọc hiểu tiếng Anh' },
-    {
-      name: 'Logic - Suy luận',
-      description: 'Tư duy logic và phân tích số liệu',
-    },
+  console.log(
+    `✅ Đã tạo/cập nhật 3 tài khoản mẫu (Mật khẩu chung: admin123):`,
+    `\n   - Admin: ${admin.email}`,
+    `\n   - Instructor: ${instructor.email}`,
+    `\n   - Student: ${learner.email}`,
+  );
+
+  // ==================== 2. CORE TOPICS (4 CHUYÊN ĐỀ CHUẨN ĐGNL) ====================
+  const coreTopicsData = [
+    { id: 'topic-math', name: 'Toán' },
+    { id: 'topic-vietnamese', name: 'Tiếng Việt' },
+    { id: 'topic-english', name: 'Tiếng Anh' },
+    { id: 'topic-logic', name: 'Logic - Suy luận' },
   ];
-  const topics: Record<string, { id: string }> = {};
-  for (const t of topicDefs) {
-    topics[t.name] = await prisma.topic.upsert({
+
+  const topicMap: Record<string, string> = {};
+
+  for (const t of coreTopicsData) {
+    const existing = await prisma.topic.findFirst({
       where: { name: t.name },
-      update: {},
-      create: t,
     });
+
+    if (existing) {
+      topicMap[t.name] = existing.id;
+    } else {
+      const created = await prisma.topic.upsert({
+        where: { id: t.id },
+        update: { name: t.name },
+        create: { id: t.id, name: t.name },
+      });
+      topicMap[t.name] = created.id;
+    }
   }
 
-  // Map questionId -> topic
-  const questionTopics: Record<string, string> = {
-    'q-2025-1': 'Tiếng Việt',
-    'q-2025-2': 'Toán',
-    'q-2025-3': 'Tiếng Việt',
-    'q-2025-4': 'Toán',
-    'q-2025-5': 'Toán',
-    'q-2025-6': 'Tiếng Việt',
-    'q-2024-1': 'Toán',
-    'q-2024-2': 'Toán',
-    'q-2024-3': 'Tiếng Việt',
-    'q-2024-4': 'Toán',
-    'q-2024-5': 'Toán',
-    'q-2024-6': 'Tiếng Việt',
-  };
+  console.log('✅ Đã chuẩn hóa 4 Chuyên đề cốt lõi: Toán, Tiếng Việt, Tiếng Anh, Logic - Suy luận');
 
-  // 3. Cấu hình 3 bộ đề khớp đúng với giao diện
-  const examsConfig = [
+  // ==================== 3. EXAMS (3 BỘ ĐỀ MINH HỌA CHÍNH THỨC) ====================
+  const examsData = [
     {
       id: 'vact-exam-2026',
       title: 'Đề minh họa ĐGNL ĐHQG TPHCM năm 2026',
       description: 'Bộ đề thi chuẩn cấu trúc mới nhất năm 2026.',
-      questions: questions2026,
+      duration: 150,
     },
     {
       id: 'vact-exam-2025',
       title: 'Đề minh họa ĐGNL ĐHQG TPHCM năm 2025',
       description:
         'Đề thi chính thức và minh họa lưu trữ năm 2025, rèn luyện tư duy logic và phân tích số liệu.',
-      questions: [
-        {
-          id: 'q-2025-1',
-          content:
-            'Thể loại của tác phẩm "Đăm Săn" trong kho tàng văn học dân gian là gì?',
-          correct: 2,
-          options: ['Thần thoại', 'Truyền thuyết', 'Sử thi', 'Truyện cổ tích'],
-        },
-        {
-          id: 'q-2025-2',
-          content:
-            'Cho cấp số cộng có u1 = 3 và công sai d = 2. Giá trị của u4 là:',
-          correct: 1,
-          options: ['7', '9', '11', '13'],
-        },
-        {
-          id: 'q-2025-3',
-          content:
-            'Từ "long lanh" trong câu "Nước hồ long lanh" thuộc loại từ nào?',
-          correct: 2,
-          options: ['Từ đơn', 'Từ ghép', 'Từ láy', 'Từ phức'],
-        },
-        {
-          id: 'q-2025-4',
-          content:
-            'Tích phân từ 0 đến 1 của hàm số f(x) = 2xdx có giá trị bằng:',
-          correct: 0,
-          options: ['1', '2', '0.5', '0'],
-        },
-        {
-          id: 'q-2025-5',
-          content: 'Giải phương trình log2(x) = 3. Nghiệm của phương trình là:',
-          correct: 2,
-          options: ['6', '9', '8', '3'],
-        },
-        {
-          id: 'q-2025-6',
-          content: 'Thị Phương là nhân vật trong vở chèo cổ nào?',
-          correct: 3,
-          options: [
-            'Quan Âm Thị Kính',
-            'Lưu Bình - Dương Lễ',
-            'Súy Vân',
-            'Trương Viên',
-          ],
-        },
-      ],
+      duration: 150,
     },
     {
       id: 'vact-exam-2024',
       title: 'Đề minh họa ĐGNL ĐHQG TPHCM năm 2024',
       description:
         'Bộ đề ôn tập nền tảng từ kỳ thi ĐGNL năm 2024, củng cố kiến thức cơ bản.',
-      questions: [
-        {
-          id: 'q-2024-1',
-          content: 'Số phức z = 3 - 4i có phần thực và phần ảo lần lượt là:',
-          correct: 0,
-          options: ['3 và -4', '-3 và 4', '3 và 4', '-3 và -4'],
-        },
-        {
-          id: 'q-2024-2',
-          content: 'Tập nghiệm của bất phương trình 2^x > 4 là:',
-          correct: 1,
-          options: ['(1; +inf)', '(2; +inf)', '(0; 2)', '(-inf; 2)'],
-        },
-        {
-          id: 'q-2024-3',
-          content:
-            'Tác giả của đoạn trích "Đất nước" trong chương trình Ngữ văn là ai?',
-          correct: 2,
-          options: ['Tố Hữu', 'Huy Cận', 'Nguyễn Khoa Điềm', 'Xuân Quỳnh'],
-        },
-        {
-          id: 'q-2024-4',
-          content:
-            'Cho tam giác ABC vuông tại A có AB = 3cm, AC = 4cm. Độ dài cạnh huyền BC là:',
-          correct: 1,
-          options: ['6 cm', '5 cm', '7 cm', 'sqrt(7) cm'],
-        },
-        {
-          id: 'q-2024-5',
-          content: 'Hàm số y = -x^3 + 3x nghịch biến trên khoảng nào dưới đây?',
-          correct: 3,
-          options: [
-            '(-1; 1)',
-            '(0; +inf)',
-            '(-inf; -1)',
-            '(-inf; -1) và (1; +inf)',
-          ],
-        },
-        {
-          id: 'q-2024-6',
-          content: 'Điền từ còn thiếu vào câu tục ngữ: "Uống nước nhớ ..."',
-          correct: 0,
-          options: ['nguồn', 'nơi', 'ông', 'cha'],
-        },
-      ],
+      duration: 150,
     },
   ];
 
-  for (const exData of examsConfig) {
+  for (const ex of examsData) {
     await prisma.exam.upsert({
-      where: { id: exData.id },
-      update: {},
+      where: { id: ex.id },
+      update: {
+        title: ex.title,
+        description: ex.description,
+      },
       create: {
-        id: exData.id,
-        title: exData.title,
-        description: exData.description,
+        id: ex.id,
+        title: ex.title,
+        description: ex.description,
       },
     });
 
@@ -256,62 +185,16 @@ async function main() {
     }
   }
 
-  console.log(
-    '✅ Exams + Questions đã tạo (3 đề, mỗi đề 6 câu, gắn đúng topic Toán/Tiếng Việt/Tiếng Anh)',
-  );
+  console.log('✅ Đã khởi tạo 3 Bộ đề minh họa ĐGNL (2024, 2025, 2026)');
 
-  // ==================== 4. COURSES ====================
-  const course1 = await prisma.course.upsert({
+  // ==================== 4. COURSES (KHÓA HỌC NỀN TẢNG) ====================
+  await prisma.course.upsert({
     where: { id: 'course-1' },
-    update: {},
-    create: {
-      id: 'course-1',
+    update: {
       title: 'Toán nền tảng ĐGNL',
       description: 'Khóa học giới hạn, đạo hàm, tích phân',
-      instructorId: admin.id,
+      instructorId: instructor.id,
     },
-  });
-
-  // Gắn course với topic Toán (upsert từng topic để rerun an toàn)
-  for (const [idx, topicName] of [
-    'Toán',
-    'Tiếng Việt',
-    'Tiếng Anh',
-    'Logic - Suy luận',
-  ].entries()) {
-    await prisma.courseTopic.upsert({
-      where: {
-        courseId_topicId: {
-          courseId: course1.id,
-          topicId: topics[topicName].id,
-        },
-      },
-      update: {},
-      create: {
-        courseId: course1.id,
-        topicId: topics[topicName].id,
-        order: idx + 1,
-      },
-    });
-  }
-
-  console.log(`✅ Courses: ${course1.title}`);
-
-  // ==================== 5. CHAPTERS + LESSONS + MATERIALS ====================
-  const chapter1 = await prisma.chapter.upsert({
-    where: { id: 'chapter-1' },
-    update: {},
-    create: {
-      id: 'chapter-1',
-      courseId: course1.id,
-      title: 'Chương 1: Giới hạn và liên tục',
-      order: 1,
-    },
-  });
-
-  const lesson1 = await prisma.lesson.upsert({
-    where: { id: 'lesson-1' },
-    update: {},
     create: {
       id: 'lesson-1',
       chapterId: chapter1.id,
@@ -623,35 +506,15 @@ async function main() {
     },
   });
 
-  // ==================== SUMMARY ====================
-  const counts = {
-    users: await prisma.user.count(),
-    topics: await prisma.topic.count(),
-    prerequisites: await prisma.topicPrerequisite.count(),
-    courses: await prisma.course.count(),
-    chapters: await prisma.chapter.count(),
-    lessons: await prisma.lesson.count(),
-    materials: await prisma.material.count(),
-    questions: await prisma.question.count(),
-    options: await prisma.questionOption.count(),
-    exam: await prisma.exam.count(),
-    attempts: await prisma.examAttempt.count(),
-    attemptAnswers: await prisma.examAnswer.count(),
-    attemptTopicResults: await prisma.attemptTopicResult.count(),
-  };
-  console.log('Counts:', counts);
-
-  console.log(
-    '🚀 Seed thành công toàn bộ đề thi kèm đáp án chuẩn để làm bài và chấm điểm tự động!',
-  );
+  console.log('✅ Đã khởi tạo Khóa học nền tảng (Course-1)');
+  console.log('🎉 Hoàn tất quá trình Seed dữ liệu!');
 }
 
 main()
   .catch((e) => {
-    console.error('❌ Lỗi seed:', e);
+    console.error('❌ Lỗi khi chạy seed:', e);
     process.exit(1);
   })
   .finally(async () => {
     await prisma.$disconnect();
-    await pool.end();
   });

@@ -1,4 +1,14 @@
-import { Controller, Get, Post, Body, Param, UseGuards, Req, UnauthorizedException } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Query,
+  UseGuards,
+  Req,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { ExamsService } from './exams.service';
 import { AuthGuard } from '@nestjs/passport';
 
@@ -6,37 +16,59 @@ import { AuthGuard } from '@nestjs/passport';
 export class ExamsController {
   constructor(private readonly examsService: ExamsService) {}
 
-  // API lấy danh sách tất cả các bộ đề thi
   @Get()
   async getAllExams() {
     return this.examsService.getAllExams();
   }
 
-  // API lấy chi tiết bộ đề thi
+  // API Lấy Hồ sơ Năng lực Elo & Thống kê Kho 400 câu hỏi
+  @Get('profile/elo')
+  async getLearnerDashboard(@Req() req: any) {
+    return this.examsService.getLearnerDashboard(req.user?.id);
+  }
+
+  // API Bốc câu hỏi ngẫu nhiên từ Kho 400 câu (Adaptive Practice theo Topic & Độ khó)
+  @Get('bank/practice')
+  async getPracticeFromBank(
+    @Query('topic') topic?: string,
+    @Query('difficulty') difficulty?: string,
+    @Query('count') count?: string,
+  ) {
+    return this.examsService.getPracticeFromBank({
+      topicName: topic,
+      difficulty: difficulty ? Number(difficulty) : undefined,
+      count: count ? Number(count) : 20,
+    });
+  }
+
   @Get(':id')
   async getExamById(@Param('id') id: string) {
     return this.examsService.getExamById(id);
   }
 
-  // API lấy danh sách câu hỏi (để tương thích hoàn toàn với cấu trúc Frontend)
   @Get(':id/questions')
-  async getQuestionsByExamId(@Param('id') id: string) {
+  async getQuestionsByExamId(
+    @Param('id') id: string,
+    @Query('topic') topic?: string,
+    @Query('count') count?: string,
+  ) {
+    // Nếu mã đề là 'adaptive-bank' thì bốc ngẫu nhiên từ Kho 400 câu hỏi!
+    if (id.startsWith('bank-')) {
+      return this.examsService.getQuestionsFromBankByCode(id, count ? Number(count) : 20);
+    }
     return this.examsService.getQuestionsByExamId(id);
   }
 
-  // API Nộp bài thi (Nhận tín hiệu từ nút "Nộp bài" trên Frontend)
   @Post(':id/submit')
-  async submitExam(@Param('id') id: string, @Body() body: any) {
-    return this.examsService.submitExam(id, body);
+  async submitExam(@Param('id') id: string, @Body() body: any, @Req() req: any) {
+    return this.examsService.submitExam(id, body, req.user?.id);
   }
 
-  // API Lịch sử làm bài (Chống lỗi gãy luồng nếu Frontend gọi đến)
   @Get(':id/attempts')
   async getAttempts(@Param('id') id: string) {
     return this.examsService.getAttempts(id);
   }
 
-  // API Giảng viên/Admin tạo bộ đề thi mới
   @UseGuards(AuthGuard('jwt'))
   @Post()
   async createExam(
@@ -47,7 +79,6 @@ export class ExamsController {
     if (user && user.role !== 'ADMIN' && user.role !== 'INSTRUCTOR') {
       throw new UnauthorizedException('Bạn không có quyền tạo đề thi.');
     }
-
     return this.examsService.createExam(body);
   }
 }
