@@ -183,6 +183,22 @@ async function main() {
       where: { id: examId },
       update: { title: examTitle, description: examDesc },
       create: { id: examId, title: examTitle, description: examDesc },
+    const fields = {
+      content,
+      explanation: null as string | null,
+      topicId,
+      difficulty: normalizeDifficulty(q.difficulty),
+    };
+    await prisma.$transaction(async (tx) => {
+      await tx.question.upsert({
+        where: { id: q.id },
+        update: fields,
+        create: { id: q.id, type: QuestionType.MULTIPLE_CHOICE, ...fields },
+      });
+      await tx.questionOption.deleteMany({ where: { questionId: q.id } });
+      await tx.questionOption.createMany({
+        data: opts.map((o) => ({ questionId: q.id, ...o })),
+      });
     });
 
     // Làm mới liên kết câu hỏi của đề thi này

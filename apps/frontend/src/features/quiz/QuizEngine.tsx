@@ -1,7 +1,11 @@
 import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
+import React, { useEffect, useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { useQuizStore } from "../../store/quizStore";
-import { quizService } from "../../services/quiz.service";
+import { attemptService } from "../../services/attempt.service";
+import { confirmDialog, toast } from "../../store/uiStore";
+import { BackButton } from "../../components/BackButton";
 
 export const QuizEngine = () => {
   const {
@@ -16,26 +20,45 @@ export const QuizEngine = () => {
     resultData,
     currentStep,
     setStep,
+    attemptId,
     timeLeft,
     setTimeLeft,
   } = useQuizStore();
-  const { examId } = useParams();
+  const navigate = useNavigate();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const questionRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const hasSubmittedRef = useRef(false);
+  const lastInteractionRef = useRef(Date.now());
 
   const isReviewMode = currentStep === "review";
 
   const handleSubmit = async (isAutoSubmit = false) => {
     if (!isAutoSubmit) {
-      const confirm = window.confirm("Bạn có chắc chắn muốn nộp bài không?");
-      if (!confirm) return;
+      const unanswered = questions.length - Object.keys(answers).length;
+      const ok = await confirmDialog({
+        title: "Nộp bài thi?",
+        message:
+          unanswered > 0
+            ? `Bạn còn ${unanswered} câu chưa trả lời. Sau khi nộp sẽ không sửa được đáp án.`
+            : "Bạn đã trả lời hết các câu. Sau khi nộp sẽ không sửa được đáp án.",
+        confirmLabel: "Nộp bài",
+        cancelLabel: "Làm tiếp",
+        tone: unanswered > 0 ? "danger" : "default",
+      });
+      if (!ok) return;
     }
 
-    if (!examId) {
-      alert("Không tìm thấy mã đề thi hợp lệ!");
+    if (!attemptId) {
+      toast.error(
+        "Không tìm thấy lượt làm bài",
+        "Vui lòng tải lại trang để bắt đầu lại.",
+      );
       return;
     }
+
+    if (hasSubmittedRef.current) return;
+    hasSubmittedRef.current = true;
 
     try {
       setIsSubmitting(true);
@@ -46,10 +69,34 @@ export const QuizEngine = () => {
 );
       const finalResultData = result.data ? result.data : result;
       setResultData(finalResultData);
+
+      // Đồng bộ toàn bộ đáp án đang giữ ở client trước khi nộp
+      await Promise.all(
+        Object.entries(answers).map(([questionId, optionId]) =>
+          attemptService
+            .saveAnswer(attemptId, questionId, [optionId])
+            .catch((err) =>
+              console.error(`Không lưu được đáp án câu ${questionId}:`, err),
+            ),
+        ),
+      );
+
+      await attemptService.submit(attemptId);
+      const results = await attemptService.getResults(attemptId);
+      setResultData(results);
       submitQuiz();
+      toast.success(
+        isAutoSubmit ? "Hết giờ, đã nộp bài tự động" : "Nộp bài thành công",
+        `Bạn đạt ${results.score}/${results.total} câu đúng.`,
+      );
+      navigate(`/results/${attemptId}`);
     } catch (error) {
       console.error("Lỗi khi nộp bài:", error);
-      alert("Có lỗi xảy ra khi nộp bài lên hệ thống. Vui lòng thử lại!");
+      hasSubmittedRef.current = false;
+      toast.error(
+        "Không nộp được bài",
+        "Có lỗi khi gửi bài lên hệ thống. Kiểm tra kết nối và thử lại.",
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -63,9 +110,44 @@ export const QuizEngine = () => {
       }, 0);
       return;
     }
-    const timer = setInterval(() => setTimeLeft((prev) => prev - 1), 1000);
+    const timer = setInterval(
+      () => setTimeLeft((prev: number) => prev - 1),
+      1000,
+    );
     return () => clearInterval(timer);
   }, [timeLeft, isReviewMode, setTimeLeft]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [timeLeft, isReviewMode]);
+
+  // Cảnh báo khi còn 5 phút và 1 phút. Dùng ref để mỗi mốc chỉ nhắc một lần.
+  const warnedRef = useRef<Record<number, boolean>>({});
+  useEffect(() => {
+    if (isReviewMode || timeLeft <= 0) return;
+
+    for (const mark of [300, 60]) {
+      if (timeLeft <= mark && !warnedRef.current[mark]) {
+        warnedRef.current[mark] = true;
+        toast.warning(
+          `Còn ${mark / 60} phút`,
+          "Hết giờ hệ thống sẽ tự động nộp bài.",
+        );
+        break;
+      }
+    }
+  }, [timeLeft, isReviewMode]);
+
+  // Rời khỏi bài thi giữa giờ: xác nhận trước vì đáp án đã lưu nhưng bài chưa nộp
+  const handleExit = async () => {
+    const ok = await confirmDialog({
+      title: "Thoát khỏi bài thi?",
+      message:
+        "Đáp án đã chọn vẫn được lưu, nhưng bài chưa được nộp và đồng hồ vẫn tiếp tục chạy.",
+      confirmLabel: "Thoát",
+      cancelLabel: "Ở lại làm bài",
+      tone: "danger",
+    });
+    if (ok) navigate("/exams");
+  };
 
   const formatTime = (seconds: number) => {
     const m = Math.floor(seconds / 60)
@@ -73,6 +155,20 @@ export const QuizEngine = () => {
       .padStart(2, "0");
     const s = (seconds % 60).toString().padStart(2, "0");
     return `${m}:${s}`;
+  };
+
+  // Lưu đáp án lên server ngay khi chọn, kèm thời gian đã dùng cho câu đó
+  const handleSelect = (questionId: string, optionId: string) => {
+    if (!attemptId) return;
+
+    const now = Date.now();
+    const last = lastInteractionRef.current;
+    lastInteractionRef.current = now;
+    const timeSpent = Math.min(600, Math.max(0, Math.round((now - last) / 1000)));
+
+    attemptService
+      .saveAnswer(attemptId, questionId, [optionId], timeSpent)
+      .catch((err) => console.error('Không lưu được đáp án:', err));
   };
 
   const handleScrollToQuestion = (index: number) => {
@@ -100,9 +196,39 @@ export const QuizEngine = () => {
     <div className="flex flex-col lg:flex-row gap-6 max-w-7xl mx-auto">
       {/* CỘT TRÁI */}
       <div className="flex-1 space-y-6 lg:max-h-[calc(100vh-40px)] lg:overflow-y-auto pr-2">
-        <h1 className="text-center text-xl font-black text-amber-600 uppercase tracking-wide py-3 bg-amber-50 rounded-xl border border-amber-200">
-          PHÒNG THI & LUYỆN TẬP ĐÁNH GIÁ NĂNG LỰC V-ACT
-        </h1>
+        <div className="flex items-center gap-3">
+          {isReviewMode ? (
+            <BackButton to="/exams" label="Danh sách đề" />
+          ) : (
+            <button
+              type="button"
+              onClick={handleExit}
+              className="group inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold bg-white border border-gray-200 text-gray-700 shadow-sm hover:border-amber-400 hover:text-amber-600 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
+            >
+              <span className="transition-transform group-hover:-translate-x-0.5">
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2.5}
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15 19l-7-7 7-7"
+                  />
+                </svg>
+              </span>
+              Thoát
+            </button>
+          )}
+
+          <h1 className="flex-1 text-center text-xl font-black text-amber-600 uppercase tracking-wide py-3 bg-amber-50 rounded-xl border border-amber-200">
+            ĐỀ LUYỆN THI ĐGNL 2026 V-ACT – ĐỀ 1
+          </h1>
+        </div>
 
         {questions.map((q, idx) => {
           const questionDetail = resultData?.details?.find(
@@ -191,9 +317,11 @@ export const QuizEngine = () => {
                           type="radio"
                           name={`q-${q.id}`}
                           checked={isSelected}
-                          onChange={() =>
-                            !isReviewMode && setAnswer(q.id, opt.id)
-                          }
+                          onChange={() => {
+                            if (isReviewMode) return;
+                            setAnswer(q.id, opt.id);
+                            handleSelect(q.id, opt.id);
+                          }}
                           disabled={isReviewMode}
                           readOnly={isReviewMode}
                           className={`mt-1 w-4 h-4 ${isReviewMode ? "cursor-default" : "cursor-pointer"} text-blue-600`}
@@ -273,7 +401,15 @@ export const QuizEngine = () => {
               <span className="text-gray-500 text-xs font-bold block mb-1">
                 Thời gian còn lại
               </span>
-              <span className="text-2xl font-black text-slate-600">
+              <span
+                className={`text-2xl font-black ${
+                  !isReviewMode && timeLeft <= 60
+                    ? "text-red-600 animate-pulse"
+                    : !isReviewMode && timeLeft <= 300
+                      ? "text-amber-600"
+                      : "text-slate-600"
+                }`}
+              >
                 {formatTime(timeLeft)}
               </span>
             </div>

@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import api from '../../services/api';
+import { Link, useParams } from 'react-router-dom';
+import { BackButton } from '../../components/BackButton';
 
 export const LessonPlayer = () => {
   const { courseId = 'course-1', lessonId = 'lesson-1' } = useParams<{
@@ -66,6 +68,9 @@ export const LessonPlayer = () => {
           >
             Chuyển sang Luyện đề thi &rarr;
           </Link>
+      <div className="flex-1 flex flex-col p-6 overflow-y-auto">
+        <div className="mb-4">
+          <BackButton to="/courses" label="Quay lại danh sách khóa học" variant="ghost" />
         </div>
 
         <div className="bg-slate-900 w-full aspect-video max-h-[420px] rounded-2xl shadow-lg flex items-center justify-center text-white mb-6">

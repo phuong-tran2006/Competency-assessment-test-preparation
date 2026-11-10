@@ -5,13 +5,11 @@ generator client {
 }
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")  
 }
 enum Role {
   STUDENT
   INSTRUCTOR
   ADMIN
-  LEARNER
 }
 enum UserStatus {
   ACTIVE
@@ -149,6 +147,7 @@ model Topic {
   courseTopics CourseTopic[]
   attemptTopicResults AttemptTopicResult[]
   masteries    TopicMastery[]
+  historicalAnswers ExamAnswer[] @relation("AnswerTopicSnapshot")
   
   prerequisites   TopicPrerequisite[] @relation("TopicIsDependent")
   dependentTopics TopicPrerequisite[] @relation("TopicIsPrerequisite")
@@ -261,6 +260,7 @@ model ExamAttempt {
   startedAt     DateTime      @default(now())
   deadlineAt    DateTime?
   submittedAt   DateTime?
+  masteryUpdatedAt DateTime?
   timeLimit     Int?
 
   score       Float    @default(0)
@@ -283,12 +283,17 @@ model ExamAnswer {
   questionId        String
   isCorrect         Boolean   @default(false)
   timeSpent         Int       @default(0) 
+  difficultyAtSubmission Float?
+  topicIdAtSubmission String?
 
   selectedOptionIds String[] 
 
   attempt ExamAttempt @relation(fields: [attemptId], references: [id], onDelete: Restrict)
   question Question    @relation(fields: [questionId], references: [id], onDelete: Restrict)
+  topicAtSubmission Topic? @relation("AnswerTopicSnapshot", fields: [topicIdAtSubmission], references: [id], onDelete: Restrict)
   @@unique([attemptId, questionId])
+  @@index([questionId, attemptId])
+  @@index([topicIdAtSubmission, attemptId])
   @@map("exam_answers")
 }
 
@@ -315,7 +320,7 @@ model TopicMastery {
   id        String   @id @default(cuid())
   userId    String
   topicId   String
-  rating    Float    @default(1200)
+  masteryScore Float @default(1200)
   attempts  Int      @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

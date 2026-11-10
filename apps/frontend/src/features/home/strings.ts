@@ -4,7 +4,8 @@ export const BRAND = "V-ACT Learning";
 
 export const ROUTES = {
   home: "/",
-  exams: "/courses", // Trang danh sách bộ đề thi
+  courses: "/courses",
+  exams: "/exams", // Phòng thi thử (ExamList) — trước đây trỏ nhầm sang /courses
   practice: "/practice", // /practice/:examId (QuizPage)
   login: "/login",
   register: "/register",

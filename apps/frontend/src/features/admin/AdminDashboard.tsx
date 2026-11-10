@@ -1,26 +1,29 @@
 import { useState, useEffect } from "react";
 import { useAuthStore } from "../../store/authStore";
 import { Link, useNavigate } from "react-router-dom";
+import api from "../../services/api";
+import { authService } from "../../services/auth.service";
+import { confirmDialog, toast } from "../../store/uiStore";
+import type { AppRole } from '../../types/auth.types';
 
-// 1. Cập nhật Enum in hoa cho khớp với Prisma Backend
+// Cập nhật Enum in hoa cho khớp với Prisma Backend
 type UserStatus = "ACTIVE" | "PENDING" | "LOCKED" | "REJECTED";
 
 interface SystemUser {
   id: string;
-  fullName: string; // Đổi name thành fullName theo schema của bạn
-  role: "STUDENT" | "INSTRUCTOR" | "ADMIN";
+  fullName: string;
+  role: AppRole;
   status: UserStatus;
   createdAt: string;
 }
 
 export const AdminDashboard = () => {
-  const { user, token, logout } = useAuthStore(); // Lấy thêm token nếu hệ thống bạn đã có JWT
+  const { user } = useAuthStore();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<
     "users" | "courses" | "reports" | "stats"
   >("users");
 
-  // 2. Dữ liệu thật từ State
   const [usersList, setUsersList] = useState<SystemUser[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -33,17 +36,12 @@ export const AdminDashboard = () => {
   const fetchUsers = async () => {
     setIsLoading(true);
     try {
-      const res = await fetch(API_URL, {
-        headers: {
-          Authorization: `Bearer ${token || ""}`, // Gắn token nếu cần Guard
-        },
-      });
-      if (res.ok) {
-        const data = await res.json();
-        setUsersList(data);
-      }
+      const res = await api.get("/users");
+      const data = Array.isArray(res.data) ? res.data : (res.data?.items ?? []);
+      setUsersList(data);
     } catch (error) {
       console.error("Lỗi khi tải danh sách người dùng:", error);
+      toast.error("Không tải được danh sách người dùng", "Vui lòng thử lại sau.");
     } finally {
       setIsLoading(false);
     }
@@ -58,39 +56,38 @@ export const AdminDashboard = () => {
 
   // Xử lý Duyệt giảng viên
   const handleApprove = async (userId: string) => {
-    if (window.confirm("Bạn có chắc chắn muốn duyệt giảng viên này?")) {
-      try {
-        await fetch(`${API_URL}/${userId}/status`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token || ""}`,
-          },
-          body: JSON.stringify({ status: "ACTIVE" }),
-        });
-        fetchUsers(); // Load lại bảng sau khi cập nhật thành công
-      } catch (error) {
-        console.error("Lỗi duyệt:", error);
-      }
+    const ok = await confirmDialog({
+      title: "Duyệt giảng viên này?",
+      message: "Tài khoản sẽ được kích hoạt và có quyền giảng viên.",
+      confirmLabel: "Duyệt",
+    });
+    if (!ok) return;
+    try {
+      await api.patch(`/users/${userId}/status`, { status: "ACTIVE" });
+      toast.success("Đã duyệt giảng viên");
+      fetchUsers();
+    } catch (error) {
+      console.error("Lỗi duyệt:", error);
+      toast.error("Duyệt thất bại", "Vui lòng thử lại.");
     }
   };
 
   // Xử lý Từ chối giảng viên
   const handleReject = async (userId: string) => {
-    if (window.confirm("Từ chối cấp quyền cho giảng viên này?")) {
-      try {
-        await fetch(`${API_URL}/${userId}/status`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token || ""}`,
-          },
-          body: JSON.stringify({ status: "REJECTED" }),
-        });
-        fetchUsers();
-      } catch (error) {
-        console.error("Lỗi từ chối:", error);
-      }
+    const ok = await confirmDialog({
+      title: "Từ chối cấp quyền giảng viên?",
+      message: "Tài khoản sẽ bị đánh dấu từ chối.",
+      confirmLabel: "Từ chối",
+      tone: "danger",
+    });
+    if (!ok) return;
+    try {
+      await api.patch(`/users/${userId}/status`, { status: "REJECTED" });
+      toast.success("Đã từ chối giảng viên");
+      fetchUsers();
+    } catch (error) {
+      console.error("Lỗi từ chối:", error);
+      toast.error("Thao tác thất bại", "Vui lòng thử lại.");
     }
   };
 
@@ -100,28 +97,36 @@ export const AdminDashboard = () => {
     currentStatus: UserStatus,
   ) => {
     const isLocking = currentStatus === "ACTIVE";
-    const confirmMsg = isLocking
-      ? "Khóa tài khoản này? Người dùng sẽ không thể đăng nhập."
-      : "Mở khóa cho tài khoản này hoạt động lại?";
-
-    if (window.confirm(confirmMsg)) {
-      try {
-        await fetch(`${API_URL}/${userId}/toggle-lock`, {
-          method: "PATCH",
-          headers: { Authorization: `Bearer ${token || ""}` },
-        });
-        fetchUsers();
-      } catch (error) {
-        console.error("Lỗi thay đổi trạng thái khóa:", error);
-      }
+    const ok = await confirmDialog({
+      title: isLocking ? "Khóa tài khoản này?" : "Mở khóa tài khoản này?",
+      message: isLocking
+        ? "Người dùng sẽ không thể đăng nhập."
+        : "Tài khoản sẽ hoạt động lại bình thường.",
+      confirmLabel: isLocking ? "Khóa tài khoản" : "Mở khóa",
+      tone: isLocking ? "danger" : "default",
+    });
+    if (!ok) return;
+    try {
+      await api.patch(`/users/${userId}/toggle-lock`);
+      toast.success(isLocking ? "Đã khóa tài khoản" : "Đã mở khóa tài khoản");
+      fetchUsers();
+    } catch (error) {
+      console.error("Lỗi thay đổi trạng thái khóa:", error);
+      toast.error("Thao tác thất bại", "Vui lòng thử lại.");
     }
   };
 
-  const handleLogout = () => {
-    if (window.confirm("Bạn có chắc chắn muốn đăng xuất khỏi hệ thống?")) {
-      logout(); // Xóa token/user trong global state
-      navigate("/login"); // Đẩy về trang đăng nhập
-    }
+  // Phải xóa phiên trong authStore, không chỉ xóa localStorage
+  const handleLogout = async () => {
+    const ok = await confirmDialog({
+      title: "Đăng xuất khỏi tài khoản?",
+      confirmLabel: "Đăng xuất",
+      tone: "danger",
+    });
+    if (!ok) return;
+    await authService.logout();
+    toast.info("Đã đăng xuất", "Hẹn gặp lại bạn.");
+    navigate("/login", { replace: true });
   };
 
   // Hàm hiển thị Badge trạng thái (Đã cập nhật key in hoa)
