@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import api from '../../services/api';
-import { Link, useParams } from 'react-router-dom';
 import { BackButton } from '../../components/BackButton';
 
 export const LessonPlayer = () => {
@@ -55,20 +54,6 @@ export const LessonPlayer = () => {
     <div className="flex flex-col lg:flex-row min-h-screen bg-gray-50 font-sans">
       {/* Khu vực Video và Nội dung chính bên trái */}
       <div className="flex-1 flex flex-col p-6 lg:p-8 overflow-y-auto">
-        <div className="mb-4 flex items-center justify-between">
-          <Link
-            to="/"
-            className="text-amber-600 font-bold hover:underline flex items-center gap-1 text-sm"
-          >
-            &larr; Quay lại Trang chủ Khóa học
-          </Link>
-          <Link
-            to="/courses"
-            className="text-blue-700 font-bold hover:underline text-sm"
-          >
-            Chuyển sang Luyện đề thi &rarr;
-          </Link>
-      <div className="flex-1 flex flex-col p-6 overflow-y-auto">
         <div className="mb-4">
           <BackButton to="/courses" label="Quay lại danh sách khóa học" variant="ghost" />
         </div>

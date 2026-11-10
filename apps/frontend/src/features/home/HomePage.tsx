@@ -1,12 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../store/authStore";
 import { toast, confirmDialog } from "../../store/uiStore";
 import { authService } from "../../services/auth.service";
 import "./home.css";
 import { BRAND, ROUTES, STR } from "./strings";
-import { useAuthStore } from "../../store/authStore";
 
 interface FeaturedExam {
   id: string;
@@ -15,13 +13,6 @@ interface FeaturedExam {
   _count?: { questions: number };
 }
 
-function Header() {
-  const { isAuthenticated, user, logout } = useAuthStore();
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    logout();
-    navigate("/");
 /* ---------- sections ---------- */
 
 function Navbar() {
@@ -398,7 +389,7 @@ function Footer() {
 export function HomePage() {
   return (
     <div className="min-h-screen bg-[#fdfbf7] text-gray-800">
-      <Header />
+      <Navbar />
       <main>
         <Hero />
         <HowItWorks />

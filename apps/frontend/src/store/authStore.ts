@@ -6,13 +6,7 @@ export interface User {
   id: string;
   email: string;
   name?: string;
-  fullName?: string;
-  role?: string;
-interface User {
-  id?: string | number;
-  name?: string;
   fullName?: string | null;
-  email: string;
   role: AppRole;
 }
 
@@ -68,19 +62,6 @@ export const useAuthStore = create<AuthState>()(
       };
     },
     {
-      name: 'auth-storage',
-      onRehydrateStorage: () => (state) => {
-        const storedToken =
-          localStorage.getItem('token') || localStorage.getItem('accessToken');
-        if (state && (!storedToken || !state.token)) {
-          state.user = null;
-          state.token = null;
-          state.isAuthenticated = false;
-        }
-      },
-    },
-  ),
-);
       name: 'auth-storage', // Tự động lưu vào localStorage để không bị mất khi F5
       version: 1,
       partialize: ({ user, token, isAuthenticated }): PersistedAuthState => ({
@@ -100,6 +81,15 @@ export const useAuthStore = create<AuthState>()(
             : null,
         };
       },
-    }
-  )
+      onRehydrateStorage: () => (state) => {
+        const storedToken =
+          localStorage.getItem('token') || localStorage.getItem('accessToken');
+        if (state && (!storedToken || !state.token)) {
+          state.user = null;
+          state.token = null;
+          state.isAuthenticated = false;
+        }
+      },
+    },
+  ),
 );

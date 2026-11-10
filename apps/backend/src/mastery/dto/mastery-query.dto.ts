@@ -27,6 +27,22 @@ export class MasteryQueryDto {
   masteryThreshold = 1300;
 }
 
+export class RecommendationsQueryDto {
+  @IsOptional()
+  @Type(() => Number)
+  @IsInt()
+  @Min(5)
+  @Max(300)
+  minutes = 30;
+
+  @IsOptional()
+  @Type(() => Number)
+  @IsNumber()
+  @Min(0)
+  @Max(3000)
+  masteryThreshold = 1300;
+}
+
 export class MasteryHistoryQueryDto extends MasteryQueryDto {
   @IsOptional()
   @IsIn(['asc', 'desc'])

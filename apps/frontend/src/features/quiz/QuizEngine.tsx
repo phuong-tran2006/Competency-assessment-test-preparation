@@ -1,13 +1,11 @@
 import { useEffect, useState, useRef } from "react";
-import { useParams } from "react-router-dom";
-import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuizStore } from "../../store/quizStore";
 import { attemptService } from "../../services/attempt.service";
 import { confirmDialog, toast } from "../../store/uiStore";
 import { BackButton } from "../../components/BackButton";
 
-export const QuizEngine = () => {
+export const QuizEngine = ({ examTitle }: { examTitle?: string }) => {
   const {
     questions,
     answers,
@@ -62,13 +60,6 @@ export const QuizEngine = () => {
 
     try {
       setIsSubmitting(true);
-      const result = await quizService.submitExam(
-            examId,
-            answers,
-            questions.map((q) => q.id),
-);
-      const finalResultData = result.data ? result.data : result;
-      setResultData(finalResultData);
 
       // Đồng bộ toàn bộ đáp án đang giữ ở client trước khi nộp
       await Promise.all(
@@ -116,8 +107,6 @@ export const QuizEngine = () => {
     );
     return () => clearInterval(timer);
   }, [timeLeft, isReviewMode, setTimeLeft]);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [timeLeft, isReviewMode]);
 
   // Cảnh báo khi còn 5 phút và 1 phút. Dùng ref để mỗi mốc chỉ nhắc một lần.
   const warnedRef = useRef<Record<number, boolean>>({});
@@ -226,7 +215,7 @@ export const QuizEngine = () => {
           )}
 
           <h1 className="flex-1 text-center text-xl font-black text-amber-600 uppercase tracking-wide py-3 bg-amber-50 rounded-xl border border-amber-200">
-            ĐỀ LUYỆN THI ĐGNL 2026 V-ACT – ĐỀ 1
+            {examTitle || 'ĐỀ LUYỆN THI ĐGNL V-ACT'}
           </h1>
         </div>
 

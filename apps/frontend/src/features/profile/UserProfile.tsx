@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../../store/authStore';
+import { BackButton } from '../../components/BackButton';
+import { confirmDialog, toast } from '../../store/uiStore';
+import { authService } from '../../services/auth.service';
 import api from '../../services/api';
 
 interface EloTopic {
@@ -13,20 +16,11 @@ interface EloTopic {
 
 export const UserProfile = () => {
   const { user } = useAuthStore();
+  const navigate = useNavigate();
+  const [activeTab, setActiveTab] = useState<'history' | 'ongoing'>('history');
   const [eloProfile, setEloProfile] = useState<EloTopic[]>([]);
   const [attempts, setAttempts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuthStore } from '../../store/authStore';
-import { BackButton } from '../../components/BackButton';
-import { confirmDialog, toast } from '../../store/uiStore';
-import { authService } from '../../services/auth.service';
-
-export const UserProfile = () => {
-  const { user } = useAuthStore();
-  const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState<'history' | 'ongoing'>('history');
 
   useEffect(() => {
     api
@@ -51,6 +45,7 @@ export const UserProfile = () => {
     eloProfile.length > 0
       ? [...eloProfile].sort((a, b) => a.rating - b.rating)[0]
       : null;
+
   const handleLogout = async () => {
     const ok = await confirmDialog({
       title: 'Đăng xuất khỏi tài khoản?',
@@ -65,29 +60,6 @@ export const UserProfile = () => {
     navigate('/login', { replace: true });
   };
 
-  return (
-    <div className="min-h-screen bg-gray-50 py-10 px-4">
-      <div className="max-w-6xl mx-auto mb-6">
-        <BackButton to="/" label="Về trang chủ" />
-      </div>
-
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6">
-
-        {/* CỘT TRÁI: THÔNG TIN NGƯỜI DÙNG */}
-        <div className="md:col-span-1">
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 text-center sticky top-6">
-            <div className="w-24 h-24 mx-auto rounded-full bg-amber-500 text-white flex items-center justify-center text-4xl font-black shadow-md mb-4">
-              {user?.name?.charAt(0)?.toUpperCase() || 'U'}
-            </div>
-            <h2 className="text-xl font-bold text-gray-800">{user?.name || 'Học viên V-ACT'}</h2>
-            <p className="text-sm text-gray-500 mb-6">{user?.email || 'Chưa cập nhật email'}</p>
-            
-            {/* THÊM MỚI: Bảng Mục tiêu ĐGNL */}
-            <div className="bg-amber-50 rounded-xl p-4 mb-6 border border-amber-100 shadow-sm">
-              <p className="text-xs text-amber-800 font-bold uppercase tracking-wider mb-1">Mục tiêu ĐGNL</p>
-              <p className="text-3xl font-black text-amber-600">850<span className="text-sm text-amber-500 font-medium">/1200</span></p>
-            </div>
-
   const getLevelBadge = (level: string) => {
     switch (level) {
       case 'Tốt':
@@ -101,9 +73,16 @@ export const UserProfile = () => {
     }
   };
 
+  void activeTab;
+  void setActiveTab;
+  void handleLogout;
+
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4 font-sans">
       <div className="max-w-6xl mx-auto">
+        <div className="mb-6">
+          <BackButton to="/" label="Về trang chủ" />
+        </div>
         {/* THANH ĐIỀU HƯỚNG TRÊN CÙNG */}
         <div className="flex flex-wrap justify-between items-center mb-6 bg-white p-4 rounded-2xl shadow-sm border border-gray-200">
           <div className="flex items-center gap-4">

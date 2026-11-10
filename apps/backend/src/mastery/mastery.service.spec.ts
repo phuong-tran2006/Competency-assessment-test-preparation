@@ -2,7 +2,7 @@ import { BadRequestException, NotFoundException } from '@nestjs/common';
 import { Prisma, Role } from '@prisma/client';
 import { MasteryService } from './mastery.service';
 import { PrismaService } from '../prisma/prisma.service';
-import { MasteryHistoryQueryDto, MasteryQueryDto, PracticeQuestionsQueryDto } from './dto/mastery-query.dto';
+import { MasteryHistoryQueryDto, MasteryQueryDto, PracticeQuestionsQueryDto, RecommendationsQueryDto } from './dto/mastery-query.dto';
 import { INITIAL_RATING, updateRating } from './elo';
 
 function setup() {
@@ -14,6 +14,10 @@ function setup() {
     question: { findMany: jest.fn().mockResolvedValue([]), count: jest.fn().mockResolvedValue(0) },
     examAttempt: { findMany: jest.fn().mockResolvedValue([]), count: jest.fn().mockResolvedValue(0), findUnique: jest.fn(), update: jest.fn() },
     examAnswer: { findMany: jest.fn().mockResolvedValue([]) },
+    courseTopic: { findMany: jest.fn().mockResolvedValue([]) },
+    enrollment: { findMany: jest.fn().mockResolvedValue([]) },
+    lessonProgress: { findMany: jest.fn().mockResolvedValue([]) },
+    chapter: { findMany: jest.fn().mockResolvedValue([]) },
     $queryRaw: jest.fn().mockResolvedValue([]),
   };
   return { prisma, service: new MasteryService(prisma as unknown as PrismaService), tx: prisma as unknown as Prisma.TransactionClient };
@@ -106,6 +110,108 @@ describe('Mastery data access', () => {
   it('returns empty history for a new student', async () => {
     const { service } = setup();
     expect(await service.getHistory('student-1', new MasteryHistoryQueryDto())).toMatchObject({ items: [], total: 0 });
+  });
+});
+
+describe('Mastery recommendations', () => {
+  it('ranks the weakest ready topic first with in-level unseen questions and no answers exposed', async () => {
+    const { service, prisma } = setup();
+    prisma.topic.findMany.mockResolvedValue([
+      { id: 'weak', name: 'Weak' }, { id: 'strong', name: 'Strong' }, { id: 'fresh', name: 'Fresh' },
+    ]);
+    prisma.topicMastery.findMany.mockResolvedValue([
+      { topicId: 'weak', masteryScore: 900, attempts: 5 },
+      { topicId: 'strong', masteryScore: 1700, attempts: 5 },
+    ]);
+    prisma.question.findMany.mockResolvedValue([{ id: 'q1' }, { id: 'q2' }]);
+    const result = await service.getRecommendations('student-1', new RecommendationsQueryDto());
+    expect(result.items.length).toBeGreaterThanOrEqual(3);
+    expect(result.items[0]).toMatchObject({ kind: 'practice', topicId: 'weak' });
+    expect(result.items[0]).toHaveProperty('reason');
+    expect(prisma.question.findMany).toHaveBeenCalledWith(expect.objectContaining({
+      where: expect.objectContaining({
+        topicId: 'weak',
+        answers: { none: { attempt: { userId: 'student-1', status: 'SUBMITTED' } } },
+      }),
+    }));
+    const practice = result.items.find((item: any) => item.kind === 'practice' && item.topicId === 'weak') as any;
+    expect(practice).toHaveProperty('questionIds', ['q1', 'q2']);
+    expect(JSON.stringify(result)).not.toContain('isCorrect');
+  });
+
+  it('replaces a DAG-blocked topic with its missing prerequisite', async () => {
+    const { service, prisma } = setup();
+    prisma.topic.findMany.mockResolvedValue([{ id: 'child', name: 'Child' }, { id: 'parent', name: 'Parent' }]);
+    prisma.topicPrerequisite.findMany.mockResolvedValue([{ topicId: 'child', prerequisiteId: 'parent' }]);
+    prisma.topicMastery.findMany.mockResolvedValue([{ topicId: 'child', masteryScore: 1700, attempts: 5 }]);
+    prisma.question.findMany.mockResolvedValue([{ id: 'q1' }]);
+    const result = await service.getRecommendations('student-1', new RecommendationsQueryDto());
+    const topics = result.items.map((item: any) => item.topicId);
+    expect(topics).toContain('parent');
+    expect(topics).not.toContain('child');
+    const parent = result.items.find((item: any) => item.topicId === 'parent') as any;
+    expect(parent.reason).toContain('Child');
+  });
+
+  it('suggests enrollment when the student has not joined the topic course', async () => {
+    const { service, prisma } = setup();
+    prisma.courseTopic.findMany.mockResolvedValue([
+      { topicId: 't1', order: 0, course: { id: 'c1', title: 'Course 1', status: 'PUBLISHED' } },
+    ]);
+    prisma.question.findMany.mockResolvedValue([{ id: 'q1' }]);
+    const result = await service.getRecommendations('student-1', new RecommendationsQueryDto());
+    expect(result.items).toContainEqual(expect.objectContaining({ kind: 'enroll', course: { id: 'c1', title: 'Course 1' } }));
+  });
+
+  it('points to the first unfinished lesson when already enrolled', async () => {
+    const { service, prisma } = setup();
+    prisma.courseTopic.findMany.mockResolvedValue([
+      { topicId: 't1', order: 0, course: { id: 'c1', title: 'Course 1', status: 'PUBLISHED' } },
+    ]);
+    prisma.enrollment.findMany.mockResolvedValue([{ courseId: 'c1' }]);
+    prisma.lessonProgress.findMany.mockResolvedValue([{ lessonId: 'l1' }]);
+    prisma.chapter.findMany.mockResolvedValue([
+      { courseId: 'c1', lessons: [{ id: 'l1', title: 'Lesson 1' }, { id: 'l2', title: 'Lesson 2' }] },
+    ]);
+    prisma.question.findMany.mockResolvedValue([{ id: 'q1' }]);
+    const result = await service.getRecommendations('student-1', new RecommendationsQueryDto());
+    expect(result.items).toContainEqual(expect.objectContaining({ kind: 'lesson', lesson: { id: 'l2', title: 'Lesson 2' } }));
+  });
+
+  it('fetches per-topic question windows in one parallel batch', async () => {
+    const { service, prisma } = setup();
+    prisma.topic.findMany.mockResolvedValue([
+      { id: 't1', name: 'T1' }, { id: 't2', name: 'T2' }, { id: 't3', name: 'T3' }, { id: 't4', name: 'T4' },
+    ]);
+    prisma.question.findMany.mockResolvedValue([{ id: 'q1' }]);
+    await service.getRecommendations('student-1', new RecommendationsQueryDto());
+    // 3 topic được chọn -> 3 query câu hỏi, nhưng gọi song song trong cùng 1 tick (không còn await tuần tự).
+    expect(prisma.question.findMany).toHaveBeenCalledTimes(3);
+    const topics = prisma.question.findMany.mock.calls.map((call) => (call[0] as any).where.topicId).sort();
+    expect(topics).toEqual(['t1', 't2', 't3']);
+  });
+
+  it('returns a single-topic detail with prerequisites, window and unseen questions', async () => {
+    const { service, prisma } = setup();
+    prisma.topic.findUnique.mockResolvedValue({ id: 'child', name: 'Child' });
+    prisma.topicPrerequisite.findMany.mockResolvedValue([{ topicId: 'child', prerequisiteId: 'parent' }]);
+    prisma.topicMastery.findMany.mockResolvedValue([{ topicId: 'child', masteryScore: 900, attempts: 4 }]);
+    prisma.topic.findMany.mockResolvedValue([{ id: 'parent', name: 'Parent' }]);
+    prisma.question.findMany.mockResolvedValue([{ id: 'q1', content: 'Q', difficulty: 0.3 }]);
+    prisma.question.count.mockResolvedValue(7);
+    const result = await service.getRecommendationDetail('student-1', 'child', new RecommendationsQueryDto());
+    expect(result).toMatchObject({
+      topicId: 'child', ready: false, totalUnseenInWindow: 7,
+      unmetPrerequisites: [{ topicId: 'parent', name: 'Parent', depth: 1 }],
+    });
+    expect(result.reason).toContain('Parent');
+    expect(JSON.stringify(result.questions)).not.toContain('isCorrect');
+  });
+
+  it('rejects recommendation detail for an unknown topic', async () => {
+    const { service, prisma } = setup();
+    prisma.topic.findUnique.mockResolvedValue(null);
+    await expect(service.getRecommendationDetail('student-1', 'missing', new RecommendationsQueryDto())).rejects.toThrow(NotFoundException);
   });
 });
 

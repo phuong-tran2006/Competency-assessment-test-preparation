@@ -32,7 +32,7 @@ export class CoursesService {
     const { search, status, page = 1, limit = 20 } = query;
     const where: any = {};
 
-    if (!user || user.role === Role.LEARNER) {
+    if (!user || user.role === Role.STUDENT) {
       where.status = CourseStatus.PUBLISHED;
     } else if (user.role === Role.INSTRUCTOR) {
       where.OR = [
@@ -99,7 +99,7 @@ export class CoursesService {
     if (!course) throw new NotFoundException('Không tìm thấy khóa học');
     if (
       course.status !== CourseStatus.PUBLISHED &&
-     (!user || (user.role === Role.LEARNER && course.instructorId !== user.id))
+     (!user || (user.role === Role.STUDENT && course.instructorId !== user.id))
     ) {
       throw new NotFoundException(
         'Không tìm thấy khóa học (hoặc chưa xuất bản)',

@@ -19,6 +19,13 @@ interface Course {
   };
 }
 
+interface FeaturedExam {
+  id: string;
+  title: string;
+  description: string | null;
+  _count?: { questions: number };
+}
+
 const TIME_OPTIONS = [
   { label: '15 phút', minutes: 15, questions: 10 },
   { label: '30 phút', minutes: 30, questions: 20 },
@@ -76,19 +83,31 @@ const PRACTICE_MODULES = [
 
 export const CourseList = () => {
   const [courses, setCourses] = useState<Course[]>([]);
+  const [exams, setExams] = useState<FeaturedExam[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
   // Cho phép học sinh chọn mốc thời gian tự luyện tập (mặc định 30 phút)
   const [selectedMinutes, setSelectedMinutes] = useState<number>(30);
 
+  const currentOption =
+    TIME_OPTIONS.find((opt) => opt.minutes === selectedMinutes) ?? TIME_OPTIONS[1];
+
   useEffect(() => {
-    const fetchCourses = async () => {
+    const fetchData = async () => {
       try {
         // GET /courses trả về dạng phân trang: { items, total, page, limit, totalPages }
-        const response = await api.get('/courses');
-        const list = Array.isArray(response.data)
-          ? response.data
-          : (response.data?.items ?? []);
+        // GET /exams trả về danh sách bộ đề minh họa
+        const [coursesRes, examsRes] = await Promise.all([
+          api.get('/courses').catch(() => null),
+          api.get('/exams').catch(() => null),
+        ]);
+        const list = coursesRes
+          ? Array.isArray(coursesRes.data)
+            ? coursesRes.data
+            : (coursesRes.data?.items ?? [])
+          : [];
         setCourses(list);
+        setExams(Array.isArray(examsRes?.data) ? examsRes.data : []);
       } catch (err) {
         console.error('Lỗi khi tải danh sách khóa học:', err);
         setError('Không thể tải danh sách khóa học. Vui lòng thử lại sau.');
@@ -97,16 +116,8 @@ export const CourseList = () => {
       }
     };
 
-    fetchCourses();
+    fetchData();
   }, []);
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <p className="text-lg text-gray-500 font-semibold">Đang tải danh sách khóa học...</p>
-      </div>
-    );
-  }
 
   if (error) {
     return (
@@ -140,8 +151,8 @@ export const CourseList = () => {
               className="px-4 py-2 bg-amber-500 text-white text-xs font-bold rounded-xl hover:bg-amber-600 transition shadow-sm"
             >
               📊 Xem Hồ Sơ Năng Lực Elo
-        <div className="mb-8">
-          <BackButton to="/" label="Về trang chủ" />
+            </Link>
+          </div>
         </div>
 
         <div className="text-center mb-12">
@@ -174,9 +185,9 @@ export const CourseList = () => {
               <span className="text-xs font-extrabold uppercase tracking-wider text-amber-600 block mb-1">
                 ĐỀ THI TIÊU CHUẨN
               </span>
-              <h1 className="text-2xl md:text-3xl font-black text-blue-900">
+              <h2 className="text-2xl md:text-3xl font-black text-blue-900">
                 Bộ Đề Minh Họa Chính Thức ĐGNL ĐHQG-HCM
-              </h1>
+              </h2>
               <p className="text-sm text-gray-600 mt-1">
                 Làm bài thi minh họa chuẩn qua các năm để đánh giá năng lực và làm quen áp lực phòng thi.
               </p>
@@ -185,43 +196,14 @@ export const CourseList = () => {
 
           {loading ? (
             <p className="text-gray-500 py-8 text-center">Đang tải bộ đề minh họa...</p>
+          ) : exams.length === 0 ? (
+            <p className="text-gray-500 py-8 text-center">Chưa có bộ đề minh họa nào.</p>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {exams.map((exam) => (
                 <div
                   key={exam.id}
                   className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 flex flex-col justify-between hover:shadow-md transition"
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {courses.map((course) => (
-            <div
-              key={course.id}
-              className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col justify-between"
-            >
-              <div className="p-6">
-                <span className="inline-block px-3 py-1 bg-amber-100 text-amber-800 text-xs font-bold rounded-full uppercase tracking-wider mb-4">
-                  Chuẩn cấu trúc ĐGNL
-                </span>
-                <h3 className="text-xl font-bold text-gray-900 mb-2 leading-snug">
-                  {course.title}
-                </h3>
-                <p className="text-gray-600 text-sm line-clamp-3">
-                  {course.description || 'Chưa có mô tả cho khóa học này.'}
-                </p>
-                {course.instructor && (
-                  <p className="mt-3 text-xs font-semibold text-gray-500">
-                    Giảng viên: {course.instructor.fullName || course.instructor.email}
-                  </p>
-                )}
-              </div>
-
-              <div className="px-6 py-5 bg-gray-50 border-t border-gray-100 flex justify-between items-center">
-                <span className="text-sm font-semibold text-gray-500">
-                  {course._count?.chapters ?? 0} chương • {course.lessonsCount ?? 0} bài học
-                </span>
-
-                <Link
-                  to={`/courses/${course.id}`}
-                  className="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2.5 px-6 rounded-xl transition-colors shadow-sm text-sm"
                 >
                   <div>
                     <div className="flex justify-between items-center mb-3">
@@ -258,7 +240,7 @@ export const CourseList = () => {
         </div>
 
         {/* KHU VỰC 2: LUYỆN TẬP THÍCH ỨNG THEO CHUYÊN ĐỀ (CÓ CHỌN MỐC THỜI GIAN) */}
-        <div>
+        <div className="mb-14">
           <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-6 border-b border-gray-200 pb-4 gap-4">
             <div>
               <span className="text-xs font-extrabold uppercase tracking-wider text-blue-600 block mb-1">
@@ -333,6 +315,63 @@ export const CourseList = () => {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* KHU VỰC 3: DANH SÁCH KHÓA HỌC */}
+        <div>
+          <div className="mb-6 border-b border-gray-200 pb-4">
+            <span className="text-xs font-extrabold uppercase tracking-wider text-emerald-600 block mb-1">
+              KHÓA HỌC LÝ THUYẾT
+            </span>
+            <h2 className="text-2xl md:text-3xl font-black text-blue-900">
+              Khóa Học Nền Tảng
+            </h2>
+          </div>
+
+          {loading ? (
+            <p className="text-gray-500 py-8 text-center">Đang tải danh sách khóa học...</p>
+          ) : courses.length === 0 ? (
+            <p className="text-gray-500 py-8 text-center">Chưa có khóa học nào.</p>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {courses.map((course) => (
+                <div
+                  key={course.id}
+                  className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col justify-between"
+                >
+                  <div className="p-6">
+                    <span className="inline-block px-3 py-1 bg-amber-100 text-amber-800 text-xs font-bold rounded-full uppercase tracking-wider mb-4">
+                      Chuẩn cấu trúc ĐGNL
+                    </span>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2 leading-snug">
+                      {course.title}
+                    </h3>
+                    <p className="text-gray-600 text-sm line-clamp-3">
+                      {course.description || 'Chưa có mô tả cho khóa học này.'}
+                    </p>
+                    {course.instructor && (
+                      <p className="mt-3 text-xs font-semibold text-gray-500">
+                        Giảng viên: {course.instructor.fullName || course.instructor.email}
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="px-6 py-5 bg-gray-50 border-t border-gray-100 flex justify-between items-center">
+                    <span className="text-sm font-semibold text-gray-500">
+                      {course._count?.chapters ?? 0} chương • {course.lessonsCount ?? 0} bài học
+                    </span>
+
+                    <Link
+                      to={`/courses/${course.id}`}
+                      className="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2.5 px-6 rounded-xl transition-colors shadow-sm text-sm"
+                    >
+                      Xem chi tiết
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>

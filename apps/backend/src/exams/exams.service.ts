@@ -305,7 +305,7 @@ export class ExamsService {
         const found = existingMasteries.find(
           (m: any) => m.topicId === topicId,
         );
-        const startRating = found ? found.rating : INITIAL_RATING;
+        const startRating = found ? found.masteryScore : INITIAL_RATING;
         eloMap.set(topicId, {
           topicId,
           topicName,
@@ -365,13 +365,13 @@ export class ExamsService {
                   },
                 },
                 update: {
-                  rating: item.newRating,
+                  masteryScore: item.newRating,
                   attempts: { increment: item.answered },
                 },
                 create: {
                   userId: activeUserId,
                   topicId: item.topicId,
-                  rating: item.newRating,
+                  masteryScore: item.newRating,
                   attempts: item.answered,
                 },
               })
@@ -445,7 +445,7 @@ export class ExamsService {
 
     const eloProfile = allTopics.map((t) => {
       const found = masteries.find((m: any) => m.topicId === t.id);
-      const rating = found ? Math.round(found.rating) : INITIAL_RATING;
+      const rating = found ? Math.round(found.masteryScore) : INITIAL_RATING;
       return {
         topicId: t.id,
         topicName: t.name,

@@ -3,7 +3,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { Role } from '@prisma/client';
 import { Roles } from '../common/decorators/roles.decorator';
 import { RolesGuard } from '../common/guards/roles.guard';
-import { MasteryHistoryQueryDto, MasteryQueryDto, PracticeQuestionsQueryDto } from './dto/mastery-query.dto';
+import { MasteryHistoryQueryDto, MasteryQueryDto, PracticeQuestionsQueryDto, RecommendationsQueryDto } from './dto/mastery-query.dto';
 import { MasteryService } from './mastery.service';
 
 @Controller('mastery')
@@ -23,6 +23,22 @@ export class MasteryController {
     return this.mastery.getQuestions(req.user.id, query);
   }
 
+  @Get('me/recommendations')
+  @Roles(Role.STUDENT)
+  recommendations(@Req() req: { user: { id: string } }, @Query() query: RecommendationsQueryDto) {
+    return this.mastery.getRecommendations(req.user.id, query);
+  }
+
+  @Get('me/recommendations/:topicId')
+  @Roles(Role.STUDENT)
+  recommendationDetail(
+    @Req() req: { user: { id: string } },
+    @Param('topicId') topicId: string,
+    @Query() query: RecommendationsQueryDto,
+  ) {
+    return this.mastery.getRecommendationDetail(req.user.id, topicId, query);
+  }
+
   @Get('me/history')
   @Roles(Role.STUDENT)
   history(@Req() req: { user: { id: string } }, @Query() query: MasteryHistoryQueryDto) {
@@ -39,6 +55,22 @@ export class MasteryController {
   @Roles(Role.INSTRUCTOR, Role.ADMIN)
   studentQuestions(@Param('userId') userId: string, @Query() query: PracticeQuestionsQueryDto) {
     return this.mastery.getQuestions(userId, query);
+  }
+
+  @Get('users/:userId/recommendations')
+  @Roles(Role.INSTRUCTOR, Role.ADMIN)
+  studentRecommendations(@Param('userId') userId: string, @Query() query: RecommendationsQueryDto) {
+    return this.mastery.getRecommendations(userId, query);
+  }
+
+  @Get('users/:userId/recommendations/:topicId')
+  @Roles(Role.INSTRUCTOR, Role.ADMIN)
+  studentRecommendationDetail(
+    @Param('userId') userId: string,
+    @Param('topicId') topicId: string,
+    @Query() query: RecommendationsQueryDto,
+  ) {
+    return this.mastery.getRecommendationDetail(userId, topicId, query);
   }
 
   @Get('users/:userId/history')

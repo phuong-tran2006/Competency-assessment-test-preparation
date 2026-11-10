@@ -1,7 +1,13 @@
-import { PrismaClient, Role } from '@prisma/client';
+import 'dotenv/config';
+import { PrismaClient, QuestionType, Role } from '@prisma/client';
+import { PrismaPg } from '@prisma/adapter-pg';
+import { Pool } from 'pg';
 import * as bcrypt from 'bcrypt';
+import { questions2026 } from './examData2026';
 
-const prisma = new PrismaClient();
+const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+const adapter = new PrismaPg(pool);
+const prisma = new PrismaClient({ adapter });
 
 async function main() {
   console.log('🌱 Bắt đầu nạp dữ liệu mẫu (Seed) cho hệ thống V-ACT...');
@@ -128,12 +134,14 @@ async function main() {
       },
     });
 
-    for (const qInfo of exData.questions as any[]) {
-      const topicKey = qInfo.topicId || questionTopics[qInfo.id];
-      const topic = topics[topicKey];
-      if (!topic) {
+    // Hiện chỉ có bộ câu hỏi 2026 (examData2026.ts) nên cả 3 đề minh họa
+    // dùng chung để đều làm bài được. Khi có data 2024/2025 riêng thì thay ở đây.
+    for (const qInfo of questions2026 as any[]) {
+      const topicName = qInfo.topicId || 'Tiếng Việt';
+      const topicId = topicMap[topicName];
+      if (!topicId) {
         throw new Error(
-          `Câu ${qInfo.id}: không có topic "${topicKey}". Hiện có: ${Object.keys(topics).join(', ')}`,
+          `Câu ${qInfo.id}: không có topic "${topicName}". Hiện có: ${Object.keys(topicMap).join(', ')}`,
         );
       }
 
@@ -155,7 +163,7 @@ async function main() {
       const fields = {
         content: qInfo.content,
         explanation: qInfo.explanation || null,
-        topicId: topic.id,
+        topicId,
       };
 
       await prisma.$transaction(async (tx) => {
@@ -177,10 +185,10 @@ async function main() {
 
       await prisma.examQuestion.upsert({
         where: {
-          examId_questionId: { examId: exData.id, questionId: qInfo.id },
+          examId_questionId: { examId: ex.id, questionId: qInfo.id },
         },
         update: {},
-        create: { examId: exData.id, questionId: qInfo.id },
+        create: { examId: ex.id, questionId: qInfo.id },
       });
     }
   }
@@ -188,7 +196,7 @@ async function main() {
   console.log('✅ Đã khởi tạo 3 Bộ đề minh họa ĐGNL (2024, 2025, 2026)');
 
   // ==================== 4. COURSES (KHÓA HỌC NỀN TẢNG) ====================
-  await prisma.course.upsert({
+  const course1 = await prisma.course.upsert({
     where: { id: 'course-1' },
     update: {
       title: 'Toán nền tảng ĐGNL',
@@ -196,27 +204,59 @@ async function main() {
       instructorId: instructor.id,
     },
     create: {
+      id: 'course-1',
+      title: 'Toán nền tảng ĐGNL',
+      description: 'Khóa học giới hạn, đạo hàm, tích phân',
+      instructorId: instructor.id,
+    },
+  });
+
+  const chapter1 = await prisma.chapter.upsert({
+    where: { id: 'chapter-1' },
+    update: { title: 'Chương 1: Giới hạn và liên tục' },
+    create: {
+      id: 'chapter-1',
+      courseId: course1.id,
+      title: 'Chương 1: Giới hạn và liên tục',
+      order: 1,
+    },
+  });
+
+  const lesson1 = await prisma.lesson.upsert({
+    where: { id: 'lesson-1' },
+    update: {},
+    create: {
       id: 'lesson-1',
       chapterId: chapter1.id,
       title: 'Bài 1: Khái niệm giới hạn',
       content: 'Giới hạn của hàm số là giá trị mà hàm số tiến tới...',
       order: 1,
-      materials: {
-        create: [
-          {
-            type: 'TEXT',
-            title: 'Lý thuyết cơ bản',
-            content: 'Giới hạn là một khái niệm quan trọng trong giải tích...',
-            order: 1,
-          },
-          {
-            type: 'PDF',
-            title: 'Bài tập tự luyện',
-            url: 'https://example.com/exercises.pdf',
-            order: 2,
-          },
-        ],
-      },
+    },
+  });
+
+  await prisma.material.upsert({
+    where: { id: 'material-1' },
+    update: {},
+    create: {
+      id: 'material-1',
+      lessonId: lesson1.id,
+      type: 'TEXT',
+      title: 'Lý thuyết cơ bản',
+      content: 'Giới hạn là một khái niệm quan trọng trong giải tích...',
+      order: 1,
+    },
+  });
+
+  await prisma.material.upsert({
+    where: { id: 'material-2' },
+    update: {},
+    create: {
+      id: 'material-2',
+      lessonId: lesson1.id,
+      type: 'PDF',
+      title: 'Bài tập tự luyện',
+      url: 'https://example.com/exercises.pdf',
+      order: 2,
     },
   });
 

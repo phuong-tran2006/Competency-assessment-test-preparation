@@ -107,6 +107,8 @@ export const useQuizStore = create<QuizStore>()(
       name: "vact-exam-progress", // Tên key dùng để lưu trữ dưới LocalStorage
       partialize: (state) => ({
         // Chỉ định lưu lại các state quan trọng nhất
+        // (gồm questions để F5 giữa giờ thi không bị trắng trang)
+        questions: state.questions,
         answers: state.answers,
         reviewList: state.reviewList,
         currentStep: state.currentStep,

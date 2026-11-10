@@ -3,7 +3,7 @@ import { Prisma, Role } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { prerequisiteAncestors, prerequisiteMap } from '../topics/prerequisite-graph';
 import { INITIAL_RATING, ratingToLevel, updateRating } from './elo';
-import { MasteryHistoryQueryDto, MasteryQueryDto, PracticeQuestionsQueryDto } from './dto/mastery-query.dto';
+import { MasteryHistoryQueryDto, MasteryQueryDto, PracticeQuestionsQueryDto, RecommendationsQueryDto } from './dto/mastery-query.dto';
 
 @Injectable()
 export class MasteryService {
@@ -139,6 +139,288 @@ export class MasteryService {
           topicId: topicIdAtSubmission ?? question.topicId,
         })),
       })), total, page, limit,
+    };
+  }
+
+  /** Gợi ý học tập cá nhân hóa: topic yếu trước, chặn bởi DAG, câu hỏi vừa sức, bài học tiếp theo. */
+  async getRecommendations(userId: string, query: RecommendationsQueryDto = new RecommendationsQueryDto()) {
+    await this.assertStudent(userId);
+    const minutes = query.minutes ?? 30;
+    const threshold = query.masteryThreshold ?? 1300;
+    const [topics, scores, edges, courseTopics, enrollments, progress] = await Promise.all([
+      this.prisma.topic.findMany({ select: { id: true, name: true }, orderBy: [{ name: 'asc' }, { id: 'asc' }] }),
+      this.prisma.topicMastery.findMany({ where: { userId } }),
+      this.prisma.topicPrerequisite.findMany({ select: { topicId: true, prerequisiteId: true } }),
+      this.prisma.courseTopic.findMany({
+        orderBy: [{ order: 'asc' }, { courseId: 'asc' }],
+        select: { topicId: true, order: true, course: { select: { id: true, title: true, status: true } } },
+      }),
+      this.prisma.enrollment.findMany({ where: { userId }, select: { courseId: true } }),
+      this.prisma.lessonProgress.findMany({ where: { userId, isCompleted: true }, select: { lessonId: true } }),
+    ]);
+    if (!topics.length) return { userId, minutes, masteryThreshold: threshold, items: [] };
+    const byTopic = new Map(scores.map((score) => [score.topicId, score]));
+    const byId = new Map(topics.map((topic) => [topic.id, topic]));
+    const graph = prerequisiteMap(edges);
+    const states = topics.map((topic) => {
+      const score = byTopic.get(topic.id);
+      const attempts = score?.attempts ?? 0;
+      const masteryScore = score?.masteryScore ?? INITIAL_RATING;
+      const ancestors = prerequisiteAncestors(graph, topic.id);
+      const unmet = ancestors.filter(({ id }) => {
+        const parent = byTopic.get(id);
+        return !parent || parent.attempts === 0 || parent.masteryScore < threshold;
+      }).map(({ id }) => id);
+      const cycle = (graph.get(topic.id) ?? []).includes(topic.id);
+      return {
+        topicId: topic.id, name: topic.name, masteryScore, attempts,
+        isAssessed: attempts > 0, isMastered: attempts > 0 && masteryScore >= threshold,
+        unmetPrerequisiteIds: unmet, ready: !cycle && unmet.length === 0,
+      };
+    });
+    // Thứ tự ưu tiên: yếu-chưa-đạt & học được trước, rồi chưa đánh giá, rồi đã đạt, cuối cùng bị chặn.
+    const weak = states.filter((s) => s.isAssessed && !s.isMastered && s.ready).sort((a, b) => a.masteryScore - b.masteryScore);
+    const fresh = states.filter((s) => !s.isAssessed && s.ready);
+    const mastered = states.filter((s) => s.isMastered && s.ready).sort((a, b) => a.masteryScore - b.masteryScore);
+    const blocked = states.filter((s) => !s.ready).sort((a, b) => a.masteryScore - b.masteryScore);
+    const ordered = [...weak, ...fresh, ...mastered, ...blocked];
+    // Topic nào là prerequisite còn thiếu của topic bị chặn -> khi gợi ý nó, ghi rõ để mở khóa topic nào.
+    const unlocks = new Map<string, string[]>();
+    for (const state of states) {
+      if (state.ready || !state.unmetPrerequisiteIds.length) continue;
+      for (const id of state.unmetPrerequisiteIds) {
+        const list = unlocks.get(id) ?? [];
+        list.push(state.name);
+        unlocks.set(id, list);
+      }
+    }
+    // Topic bị chặn bởi DAG -> gợi ý prerequisite còn thiếu (yếu nhất) thay vì topic đó.
+    const seen = new Set<string>();
+    const selected: Array<{ state: (typeof states)[number]; blockedBy: string | null }> = [];
+    for (const state of ordered) {
+      if (selected.length >= 3) break;
+      if (state.ready || !state.unmetPrerequisiteIds.length) {
+        if (!seen.has(state.topicId)) {
+          seen.add(state.topicId);
+          selected.push({ state, blockedBy: unlocks.get(state.topicId)?.[0] ?? null });
+        }
+        continue;
+      }
+      const candidates = state.unmetPrerequisiteIds
+        .map((id) => states.find((s) => s.topicId === id))
+        .filter((s): s is (typeof states)[number] => !!s && byId.has(s.topicId) && !seen.has(s.topicId));
+      candidates.sort((a, b) => Number(b.isAssessed) - Number(a.isAssessed) || a.masteryScore - b.masteryScore);
+      const target = candidates.find((c) => c.ready) ?? candidates[0];
+      // Nếu prerequisite đã được chọn rồi thì bỏ qua topic bị chặn, không gợi ý thẳng nó.
+      if (target) { seen.add(target.topicId); selected.push({ state: target, blockedBy: state.name }); }
+    }
+    if (!selected.length) return { userId, minutes, masteryThreshold: threshold, items: [] };
+    // Dữ liệu khóa học/bài học: ưu tiên khóa PUBLISHED, khóa đã ghi danh, bài học đầu chưa xong.
+    const enrolled = new Set(enrollments.map((e) => e.courseId));
+    const completed = new Set(progress.map((p) => p.lessonId));
+    const courseIds = [...new Set(courseTopics.map((ct) => ct.course.id))];
+    const chapters = courseIds.length ? await this.prisma.chapter.findMany({
+      where: { courseId: { in: courseIds } },
+      orderBy: [{ order: 'asc' }, { id: 'asc' }],
+      select: {
+        courseId: true,
+        lessons: { orderBy: [{ order: 'asc' }, { id: 'asc' }], select: { id: true, title: true, order: true } },
+      },
+    }) : [];
+    const lessonsByCourse = new Map<string, Array<{ id: string; title: string }>>();
+    for (const chapter of chapters) {
+      const list = lessonsByCourse.get(chapter.courseId) ?? [];
+      for (const lesson of chapter.lessons) list.push({ id: lesson.id, title: lesson.title });
+      lessonsByCourse.set(chapter.courseId, list);
+    }
+    const linksByTopic = new Map<string, typeof courseTopics>();
+    for (const ct of courseTopics) {
+      const list = linksByTopic.get(ct.topicId) ?? [];
+      list.push(ct);
+      linksByTopic.set(ct.topicId, list);
+    }
+    const pickCourse = (topicId: string) => {
+      const links = (linksByTopic.get(topicId) ?? []).slice().sort((a, b) => {
+        const statusRank = (s: string) => (s === 'PUBLISHED' ? 0 : 1);
+        return statusRank(a.course.status) - statusRank(b.course.status)
+          || Number(enrolled.has(b.course.id)) - Number(enrolled.has(a.course.id))
+          || a.order - b.order;
+      });
+      return links[0] ?? null;
+    };
+    const topicMinutes = Math.max(5, Math.floor(minutes / selected.length));
+    // Gộp N+1 query câu hỏi từng topic thành 1 đợt Promise.all song song.
+    const windows = selected.map(({ state }) => {
+      const center = Math.min(1, Math.max(0, (state.masteryScore - 800) / 1200));
+      const difficultyMin = Math.max(0, Math.round((center - 0.15) * 100) / 100);
+      const difficultyMax = Math.min(1, Math.round((center + 0.15) * 100) / 100);
+      const practiceMinutes = Math.max(5, Math.round(topicMinutes * 0.6));
+      const questionTake = Math.min(20, Math.max(3, Math.ceil(practiceMinutes * 1.5)));
+      return { state, difficultyMin, difficultyMax, practiceMinutes, questionTake };
+    });
+    const batched = await Promise.all(windows.map((w) => this.prisma.question.findMany({
+      where: {
+        topicId: w.state.topicId,
+        difficulty: { gte: w.difficultyMin, lte: w.difficultyMax },
+        answers: { none: { attempt: { userId, status: 'SUBMITTED' } } },
+      },
+      orderBy: [{ difficulty: 'asc' }, { id: 'asc' }],
+      take: w.questionTake,
+      select: { id: true },
+    })));
+    const items: Array<Record<string, unknown>> = [];
+    for (let i = 0; i < selected.length; i += 1) {
+      const { state, blockedBy } = selected[i];
+      // Cửa sổ độ khó vừa sức: rating 800..2000 -> difficulty 0..1, lấy ±0.15 quanh rating hiện tại.
+      const { difficultyMin, difficultyMax, practiceMinutes } = windows[i];
+      const questions = batched[i];
+      const level = state.isAssessed ? ratingToLevel(state.masteryScore) : 'Chưa đánh giá';
+      if (questions.length) {
+        items.push({
+          kind: 'practice',
+          topicId: state.topicId,
+          topicName: state.name,
+          reason: blockedBy
+            ? `Cần củng cố '${state.name}' trước khi học '${blockedBy}'.`
+            : !state.isAssessed
+              ? `Chủ đề '${state.name}' chưa có dữ liệu đánh giá, bắt đầu với câu hỏi vừa sức.`
+              : state.isMastered
+                ? `Chủ đề '${state.name}' đã đạt (${level}), ôn tập để giữ vững.`
+                : `Chủ đề '${state.name}' đang yếu nhất (${level}, Elo ${Math.round(state.masteryScore)}), luyện câu hỏi vừa sức.`,
+          estimatedMinutes: practiceMinutes,
+          questionIds: questions.map((q) => q.id),
+          questionCount: questions.length,
+          difficultyMin,
+          difficultyMax,
+        });
+      }
+      const link = pickCourse(state.topicId);
+      if (link) {
+        const nextLesson = (lessonsByCourse.get(link.course.id) ?? []).find((lesson) => !completed.has(lesson.id));
+        if (nextLesson && enrolled.has(link.course.id)) {
+          items.push({
+            kind: 'lesson',
+            topicId: state.topicId,
+            topicName: state.name,
+            reason: blockedBy
+              ? `Học tiếp bài '${nextLesson.title}' để mở khóa '${blockedBy}'.`
+              : `Bài học tiếp theo của '${state.name}' trong khóa '${link.course.title}'.`,
+            estimatedMinutes: Math.max(5, topicMinutes - practiceMinutes),
+            course: { id: link.course.id, title: link.course.title },
+            lesson: nextLesson,
+          });
+        } else if (!enrolled.has(link.course.id)) {
+          items.push({
+            kind: 'enroll',
+            topicId: state.topicId,
+            topicName: state.name,
+            reason: `Đăng ký khóa '${link.course.title}' để học lộ trình '${state.name}'.`,
+            estimatedMinutes: 5,
+            course: { id: link.course.id, title: link.course.title },
+          });
+        }
+      }
+    }
+    // Quy tắc spec: luôn trả ít nhất 3 gợi ý có lý do.
+    // Mục bù không gợi ý thẳng topic bị DAG chặn: ưu tiên prerequisite còn thiếu của nó.
+    if (items.length < 3) {
+      const picked = new Set(items.map((item) => item.topicId as string));
+      for (const state of ordered) {
+        if (items.length >= 3) break;
+        if (picked.has(state.topicId)) continue;
+        const missing = state.unmetPrerequisiteIds
+          .map((id) => states.find((s) => s.topicId === id))
+          .filter((s): s is (typeof states)[number] => !!s && !picked.has(s.topicId));
+        const fallback = (!state.ready && missing.length ? missing[0] : null) ?? (!state.ready ? null : state);
+        const target = fallback ?? missing[0];
+        if (!target) continue;
+        picked.add(target.topicId);
+        items.push({
+          kind: 'practice',
+          topicId: target.topicId,
+          topicName: target.name,
+          reason: target.topicId === state.topicId
+            ? `Bổ sung '${target.name}' để đủ lộ trình học (${target.isAssessed ? `Elo ${Math.round(target.masteryScore)}` : 'chưa đánh giá'}).`
+            : `Cần củng cố '${target.name}' trước khi học '${state.name}'.`,
+          estimatedMinutes: 5,
+          questionIds: [],
+          questionCount: 0,
+        });
+      }
+    }
+    return { userId, minutes, masteryThreshold: threshold, items };
+  }
+
+  /** Chi tiết gợi ý cho 1 chủ đề: profile mastery + prerequisite + câu hỏi vừa sức + bài học tiếp theo. */
+  async getRecommendationDetail(userId: string, topicId: string, query: RecommendationsQueryDto = new RecommendationsQueryDto()) {
+    await this.assertStudent(userId);
+    const topic = await this.prisma.topic.findUnique({ where: { id: topicId }, select: { id: true, name: true } });
+    if (!topic) throw new NotFoundException('Không tìm thấy chủ đề');
+    const minutes = query.minutes ?? 30;
+    const threshold = query.masteryThreshold ?? 1300;
+    const [scores, edges] = await Promise.all([
+      this.prisma.topicMastery.findMany({ where: { userId } }),
+      this.prisma.topicPrerequisite.findMany({ select: { topicId: true, prerequisiteId: true } }),
+    ]);
+    const byTopic = new Map(scores.map((score) => [score.topicId, score]));
+    const graph = prerequisiteMap(edges);
+    const ancestors = prerequisiteAncestors(graph, topicId);
+    const score = byTopic.get(topicId);
+    const attempts = score?.attempts ?? 0;
+    const masteryScore = score?.masteryScore ?? INITIAL_RATING;
+    const unmet = ancestors.filter(({ id }) => {
+      const parent = byTopic.get(id);
+      return !parent || parent.attempts === 0 || parent.masteryScore < threshold;
+    });
+    const unmetTopics = unmet.length
+      ? await this.prisma.topic.findMany({ where: { id: { in: unmet.map(({ id }) => id) } }, select: { id: true, name: true } })
+      : [];
+    const unmetById = new Map(unmetTopics.map((t) => [t.id, t]));
+    const ready = unmet.length === 0 && !(graph.get(topicId) ?? []).includes(topicId);
+    const center = Math.min(1, Math.max(0, (masteryScore - 800) / 1200));
+    const difficultyMin = Math.max(0, Math.round((center - 0.15) * 100) / 100);
+    const difficultyMax = Math.min(1, Math.round((center + 0.15) * 100) / 100);
+    const [questions, total] = await Promise.all([
+      this.prisma.question.findMany({
+        where: {
+          topicId,
+          difficulty: { gte: difficultyMin, lte: difficultyMax },
+          answers: { none: { attempt: { userId, status: 'SUBMITTED' } } },
+        },
+        orderBy: [{ difficulty: 'asc' }, { id: 'asc' }],
+        take: Math.min(20, Math.max(3, Math.ceil(minutes * 1.5))),
+        select: { id: true, content: true, difficulty: true },
+      }),
+      this.prisma.question.count({
+        where: {
+          topicId,
+          difficulty: { gte: difficultyMin, lte: difficultyMax },
+          answers: { none: { attempt: { userId, status: 'SUBMITTED' } } },
+        },
+      }),
+    ]);
+    return {
+      userId,
+      topicId: topic.id,
+      topicName: topic.name,
+      masteryScore,
+      evidenceCount: attempts,
+      isAssessed: attempts > 0,
+      level: attempts > 0 ? ratingToLevel(masteryScore) : 'Chưa đánh giá',
+      isMastered: attempts > 0 && masteryScore >= threshold,
+      masteryThreshold: threshold,
+      ready,
+      unmetPrerequisites: unmet.map(({ id, level: depth }) => ({ topicId: id, name: unmetById.get(id)?.name ?? id, depth })),
+      reason: !ready && unmetTopics.length
+        ? `Cần củng cố ${unmetTopics.map((t) => `'${t.name}'`).join(', ')} trước khi học '${topic.name}'.`
+        : attempts === 0
+          ? `Chủ đề '${topic.name}' chưa có dữ liệu đánh giá, bắt đầu với câu hỏi vừa sức.`
+          : `Luyện '${topic.name}' ở mức Elo ${Math.round(masteryScore)} với câu hỏi vừa sức trong ~${minutes} phút.`,
+      estimatedMinutes: minutes,
+      difficultyMin,
+      difficultyMax,
+      questions,
+      totalUnseenInWindow: total,
     };
   }
 
