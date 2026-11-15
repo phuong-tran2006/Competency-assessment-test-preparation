@@ -1,0 +1,306 @@
+[
+  {
+    "n": 1,
+    "content": "Số phức z = 3 - 4i có phần thực và phần ảo lần lượt là:",
+    "options": [
+      "3 và -4",
+      "-3 và 4",
+      "3 và 4",
+      "-3 và -4"
+    ],
+    "correct": 0,
+    "topicId": "Toán",
+    "difficulty": 0.5
+  },
+  {
+    "n": 2,
+    "content": "Tập nghiệm của bất phương trình 2^x > 4 là:",
+    "options": [
+      "(1; +inf)",
+      "(2; +inf)",
+      "(0; 2)",
+      "(-inf; 2)"
+    ],
+    "correct": 1,
+    "topicId": "Toán",
+    "difficulty": 0.5
+  },
+  {
+    "n": 3,
+    "content": "Tác giả của đoạn trích \"Đất nước\" trong chương trình Ngữ văn là ai?",
+    "options": [
+      "Tố Hữu",
+      "Huy Cận",
+      "Nguyễn Khoa Điềm",
+      "Xuân Quỳnh"
+    ],
+    "correct": 2,
+    "topicId": "Tiếng Việt",
+    "difficulty": 0.5
+  },
+  {
+    "n": 4,
+    "content": "Cho tam giác ABC vuông tại A có AB = 3cm, AC = 4cm. Độ dài cạnh huyền BC là:",
+    "options": [
+      "6 cm",
+      "5 cm",
+      "7 cm",
+      "sqrt(7) cm"
+    ],
+    "correct": 1,
+    "topicId": "Toán",
+    "difficulty": 0.5
+  },
+  {
+    "n": 5,
+    "content": "Hàm số y = -x^3 + 3x nghịch biến trên khoảng nào dưới đây?",
+    "options": [
+      "(-1; 1)",
+      "(0; +inf)",
+      "(-inf; -1)",
+      "(-inf; -1) và (1; +inf)"
+    ],
+    "correct": 3,
+    "topicId": "Toán",
+    "difficulty": 0.5
+  },
+  {
+    "n": 6,
+    "content": "Điền từ còn thiếu vào câu tục ngữ: \"Uống nước nhớ ...\"",
+    "options": [
+      "nguồn",
+      "nơi",
+      "ông",
+      "cha"
+    ],
+    "correct": 0,
+    "topicId": "Tiếng Việt",
+    "difficulty": 0.5
+  },
+  {
+    "n": 7,
+    "content": "If I _____ enough money, I would travel around the world.",
+    "options": [
+      "have",
+      "had",
+      "will have",
+      "have had"
+    ],
+    "correct": 1,
+    "topicId": "Tiếng Anh",
+    "difficulty": 0.5
+  },
+  {
+    "n": 8,
+    "content": "Neither the teacher nor the students _____ aware of the schedule change.",
+    "options": [
+      "is",
+      "was",
+      "are",
+      "has been"
+    ],
+    "correct": 2,
+    "topicId": "Tiếng Anh",
+    "difficulty": 0.25
+  },
+  {
+    "n": 9,
+    "content": "By the time we arrived at the station, the train _____.",
+    "options": [
+      "leaves",
+      "has left",
+      "had left",
+      "was leaving"
+    ],
+    "correct": 2,
+    "topicId": "Tiếng Anh",
+    "difficulty": 0.5
+  },
+  {
+    "n": 10,
+    "content": "The new bridge _____ by the end of next year.",
+    "options": [
+      "will complete",
+      "will have been completed",
+      "has completed",
+      "is completing"
+    ],
+    "correct": 1,
+    "topicId": "Tiếng Anh",
+    "difficulty": 0.75
+  },
+  {
+    "n": 11,
+    "content": "The manager insisted that the report _____ immediately.",
+    "options": [
+      "is submitted",
+      "was submitted",
+      "be submitted",
+      "submits"
+    ],
+    "correct": 2,
+    "topicId": "Tiếng Anh",
+    "difficulty": 0.75
+  },
+  {
+    "n": 12,
+    "content": "Had I known about the traffic jam, I _____ earlier.",
+    "options": [
+      "would leave",
+      "will leave",
+      "would have left",
+      "had left"
+    ],
+    "correct": 2,
+    "topicId": "Tiếng Anh",
+    "difficulty": 0.75
+  },
+  {
+    "n": 13,
+    "content": "The company decided to _____ the meeting until next Monday.",
+    "options": [
+      "put off",
+      "put up",
+      "put out",
+      "put on"
+    ],
+    "correct": 0,
+    "topicId": "Tiếng Anh",
+    "difficulty": 0.25
+  },
+  {
+    "n": 14,
+    "content": "His explanation was so _____ that everyone understood the concept immediately.",
+    "options": [
+      "vague",
+      "confusing",
+      "clear",
+      "complicated"
+    ],
+    "correct": 2,
+    "topicId": "Tiếng Anh",
+    "difficulty": 0.25
+  },
+  {
+    "n": 15,
+    "content": "The discovery of a new treatment represents a major _____ in medical research.",
+    "options": [
+      "breakdown",
+      "breakthrough",
+      "outbreak",
+      "drawback"
+    ],
+    "correct": 1,
+    "topicId": "Tiếng Anh",
+    "difficulty": 0.5
+  },
+  {
+    "n": 16,
+    "content": "Customer: \"Could you tell me where the nearest pharmacy is?\"\n\nReceptionist: \"_____\"",
+    "options": [
+      "It's about five minutes' walk from here.",
+      "You should take some medicine.",
+      "I don't need a pharmacy.",
+      "Yes, I could buy it."
+    ],
+    "correct": 0,
+    "topicId": "Tiếng Anh",
+    "difficulty": 0.25
+  },
+  {
+    "n": 17,
+    "content": "Choose the sentence that is closest in meaning to the original sentence.\n\"I haven't seen my cousin for three years.\"",
+    "options": [
+      "I last saw my cousin three years ago.",
+      "I have seen my cousin for three years.",
+      "I started seeing my cousin three years ago.",
+      "I didn't see my cousin three years ago."
+    ],
+    "correct": 0,
+    "topicId": "Tiếng Anh",
+    "difficulty": 0.5
+  },
+  {
+    "n": 18,
+    "content": "Choose the sentence that is closest in meaning to the original sentence.\n\"No other student in the class is as hardworking as Mai.\"",
+    "options": [
+      "Mai is less hardworking than other students.",
+      "Mai is one of the least hardworking students.",
+      "All students are as hardworking as Mai.",
+      "Mai is the most hardworking student in the class."
+    ],
+    "correct": 3,
+    "topicId": "Tiếng Anh",
+    "difficulty": 0.5
+  },
+  {
+    "n": 19,
+    "content": "Choose the best answer for blank (36).",
+    "options": [
+      "competitive",
+      "competition",
+      "compete",
+      "competitively"
+    ],
+    "correct": 0,
+    "topicId": "Tiếng Anh",
+    "difficulty": 0.5,
+    "passage": "The Importance of Lifelong Learning\nIn today's rapidly changing world, lifelong learning has become increasingly important. Technological developments have transformed the way people work and communicate. As a result, individuals need to continuously update their knowledge and skills to remain (36) _____ in the job market.\n\nOne of the main benefits of lifelong learning is that it encourages people to become more (37) _____ and willing to accept new ideas. In addition, learning new skills can improve confidence and create better career opportunities.\n\nHowever, maintaining a learning habit can be challenging, especially for those who have busy schedules. Experts recommend setting realistic goals and (38) _____ advantage of online educational resources.\n\nFurthermore, learning should not be limited (39) _____ formal education. People can gain valuable knowledge through practical experiences, conversations and independent research.\n\nUltimately, lifelong learning enables individuals to adapt to change and (40) _____ their personal and professional potential."
+  },
+  {
+    "n": 20,
+    "content": "Choose the best answer for blank (37).",
+    "options": [
+      "resistance",
+      "adaptable",
+      "adaptation",
+      "adapt"
+    ],
+    "correct": 1,
+    "topicId": "Tiếng Anh",
+    "difficulty": 0.25,
+    "passage": "The Importance of Lifelong Learning\nIn today's rapidly changing world, lifelong learning has become increasingly important. Technological developments have transformed the way people work and communicate. As a result, individuals need to continuously update their knowledge and skills to remain (36) _____ in the job market.\n\nOne of the main benefits of lifelong learning is that it encourages people to become more (37) _____ and willing to accept new ideas. In addition, learning new skills can improve confidence and create better career opportunities.\n\nHowever, maintaining a learning habit can be challenging, especially for those who have busy schedules. Experts recommend setting realistic goals and (38) _____ advantage of online educational resources.\n\nFurthermore, learning should not be limited (39) _____ formal education. People can gain valuable knowledge through practical experiences, conversations and independent research.\n\nUltimately, lifelong learning enables individuals to adapt to change and (40) _____ their personal and professional potential."
+  },
+  {
+    "n": 21,
+    "content": "Choose the best answer for blank (38).",
+    "options": [
+      "doing",
+      "making",
+      "taking",
+      "having"
+    ],
+    "correct": 2,
+    "topicId": "Tiếng Anh",
+    "difficulty": 0.5,
+    "passage": "The Importance of Lifelong Learning\nIn today's rapidly changing world, lifelong learning has become increasingly important. Technological developments have transformed the way people work and communicate. As a result, individuals need to continuously update their knowledge and skills to remain (36) _____ in the job market.\n\nOne of the main benefits of lifelong learning is that it encourages people to become more (37) _____ and willing to accept new ideas. In addition, learning new skills can improve confidence and create better career opportunities.\n\nHowever, maintaining a learning habit can be challenging, especially for those who have busy schedules. Experts recommend setting realistic goals and (38) _____ advantage of online educational resources.\n\nFurthermore, learning should not be limited (39) _____ formal education. People can gain valuable knowledge through practical experiences, conversations and independent research.\n\nUltimately, lifelong learning enables individuals to adapt to change and (40) _____ their personal and professional potential."
+  },
+  {
+    "n": 22,
+    "content": "Choose the best answer for blank (39).",
+    "options": [
+      "with",
+      "for",
+      "at",
+      "to"
+    ],
+    "correct": 3,
+    "topicId": "Tiếng Anh",
+    "difficulty": 0.25,
+    "passage": "The Importance of Lifelong Learning\nIn today's rapidly changing world, lifelong learning has become increasingly important. Technological developments have transformed the way people work and communicate. As a result, individuals need to continuously update their knowledge and skills to remain (36) _____ in the job market.\n\nOne of the main benefits of lifelong learning is that it encourages people to become more (37) _____ and willing to accept new ideas. In addition, learning new skills can improve confidence and create better career opportunities.\n\nHowever, maintaining a learning habit can be challenging, especially for those who have busy schedules. Experts recommend setting realistic goals and (38) _____ advantage of online educational resources.\n\nFurthermore, learning should not be limited (39) _____ formal education. People can gain valuable knowledge through practical experiences, conversations and independent research.\n\nUltimately, lifelong learning enables individuals to adapt to change and (40) _____ their personal and professional potential."
+  },
+  {
+    "n": 23,
+    "content": "Choose the best answer for blank (40).",
+    "options": [
+      "maximize",
+      "minimize",
+      "ignore",
+      "prevent"
+    ],
+    "correct": 0,
+    "topicId": "Tiếng Anh",
+    "difficulty": 0.5,
+    "passage": "The Importance of Lifelong Learning\nIn today's rapidly changing world, lifelong learning has become increasingly important. Technological developments have transformed the way people work and communicate. As a result, individuals need to continuously update their knowledge and skills to remain (36) _____ in the job market.\n\nOne of the main benefits of lifelong learning is that it encourages people to become more (37) _____ and willing to accept new ideas. In addition, learning new skills can improve confidence and create better career opportunities.\n\nHowever, maintaining a learning habit can be challenging, especially for those who have busy schedules. Experts recommend setting realistic goals and (38) _____ advantage of online educational resources.\n\nFurthermore, learning should not be limited (39) _____ formal education. People can gain valuable knowledge through practical experiences, conversations and independent research.\n\nUltimately, lifelong learning enables individuals to adapt to change and (40) _____ their personal and professional potential."
+  }
+]

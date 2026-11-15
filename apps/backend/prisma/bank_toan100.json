@@ -8,9 +8,14 @@
    "50",
    "55"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 0
+  "topicId": "Toán",
+  "difficulty": 0,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 1,
+   "answerPage": 9
+  }
  },
  {
   "n": 2,
@@ -21,9 +26,14 @@
    "40",
    "48"
   ],
-  "correctLetter": "A",
   "correct": 0,
-  "difficulty": 0
+  "topicId": "Toán",
+  "difficulty": 0,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 1,
+   "answerPage": 9
+  }
  },
  {
   "n": 3,
@@ -34,9 +44,14 @@
    "9",
    "9,5"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 0
+  "topicId": "Toán",
+  "difficulty": 0,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 1,
+   "answerPage": 9
+  }
  },
  {
   "n": 4,
@@ -47,9 +62,14 @@
    "4",
    "8"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 0
+  "topicId": "Toán",
+  "difficulty": 0,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 1,
+   "answerPage": 9
+  }
  },
  {
   "n": 5,
@@ -60,9 +80,14 @@
    "6",
    "7"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 0
+  "topicId": "Toán",
+  "difficulty": 0,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 1,
+   "answerPage": 9
+  }
  },
  {
   "n": 6,
@@ -73,9 +98,14 @@
    "35 cm",
    "49 cm"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 0
+  "topicId": "Toán",
+  "difficulty": 0,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 1,
+   "answerPage": 9
+  }
  },
  {
   "n": 7,
@@ -86,9 +116,14 @@
    "{1; 5}",
    "{−1; 5}"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 0
+  "topicId": "Toán",
+  "difficulty": 0,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 1,
+   "answerPage": 9
+  }
  },
  {
   "n": 8,
@@ -99,9 +134,14 @@
    "28",
    "31"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 0
+  "topicId": "Toán",
+  "difficulty": 0,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 1,
+   "answerPage": 9
+  }
  },
  {
   "n": 9,
@@ -112,9 +152,14 @@
    "1/2",
    "2/3"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 0
+  "topicId": "Toán",
+  "difficulty": 0,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 1,
+   "answerPage": 9
+  }
  },
  {
   "n": 10,
@@ -125,9 +170,14 @@
    "54 cm²",
    "60 cm²"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 0
+  "topicId": "Toán",
+  "difficulty": 0,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 1,
+   "answerPage": 9
+  }
  },
  {
   "n": 11,
@@ -138,9 +188,14 @@
    "7",
    "8"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 0
+  "topicId": "Toán",
+  "difficulty": 0,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 1,
+   "answerPage": 9
+  }
  },
  {
   "n": 12,
@@ -151,9 +206,14 @@
    "13",
    "14"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 0
+  "topicId": "Toán",
+  "difficulty": 0,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 1,
+   "answerPage": 9
+  }
  },
  {
   "n": 13,
@@ -164,9 +224,14 @@
    "65.000 đồng",
    "70.000 đồng"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 0
+  "topicId": "Toán",
+  "difficulty": 0,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 2,
+   "answerPage": 9
+  }
  },
  {
   "n": 14,
@@ -177,9 +242,14 @@
    "6",
    "7"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 0
+  "topicId": "Toán",
+  "difficulty": 0,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 2,
+   "answerPage": 9
+  }
  },
  {
   "n": 15,
@@ -190,9 +260,14 @@
    "70°",
    "75°"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 0
+  "topicId": "Toán",
+  "difficulty": 0,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 2,
+   "answerPage": 9
+  }
  },
  {
   "n": 16,
@@ -203,9 +278,14 @@
    "{−3; 3}",
    "{−3}"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 0
+  "topicId": "Toán",
+  "difficulty": 0,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 2,
+   "answerPage": 9
+  }
  },
  {
   "n": 17,
@@ -216,9 +296,14 @@
    "9π cm",
    "12π cm"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 0
+  "topicId": "Toán",
+  "difficulty": 0,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 2,
+   "answerPage": 9
+  }
  },
  {
   "n": 18,
@@ -229,9 +314,14 @@
    "x ≥ 5",
    "x ≤ 5"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 0
+  "topicId": "Toán",
+  "difficulty": 0,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 2,
+   "answerPage": 9
+  }
  },
  {
   "n": 19,
@@ -242,9 +332,14 @@
    "3 ngày",
    "4 ngày"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 0
+  "topicId": "Toán",
+  "difficulty": 0,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 2,
+   "answerPage": 9
+  }
  },
  {
   "n": 20,
@@ -255,9 +350,14 @@
    "5",
    "7"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 0
+  "topicId": "Toán",
+  "difficulty": 0,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 2,
+   "answerPage": 9
+  }
  },
  {
   "n": 21,
@@ -268,9 +368,14 @@
    "11 triệu đồng",
    "11,6 triệu đồng"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 0
+  "topicId": "Toán",
+  "difficulty": 0,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 2,
+   "answerPage": 9
+  }
  },
  {
   "n": 22,
@@ -281,9 +386,14 @@
    "5/8",
    "3/5"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 0
+  "topicId": "Toán",
+  "difficulty": 0,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 2,
+   "answerPage": 9
+  }
  },
  {
   "n": 23,
@@ -294,9 +404,14 @@
    "1/4",
    "4"
   ],
-  "correctLetter": "D",
   "correct": 3,
-  "difficulty": 0
+  "topicId": "Toán",
+  "difficulty": 0,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 2,
+   "answerPage": 9
+  }
  },
  {
   "n": 24,
@@ -307,9 +422,14 @@
    "y = 3x + 2",
    "y = 2x − 3"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 0
+  "topicId": "Toán",
+  "difficulty": 0,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 2,
+   "answerPage": 9
+  }
  },
  {
   "n": 25,
@@ -320,9 +440,14 @@
    "4",
    "5"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 0
+  "topicId": "Toán",
+  "difficulty": 0,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 2,
+   "answerPage": 9
+  }
  },
  {
   "n": 26,
@@ -333,9 +458,14 @@
    "10",
    "100"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 0
+  "topicId": "Toán",
+  "difficulty": 0,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 2,
+   "answerPage": 9
+  }
  },
  {
   "n": 27,
@@ -346,9 +476,14 @@
    "26 cm²",
    "40 cm²"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 0
+  "topicId": "Toán",
+  "difficulty": 0,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 2,
+   "answerPage": 9
+  }
  },
  {
   "n": 28,
@@ -359,9 +494,14 @@
    "18 cm³",
    "24 cm³"
   ],
-  "correctLetter": "D",
   "correct": 3,
-  "difficulty": 0
+  "topicId": "Toán",
+  "difficulty": 0,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 3,
+   "answerPage": 9
+  }
  },
  {
   "n": 29,
@@ -372,9 +512,14 @@
    "√2/2",
    "√3/2"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 0
+  "topicId": "Toán",
+  "difficulty": 0,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 3,
+   "answerPage": 9
+  }
  },
  {
   "n": 30,
@@ -385,9 +530,14 @@
    "11",
    "12"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 0
+  "topicId": "Toán",
+  "difficulty": 0,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 3,
+   "answerPage": 9
+  }
  },
  {
   "n": 31,
@@ -398,9 +548,14 @@
    "220.000 đồng",
    "230.000 đồng"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 0
+  "topicId": "Toán",
+  "difficulty": 0,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 3,
+   "answerPage": 9
+  }
  },
  {
   "n": 32,
@@ -411,9 +566,14 @@
    "12",
    "14"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 0
+  "topicId": "Toán",
+  "difficulty": 0,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 3,
+   "answerPage": 9
+  }
  },
  {
   "n": 33,
@@ -424,9 +584,14 @@
    "5",
    "6"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 0
+  "topicId": "Toán",
+  "difficulty": 0,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 3,
+   "answerPage": 9
+  }
  },
  {
   "n": 34,
@@ -437,9 +602,14 @@
    "5",
    "9"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 0
+  "topicId": "Toán",
+  "difficulty": 0,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 3,
+   "answerPage": 9
+  }
  },
  {
   "n": 35,
@@ -448,11 +618,16 @@
    "9 cm",
    "10 cm",
    "12 cm",
-   "14 cm MỨC ĐỘ 2 - VỪA Câu 36 đến câu 75"
+   "14 cm"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 0
+  "topicId": "Toán",
+  "difficulty": 0,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 3,
+   "answerPage": 9
+  }
  },
  {
   "n": 36,
@@ -463,9 +638,14 @@
    "1",
    "5"
   ],
-  "correctLetter": "A",
   "correct": 0,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 4,
+   "answerPage": 9
+  }
  },
  {
   "n": 37,
@@ -476,9 +656,14 @@
    "4",
    "7"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 4,
+   "answerPage": 9
+  }
  },
  {
   "n": 38,
@@ -489,9 +674,14 @@
    "9",
    "10"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 4,
+   "answerPage": 9
+  }
  },
  {
   "n": 39,
@@ -502,9 +692,14 @@
    "3",
    "4"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 4,
+   "answerPage": 9
+  }
  },
  {
   "n": 40,
@@ -515,9 +710,14 @@
    "28",
    "31"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 4,
+   "answerPage": 9
+  }
  },
  {
   "n": 41,
@@ -528,9 +728,14 @@
    "72",
    "80"
   ],
-  "correctLetter": "D",
   "correct": 3,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 4,
+   "answerPage": 9
+  }
  },
  {
   "n": 42,
@@ -541,22 +746,32 @@
    "176/25",
    "196/25"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 4,
+   "answerPage": 9
+  }
  },
  {
   "n": 43,
   "content": "Tập nghiệm của bất phương trình x² − 5x + 6 ≤ 0 là:",
   "options": [
-   "(−∞; 2] [3; +∞) ∪",
+   "(−∞; 2] ∪ [3; +∞)",
    "[2; 3]",
    "(2; 3)",
-   "(−∞; 2) (3; +∞) ∪"
+   "(−∞; 2) ∪ (3; +∞)"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 4,
+   "answerPage": 9
+  }
  },
  {
   "n": 44,
@@ -567,9 +782,14 @@
    "(−∞; 6]",
    "[6; +∞)"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 4,
+   "answerPage": 9
+  }
  },
  {
   "n": 45,
@@ -580,9 +800,14 @@
    "π/3 và 5π/3",
    "2π/3 và 4π/3"
   ],
-  "correctLetter": "A",
   "correct": 0,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 4,
+   "answerPage": 9
+  }
  },
  {
   "n": 46,
@@ -593,9 +818,14 @@
    "π/3 và 2π/3",
    "π/2"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 4,
+   "answerPage": 9
+  }
  },
  {
   "n": 47,
@@ -606,9 +836,14 @@
    "2",
    "3"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 4,
+   "answerPage": 9
+  }
  },
  {
   "n": 48,
@@ -619,9 +854,14 @@
    "y = 2x + 1",
    "y = x + 1"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 4,
+   "answerPage": 9
+  }
  },
  {
   "n": 49,
@@ -632,9 +872,14 @@
    "10",
    "11"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 4,
+   "answerPage": 9
+  }
  },
  {
   "n": 50,
@@ -645,9 +890,14 @@
    "12",
    "18"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 4,
+   "answerPage": 9
+  }
  },
  {
   "n": 51,
@@ -658,9 +908,14 @@
    "6",
    "7"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 5,
+   "answerPage": 9
+  }
  },
  {
   "n": 52,
@@ -671,9 +926,14 @@
    "5",
    "6"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 5,
+   "answerPage": 9
+  }
  },
  {
   "n": 53,
@@ -684,9 +944,14 @@
    "1",
    "2"
   ],
-  "correctLetter": "D",
   "correct": 3,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 5,
+   "answerPage": 9
+  }
  },
  {
   "n": 54,
@@ -697,9 +962,14 @@
    "x > 10",
    "x ≥ 10"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 5,
+   "answerPage": 9
+  }
  },
  {
   "n": 55,
@@ -710,9 +980,14 @@
    "900.000 đồng",
    "1.100.000 đồng"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 5,
+   "answerPage": 9
+  }
  },
  {
   "n": 56,
@@ -723,9 +998,14 @@
    "3 giờ",
    "4 giờ"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 5,
+   "answerPage": 9
+  }
  },
  {
   "n": 57,
@@ -736,9 +1016,14 @@
    "7,6",
    "7,8"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 5,
+   "answerPage": 9
+  }
  },
  {
   "n": 58,
@@ -749,9 +1034,14 @@
    "3/4",
    "1"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 5,
+   "answerPage": 9
+  }
  },
  {
   "n": 59,
@@ -762,9 +1052,14 @@
    "10",
    "20"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 5,
+   "answerPage": 9
+  }
  },
  {
   "n": 60,
@@ -775,9 +1070,14 @@
    "1/2",
    "2/3"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 5,
+   "answerPage": 9
+  }
  },
  {
   "n": 61,
@@ -788,9 +1088,14 @@
    "6,5",
    "6,6"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 5,
+   "answerPage": 9
+  }
  },
  {
   "n": 62,
@@ -801,9 +1106,14 @@
    "7",
    "12"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 5,
+   "answerPage": 9
+  }
  },
  {
   "n": 63,
@@ -814,22 +1124,32 @@
    "3",
    "4"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 5,
+   "answerPage": 9
+  }
  },
  {
   "n": 64,
   "content": "Tập nghiệm của bất phương trình (x − 1)/(x + 2) ≥ 0 là:",
   "options": [
-   "(−∞; −2) [1; +∞) ∪",
+   "(−∞; −2) ∪ [1; +∞)",
    "(−2; 1]",
-   "(−∞; −2] [1; +∞) ∪",
+   "(−∞; −2] ∪ [1; +∞)",
    "(−2; 1)"
   ],
-  "correctLetter": "A",
   "correct": 0,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 5,
+   "answerPage": 9
+  }
  },
  {
   "n": 65,
@@ -840,9 +1160,14 @@
    "22,05 triệu đồng",
    "22,5 triệu đồng"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 5,
+   "answerPage": 9
+  }
  },
  {
   "n": 66,
@@ -853,9 +1178,14 @@
    "700 sản phẩm",
    "750 sản phẩm"
   ],
-  "correctLetter": "A",
   "correct": 0,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 6,
+   "answerPage": 9
+  }
  },
  {
   "n": 67,
@@ -866,9 +1196,14 @@
    "√31 cm",
    "√37 cm"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 6,
+   "answerPage": 9
+  }
  },
  {
   "n": 68,
@@ -879,9 +1214,14 @@
    "14 cm",
    "15 cm"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 6,
+   "answerPage": 9
+  }
  },
  {
   "n": 69,
@@ -892,9 +1232,14 @@
    "15π cm³",
    "36π cm³"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 6,
+   "answerPage": 9
+  }
  },
  {
   "n": 70,
@@ -905,9 +1250,14 @@
    "12",
    "24"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 6,
+   "answerPage": 9
+  }
  },
  {
   "n": 71,
@@ -918,9 +1268,14 @@
    "7",
    "8"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 6,
+   "answerPage": 9
+  }
  },
  {
   "n": 72,
@@ -931,9 +1286,14 @@
    "9",
    "10"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 6,
+   "answerPage": 9
+  }
  },
  {
   "n": 73,
@@ -944,9 +1304,14 @@
    "e",
    "0"
   ],
-  "correctLetter": "A",
   "correct": 0,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 6,
+   "answerPage": 9
+  }
  },
  {
   "n": 74,
@@ -957,9 +1322,14 @@
    "2",
    "3"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 6,
+   "answerPage": 9
+  }
  },
  {
   "n": 75,
@@ -968,11 +1338,16 @@
    "6 triệu đồng",
    "6,2 triệu đồng",
    "6,4 triệu đồng",
-   "8 triệu đồng MỨC ĐỘ 3 - KHÓ Câu 76 đến câu 100"
+   "8 triệu đồng"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 1
+  "topicId": "Toán",
+  "difficulty": 0.25,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 6,
+   "answerPage": 9
+  }
  },
  {
   "n": 76,
@@ -983,9 +1358,14 @@
    "m > 1",
    "m < 1"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 2
+  "topicId": "Toán",
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 7,
+   "answerPage": 9
+  }
  },
  {
   "n": 77,
@@ -996,9 +1376,14 @@
    "4",
    "5"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 2
+  "topicId": "Toán",
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 7,
+   "answerPage": 9
+  }
  },
  {
   "n": 78,
@@ -1009,9 +1394,14 @@
    "3",
    "4"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 2
+  "topicId": "Toán",
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 7,
+   "answerPage": 9
+  }
  },
  {
   "n": 79,
@@ -1022,9 +1412,14 @@
    "2",
    "3"
   ],
-  "correctLetter": "D",
   "correct": 3,
-  "difficulty": 2
+  "topicId": "Toán",
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 7,
+   "answerPage": 9
+  }
  },
  {
   "n": 80,
@@ -1035,9 +1430,14 @@
    "100 m²",
    "120 m²"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 2
+  "topicId": "Toán",
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 7,
+   "answerPage": 9
+  }
  },
  {
   "n": 81,
@@ -1048,9 +1448,14 @@
    "y = x + 1",
    "y = x/e + 1"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 2
+  "topicId": "Toán",
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 7,
+   "answerPage": 9
+  }
  },
  {
   "n": 82,
@@ -1061,9 +1466,14 @@
    "2",
    "π"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 2
+  "topicId": "Toán",
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 7,
+   "answerPage": 9
+  }
  },
  {
   "n": 83,
@@ -1074,9 +1484,14 @@
    "2",
    "5/2"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 2
+  "topicId": "Toán",
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 7,
+   "answerPage": 9
+  }
  },
  {
   "n": 84,
@@ -1087,9 +1502,14 @@
    "1/6",
    "1/8"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 2
+  "topicId": "Toán",
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 7,
+   "answerPage": 9
+  }
  },
  {
   "n": 85,
@@ -1100,9 +1520,14 @@
    "4",
    "5"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 2
+  "topicId": "Toán",
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 7,
+   "answerPage": 9
+  }
  },
  {
   "n": 86,
@@ -1113,9 +1538,14 @@
    "60°",
    "90°"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 2
+  "topicId": "Toán",
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 7,
+   "answerPage": 9
+  }
  },
  {
   "n": 87,
@@ -1126,9 +1556,14 @@
    "27π cm³",
    "36π cm³"
   ],
-  "correctLetter": "D",
   "correct": 3,
-  "difficulty": 2
+  "topicId": "Toán",
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 7,
+   "answerPage": 9
+  }
  },
  {
   "n": 88,
@@ -1139,9 +1574,14 @@
    "2/3",
    "7/9"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 2
+  "topicId": "Toán",
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 7,
+   "answerPage": 9
+  }
  },
  {
   "n": 89,
@@ -1152,9 +1592,14 @@
    "2/3",
    "3/4"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 2
+  "topicId": "Toán",
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 7,
+   "answerPage": 9
+  }
  },
  {
   "n": 90,
@@ -1165,9 +1610,14 @@
    "10,5",
    "12"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 2
+  "topicId": "Toán",
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 7,
+   "answerPage": 9
+  }
  },
  {
   "n": 91,
@@ -1178,9 +1628,14 @@
    "Hai cửa hàng bằng nhau",
    "Không đủ dữ liệu"
   ],
-  "correctLetter": "A",
   "correct": 0,
-  "difficulty": 2
+  "topicId": "Toán",
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 8,
+   "answerPage": 9
+  }
  },
  {
   "n": 92,
@@ -1191,9 +1646,14 @@
    "50 × (1,015)⁴",
    "50 × (1,06)⁴"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 2
+  "topicId": "Toán",
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 8,
+   "answerPage": 9
+  }
  },
  {
   "n": 93,
@@ -1204,9 +1664,14 @@
    "10",
    "11"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 2
+  "topicId": "Toán",
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 8,
+   "answerPage": 9
+  }
  },
  {
   "n": 94,
@@ -1217,9 +1682,14 @@
    "x ≥ 5",
    "0 < x ≤ 5"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 2
+  "topicId": "Toán",
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 8,
+   "answerPage": 9
+  }
  },
  {
   "n": 95,
@@ -1230,9 +1700,14 @@
    "5",
    "8"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 2
+  "topicId": "Toán",
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 8,
+   "answerPage": 9
+  }
  },
  {
   "n": 96,
@@ -1243,9 +1718,14 @@
    "3/2",
    "2"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 2
+  "topicId": "Toán",
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 8,
+   "answerPage": 9
+  }
  },
  {
   "n": 97,
@@ -1256,9 +1736,14 @@
    "m = 0",
    "m = 1"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 2
+  "topicId": "Toán",
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 8,
+   "answerPage": 9
+  }
  },
  {
   "n": 98,
@@ -1269,9 +1754,14 @@
    "72",
    "96"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 2
+  "topicId": "Toán",
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 8,
+   "answerPage": 9
+  }
  },
  {
   "n": 99,
@@ -1282,9 +1772,14 @@
    "π/2",
    "π"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "difficulty": 2
+  "topicId": "Toán",
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 8,
+   "answerPage": 9
+  }
  },
  {
   "n": 100,
@@ -1295,8 +1790,13 @@
    "5",
    "9"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "difficulty": 2
+  "topicId": "Toán",
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_hoi_toan_DGNL_DHQG_HCM.pdf",
+   "page": 8,
+   "answerPage": 9
+  }
  }
 ]

@@ -8,10 +8,15 @@
    "và các bất cập đó cần phải được khắc phục.",
    "mà các biện pháp cụ thể cũng được đề xuất bởi nhóm."
   ],
-  "correctLetter": "A",
   "correct": 0,
   "topicId": "Tiếng Việt",
-  "difficulty": 1
+  "difficulty": 0.25,
+  "explanation": "Cặp “không chỉ... mà còn...” cần nối hai vế tương ứng về chức năng; phương án A cân đối và tự nhiên.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 2,
+   "answerPage": 16
+  }
  },
  {
   "n": 2,
@@ -22,10 +27,15 @@
    "Được nhiều người đồng tình và ủng hộ.",
    "Có tính mới và chưa từng được áp dụng."
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Việt",
-  "difficulty": 1
+  "difficulty": 0.25,
+  "explanation": "“Khả thi” nói đến khả năng thực hiện được xét trong điều kiện nguồn lực, thời gian và hoàn cảnh.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 2,
+   "answerPage": 16
+  }
  },
  {
   "n": 3,
@@ -36,10 +46,15 @@
    "Kết quả",
    "Thành tựu"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Việt",
-  "difficulty": 1
+  "difficulty": 0.25,
+  "explanation": "“Hệ lụy” thường nhấn mạnh hậu quả tiêu cực, dai dẳng hoặc kéo theo nhiều vấn đề khác.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 2,
+   "answerPage": 16
+  }
  },
  {
   "n": 4,
@@ -50,10 +65,15 @@
    "Nhóm đã thống nhất phương án triển khai thử nghiệm.",
    "Kết quả cuối cùng sau cùng đã được công bố."
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Tiếng Việt",
-  "difficulty": 1
+  "difficulty": 0.25,
+  "explanation": "“Dự kiến kế hoạch”, “phối hợp chung”, “cuối cùng sau cùng” đều có yếu tố trùng lặp; C gọn và chuẩn.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 2,
+   "answerPage": 16
+  }
  },
  {
   "n": 5,
@@ -64,10 +84,15 @@
    "Tôi nhìn thấy người đàn ông đang cầm ống nhòm.",
    "Người đàn ông nhìn thấy tôi bằng ống nhòm."
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Việt",
-  "difficulty": 1
+  "difficulty": 0.25,
+  "explanation": "Đưa “dùng ống nhòm” vào vị trí chỉ rõ công cụ của hành động nhìn.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 2,
+   "answerPage": 16
+  }
  },
  {
   "n": 6,
@@ -78,10 +103,15 @@
    "2 - 3 - 4 - 1",
    "3 - 2 - 4 - 1"
   ],
-  "correctLetter": "A",
   "correct": 0,
   "topicId": "Tiếng Việt",
-  "difficulty": 1
+  "difficulty": 0.25,
+  "explanation": "Nêu lợi ích (2), giới hạn tác động tức thời (4), giải thích cần tích lũy (3), rồi kết luận (1).",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 2,
+   "answerPage": 16
+  }
  },
  {
   "n": 7,
@@ -92,10 +122,15 @@
    "Do kết quả chưa ổn định, nhưng nhóm dừng thí nghiệm.",
    "Nếu khảo sát thêm, mặc dù kết luận sẽ đáng tin cậy hơn."
   ],
-  "correctLetter": "A",
   "correct": 0,
   "topicId": "Tiếng Việt",
-  "difficulty": 1
+  "difficulty": 0.25,
+  "explanation": "“Mặc dù... nhưng...” biểu thị quan hệ nhượng bộ; phương án A đúng cả logic lẫn ngữ pháp.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 2,
+   "answerPage": 16
+  }
  },
  {
   "n": 8,
@@ -106,10 +141,15 @@
    "ngược lại",
    "mặt khác"
   ],
-  "correctLetter": "A",
   "correct": 0,
   "topicId": "Tiếng Việt",
-  "difficulty": 1
+  "difficulty": 0.25,
+  "explanation": "Quy mô nhỏ dẫn đến giới hạn về khả năng khái quát, nên “do đó” chỉ quan hệ kết quả.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 2,
+   "answerPage": 16
+  }
  },
  {
   "n": 9,
@@ -120,10 +160,15 @@
    "Cứng nhắc",
    "Do dự"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Việt",
-  "difficulty": 1
+  "difficulty": 0.25,
+  "explanation": "“Vững vàng” giữ được sắc thái tích cực của việc bền chí, không dễ thay đổi trước khó khăn.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 3,
+   "answerPage": 16
+  }
  },
  {
   "n": 10,
@@ -134,10 +179,15 @@
    "Cụ thể",
    "Khái quát"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Việt",
-  "difficulty": 1
+  "difficulty": 0.25,
+  "explanation": "“Phiến diện” là chỉ nhìn một mặt; trái nghĩa là xem xét toàn diện nhiều phương diện.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 3,
+   "answerPage": 16
+  }
  },
  {
   "n": 11,
@@ -148,10 +198,15 @@
    "Khẳng định mọi thông tin đều có giá trị như nhau.",
    "Miêu tả một hoạt động hàng hải cụ thể."
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Việt",
-  "difficulty": 1
+  "difficulty": 0.25,
+  "explanation": "Hình ảnh “la bàn” được dùng theo nghĩa chuyển để nhấn mạnh vai trò định hướng của tri thức.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 3,
+   "answerPage": 16
+  }
  },
  {
   "n": 12,
@@ -162,10 +217,15 @@
    "đối lập",
    "độc lập"
   ],
-  "correctLetter": "A",
   "correct": 0,
   "topicId": "Tiếng Việt",
-  "difficulty": 1
+  "difficulty": 0.25,
+  "explanation": "“Tương thích với” diễn đạt sự phù hợp giữa số liệu và nhận định; “đồng nhất” không hợp quan hệ này.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 3,
+   "answerPage": 16
+  }
  },
  {
   "n": 13,
@@ -176,10 +236,15 @@
    "Khảo sát trên 2.000 học sinh cho thấy xu hướng khác nhau theo khối lớp.",
    "Kết quả khảo sát cần được đọc cùng thông tin về cách chọn mẫu."
   ],
-  "correctLetter": "A",
   "correct": 0,
   "topicId": "Tiếng Việt",
-  "difficulty": 1
+  "difficulty": 0.25,
+  "explanation": "Từ ba trường hợp riêng lẻ suy ra toàn bộ học sinh là khái quát hóa thiếu căn cứ.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 3,
+   "answerPage": 16
+  }
  },
  {
   "n": 14,
@@ -190,10 +255,15 @@
    "Không có nguồn trực tuyến nào đáng tin cậy.",
    "Chỉ thông tin in trên giấy mới đáng tin."
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Việt",
-  "difficulty": 1
+  "difficulty": 0.25,
+  "explanation": "Phủ định mệnh đề “mọi đều đáng tin” tương đương với khẳng định tồn tại ít nhất một trường hợp không đáng tin.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 3,
+   "answerPage": 16
+  }
  },
  {
   "n": 15,
@@ -204,10 +274,15 @@
    "Người nghiên cứu cần: ba yếu tố, dữ liệu, phương pháp và khả năng giải thích.",
    "Người nghiên cứu cần ba yếu tố, dữ liệu: phương pháp; và khả năng giải thích."
   ],
-  "correctLetter": "A",
   "correct": 0,
   "topicId": "Tiếng Việt",
-  "difficulty": 1
+  "difficulty": 0.25,
+  "explanation": "Dấu hai chấm dùng để báo trước phần liệt kê các yếu tố.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 3,
+   "answerPage": 16
+  }
  },
  {
   "n": 16,
@@ -218,10 +293,15 @@
    "Lặp lại nguyên văn câu kết luận.",
    "Chỉ cung cấp số liệu thống kê."
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Việt",
-  "difficulty": 1
+  "difficulty": 0.25,
+  "explanation": "Câu chủ đề nêu luận điểm trung tâm; các câu còn lại giải thích, chứng minh hoặc mở rộng.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 3,
+   "answerPage": 16
+  }
  },
  {
   "n": 17,
@@ -232,10 +312,15 @@
    "Đề án đã phê duyệt hội đồng vào tháng trước.",
    "Vào tháng trước, hội đồng được phê duyệt đề án."
   ],
-  "correctLetter": "A",
   "correct": 0,
   "topicId": "Tiếng Việt",
-  "difficulty": 1
+  "difficulty": 0.25,
+  "explanation": "Đưa đối tượng “đề án” lên làm chủ ngữ và dùng “được” để tạo thể bị động.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 3,
+   "answerPage": 16
+  }
  },
  {
   "n": 18,
@@ -246,10 +331,15 @@
    "Dùng nhiều tính từ đánh giá.",
    "Chỉ kể lại ý kiến của người viết."
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Việt",
-  "difficulty": 1
+  "difficulty": 0.25,
+  "explanation": "Thông tin về số liệu, đơn vị, thời điểm và nguồn giúp kiểm tra cách đo lường và bối cảnh.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 4,
+   "answerPage": 16
+  }
  },
  {
   "n": 19,
@@ -260,10 +350,15 @@
    "Có thể thay thế",
    "Có thể dự đoán"
   ],
-  "correctLetter": "A",
   "correct": 0,
   "topicId": "Tiếng Việt",
-  "difficulty": 1
+  "difficulty": 0.25,
+  "explanation": "“Khả tín” nghĩa là đáng tin cậy.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 4,
+   "answerPage": 16
+  }
  },
  {
   "n": 20,
@@ -274,10 +369,15 @@
    "Các loại vật liệu trong công nghiệp",
    "Một ngày ở bãi biển"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Việt",
-  "difficulty": 1
+  "difficulty": 0.25,
+  "explanation": "Nhan đề B bao quát cả hiện tượng và hướng giải quyết được triển khai trong đoạn.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 4,
+   "answerPage": 16
+  }
  },
  {
   "n": 21,
@@ -288,10 +388,15 @@
    "ordinary",
    "temporary"
   ],
-  "correctLetter": "A",
   "correct": 0,
-  "topicId": "Tiếng Việt",
-  "difficulty": 1
+  "topicId": "Tiếng Anh",
+  "difficulty": 0.25,
+  "explanation": "“Conclusive evidence” means evidence strong enough to settle a question.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 4,
+   "answerPage": 16
+  }
  },
  {
   "n": 22,
@@ -302,10 +407,15 @@
    "Neither the manager or the assistants were available.",
    "Neither manager nor assistants is available yesterday."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Tiếng Việt",
-  "difficulty": 1
+  "topicId": "Tiếng Anh",
+  "difficulty": 0.25,
+  "explanation": "With “neither...nor”, the verb commonly agrees with the nearer subject; “assistants” is plural.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 4,
+   "answerPage": 16
+  }
  },
  {
   "n": 23,
@@ -316,10 +426,15 @@
    "Similarly",
    "As a result"
   ],
-  "correctLetter": "A",
   "correct": 0,
-  "topicId": "Tiếng Việt",
-  "difficulty": 1
+  "topicId": "Tiếng Anh",
+  "difficulty": 0.25,
+  "explanation": "The second sentence contrasts with the first, so “nevertheless” is appropriate.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 4,
+   "answerPage": 16
+  }
  },
  {
   "n": 24,
@@ -330,10 +445,15 @@
    "The survey caused the policy to take effect.",
    "The policy was surveyed before it was conducted."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Tiếng Việt",
-  "difficulty": 1
+  "topicId": "Tiếng Anh",
+  "difficulty": 0.25,
+  "explanation": "“Prior to” means before; B retains the original time relationship.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 4,
+   "answerPage": 16
+  }
  },
  {
   "n": 25,
@@ -344,10 +464,15 @@
    "had been collected",
    "are collecting"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "topicId": "Tiếng Việt",
-  "difficulty": 1
+  "topicId": "Tiếng Anh",
+  "difficulty": 0.25,
+  "explanation": "The past perfect passive marks an action completed before another past event.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 4,
+   "answerPage": 16
+  }
  },
  {
   "n": 26,
@@ -358,10 +483,15 @@
    "measure",
    "ignore"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Tiếng Việt",
-  "difficulty": 1
+  "topicId": "Tiếng Anh",
+  "difficulty": 0.25,
+  "explanation": "“Mitigate” means make a problem less severe.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 5,
+   "answerPage": 16
+  }
  },
  {
   "n": 27,
@@ -372,10 +502,15 @@
    "The team revised its hypothesis after reviewing the data.",
    "The data were reviewed before the hypothesis was revised."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Tiếng Việt",
-  "difficulty": 1
+  "topicId": "Tiếng Anh",
+  "difficulty": 0.25,
+  "explanation": "The opening phrase implies that “several errors” reviewed the data, which is illogical.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 5,
+   "answerPage": 16
+  }
  },
  {
   "n": 28,
@@ -386,10 +521,15 @@
    "the",
    "no article"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Tiếng Việt",
-  "difficulty": 1
+  "topicId": "Tiếng Anh",
+  "difficulty": 0.25,
+  "explanation": "“Unusually” begins with a vowel sound, so “an” is used.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 5,
+   "answerPage": 16
+  }
  },
  {
   "n": 29,
@@ -400,10 +540,15 @@
    "would have obtained",
    "had obtained"
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "topicId": "Tiếng Việt",
-  "difficulty": 1
+  "topicId": "Tiếng Anh",
+  "difficulty": 0.25,
+  "explanation": "This is a third conditional: if + past perfect, would have + past participle.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 5,
+   "answerPage": 16
+  }
  },
  {
   "n": 30,
@@ -414,10 +559,15 @@
    "There is no possible alternative explanation.",
    "Everyone must adopt the method immediately."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Tiếng Việt",
-  "difficulty": 1
+  "topicId": "Tiếng Anh",
+  "difficulty": 0.25,
+  "explanation": "B limits the claim to the tested conditions and uses appropriately cautious language.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 5,
+   "answerPage": 16
+  }
  },
  {
   "n": 31,
@@ -428,10 +578,15 @@
    "accurate",
    "visible"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Tiếng Việt",
-  "difficulty": 1
+  "topicId": "Tiếng Anh",
+  "difficulty": 0.25,
+  "explanation": "“Scarce” means insufficient or limited in availability.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 5,
+   "answerPage": 16
+  }
  },
  {
   "n": 32,
@@ -442,10 +597,15 @@
    "The course teaches students to analyse data, interpret graphs, and report findings.",
    "The course teaches students data analysis, to interpret graphs, and findings are reported."
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "topicId": "Tiếng Việt",
-  "difficulty": 1
+  "topicId": "Tiếng Anh",
+  "difficulty": 0.25,
+  "explanation": "All three actions use the same infinitive form after “teaches students to”.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 5,
+   "answerPage": 16
+  }
  },
  {
   "n": 33,
@@ -456,10 +616,15 @@
    "they had confirm",
    "confirmed they"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Tiếng Việt",
-  "difficulty": 1
+  "topicId": "Tiếng Anh",
+  "difficulty": 0.25,
+  "explanation": "A fronted negative expression (“Not until...”) triggers subject-auxiliary inversion.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 5,
+   "answerPage": 16
+  }
  },
  {
   "n": 34,
@@ -470,10 +635,15 @@
    "The match was delayed because heavy rain had flooded the road.",
    "The road was wet, whereas the pavement was dry."
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "topicId": "Tiếng Việt",
-  "difficulty": 1
+  "topicId": "Tiếng Anh",
+  "difficulty": 0.25,
+  "explanation": "“Because” introduces the cause of the delay.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 5,
+   "answerPage": 16
+  }
  },
  {
   "n": 35,
@@ -484,10 +654,15 @@
    "The proposal requires approval before it can proceed.",
    "The proposal is opposed by the approval committee."
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "topicId": "Tiếng Việt",
-  "difficulty": 1
+  "topicId": "Tiếng Anh",
+  "difficulty": 0.25,
+  "explanation": "“Subject to approval” means dependent on receiving approval.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 5,
+   "answerPage": 16
+  }
  },
  {
   "n": 36,
@@ -498,11 +673,16 @@
    "Cây xanh chủ yếu có tác dụng trang trí cảnh quan.",
    "Mọi loài cây đều có khả năng chống chịu sâu bệnh như nhau."
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Việt",
-  "difficulty": 2,
-  "passage": "- ĐỌC HIỂU (Câu 36-43) Trong quy hoạch đô thị, cây xanh thường được nhắc đến như một giải pháp làm đẹp cảnh quan. Tuy nhiên, giá trị của tán cây vượt xa chức năng trang trí. Bóng mát có thể làm giảm nhiệt độ bề mặt, trong khi quá trình thoát hơi nước góp phần điều hòa vi khí hậu. Hệ rễ giúp nước mưa thấm xuống đất, qua đó giảm áp lực lên hệ thống thoát nước khi mưa lớn. Cây xanh còn tạo hành lang sinh học, cung cấp nơi trú ẩn và nguồn thức ăn cho nhiều loài sinh vật. Dẫu vậy, không phải cứ tăng số lượng cây là đô thị sẽ trở nên bền vững hơn. Cây trồng không phù hợp có thể làm hư hại vỉa hè, tiêu tốn nhiều nước hoặc dễ gãy đổ khi có bão. Một hàng cây đồng nhất về loài cũng có thể khiến cả tuyến phố dễ bị tổn thương trước cùng một loại sâu bệnh. Vì thế, quy hoạch cây xanh cần dựa trên dữ liệu về đất, nước, khí hậu, mật độ xây dựng và đặc điểm sinh thái địa phương. Mục tiêu không đơn thuần là trồng thật nhiều cây, mà là xây dựng một hệ sinh thái đô thị đa dạng, có khả năng thích ứng và được chăm sóc lâu dài."
+  "difficulty": 0.5,
+  "passage": "VĂN BẢN A - ĐỌC HIỂU (Câu 36-43)\nTrong quy hoạch đô thị, cây xanh thường được nhắc đến như một giải pháp làm đẹp cảnh quan. Tuy nhiên, giá trị của tán cây vượt xa chức năng trang trí. Bóng mát có thể làm giảm nhiệt độ bề mặt, trong khi quá trình thoát hơi nước góp phần điều hòa vi khí hậu. Hệ rễ giúp nước mưa thấm xuống đất, qua đó giảm áp lực lên hệ thống thoát nước khi mưa lớn. Cây xanh còn tạo hành lang sinh học, cung cấp nơi trú ẩn và nguồn thức ăn cho nhiều loài sinh vật. Dẫu vậy, không phải cứ tăng số lượng cây là đô thị sẽ trở nên bền vững hơn. Cây trồng không phù hợp có thể làm hư hại vỉa hè, tiêu tốn nhiều nước hoặc dễ gãy đổ khi có bão. Một hàng cây đồng nhất về loài cũng có thể khiến cả tuyến phố dễ bị tổn thương trước cùng một loại sâu bệnh. Vì thế, quy hoạch cây xanh cần dựa trên dữ liệu về đất, nước, khí hậu, mật độ xây dựng và đặc điểm sinh thái địa phương. Mục tiêu không đơn thuần là trồng thật nhiều cây, mà là xây dựng một hệ sinh thái đô thị đa dạng, có khả năng thích ứng và được chăm sóc lâu dài.",
+  "explanation": "Văn bản vừa trình bày lợi ích đa dạng của cây xanh vừa nhấn mạnh yêu cầu chọn loài và quy hoạch dựa trên dữ liệu.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 6,
+   "answerPage": 16
+  }
  },
  {
   "n": 37,
@@ -513,11 +693,16 @@
    "Ngăn mọi loại sâu bệnh phát triển.",
    "Làm giảm hoàn toàn nhu cầu tưới tiêu."
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Việt",
-  "difficulty": 2,
-  "passage": "- ĐỌC HIỂU (Câu 36-43) Trong quy hoạch đô thị, cây xanh thường được nhắc đến như một giải pháp làm đẹp cảnh quan. Tuy nhiên, giá trị của tán cây vượt xa chức năng trang trí. Bóng mát có thể làm giảm nhiệt độ bề mặt, trong khi quá trình thoát hơi nước góp phần điều hòa vi khí hậu. Hệ rễ giúp nước mưa thấm xuống đất, qua đó giảm áp lực lên hệ thống thoát nước khi mưa lớn. Cây xanh còn tạo hành lang sinh học, cung cấp nơi trú ẩn và nguồn thức ăn cho nhiều loài sinh vật. Dẫu vậy, không phải cứ tăng số lượng cây là đô thị sẽ trở nên bền vững hơn. Cây trồng không phù hợp có thể làm hư hại vỉa hè, tiêu tốn nhiều nước hoặc dễ gãy đổ khi có bão. Một hàng cây đồng nhất về loài cũng có thể khiến cả tuyến phố dễ bị tổn thương trước cùng một loại sâu bệnh. Vì thế, quy hoạch cây xanh cần dựa trên dữ liệu về đất, nước, khí hậu, mật độ xây dựng và đặc điểm sinh thái địa phương. Mục tiêu không đơn thuần là trồng thật nhiều cây, mà là xây dựng một hệ sinh thái đô thị đa dạng, có khả năng thích ứng và được chăm sóc lâu dài."
+  "difficulty": 0.5,
+  "passage": "VĂN BẢN A - ĐỌC HIỂU (Câu 36-43)\nTrong quy hoạch đô thị, cây xanh thường được nhắc đến như một giải pháp làm đẹp cảnh quan. Tuy nhiên, giá trị của tán cây vượt xa chức năng trang trí. Bóng mát có thể làm giảm nhiệt độ bề mặt, trong khi quá trình thoát hơi nước góp phần điều hòa vi khí hậu. Hệ rễ giúp nước mưa thấm xuống đất, qua đó giảm áp lực lên hệ thống thoát nước khi mưa lớn. Cây xanh còn tạo hành lang sinh học, cung cấp nơi trú ẩn và nguồn thức ăn cho nhiều loài sinh vật. Dẫu vậy, không phải cứ tăng số lượng cây là đô thị sẽ trở nên bền vững hơn. Cây trồng không phù hợp có thể làm hư hại vỉa hè, tiêu tốn nhiều nước hoặc dễ gãy đổ khi có bão. Một hàng cây đồng nhất về loài cũng có thể khiến cả tuyến phố dễ bị tổn thương trước cùng một loại sâu bệnh. Vì thế, quy hoạch cây xanh cần dựa trên dữ liệu về đất, nước, khí hậu, mật độ xây dựng và đặc điểm sinh thái địa phương. Mục tiêu không đơn thuần là trồng thật nhiều cây, mà là xây dựng một hệ sinh thái đô thị đa dạng, có khả năng thích ứng và được chăm sóc lâu dài.",
+  "explanation": "Đoạn đầu nêu rõ hệ rễ hỗ trợ nước mưa thấm xuống đất.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 6,
+   "answerPage": 16
+  }
  },
  {
   "n": 38,
@@ -528,11 +713,16 @@
    "Vì cây cùng loài không thể tạo bóng mát.",
    "Vì đa dạng sinh học luôn làm giảm khả năng thích ứng."
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Việt",
-  "difficulty": 2,
-  "passage": "- ĐỌC HIỂU (Câu 36-43) Trong quy hoạch đô thị, cây xanh thường được nhắc đến như một giải pháp làm đẹp cảnh quan. Tuy nhiên, giá trị của tán cây vượt xa chức năng trang trí. Bóng mát có thể làm giảm nhiệt độ bề mặt, trong khi quá trình thoát hơi nước góp phần điều hòa vi khí hậu. Hệ rễ giúp nước mưa thấm xuống đất, qua đó giảm áp lực lên hệ thống thoát nước khi mưa lớn. Cây xanh còn tạo hành lang sinh học, cung cấp nơi trú ẩn và nguồn thức ăn cho nhiều loài sinh vật. Dẫu vậy, không phải cứ tăng số lượng cây là đô thị sẽ trở nên bền vững hơn. Cây trồng không phù hợp có thể làm hư hại vỉa hè, tiêu tốn nhiều nước hoặc dễ gãy đổ khi có bão. Một hàng cây đồng nhất về loài cũng có thể khiến cả tuyến phố dễ bị tổn thương trước cùng một loại sâu bệnh. Vì thế, quy hoạch cây xanh cần dựa trên dữ liệu về đất, nước, khí hậu, mật độ xây dựng và đặc điểm sinh thái địa phương. Mục tiêu không đơn thuần là trồng thật nhiều cây, mà là xây dựng một hệ sinh thái đô thị đa dạng, có khả năng thích ứng và được chăm sóc lâu dài."
+  "difficulty": 0.5,
+  "passage": "VĂN BẢN A - ĐỌC HIỂU (Câu 36-43)\nTrong quy hoạch đô thị, cây xanh thường được nhắc đến như một giải pháp làm đẹp cảnh quan. Tuy nhiên, giá trị của tán cây vượt xa chức năng trang trí. Bóng mát có thể làm giảm nhiệt độ bề mặt, trong khi quá trình thoát hơi nước góp phần điều hòa vi khí hậu. Hệ rễ giúp nước mưa thấm xuống đất, qua đó giảm áp lực lên hệ thống thoát nước khi mưa lớn. Cây xanh còn tạo hành lang sinh học, cung cấp nơi trú ẩn và nguồn thức ăn cho nhiều loài sinh vật. Dẫu vậy, không phải cứ tăng số lượng cây là đô thị sẽ trở nên bền vững hơn. Cây trồng không phù hợp có thể làm hư hại vỉa hè, tiêu tốn nhiều nước hoặc dễ gãy đổ khi có bão. Một hàng cây đồng nhất về loài cũng có thể khiến cả tuyến phố dễ bị tổn thương trước cùng một loại sâu bệnh. Vì thế, quy hoạch cây xanh cần dựa trên dữ liệu về đất, nước, khí hậu, mật độ xây dựng và đặc điểm sinh thái địa phương. Mục tiêu không đơn thuần là trồng thật nhiều cây, mà là xây dựng một hệ sinh thái đô thị đa dạng, có khả năng thích ứng và được chăm sóc lâu dài.",
+  "explanation": "Đây là hệ quả của tính dễ tổn thương đồng loạt khi các cá thể có đặc điểm sinh học tương tự.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 6,
+   "answerPage": 16
+  }
  },
  {
   "n": 39,
@@ -543,11 +733,16 @@
    "Giới thiệu một ví dụ minh họa.",
    "Tóm tắt nguyên nhân của hiện tượng."
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Việt",
-  "difficulty": 2,
-  "passage": "- ĐỌC HIỂU (Câu 36-43) Trong quy hoạch đô thị, cây xanh thường được nhắc đến như một giải pháp làm đẹp cảnh quan. Tuy nhiên, giá trị của tán cây vượt xa chức năng trang trí. Bóng mát có thể làm giảm nhiệt độ bề mặt, trong khi quá trình thoát hơi nước góp phần điều hòa vi khí hậu. Hệ rễ giúp nước mưa thấm xuống đất, qua đó giảm áp lực lên hệ thống thoát nước khi mưa lớn. Cây xanh còn tạo hành lang sinh học, cung cấp nơi trú ẩn và nguồn thức ăn cho nhiều loài sinh vật. Dẫu vậy, không phải cứ tăng số lượng cây là đô thị sẽ trở nên bền vững hơn. Cây trồng không phù hợp có thể làm hư hại vỉa hè, tiêu tốn nhiều nước hoặc dễ gãy đổ khi có bão. Một hàng cây đồng nhất về loài cũng có thể khiến cả tuyến phố dễ bị tổn thương trước cùng một loại sâu bệnh. Vì thế, quy hoạch cây xanh cần dựa trên dữ liệu về đất, nước, khí hậu, mật độ xây dựng và đặc điểm sinh thái địa phương. Mục tiêu không đơn thuần là trồng thật nhiều cây, mà là xây dựng một hệ sinh thái đô thị đa dạng, có khả năng thích ứng và được chăm sóc lâu dài."
+  "difficulty": 0.5,
+  "passage": "VĂN BẢN A - ĐỌC HIỂU (Câu 36-43)\nTrong quy hoạch đô thị, cây xanh thường được nhắc đến như một giải pháp làm đẹp cảnh quan. Tuy nhiên, giá trị của tán cây vượt xa chức năng trang trí. Bóng mát có thể làm giảm nhiệt độ bề mặt, trong khi quá trình thoát hơi nước góp phần điều hòa vi khí hậu. Hệ rễ giúp nước mưa thấm xuống đất, qua đó giảm áp lực lên hệ thống thoát nước khi mưa lớn. Cây xanh còn tạo hành lang sinh học, cung cấp nơi trú ẩn và nguồn thức ăn cho nhiều loài sinh vật. Dẫu vậy, không phải cứ tăng số lượng cây là đô thị sẽ trở nên bền vững hơn. Cây trồng không phù hợp có thể làm hư hại vỉa hè, tiêu tốn nhiều nước hoặc dễ gãy đổ khi có bão. Một hàng cây đồng nhất về loài cũng có thể khiến cả tuyến phố dễ bị tổn thương trước cùng một loại sâu bệnh. Vì thế, quy hoạch cây xanh cần dựa trên dữ liệu về đất, nước, khí hậu, mật độ xây dựng và đặc điểm sinh thái địa phương. Mục tiêu không đơn thuần là trồng thật nhiều cây, mà là xây dựng một hệ sinh thái đô thị đa dạng, có khả năng thích ứng và được chăm sóc lâu dài.",
+  "explanation": "“Dẫu vậy” tạo quan hệ nhượng bộ/đối lập với nhận định tích cực ở đoạn trước.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 6,
+   "answerPage": 16
+  }
  },
  {
   "n": 40,
@@ -558,11 +753,16 @@
    "Nên thay thế toàn bộ cây bản địa bằng cây ngoại nhập.",
    "Không cần theo dõi cây sau khi trồng."
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Việt",
-  "difficulty": 2,
-  "passage": "- ĐỌC HIỂU (Câu 36-43) Trong quy hoạch đô thị, cây xanh thường được nhắc đến như một giải pháp làm đẹp cảnh quan. Tuy nhiên, giá trị của tán cây vượt xa chức năng trang trí. Bóng mát có thể làm giảm nhiệt độ bề mặt, trong khi quá trình thoát hơi nước góp phần điều hòa vi khí hậu. Hệ rễ giúp nước mưa thấm xuống đất, qua đó giảm áp lực lên hệ thống thoát nước khi mưa lớn. Cây xanh còn tạo hành lang sinh học, cung cấp nơi trú ẩn và nguồn thức ăn cho nhiều loài sinh vật. Dẫu vậy, không phải cứ tăng số lượng cây là đô thị sẽ trở nên bền vững hơn. Cây trồng không phù hợp có thể làm hư hại vỉa hè, tiêu tốn nhiều nước hoặc dễ gãy đổ khi có bão. Một hàng cây đồng nhất về loài cũng có thể khiến cả tuyến phố dễ bị tổn thương trước cùng một loại sâu bệnh. Vì thế, quy hoạch cây xanh cần dựa trên dữ liệu về đất, nước, khí hậu, mật độ xây dựng và đặc điểm sinh thái địa phương. Mục tiêu không đơn thuần là trồng thật nhiều cây, mà là xây dựng một hệ sinh thái đô thị đa dạng, có khả năng thích ứng và được chăm sóc lâu dài."
+  "difficulty": 0.5,
+  "passage": "VĂN BẢN A - ĐỌC HIỂU (Câu 36-43)\nTrong quy hoạch đô thị, cây xanh thường được nhắc đến như một giải pháp làm đẹp cảnh quan. Tuy nhiên, giá trị của tán cây vượt xa chức năng trang trí. Bóng mát có thể làm giảm nhiệt độ bề mặt, trong khi quá trình thoát hơi nước góp phần điều hòa vi khí hậu. Hệ rễ giúp nước mưa thấm xuống đất, qua đó giảm áp lực lên hệ thống thoát nước khi mưa lớn. Cây xanh còn tạo hành lang sinh học, cung cấp nơi trú ẩn và nguồn thức ăn cho nhiều loài sinh vật. Dẫu vậy, không phải cứ tăng số lượng cây là đô thị sẽ trở nên bền vững hơn. Cây trồng không phù hợp có thể làm hư hại vỉa hè, tiêu tốn nhiều nước hoặc dễ gãy đổ khi có bão. Một hàng cây đồng nhất về loài cũng có thể khiến cả tuyến phố dễ bị tổn thương trước cùng một loại sâu bệnh. Vì thế, quy hoạch cây xanh cần dựa trên dữ liệu về đất, nước, khí hậu, mật độ xây dựng và đặc điểm sinh thái địa phương. Mục tiêu không đơn thuần là trồng thật nhiều cây, mà là xây dựng một hệ sinh thái đô thị đa dạng, có khả năng thích ứng và được chăm sóc lâu dài.",
+  "explanation": "Văn bản yêu cầu căn cứ dữ liệu địa phương và chăm sóc lâu dài, hàm ý phải cân nhắc nhiều tiêu chí.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 6,
+   "answerPage": 16
+  }
  },
  {
   "n": 41,
@@ -573,11 +773,16 @@
    "Cứ trồng càng nhiều cây thì đô thị tự động càng bền vững.",
    "Cây xanh có thể hỗ trợ đa dạng sinh học."
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Tiếng Việt",
-  "difficulty": 2,
-  "passage": "- ĐỌC HIỂU (Câu 36-43) Trong quy hoạch đô thị, cây xanh thường được nhắc đến như một giải pháp làm đẹp cảnh quan. Tuy nhiên, giá trị của tán cây vượt xa chức năng trang trí. Bóng mát có thể làm giảm nhiệt độ bề mặt, trong khi quá trình thoát hơi nước góp phần điều hòa vi khí hậu. Hệ rễ giúp nước mưa thấm xuống đất, qua đó giảm áp lực lên hệ thống thoát nước khi mưa lớn. Cây xanh còn tạo hành lang sinh học, cung cấp nơi trú ẩn và nguồn thức ăn cho nhiều loài sinh vật. Dẫu vậy, không phải cứ tăng số lượng cây là đô thị sẽ trở nên bền vững hơn. Cây trồng không phù hợp có thể làm hư hại vỉa hè, tiêu tốn nhiều nước hoặc dễ gãy đổ khi có bão. Một hàng cây đồng nhất về loài cũng có thể khiến cả tuyến phố dễ bị tổn thương trước cùng một loại sâu bệnh. Vì thế, quy hoạch cây xanh cần dựa trên dữ liệu về đất, nước, khí hậu, mật độ xây dựng và đặc điểm sinh thái địa phương. Mục tiêu không đơn thuần là trồng thật nhiều cây, mà là xây dựng một hệ sinh thái đô thị đa dạng, có khả năng thích ứng và được chăm sóc lâu dài."
+  "difficulty": 0.5,
+  "passage": "VĂN BẢN A - ĐỌC HIỂU (Câu 36-43)\nTrong quy hoạch đô thị, cây xanh thường được nhắc đến như một giải pháp làm đẹp cảnh quan. Tuy nhiên, giá trị của tán cây vượt xa chức năng trang trí. Bóng mát có thể làm giảm nhiệt độ bề mặt, trong khi quá trình thoát hơi nước góp phần điều hòa vi khí hậu. Hệ rễ giúp nước mưa thấm xuống đất, qua đó giảm áp lực lên hệ thống thoát nước khi mưa lớn. Cây xanh còn tạo hành lang sinh học, cung cấp nơi trú ẩn và nguồn thức ăn cho nhiều loài sinh vật. Dẫu vậy, không phải cứ tăng số lượng cây là đô thị sẽ trở nên bền vững hơn. Cây trồng không phù hợp có thể làm hư hại vỉa hè, tiêu tốn nhiều nước hoặc dễ gãy đổ khi có bão. Một hàng cây đồng nhất về loài cũng có thể khiến cả tuyến phố dễ bị tổn thương trước cùng một loại sâu bệnh. Vì thế, quy hoạch cây xanh cần dựa trên dữ liệu về đất, nước, khí hậu, mật độ xây dựng và đặc điểm sinh thái địa phương. Mục tiêu không đơn thuần là trồng thật nhiều cây, mà là xây dựng một hệ sinh thái đô thị đa dạng, có khả năng thích ứng và được chăm sóc lâu dài.",
+  "explanation": "Đoạn hai bác bỏ rõ quan niệm tăng số lượng cây là đủ để bảo đảm bền vững.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 6,
+   "answerPage": 16
+  }
  },
  {
   "n": 42,
@@ -588,11 +793,16 @@
    "Cây sẽ tự thích nghi trong mọi điều kiện.",
    "Số lượng cây là thước đo duy nhất của chất lượng quy hoạch."
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Việt",
-  "difficulty": 2,
-  "passage": "- ĐỌC HIỂU (Câu 36-43) Trong quy hoạch đô thị, cây xanh thường được nhắc đến như một giải pháp làm đẹp cảnh quan. Tuy nhiên, giá trị của tán cây vượt xa chức năng trang trí. Bóng mát có thể làm giảm nhiệt độ bề mặt, trong khi quá trình thoát hơi nước góp phần điều hòa vi khí hậu. Hệ rễ giúp nước mưa thấm xuống đất, qua đó giảm áp lực lên hệ thống thoát nước khi mưa lớn. Cây xanh còn tạo hành lang sinh học, cung cấp nơi trú ẩn và nguồn thức ăn cho nhiều loài sinh vật. Dẫu vậy, không phải cứ tăng số lượng cây là đô thị sẽ trở nên bền vững hơn. Cây trồng không phù hợp có thể làm hư hại vỉa hè, tiêu tốn nhiều nước hoặc dễ gãy đổ khi có bão. Một hàng cây đồng nhất về loài cũng có thể khiến cả tuyến phố dễ bị tổn thương trước cùng một loại sâu bệnh. Vì thế, quy hoạch cây xanh cần dựa trên dữ liệu về đất, nước, khí hậu, mật độ xây dựng và đặc điểm sinh thái địa phương. Mục tiêu không đơn thuần là trồng thật nhiều cây, mà là xây dựng một hệ sinh thái đô thị đa dạng, có khả năng thích ứng và được chăm sóc lâu dài."
+  "difficulty": 0.5,
+  "passage": "VĂN BẢN A - ĐỌC HIỂU (Câu 36-43)\nTrong quy hoạch đô thị, cây xanh thường được nhắc đến như một giải pháp làm đẹp cảnh quan. Tuy nhiên, giá trị của tán cây vượt xa chức năng trang trí. Bóng mát có thể làm giảm nhiệt độ bề mặt, trong khi quá trình thoát hơi nước góp phần điều hòa vi khí hậu. Hệ rễ giúp nước mưa thấm xuống đất, qua đó giảm áp lực lên hệ thống thoát nước khi mưa lớn. Cây xanh còn tạo hành lang sinh học, cung cấp nơi trú ẩn và nguồn thức ăn cho nhiều loài sinh vật. Dẫu vậy, không phải cứ tăng số lượng cây là đô thị sẽ trở nên bền vững hơn. Cây trồng không phù hợp có thể làm hư hại vỉa hè, tiêu tốn nhiều nước hoặc dễ gãy đổ khi có bão. Một hàng cây đồng nhất về loài cũng có thể khiến cả tuyến phố dễ bị tổn thương trước cùng một loại sâu bệnh. Vì thế, quy hoạch cây xanh cần dựa trên dữ liệu về đất, nước, khí hậu, mật độ xây dựng và đặc điểm sinh thái địa phương. Mục tiêu không đơn thuần là trồng thật nhiều cây, mà là xây dựng một hệ sinh thái đô thị đa dạng, có khả năng thích ứng và được chăm sóc lâu dài.",
+  "explanation": "Câu cuối nhấn mạnh hệ sinh thái cần được chăm sóc lâu dài.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 7,
+   "answerPage": 16
+  }
  },
  {
   "n": 43,
@@ -603,11 +813,16 @@
    "Lịch sử thiết kế vỉa hè",
    "Vấn đề sâu bệnh trong nông nghiệp"
   ],
-  "correctLetter": "A",
   "correct": 0,
   "topicId": "Tiếng Việt",
-  "difficulty": 2,
-  "passage": "- ĐỌC HIỂU (Câu 36-43) Trong quy hoạch đô thị, cây xanh thường được nhắc đến như một giải pháp làm đẹp cảnh quan. Tuy nhiên, giá trị của tán cây vượt xa chức năng trang trí. Bóng mát có thể làm giảm nhiệt độ bề mặt, trong khi quá trình thoát hơi nước góp phần điều hòa vi khí hậu. Hệ rễ giúp nước mưa thấm xuống đất, qua đó giảm áp lực lên hệ thống thoát nước khi mưa lớn. Cây xanh còn tạo hành lang sinh học, cung cấp nơi trú ẩn và nguồn thức ăn cho nhiều loài sinh vật. Dẫu vậy, không phải cứ tăng số lượng cây là đô thị sẽ trở nên bền vững hơn. Cây trồng không phù hợp có thể làm hư hại vỉa hè, tiêu tốn nhiều nước hoặc dễ gãy đổ khi có bão. Một hàng cây đồng nhất về loài cũng có thể khiến cả tuyến phố dễ bị tổn thương trước cùng một loại sâu bệnh. Vì thế, quy hoạch cây xanh cần dựa trên dữ liệu về đất, nước, khí hậu, mật độ xây dựng và đặc điểm sinh thái địa phương. Mục tiêu không đơn thuần là trồng thật nhiều cây, mà là xây dựng một hệ sinh thái đô thị đa dạng, có khả năng thích ứng và được chăm sóc lâu dài."
+  "difficulty": 0.5,
+  "passage": "VĂN BẢN A - ĐỌC HIỂU (Câu 36-43)\nTrong quy hoạch đô thị, cây xanh thường được nhắc đến như một giải pháp làm đẹp cảnh quan. Tuy nhiên, giá trị của tán cây vượt xa chức năng trang trí. Bóng mát có thể làm giảm nhiệt độ bề mặt, trong khi quá trình thoát hơi nước góp phần điều hòa vi khí hậu. Hệ rễ giúp nước mưa thấm xuống đất, qua đó giảm áp lực lên hệ thống thoát nước khi mưa lớn. Cây xanh còn tạo hành lang sinh học, cung cấp nơi trú ẩn và nguồn thức ăn cho nhiều loài sinh vật. Dẫu vậy, không phải cứ tăng số lượng cây là đô thị sẽ trở nên bền vững hơn. Cây trồng không phù hợp có thể làm hư hại vỉa hè, tiêu tốn nhiều nước hoặc dễ gãy đổ khi có bão. Một hàng cây đồng nhất về loài cũng có thể khiến cả tuyến phố dễ bị tổn thương trước cùng một loại sâu bệnh. Vì thế, quy hoạch cây xanh cần dựa trên dữ liệu về đất, nước, khí hậu, mật độ xây dựng và đặc điểm sinh thái địa phương. Mục tiêu không đơn thuần là trồng thật nhiều cây, mà là xây dựng một hệ sinh thái đô thị đa dạng, có khả năng thích ứng và được chăm sóc lâu dài.",
+  "explanation": "Nhan đề bao quát sự chuyển đổi cách nhìn từ trang trí sang vai trò hạ tầng sinh thái và quy hoạch.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 7,
+   "answerPage": 16
+  }
  },
  {
   "n": 44,
@@ -618,11 +833,16 @@
    "Chứng minh biểu đồ luôn phản ánh chính xác thực tế.",
    "Khẳng định dữ liệu cũ có giá trị hơn dữ liệu mới."
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Việt",
-  "difficulty": 2,
-  "passage": "- ĐỌC HIỂU (Câu 44-50) Dữ liệu mở thường được xem là nguồn lực thúc đẩy đổi mới, bởi cá nhân và tổ chức có thể sử dụng lại dữ liệu công khai để tạo ra dịch vụ mới. Chẳng hạn, dữ liệu giao thông theo thời gian thực có thể hỗ trợ người dân chọn lộ trình, còn dữ liệu môi trường giúp cộng đồng theo dõi chất lượng không khí. Tuy nhiên, “mở” không đồng nghĩa với “vô điều kiện”. Dữ liệu cần được mô tả rõ nguồn gốc, thời điểm cập nhật, đơn vị đo và giới hạn sử dụng. Những tập dữ liệu chứa thông tin cá nhân phải được ẩn danh hoặc giới hạn quyền truy cập phù hợp. Một rủi ro khác nằm ở cách diễn giải. Một biểu đồ được trình bày đẹp mắt vẫn có thể gây hiểu lầm nếu trục đo bị cắt, mẫu khảo sát không đại diện hoặc dữ liệu cũ được dùng để mô tả hiện tại. Do đó, năng lực dữ liệu không chỉ là khả năng đọc con số; nó còn bao gồm việc đặt câu hỏi về cách thu thập, phát hiện thiên lệch và cân nhắc hệ quả của việc công bố. Giá trị của dữ liệu phụ thuộc cả vào chất lượng dữ liệu lẫn trách nhiệm của người sử dụng."
+  "difficulty": 0.5,
+  "passage": "VĂN BẢN B - ĐỌC HIỂU (Câu 44-50)\nDữ liệu mở thường được xem là nguồn lực thúc đẩy đổi mới, bởi cá nhân và tổ chức có thể sử dụng lại dữ liệu công khai để tạo ra dịch vụ mới. Chẳng hạn, dữ liệu giao thông theo thời gian thực có thể hỗ trợ người dân chọn lộ trình, còn dữ liệu môi trường giúp cộng đồng theo dõi chất lượng không khí. Tuy nhiên, “mở” không đồng nghĩa với “vô điều kiện”. Dữ liệu cần được mô tả rõ nguồn gốc, thời điểm cập nhật, đơn vị đo và giới hạn sử dụng. Những tập dữ liệu chứa thông tin cá nhân phải được ẩn danh hoặc giới hạn quyền truy cập phù hợp. Một rủi ro khác nằm ở cách diễn giải. Một biểu đồ được trình bày đẹp mắt vẫn có thể gây hiểu lầm nếu trục đo bị cắt, mẫu khảo sát không đại diện hoặc dữ liệu cũ được dùng để mô tả hiện tại. Do đó, năng lực dữ liệu không chỉ là khả năng đọc con số; nó còn bao gồm việc đặt câu hỏi về cách thu thập, phát hiện thiên lệch và cân nhắc hệ quả của việc công bố. Giá trị của dữ liệu phụ thuộc cả vào chất lượng dữ liệu lẫn trách nhiệm của người sử dụng.",
+  "explanation": "Văn bản lần lượt trình bày lợi ích, yêu cầu về chất lượng/bảo vệ riêng tư và nguy cơ diễn giải sai.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 7,
+   "answerPage": 16
+  }
  },
  {
   "n": 45,
@@ -633,11 +853,16 @@
    "Tên người thiết kế biểu đồ.",
    "Số trang của báo cáo."
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Việt",
-  "difficulty": 2,
-  "passage": "- ĐỌC HIỂU (Câu 44-50) Dữ liệu mở thường được xem là nguồn lực thúc đẩy đổi mới, bởi cá nhân và tổ chức có thể sử dụng lại dữ liệu công khai để tạo ra dịch vụ mới. Chẳng hạn, dữ liệu giao thông theo thời gian thực có thể hỗ trợ người dân chọn lộ trình, còn dữ liệu môi trường giúp cộng đồng theo dõi chất lượng không khí. Tuy nhiên, “mở” không đồng nghĩa với “vô điều kiện”. Dữ liệu cần được mô tả rõ nguồn gốc, thời điểm cập nhật, đơn vị đo và giới hạn sử dụng. Những tập dữ liệu chứa thông tin cá nhân phải được ẩn danh hoặc giới hạn quyền truy cập phù hợp. Một rủi ro khác nằm ở cách diễn giải. Một biểu đồ được trình bày đẹp mắt vẫn có thể gây hiểu lầm nếu trục đo bị cắt, mẫu khảo sát không đại diện hoặc dữ liệu cũ được dùng để mô tả hiện tại. Do đó, năng lực dữ liệu không chỉ là khả năng đọc con số; nó còn bao gồm việc đặt câu hỏi về cách thu thập, phát hiện thiên lệch và cân nhắc hệ quả của việc công bố. Giá trị của dữ liệu phụ thuộc cả vào chất lượng dữ liệu lẫn trách nhiệm của người sử dụng."
+  "difficulty": 0.5,
+  "passage": "VĂN BẢN B - ĐỌC HIỂU (Câu 44-50)\nDữ liệu mở thường được xem là nguồn lực thúc đẩy đổi mới, bởi cá nhân và tổ chức có thể sử dụng lại dữ liệu công khai để tạo ra dịch vụ mới. Chẳng hạn, dữ liệu giao thông theo thời gian thực có thể hỗ trợ người dân chọn lộ trình, còn dữ liệu môi trường giúp cộng đồng theo dõi chất lượng không khí. Tuy nhiên, “mở” không đồng nghĩa với “vô điều kiện”. Dữ liệu cần được mô tả rõ nguồn gốc, thời điểm cập nhật, đơn vị đo và giới hạn sử dụng. Những tập dữ liệu chứa thông tin cá nhân phải được ẩn danh hoặc giới hạn quyền truy cập phù hợp. Một rủi ro khác nằm ở cách diễn giải. Một biểu đồ được trình bày đẹp mắt vẫn có thể gây hiểu lầm nếu trục đo bị cắt, mẫu khảo sát không đại diện hoặc dữ liệu cũ được dùng để mô tả hiện tại. Do đó, năng lực dữ liệu không chỉ là khả năng đọc con số; nó còn bao gồm việc đặt câu hỏi về cách thu thập, phát hiện thiên lệch và cân nhắc hệ quả của việc công bố. Giá trị của dữ liệu phụ thuộc cả vào chất lượng dữ liệu lẫn trách nhiệm của người sử dụng.",
+  "explanation": "Thời điểm cập nhật cho biết dữ liệu phản ánh thời gian nào.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 7,
+   "answerPage": 17
+  }
  },
  {
   "n": 46,
@@ -648,11 +873,16 @@
    "Ghi rõ đơn vị đo trong tệp dữ liệu.",
    "Cập nhật số liệu giao thông mỗi năm phút."
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Việt",
-  "difficulty": 2,
-  "passage": "- ĐỌC HIỂU (Câu 44-50) Dữ liệu mở thường được xem là nguồn lực thúc đẩy đổi mới, bởi cá nhân và tổ chức có thể sử dụng lại dữ liệu công khai để tạo ra dịch vụ mới. Chẳng hạn, dữ liệu giao thông theo thời gian thực có thể hỗ trợ người dân chọn lộ trình, còn dữ liệu môi trường giúp cộng đồng theo dõi chất lượng không khí. Tuy nhiên, “mở” không đồng nghĩa với “vô điều kiện”. Dữ liệu cần được mô tả rõ nguồn gốc, thời điểm cập nhật, đơn vị đo và giới hạn sử dụng. Những tập dữ liệu chứa thông tin cá nhân phải được ẩn danh hoặc giới hạn quyền truy cập phù hợp. Một rủi ro khác nằm ở cách diễn giải. Một biểu đồ được trình bày đẹp mắt vẫn có thể gây hiểu lầm nếu trục đo bị cắt, mẫu khảo sát không đại diện hoặc dữ liệu cũ được dùng để mô tả hiện tại. Do đó, năng lực dữ liệu không chỉ là khả năng đọc con số; nó còn bao gồm việc đặt câu hỏi về cách thu thập, phát hiện thiên lệch và cân nhắc hệ quả của việc công bố. Giá trị của dữ liệu phụ thuộc cả vào chất lượng dữ liệu lẫn trách nhiệm của người sử dụng."
+  "difficulty": 0.5,
+  "passage": "VĂN BẢN B - ĐỌC HIỂU (Câu 44-50)\nDữ liệu mở thường được xem là nguồn lực thúc đẩy đổi mới, bởi cá nhân và tổ chức có thể sử dụng lại dữ liệu công khai để tạo ra dịch vụ mới. Chẳng hạn, dữ liệu giao thông theo thời gian thực có thể hỗ trợ người dân chọn lộ trình, còn dữ liệu môi trường giúp cộng đồng theo dõi chất lượng không khí. Tuy nhiên, “mở” không đồng nghĩa với “vô điều kiện”. Dữ liệu cần được mô tả rõ nguồn gốc, thời điểm cập nhật, đơn vị đo và giới hạn sử dụng. Những tập dữ liệu chứa thông tin cá nhân phải được ẩn danh hoặc giới hạn quyền truy cập phù hợp. Một rủi ro khác nằm ở cách diễn giải. Một biểu đồ được trình bày đẹp mắt vẫn có thể gây hiểu lầm nếu trục đo bị cắt, mẫu khảo sát không đại diện hoặc dữ liệu cũ được dùng để mô tả hiện tại. Do đó, năng lực dữ liệu không chỉ là khả năng đọc con số; nó còn bao gồm việc đặt câu hỏi về cách thu thập, phát hiện thiên lệch và cân nhắc hệ quả của việc công bố. Giá trị của dữ liệu phụ thuộc cả vào chất lượng dữ liệu lẫn trách nhiệm của người sử dụng.",
+  "explanation": "Dữ liệu nhận diện cá nhân cần được ẩn danh hoặc kiểm soát quyền truy cập.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 7,
+   "answerPage": 17
+  }
  },
  {
   "n": 47,
@@ -663,11 +893,16 @@
    "Mọi biểu đồ đều không đáng tin.",
    "Không thể sử dụng dữ liệu định lượng."
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Việt",
-  "difficulty": 2,
-  "passage": "- ĐỌC HIỂU (Câu 44-50) Dữ liệu mở thường được xem là nguồn lực thúc đẩy đổi mới, bởi cá nhân và tổ chức có thể sử dụng lại dữ liệu công khai để tạo ra dịch vụ mới. Chẳng hạn, dữ liệu giao thông theo thời gian thực có thể hỗ trợ người dân chọn lộ trình, còn dữ liệu môi trường giúp cộng đồng theo dõi chất lượng không khí. Tuy nhiên, “mở” không đồng nghĩa với “vô điều kiện”. Dữ liệu cần được mô tả rõ nguồn gốc, thời điểm cập nhật, đơn vị đo và giới hạn sử dụng. Những tập dữ liệu chứa thông tin cá nhân phải được ẩn danh hoặc giới hạn quyền truy cập phù hợp. Một rủi ro khác nằm ở cách diễn giải. Một biểu đồ được trình bày đẹp mắt vẫn có thể gây hiểu lầm nếu trục đo bị cắt, mẫu khảo sát không đại diện hoặc dữ liệu cũ được dùng để mô tả hiện tại. Do đó, năng lực dữ liệu không chỉ là khả năng đọc con số; nó còn bao gồm việc đặt câu hỏi về cách thu thập, phát hiện thiên lệch và cân nhắc hệ quả của việc công bố. Giá trị của dữ liệu phụ thuộc cả vào chất lượng dữ liệu lẫn trách nhiệm của người sử dụng."
+  "difficulty": 0.5,
+  "passage": "VĂN BẢN B - ĐỌC HIỂU (Câu 44-50)\nDữ liệu mở thường được xem là nguồn lực thúc đẩy đổi mới, bởi cá nhân và tổ chức có thể sử dụng lại dữ liệu công khai để tạo ra dịch vụ mới. Chẳng hạn, dữ liệu giao thông theo thời gian thực có thể hỗ trợ người dân chọn lộ trình, còn dữ liệu môi trường giúp cộng đồng theo dõi chất lượng không khí. Tuy nhiên, “mở” không đồng nghĩa với “vô điều kiện”. Dữ liệu cần được mô tả rõ nguồn gốc, thời điểm cập nhật, đơn vị đo và giới hạn sử dụng. Những tập dữ liệu chứa thông tin cá nhân phải được ẩn danh hoặc giới hạn quyền truy cập phù hợp. Một rủi ro khác nằm ở cách diễn giải. Một biểu đồ được trình bày đẹp mắt vẫn có thể gây hiểu lầm nếu trục đo bị cắt, mẫu khảo sát không đại diện hoặc dữ liệu cũ được dùng để mô tả hiện tại. Do đó, năng lực dữ liệu không chỉ là khả năng đọc con số; nó còn bao gồm việc đặt câu hỏi về cách thu thập, phát hiện thiên lệch và cân nhắc hệ quả của việc công bố. Giá trị của dữ liệu phụ thuộc cả vào chất lượng dữ liệu lẫn trách nhiệm của người sử dụng.",
+  "explanation": "Trục đo bị cắt có thể phóng đại khác biệt thị giác và gây hiểu lầm.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 7,
+   "answerPage": 17
+  }
  },
  {
   "n": 48,
@@ -678,11 +913,16 @@
    "Việc làm tròn số để dễ đọc.",
    "Sự khác biệt tự nhiên giữa các cá thể."
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Việt",
-  "difficulty": 2,
-  "passage": "- ĐỌC HIỂU (Câu 44-50) Dữ liệu mở thường được xem là nguồn lực thúc đẩy đổi mới, bởi cá nhân và tổ chức có thể sử dụng lại dữ liệu công khai để tạo ra dịch vụ mới. Chẳng hạn, dữ liệu giao thông theo thời gian thực có thể hỗ trợ người dân chọn lộ trình, còn dữ liệu môi trường giúp cộng đồng theo dõi chất lượng không khí. Tuy nhiên, “mở” không đồng nghĩa với “vô điều kiện”. Dữ liệu cần được mô tả rõ nguồn gốc, thời điểm cập nhật, đơn vị đo và giới hạn sử dụng. Những tập dữ liệu chứa thông tin cá nhân phải được ẩn danh hoặc giới hạn quyền truy cập phù hợp. Một rủi ro khác nằm ở cách diễn giải. Một biểu đồ được trình bày đẹp mắt vẫn có thể gây hiểu lầm nếu trục đo bị cắt, mẫu khảo sát không đại diện hoặc dữ liệu cũ được dùng để mô tả hiện tại. Do đó, năng lực dữ liệu không chỉ là khả năng đọc con số; nó còn bao gồm việc đặt câu hỏi về cách thu thập, phát hiện thiên lệch và cân nhắc hệ quả của việc công bố. Giá trị của dữ liệu phụ thuộc cả vào chất lượng dữ liệu lẫn trách nhiệm của người sử dụng."
+  "difficulty": 0.5,
+  "passage": "VĂN BẢN B - ĐỌC HIỂU (Câu 44-50)\nDữ liệu mở thường được xem là nguồn lực thúc đẩy đổi mới, bởi cá nhân và tổ chức có thể sử dụng lại dữ liệu công khai để tạo ra dịch vụ mới. Chẳng hạn, dữ liệu giao thông theo thời gian thực có thể hỗ trợ người dân chọn lộ trình, còn dữ liệu môi trường giúp cộng đồng theo dõi chất lượng không khí. Tuy nhiên, “mở” không đồng nghĩa với “vô điều kiện”. Dữ liệu cần được mô tả rõ nguồn gốc, thời điểm cập nhật, đơn vị đo và giới hạn sử dụng. Những tập dữ liệu chứa thông tin cá nhân phải được ẩn danh hoặc giới hạn quyền truy cập phù hợp. Một rủi ro khác nằm ở cách diễn giải. Một biểu đồ được trình bày đẹp mắt vẫn có thể gây hiểu lầm nếu trục đo bị cắt, mẫu khảo sát không đại diện hoặc dữ liệu cũ được dùng để mô tả hiện tại. Do đó, năng lực dữ liệu không chỉ là khả năng đọc con số; nó còn bao gồm việc đặt câu hỏi về cách thu thập, phát hiện thiên lệch và cân nhắc hệ quả của việc công bố. Giá trị của dữ liệu phụ thuộc cả vào chất lượng dữ liệu lẫn trách nhiệm của người sử dụng.",
+  "explanation": "Thiên lệch là sai lệch có tính hệ thống trong chọn mẫu, thu thập hoặc diễn giải.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 7,
+   "answerPage": 17
+  }
  },
  {
   "n": 49,
@@ -693,11 +933,16 @@
    "Chỉ chuyên gia thống kê mới được phép dùng dữ liệu.",
    "Ẩn danh dữ liệu luôn khiến dữ liệu mất toàn bộ giá trị."
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Việt",
-  "difficulty": 2,
-  "passage": "- ĐỌC HIỂU (Câu 44-50) Dữ liệu mở thường được xem là nguồn lực thúc đẩy đổi mới, bởi cá nhân và tổ chức có thể sử dụng lại dữ liệu công khai để tạo ra dịch vụ mới. Chẳng hạn, dữ liệu giao thông theo thời gian thực có thể hỗ trợ người dân chọn lộ trình, còn dữ liệu môi trường giúp cộng đồng theo dõi chất lượng không khí. Tuy nhiên, “mở” không đồng nghĩa với “vô điều kiện”. Dữ liệu cần được mô tả rõ nguồn gốc, thời điểm cập nhật, đơn vị đo và giới hạn sử dụng. Những tập dữ liệu chứa thông tin cá nhân phải được ẩn danh hoặc giới hạn quyền truy cập phù hợp. Một rủi ro khác nằm ở cách diễn giải. Một biểu đồ được trình bày đẹp mắt vẫn có thể gây hiểu lầm nếu trục đo bị cắt, mẫu khảo sát không đại diện hoặc dữ liệu cũ được dùng để mô tả hiện tại. Do đó, năng lực dữ liệu không chỉ là khả năng đọc con số; nó còn bao gồm việc đặt câu hỏi về cách thu thập, phát hiện thiên lệch và cân nhắc hệ quả của việc công bố. Giá trị của dữ liệu phụ thuộc cả vào chất lượng dữ liệu lẫn trách nhiệm của người sử dụng."
+  "difficulty": 0.5,
+  "passage": "VĂN BẢN B - ĐỌC HIỂU (Câu 44-50)\nDữ liệu mở thường được xem là nguồn lực thúc đẩy đổi mới, bởi cá nhân và tổ chức có thể sử dụng lại dữ liệu công khai để tạo ra dịch vụ mới. Chẳng hạn, dữ liệu giao thông theo thời gian thực có thể hỗ trợ người dân chọn lộ trình, còn dữ liệu môi trường giúp cộng đồng theo dõi chất lượng không khí. Tuy nhiên, “mở” không đồng nghĩa với “vô điều kiện”. Dữ liệu cần được mô tả rõ nguồn gốc, thời điểm cập nhật, đơn vị đo và giới hạn sử dụng. Những tập dữ liệu chứa thông tin cá nhân phải được ẩn danh hoặc giới hạn quyền truy cập phù hợp. Một rủi ro khác nằm ở cách diễn giải. Một biểu đồ được trình bày đẹp mắt vẫn có thể gây hiểu lầm nếu trục đo bị cắt, mẫu khảo sát không đại diện hoặc dữ liệu cũ được dùng để mô tả hiện tại. Do đó, năng lực dữ liệu không chỉ là khả năng đọc con số; nó còn bao gồm việc đặt câu hỏi về cách thu thập, phát hiện thiên lệch và cân nhắc hệ quả của việc công bố. Giá trị của dữ liệu phụ thuộc cả vào chất lượng dữ liệu lẫn trách nhiệm của người sử dụng.",
+  "explanation": "Đoạn cuối định nghĩa năng lực dữ liệu rộng hơn thao tác đọc số, bao gồm kiểm tra thiên lệch và trách nhiệm.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 7,
+   "answerPage": 17
+  }
  },
  {
   "n": 50,
@@ -708,11 +953,16 @@
    "Đều chủ trương hạn chế công bố thông tin.",
    "Đều tập trung mô tả một thí nghiệm trong phòng lab."
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Việt",
-  "difficulty": 2,
-  "passage": "- ĐỌC HIỂU (Câu 44-50) Dữ liệu mở thường được xem là nguồn lực thúc đẩy đổi mới, bởi cá nhân và tổ chức có thể sử dụng lại dữ liệu công khai để tạo ra dịch vụ mới. Chẳng hạn, dữ liệu giao thông theo thời gian thực có thể hỗ trợ người dân chọn lộ trình, còn dữ liệu môi trường giúp cộng đồng theo dõi chất lượng không khí. Tuy nhiên, “mở” không đồng nghĩa với “vô điều kiện”. Dữ liệu cần được mô tả rõ nguồn gốc, thời điểm cập nhật, đơn vị đo và giới hạn sử dụng. Những tập dữ liệu chứa thông tin cá nhân phải được ẩn danh hoặc giới hạn quyền truy cập phù hợp. Một rủi ro khác nằm ở cách diễn giải. Một biểu đồ được trình bày đẹp mắt vẫn có thể gây hiểu lầm nếu trục đo bị cắt, mẫu khảo sát không đại diện hoặc dữ liệu cũ được dùng để mô tả hiện tại. Do đó, năng lực dữ liệu không chỉ là khả năng đọc con số; nó còn bao gồm việc đặt câu hỏi về cách thu thập, phát hiện thiên lệch và cân nhắc hệ quả của việc công bố. Giá trị của dữ liệu phụ thuộc cả vào chất lượng dữ liệu lẫn trách nhiệm của người sử dụng."
+  "difficulty": 0.5,
+  "passage": "VĂN BẢN A - ĐỌC HIỂU (Câu 36-43)\nTrong quy hoạch đô thị, cây xanh thường được nhắc đến như một giải pháp làm đẹp cảnh quan. Tuy nhiên, giá trị của tán cây vượt xa chức năng trang trí. Bóng mát có thể làm giảm nhiệt độ bề mặt, trong khi quá trình thoát hơi nước góp phần điều hòa vi khí hậu. Hệ rễ giúp nước mưa thấm xuống đất, qua đó giảm áp lực lên hệ thống thoát nước khi mưa lớn. Cây xanh còn tạo hành lang sinh học, cung cấp nơi trú ẩn và nguồn thức ăn cho nhiều loài sinh vật. Dẫu vậy, không phải cứ tăng số lượng cây là đô thị sẽ trở nên bền vững hơn. Cây trồng không phù hợp có thể làm hư hại vỉa hè, tiêu tốn nhiều nước hoặc dễ gãy đổ khi có bão. Một hàng cây đồng nhất về loài cũng có thể khiến cả tuyến phố dễ bị tổn thương trước cùng một loại sâu bệnh. Vì thế, quy hoạch cây xanh cần dựa trên dữ liệu về đất, nước, khí hậu, mật độ xây dựng và đặc điểm sinh thái địa phương. Mục tiêu không đơn thuần là trồng thật nhiều cây, mà là xây dựng một hệ sinh thái đô thị đa dạng, có khả năng thích ứng và được chăm sóc lâu dài.\n\nVĂN BẢN B - ĐỌC HIỂU (Câu 44-50)\nDữ liệu mở thường được xem là nguồn lực thúc đẩy đổi mới, bởi cá nhân và tổ chức có thể sử dụng lại dữ liệu công khai để tạo ra dịch vụ mới. Chẳng hạn, dữ liệu giao thông theo thời gian thực có thể hỗ trợ người dân chọn lộ trình, còn dữ liệu môi trường giúp cộng đồng theo dõi chất lượng không khí. Tuy nhiên, “mở” không đồng nghĩa với “vô điều kiện”. Dữ liệu cần được mô tả rõ nguồn gốc, thời điểm cập nhật, đơn vị đo và giới hạn sử dụng. Những tập dữ liệu chứa thông tin cá nhân phải được ẩn danh hoặc giới hạn quyền truy cập phù hợp. Một rủi ro khác nằm ở cách diễn giải. Một biểu đồ được trình bày đẹp mắt vẫn có thể gây hiểu lầm nếu trục đo bị cắt, mẫu khảo sát không đại diện hoặc dữ liệu cũ được dùng để mô tả hiện tại. Do đó, năng lực dữ liệu không chỉ là khả năng đọc con số; nó còn bao gồm việc đặt câu hỏi về cách thu thập, phát hiện thiên lệch và cân nhắc hệ quả của việc công bố. Giá trị của dữ liệu phụ thuộc cả vào chất lượng dữ liệu lẫn trách nhiệm của người sử dụng.",
+  "explanation": "Văn bản A yêu cầu dữ liệu sinh thái địa phương; văn bản B yêu cầu dữ liệu rõ nguồn, thời điểm và giới hạn.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 8,
+   "answerPage": 17
+  }
  },
  {
   "n": 51,
@@ -723,11 +973,16 @@
    "with",
    "by"
   ],
-  "correctLetter": "A",
   "correct": 0,
   "topicId": "Tiếng Anh",
-  "difficulty": 2,
-  "passage": "Cities are often described as collections of buildings, roads, and services. Yet their resilience depends just as much on less visible systems: social trust, access to information, and the ability of institutions to learn. When a flood occurs, for example, a technically accurate warning may still fail if residents do not understand it or do not trust the source. Conversely, local networks can help information reach vulnerable households quickly. This does not mean that community action can replace public infrastructure. Rather, resilience emerges when reliable infrastructure, clear communication, and local knowledge reinforce one another. Planning for uncertainty therefore requires more than predicting a single future. It requires building systems that can adapt when assumptions prove wrong."
+  "difficulty": 0.5,
+  "passage": "READING / CLOZE TEXT (Questions 51-60)\nCities are often described as collections of buildings, roads, and services. Yet their resilience depends just as much on less visible systems: social trust, access to information, and the ability of institutions to learn. When a flood occurs, for example, a technically accurate warning may still fail if residents do not understand it or do not trust the source. Conversely, local networks can help information reach vulnerable households quickly. This does not mean that community action can replace public infrastructure. Rather, resilience emerges when reliable infrastructure, clear communication, and local knowledge reinforce one another. Planning for uncertainty therefore requires more than predicting a single future. It requires building systems that can adapt when assumptions prove wrong.",
+  "explanation": "The standard construction is “describe something as something”.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 8,
+   "answerPage": 17
+  }
  },
  {
   "n": 52,
@@ -738,11 +993,16 @@
    "predict events with complete accuracy",
    "transfer responsibility to residents"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Anh",
-  "difficulty": 2,
-  "passage": "Cities are often described as collections of buildings, roads, and services. Yet their resilience depends just as much on less visible systems: social trust, access to information, and the ability of institutions to learn. When a flood occurs, for example, a technically accurate warning may still fail if residents do not understand it or do not trust the source. Conversely, local networks can help information reach vulnerable households quickly. This does not mean that community action can replace public infrastructure. Rather, resilience emerges when reliable infrastructure, clear communication, and local knowledge reinforce one another. Planning for uncertainty therefore requires more than predicting a single future. It requires building systems that can adapt when assumptions prove wrong."
+  "difficulty": 0.5,
+  "passage": "READING / CLOZE TEXT (Questions 51-60)\nCities are often described as collections of buildings, roads, and services. Yet their resilience depends just as much on less visible systems: social trust, access to information, and the ability of institutions to learn. When a flood occurs, for example, a technically accurate warning may still fail if residents do not understand it or do not trust the source. Conversely, local networks can help information reach vulnerable households quickly. This does not mean that community action can replace public infrastructure. Rather, resilience emerges when reliable infrastructure, clear communication, and local knowledge reinforce one another. Planning for uncertainty therefore requires more than predicting a single future. It requires building systems that can adapt when assumptions prove wrong.",
+  "explanation": "The passage connects resilience with adaptation when assumptions prove wrong.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 8,
+   "answerPage": 17
+  }
  },
  {
   "n": 53,
@@ -753,11 +1013,16 @@
    "Local networks prevent public communication.",
    "Floods cannot be forecast."
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Anh",
-  "difficulty": 2,
-  "passage": "Cities are often described as collections of buildings, roads, and services. Yet their resilience depends just as much on less visible systems: social trust, access to information, and the ability of institutions to learn. When a flood occurs, for example, a technically accurate warning may still fail if residents do not understand it or do not trust the source. Conversely, local networks can help information reach vulnerable households quickly. This does not mean that community action can replace public infrastructure. Rather, resilience emerges when reliable infrastructure, clear communication, and local knowledge reinforce one another. Planning for uncertainty therefore requires more than predicting a single future. It requires building systems that can adapt when assumptions prove wrong."
+  "difficulty": 0.5,
+  "passage": "READING / CLOZE TEXT (Questions 51-60)\nCities are often described as collections of buildings, roads, and services. Yet their resilience depends just as much on less visible systems: social trust, access to information, and the ability of institutions to learn. When a flood occurs, for example, a technically accurate warning may still fail if residents do not understand it or do not trust the source. Conversely, local networks can help information reach vulnerable households quickly. This does not mean that community action can replace public infrastructure. Rather, resilience emerges when reliable infrastructure, clear communication, and local knowledge reinforce one another. Planning for uncertainty therefore requires more than predicting a single future. It requires building systems that can adapt when assumptions prove wrong.",
+  "explanation": "The text explicitly identifies lack of understanding or trust as reasons for failure.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 8,
+   "answerPage": 17
+  }
  },
  {
   "n": 54,
@@ -768,11 +1033,16 @@
    "changing the subject",
    "stating a final numerical result"
   ],
-  "correctLetter": "A",
   "correct": 0,
   "topicId": "Tiếng Anh",
-  "difficulty": 2,
-  "passage": "Cities are often described as collections of buildings, roads, and services. Yet their resilience depends just as much on less visible systems: social trust, access to information, and the ability of institutions to learn. When a flood occurs, for example, a technically accurate warning may still fail if residents do not understand it or do not trust the source. Conversely, local networks can help information reach vulnerable households quickly. This does not mean that community action can replace public infrastructure. Rather, resilience emerges when reliable infrastructure, clear communication, and local knowledge reinforce one another. Planning for uncertainty therefore requires more than predicting a single future. It requires building systems that can adapt when assumptions prove wrong."
+  "difficulty": 0.5,
+  "passage": "READING / CLOZE TEXT (Questions 51-60)\nCities are often described as collections of buildings, roads, and services. Yet their resilience depends just as much on less visible systems: social trust, access to information, and the ability of institutions to learn. When a flood occurs, for example, a technically accurate warning may still fail if residents do not understand it or do not trust the source. Conversely, local networks can help information reach vulnerable households quickly. This does not mean that community action can replace public infrastructure. Rather, resilience emerges when reliable infrastructure, clear communication, and local knowledge reinforce one another. Planning for uncertainty therefore requires more than predicting a single future. It requires building systems that can adapt when assumptions prove wrong.",
+  "explanation": "The author clarifies that community action complements rather than replaces infrastructure.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 8,
+   "answerPage": 17
+  }
  },
  {
   "n": 55,
@@ -783,11 +1053,16 @@
    "They can strengthen one another.",
    "Infrastructure makes communication unnecessary."
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Tiếng Anh",
-  "difficulty": 2,
-  "passage": "Cities are often described as collections of buildings, roads, and services. Yet their resilience depends just as much on less visible systems: social trust, access to information, and the ability of institutions to learn. When a flood occurs, for example, a technically accurate warning may still fail if residents do not understand it or do not trust the source. Conversely, local networks can help information reach vulnerable households quickly. This does not mean that community action can replace public infrastructure. Rather, resilience emerges when reliable infrastructure, clear communication, and local knowledge reinforce one another. Planning for uncertainty therefore requires more than predicting a single future. It requires building systems that can adapt when assumptions prove wrong."
+  "difficulty": 0.5,
+  "passage": "READING / CLOZE TEXT (Questions 51-60)\nCities are often described as collections of buildings, roads, and services. Yet their resilience depends just as much on less visible systems: social trust, access to information, and the ability of institutions to learn. When a flood occurs, for example, a technically accurate warning may still fail if residents do not understand it or do not trust the source. Conversely, local networks can help information reach vulnerable households quickly. This does not mean that community action can replace public infrastructure. Rather, resilience emerges when reliable infrastructure, clear communication, and local knowledge reinforce one another. Planning for uncertainty therefore requires more than predicting a single future. It requires building systems that can adapt when assumptions prove wrong.",
+  "explanation": "The final part says resilience emerges when infrastructure, communication, and local knowledge reinforce each other.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 8,
+   "answerPage": 17
+  }
  },
  {
   "n": 56,
@@ -798,11 +1073,16 @@
    "for instance",
    "in contrast"
   ],
-  "correctLetter": "A",
   "correct": 0,
   "topicId": "Tiếng Anh",
-  "difficulty": 2,
-  "passage": "Cities are often described as collections of buildings, roads, and services. Yet their resilience depends just as much on less visible systems: social trust, access to information, and the ability of institutions to learn. When a flood occurs, for example, a technically accurate warning may still fail if residents do not understand it or do not trust the source. Conversely, local networks can help information reach vulnerable households quickly. This does not mean that community action can replace public infrastructure. Rather, resilience emerges when reliable infrastructure, clear communication, and local knowledge reinforce one another. Planning for uncertainty therefore requires more than predicting a single future. It requires building systems that can adapt when assumptions prove wrong."
+  "difficulty": 0.5,
+  "passage": "READING / CLOZE TEXT (Questions 51-60)\nCities are often described as collections of buildings, roads, and services. Yet their resilience depends just as much on less visible systems: social trust, access to information, and the ability of institutions to learn. When a flood occurs, for example, a technically accurate warning may still fail if residents do not understand it or do not trust the source. Conversely, local networks can help information reach vulnerable households quickly. This does not mean that community action can replace public infrastructure. Rather, resilience emerges when reliable infrastructure, clear communication, and local knowledge reinforce one another. Planning for uncertainty therefore requires more than predicting a single future. It requires building systems that can adapt when assumptions prove wrong.",
+  "explanation": "Uncertainty motivates contingency planning, so “therefore” expresses the logical consequence.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 8,
+   "answerPage": 17
+  }
  },
  {
   "n": 57,
@@ -813,11 +1093,16 @@
    "Residents should replace emergency services.",
    "Technical accuracy guarantees public compliance."
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Anh",
-  "difficulty": 2,
-  "passage": "Cities are often described as collections of buildings, roads, and services. Yet their resilience depends just as much on less visible systems: social trust, access to information, and the ability of institutions to learn. When a flood occurs, for example, a technically accurate warning may still fail if residents do not understand it or do not trust the source. Conversely, local networks can help information reach vulnerable households quickly. This does not mean that community action can replace public infrastructure. Rather, resilience emerges when reliable infrastructure, clear communication, and local knowledge reinforce one another. Planning for uncertainty therefore requires more than predicting a single future. It requires building systems that can adapt when assumptions prove wrong."
+  "difficulty": 0.5,
+  "passage": "READING / CLOZE TEXT (Questions 51-60)\nCities are often described as collections of buildings, roads, and services. Yet their resilience depends just as much on less visible systems: social trust, access to information, and the ability of institutions to learn. When a flood occurs, for example, a technically accurate warning may still fail if residents do not understand it or do not trust the source. Conversely, local networks can help information reach vulnerable households quickly. This does not mean that community action can replace public infrastructure. Rather, resilience emerges when reliable infrastructure, clear communication, and local knowledge reinforce one another. Planning for uncertainty therefore requires more than predicting a single future. It requires building systems that can adapt when assumptions prove wrong.",
+  "explanation": "Adaptive systems must be able to adjust when assumptions prove wrong.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 9,
+   "answerPage": 17
+  }
  },
  {
   "n": 58,
@@ -828,11 +1113,16 @@
    "Supportive but qualified",
    "Hostile"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Tiếng Anh",
-  "difficulty": 2,
-  "passage": "Cities are often described as collections of buildings, roads, and services. Yet their resilience depends just as much on less visible systems: social trust, access to information, and the ability of institutions to learn. When a flood occurs, for example, a technically accurate warning may still fail if residents do not understand it or do not trust the source. Conversely, local networks can help information reach vulnerable households quickly. This does not mean that community action can replace public infrastructure. Rather, resilience emerges when reliable infrastructure, clear communication, and local knowledge reinforce one another. Planning for uncertainty therefore requires more than predicting a single future. It requires building systems that can adapt when assumptions prove wrong."
+  "difficulty": 0.5,
+  "passage": "READING / CLOZE TEXT (Questions 51-60)\nCities are often described as collections of buildings, roads, and services. Yet their resilience depends just as much on less visible systems: social trust, access to information, and the ability of institutions to learn. When a flood occurs, for example, a technically accurate warning may still fail if residents do not understand it or do not trust the source. Conversely, local networks can help information reach vulnerable households quickly. This does not mean that community action can replace public infrastructure. Rather, resilience emerges when reliable infrastructure, clear communication, and local knowledge reinforce one another. Planning for uncertainty therefore requires more than predicting a single future. It requires building systems that can adapt when assumptions prove wrong.",
+  "explanation": "The author values local networks but explicitly says they do not replace infrastructure.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 9,
+   "answerPage": 17
+  }
  },
  {
   "n": 59,
@@ -843,11 +1133,16 @@
    "The Decline of Urban Infrastructure",
    "A Technical Manual for Flood Barriers"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Anh",
-  "difficulty": 2,
-  "passage": "Cities are often described as collections of buildings, roads, and services. Yet their resilience depends just as much on less visible systems: social trust, access to information, and the ability of institutions to learn. When a flood occurs, for example, a technically accurate warning may still fail if residents do not understand it or do not trust the source. Conversely, local networks can help information reach vulnerable households quickly. This does not mean that community action can replace public infrastructure. Rather, resilience emerges when reliable infrastructure, clear communication, and local knowledge reinforce one another. Planning for uncertainty therefore requires more than predicting a single future. It requires building systems that can adapt when assumptions prove wrong."
+  "difficulty": 0.5,
+  "passage": "READING / CLOZE TEXT (Questions 51-60)\nCities are often described as collections of buildings, roads, and services. Yet their resilience depends just as much on less visible systems: social trust, access to information, and the ability of institutions to learn. When a flood occurs, for example, a technically accurate warning may still fail if residents do not understand it or do not trust the source. Conversely, local networks can help information reach vulnerable households quickly. This does not mean that community action can replace public infrastructure. Rather, resilience emerges when reliable infrastructure, clear communication, and local knowledge reinforce one another. Planning for uncertainty therefore requires more than predicting a single future. It requires building systems that can adapt when assumptions prove wrong.",
+  "explanation": "The central idea is that urban resilience combines infrastructure, trust, communication, and adaptability.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 9,
+   "answerPage": 17
+  }
  },
  {
   "n": 60,
@@ -858,11 +1153,16 @@
    "A city should eliminate local emergency networks.",
    "A city should keep plans unchanged for consistency."
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Anh",
-  "difficulty": 2,
-  "passage": "Cities are often described as collections of buildings, roads, and services. Yet their resilience depends just as much on less visible systems: social trust, access to information, and the ability of institutions to learn. When a flood occurs, for example, a technically accurate warning may still fail if residents do not understand it or do not trust the source. Conversely, local networks can help information reach vulnerable households quickly. This does not mean that community action can replace public infrastructure. Rather, resilience emerges when reliable infrastructure, clear communication, and local knowledge reinforce one another. Planning for uncertainty therefore requires more than predicting a single future. It requires building systems that can adapt when assumptions prove wrong."
+  "difficulty": 0.5,
+  "passage": "READING / CLOZE TEXT (Questions 51-60)\nCities are often described as collections of buildings, roads, and services. Yet their resilience depends just as much on less visible systems: social trust, access to information, and the ability of institutions to learn. When a flood occurs, for example, a technically accurate warning may still fail if residents do not understand it or do not trust the source. Conversely, local networks can help information reach vulnerable households quickly. This does not mean that community action can replace public infrastructure. Rather, resilience emerges when reliable infrastructure, clear communication, and local knowledge reinforce one another. Planning for uncertainty therefore requires more than predicting a single future. It requires building systems that can adapt when assumptions prove wrong.",
+  "explanation": "Testing comprehension and trust addresses the communication gap described in the text.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 9,
+   "answerPage": 17
+  }
  },
  {
   "n": 61,
@@ -873,10 +1173,15 @@
    "has discussed",
    "discusses"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Anh",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "explanation": "The grammatical subject is plural “findings”; the phrase “together with...” does not change its number.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 9,
+   "answerPage": 17
+  }
  },
  {
   "n": 62,
@@ -887,10 +1192,15 @@
    "might have detected",
    "has detected"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Tiếng Anh",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "explanation": "Inverted third conditional: Had + past participle, might/would have + past participle.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 9,
+   "answerPage": 17
+  }
  },
  {
   "n": 63,
@@ -901,10 +1211,15 @@
    "The number of participants have increased, which suggests greater interest.",
    "The number of participants has increased, which suggest greater interest."
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Anh",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "explanation": "“The number” is singular, and “which” refers to the singular increase.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 9,
+   "answerPage": 17
+  }
  },
  {
   "n": 64,
@@ -915,10 +1230,15 @@
    "irrelevant",
    "unavoidable"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Anh",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "explanation": "“Tentative” means provisional or not yet conclusive; “preliminary” is closest.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 9,
+   "answerPage": 17
+  }
  },
  {
   "n": 65,
@@ -929,10 +1249,15 @@
    "The intervention is unquestionably the only cause.",
    "The intervention cannot fail."
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Anh",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "explanation": "B reports an association limited to the observed sample rather than making an absolute causal claim.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 9,
+   "answerPage": 17
+  }
  },
  {
   "n": 66,
@@ -943,10 +1268,15 @@
    "which",
    "whose"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Tiếng Anh",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "explanation": "“Which” refers to the non-human noun “database” in a non-defining relative clause.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 10,
+   "answerPage": 17
+  }
  },
  {
   "n": 67,
@@ -957,10 +1287,15 @@
    "The sample was small unless the estimate has a wide confidence interval.",
    "The estimate has a wide confidence interval, whereas the sample was small."
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Anh",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "explanation": "A small sample commonly leads to greater uncertainty and a wider confidence interval; B expresses cause.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 10,
+   "answerPage": 17
+  }
  },
  {
   "n": 68,
@@ -971,10 +1306,15 @@
    "with",
    "over"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Anh",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "explanation": "The fixed expression is “distinguish X from Y”.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 10,
+   "answerPage": 17
+  }
  },
  {
   "n": 69,
@@ -985,10 +1325,15 @@
    "The data do not rule out the claim.",
    "The data are irrelevant to the claim."
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Tiếng Anh",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "explanation": "“Not inconsistent” is a cautious statement: the data do not contradict it, but may not prove it.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 10,
+   "answerPage": 17
+  }
  },
  {
   "n": 70,
@@ -999,10 +1344,15 @@
    "The survey was kind of bad.",
    "The survey totally messed up."
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Anh",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "explanation": "B uses precise, neutral academic language.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 10,
+   "answerPage": 17
+  }
  },
  {
   "n": 71,
@@ -1013,11 +1363,16 @@
    "Mọi hình thức giải trí trực tuyến đều có hại.",
    "Các nền tảng số không thể tạo ra giá trị học tập."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Tiếng Anh",
-  "difficulty": 2,
-  "passage": "- LẬP LUẬN (Câu 71-85) Trong môi trường số, sự chú ý trở thành một nguồn lực cạnh tranh. Nhiều nền tảng tối ưu hóa thiết kế để người dùng ở lại lâu hơn, nhưng thời lượng sử dụng không đồng nghĩa với giá trị nhận được. Một người có thể dành hàng giờ xem nội dung liên tiếp mà không hình thành thêm hiểu biết đáng kể. Ngược lại, một phiên đọc ngắn nhưng có mục tiêu rõ ràng có thể tạo ra kết quả học tập sâu hơn. Vì thế, đánh giá chất lượng một sản phẩm số chỉ bằng số phút sử dụng là cách đo thiếu chiều sâu. Cần xem xét người dùng đạt được điều gì, mức độ chủ động của họ và chi phí cơ hội của thời gian đã bỏ ra. Điều này không có nghĩa mọi hình thức giải trí trực tuyến đều vô ích. Vấn đề nằm ở việc phân biệt sử dụng có chủ đích với hành vi bị dẫn dắt bởi cơ chế giữ chân. Khi thiết kế được đánh giá bằng giá trị người dùng nhận được thay vì chỉ bằng mức độ tương tác, mục tiêu công nghệ có thể gần hơn với lợi ích con người."
+  "topicId": "Tiếng Việt",
+  "difficulty": 0.5,
+  "passage": "VĂN BẢN C - LẬP LUẬN (Câu 71-85)\nTrong môi trường số, sự chú ý trở thành một nguồn lực cạnh tranh. Nhiều nền tảng tối ưu hóa thiết kế để người dùng ở lại lâu hơn, nhưng thời lượng sử dụng không đồng nghĩa với giá trị nhận được. Một người có thể dành hàng giờ xem nội dung liên tiếp mà không hình thành thêm hiểu biết đáng kể. Ngược lại, một phiên đọc ngắn nhưng có mục tiêu rõ ràng có thể tạo ra kết quả học tập sâu hơn. Vì thế, đánh giá chất lượng một sản phẩm số chỉ bằng số phút sử dụng là cách đo thiếu chiều sâu. Cần xem xét người dùng đạt được điều gì, mức độ chủ động của họ và chi phí cơ hội của thời gian đã bỏ ra. Điều này không có nghĩa mọi hình thức giải trí trực tuyến đều vô ích. Vấn đề nằm ở việc phân biệt sử dụng có chủ đích với hành vi bị dẫn dắt bởi cơ chế giữ chân. Khi thiết kế được đánh giá bằng giá trị người dùng nhận được thay vì chỉ bằng mức độ tương tác, mục tiêu công nghệ có thể gần hơn với lợi ích con người.",
+  "explanation": "Đoạn hai nêu trực tiếp tiêu chí đánh giá thay thế cho chỉ số thời lượng.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 10,
+   "answerPage": 17
+  }
  },
  {
   "n": 72,
@@ -1028,11 +1383,16 @@
    "Khẳng định đọc sách là hoạt động duy nhất có ích.",
    "So sánh hai nhóm tuổi sử dụng Internet."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Tiếng Anh",
-  "difficulty": 2,
-  "passage": "- LẬP LUẬN (Câu 71-85) Trong môi trường số, sự chú ý trở thành một nguồn lực cạnh tranh. Nhiều nền tảng tối ưu hóa thiết kế để người dùng ở lại lâu hơn, nhưng thời lượng sử dụng không đồng nghĩa với giá trị nhận được. Một người có thể dành hàng giờ xem nội dung liên tiếp mà không hình thành thêm hiểu biết đáng kể. Ngược lại, một phiên đọc ngắn nhưng có mục tiêu rõ ràng có thể tạo ra kết quả học tập sâu hơn. Vì thế, đánh giá chất lượng một sản phẩm số chỉ bằng số phút sử dụng là cách đo thiếu chiều sâu. Cần xem xét người dùng đạt được điều gì, mức độ chủ động của họ và chi phí cơ hội của thời gian đã bỏ ra. Điều này không có nghĩa mọi hình thức giải trí trực tuyến đều vô ích. Vấn đề nằm ở việc phân biệt sử dụng có chủ đích với hành vi bị dẫn dắt bởi cơ chế giữ chân. Khi thiết kế được đánh giá bằng giá trị người dùng nhận được thay vì chỉ bằng mức độ tương tác, mục tiêu công nghệ có thể gần hơn với lợi ích con người."
+  "topicId": "Tiếng Việt",
+  "difficulty": 0.5,
+  "passage": "VĂN BẢN C - LẬP LUẬN (Câu 71-85)\nTrong môi trường số, sự chú ý trở thành một nguồn lực cạnh tranh. Nhiều nền tảng tối ưu hóa thiết kế để người dùng ở lại lâu hơn, nhưng thời lượng sử dụng không đồng nghĩa với giá trị nhận được. Một người có thể dành hàng giờ xem nội dung liên tiếp mà không hình thành thêm hiểu biết đáng kể. Ngược lại, một phiên đọc ngắn nhưng có mục tiêu rõ ràng có thể tạo ra kết quả học tập sâu hơn. Vì thế, đánh giá chất lượng một sản phẩm số chỉ bằng số phút sử dụng là cách đo thiếu chiều sâu. Cần xem xét người dùng đạt được điều gì, mức độ chủ động của họ và chi phí cơ hội của thời gian đã bỏ ra. Điều này không có nghĩa mọi hình thức giải trí trực tuyến đều vô ích. Vấn đề nằm ở việc phân biệt sử dụng có chủ đích với hành vi bị dẫn dắt bởi cơ chế giữ chân. Khi thiết kế được đánh giá bằng giá trị người dùng nhận được thay vì chỉ bằng mức độ tương tác, mục tiêu công nghệ có thể gần hơn với lợi ích con người.",
+  "explanation": "Hai ví dụ làm rõ rằng thời lượng không tỉ lệ tất yếu với giá trị.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 10,
+   "answerPage": 17
+  }
  },
  {
   "n": 73,
@@ -1043,11 +1403,16 @@
    "Giải trí trực tuyến không nhất thiết vô ích; cần phân biệt cách sử dụng.",
    "Người dùng không có khả năng tự kiểm soát."
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "topicId": "Tiếng Anh",
-  "difficulty": 2,
-  "passage": "- LẬP LUẬN (Câu 71-85) Trong môi trường số, sự chú ý trở thành một nguồn lực cạnh tranh. Nhiều nền tảng tối ưu hóa thiết kế để người dùng ở lại lâu hơn, nhưng thời lượng sử dụng không đồng nghĩa với giá trị nhận được. Một người có thể dành hàng giờ xem nội dung liên tiếp mà không hình thành thêm hiểu biết đáng kể. Ngược lại, một phiên đọc ngắn nhưng có mục tiêu rõ ràng có thể tạo ra kết quả học tập sâu hơn. Vì thế, đánh giá chất lượng một sản phẩm số chỉ bằng số phút sử dụng là cách đo thiếu chiều sâu. Cần xem xét người dùng đạt được điều gì, mức độ chủ động của họ và chi phí cơ hội của thời gian đã bỏ ra. Điều này không có nghĩa mọi hình thức giải trí trực tuyến đều vô ích. Vấn đề nằm ở việc phân biệt sử dụng có chủ đích với hành vi bị dẫn dắt bởi cơ chế giữ chân. Khi thiết kế được đánh giá bằng giá trị người dùng nhận được thay vì chỉ bằng mức độ tương tác, mục tiêu công nghệ có thể gần hơn với lợi ích con người."
+  "topicId": "Tiếng Việt",
+  "difficulty": 0.5,
+  "passage": "VĂN BẢN C - LẬP LUẬN (Câu 71-85)\nTrong môi trường số, sự chú ý trở thành một nguồn lực cạnh tranh. Nhiều nền tảng tối ưu hóa thiết kế để người dùng ở lại lâu hơn, nhưng thời lượng sử dụng không đồng nghĩa với giá trị nhận được. Một người có thể dành hàng giờ xem nội dung liên tiếp mà không hình thành thêm hiểu biết đáng kể. Ngược lại, một phiên đọc ngắn nhưng có mục tiêu rõ ràng có thể tạo ra kết quả học tập sâu hơn. Vì thế, đánh giá chất lượng một sản phẩm số chỉ bằng số phút sử dụng là cách đo thiếu chiều sâu. Cần xem xét người dùng đạt được điều gì, mức độ chủ động của họ và chi phí cơ hội của thời gian đã bỏ ra. Điều này không có nghĩa mọi hình thức giải trí trực tuyến đều vô ích. Vấn đề nằm ở việc phân biệt sử dụng có chủ đích với hành vi bị dẫn dắt bởi cơ chế giữ chân. Khi thiết kế được đánh giá bằng giá trị người dùng nhận được thay vì chỉ bằng mức độ tương tác, mục tiêu công nghệ có thể gần hơn với lợi ích con người.",
+  "explanation": "Tác giả nói rõ “không có nghĩa mọi hình thức giải trí trực tuyến đều vô ích”.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 11,
+   "answerPage": 17
+  }
  },
  {
   "n": 74,
@@ -1058,11 +1423,16 @@
    "Thời gian thiết bị cần để tải nội dung.",
    "Chi phí sản xuất nội dung số."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Tiếng Anh",
-  "difficulty": 2,
-  "passage": "- LẬP LUẬN (Câu 71-85) Trong môi trường số, sự chú ý trở thành một nguồn lực cạnh tranh. Nhiều nền tảng tối ưu hóa thiết kế để người dùng ở lại lâu hơn, nhưng thời lượng sử dụng không đồng nghĩa với giá trị nhận được. Một người có thể dành hàng giờ xem nội dung liên tiếp mà không hình thành thêm hiểu biết đáng kể. Ngược lại, một phiên đọc ngắn nhưng có mục tiêu rõ ràng có thể tạo ra kết quả học tập sâu hơn. Vì thế, đánh giá chất lượng một sản phẩm số chỉ bằng số phút sử dụng là cách đo thiếu chiều sâu. Cần xem xét người dùng đạt được điều gì, mức độ chủ động của họ và chi phí cơ hội của thời gian đã bỏ ra. Điều này không có nghĩa mọi hình thức giải trí trực tuyến đều vô ích. Vấn đề nằm ở việc phân biệt sử dụng có chủ đích với hành vi bị dẫn dắt bởi cơ chế giữ chân. Khi thiết kế được đánh giá bằng giá trị người dùng nhận được thay vì chỉ bằng mức độ tương tác, mục tiêu công nghệ có thể gần hơn với lợi ích con người."
+  "topicId": "Tiếng Việt",
+  "difficulty": 0.5,
+  "passage": "VĂN BẢN C - LẬP LUẬN (Câu 71-85)\nTrong môi trường số, sự chú ý trở thành một nguồn lực cạnh tranh. Nhiều nền tảng tối ưu hóa thiết kế để người dùng ở lại lâu hơn, nhưng thời lượng sử dụng không đồng nghĩa với giá trị nhận được. Một người có thể dành hàng giờ xem nội dung liên tiếp mà không hình thành thêm hiểu biết đáng kể. Ngược lại, một phiên đọc ngắn nhưng có mục tiêu rõ ràng có thể tạo ra kết quả học tập sâu hơn. Vì thế, đánh giá chất lượng một sản phẩm số chỉ bằng số phút sử dụng là cách đo thiếu chiều sâu. Cần xem xét người dùng đạt được điều gì, mức độ chủ động của họ và chi phí cơ hội của thời gian đã bỏ ra. Điều này không có nghĩa mọi hình thức giải trí trực tuyến đều vô ích. Vấn đề nằm ở việc phân biệt sử dụng có chủ đích với hành vi bị dẫn dắt bởi cơ chế giữ chân. Khi thiết kế được đánh giá bằng giá trị người dùng nhận được thay vì chỉ bằng mức độ tương tác, mục tiêu công nghệ có thể gần hơn với lợi ích con người.",
+  "explanation": "Chi phí cơ hội là giá trị của lựa chọn tốt nhất bị bỏ qua.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 11,
+   "answerPage": 17
+  }
  },
  {
   "n": 75,
@@ -1071,13 +1441,18 @@
    "Chất lượng nền tảng chắc chắn đã tăng.",
    "Chỉ số thời lượng tăng chưa đủ chứng minh giá trị sử dụng tăng.",
    "Người dùng đã học nhiều hơn.",
-   "Mọi phiên sử dụng đều vô ích. MỨC 3 - KHÓ / PHÂN HÓA MẠNH (CÂU 76-100)"
+   "Mọi phiên sử dụng đều vô ích."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Tiếng Anh",
-  "difficulty": 2,
-  "passage": "- LẬP LUẬN (Câu 71-85) Trong môi trường số, sự chú ý trở thành một nguồn lực cạnh tranh. Nhiều nền tảng tối ưu hóa thiết kế để người dùng ở lại lâu hơn, nhưng thời lượng sử dụng không đồng nghĩa với giá trị nhận được. Một người có thể dành hàng giờ xem nội dung liên tiếp mà không hình thành thêm hiểu biết đáng kể. Ngược lại, một phiên đọc ngắn nhưng có mục tiêu rõ ràng có thể tạo ra kết quả học tập sâu hơn. Vì thế, đánh giá chất lượng một sản phẩm số chỉ bằng số phút sử dụng là cách đo thiếu chiều sâu. Cần xem xét người dùng đạt được điều gì, mức độ chủ động của họ và chi phí cơ hội của thời gian đã bỏ ra. Điều này không có nghĩa mọi hình thức giải trí trực tuyến đều vô ích. Vấn đề nằm ở việc phân biệt sử dụng có chủ đích với hành vi bị dẫn dắt bởi cơ chế giữ chân. Khi thiết kế được đánh giá bằng giá trị người dùng nhận được thay vì chỉ bằng mức độ tương tác, mục tiêu công nghệ có thể gần hơn với lợi ích con người."
+  "topicId": "Tiếng Việt",
+  "difficulty": 0.5,
+  "passage": "VĂN BẢN C - LẬP LUẬN (Câu 71-85)\nTrong môi trường số, sự chú ý trở thành một nguồn lực cạnh tranh. Nhiều nền tảng tối ưu hóa thiết kế để người dùng ở lại lâu hơn, nhưng thời lượng sử dụng không đồng nghĩa với giá trị nhận được. Một người có thể dành hàng giờ xem nội dung liên tiếp mà không hình thành thêm hiểu biết đáng kể. Ngược lại, một phiên đọc ngắn nhưng có mục tiêu rõ ràng có thể tạo ra kết quả học tập sâu hơn. Vì thế, đánh giá chất lượng một sản phẩm số chỉ bằng số phút sử dụng là cách đo thiếu chiều sâu. Cần xem xét người dùng đạt được điều gì, mức độ chủ động của họ và chi phí cơ hội của thời gian đã bỏ ra. Điều này không có nghĩa mọi hình thức giải trí trực tuyến đều vô ích. Vấn đề nằm ở việc phân biệt sử dụng có chủ đích với hành vi bị dẫn dắt bởi cơ chế giữ chân. Khi thiết kế được đánh giá bằng giá trị người dùng nhận được thay vì chỉ bằng mức độ tương tác, mục tiêu công nghệ có thể gần hơn với lợi ích con người.",
+  "explanation": "Văn bản phản đối việc xem thời lượng là chỉ số đủ để đánh giá chất lượng.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 11,
+   "answerPage": 17
+  }
  },
  {
   "n": 76,
@@ -1088,11 +1463,16 @@
    "Không thể thu thập dữ liệu về trải nghiệm người dùng.",
    "Mọi nền tảng đều giống nhau."
   ],
-  "correctLetter": "A",
   "correct": 0,
-  "topicId": "Tiếng Anh",
-  "difficulty": 3,
-  "passage": "- LẬP LUẬN (Câu 71-85) Trong môi trường số, sự chú ý trở thành một nguồn lực cạnh tranh. Nhiều nền tảng tối ưu hóa thiết kế để người dùng ở lại lâu hơn, nhưng thời lượng sử dụng không đồng nghĩa với giá trị nhận được. Một người có thể dành hàng giờ xem nội dung liên tiếp mà không hình thành thêm hiểu biết đáng kể. Ngược lại, một phiên đọc ngắn nhưng có mục tiêu rõ ràng có thể tạo ra kết quả học tập sâu hơn. Vì thế, đánh giá chất lượng một sản phẩm số chỉ bằng số phút sử dụng là cách đo thiếu chiều sâu. Cần xem xét người dùng đạt được điều gì, mức độ chủ động của họ và chi phí cơ hội của thời gian đã bỏ ra. Điều này không có nghĩa mọi hình thức giải trí trực tuyến đều vô ích. Vấn đề nằm ở việc phân biệt sử dụng có chủ đích với hành vi bị dẫn dắt bởi cơ chế giữ chân. Khi thiết kế được đánh giá bằng giá trị người dùng nhận được thay vì chỉ bằng mức độ tương tác, mục tiêu công nghệ có thể gần hơn với lợi ích con người."
+  "topicId": "Tiếng Việt",
+  "difficulty": 0.75,
+  "passage": "VĂN BẢN C - LẬP LUẬN (Câu 71-85)\nTrong môi trường số, sự chú ý trở thành một nguồn lực cạnh tranh. Nhiều nền tảng tối ưu hóa thiết kế để người dùng ở lại lâu hơn, nhưng thời lượng sử dụng không đồng nghĩa với giá trị nhận được. Một người có thể dành hàng giờ xem nội dung liên tiếp mà không hình thành thêm hiểu biết đáng kể. Ngược lại, một phiên đọc ngắn nhưng có mục tiêu rõ ràng có thể tạo ra kết quả học tập sâu hơn. Vì thế, đánh giá chất lượng một sản phẩm số chỉ bằng số phút sử dụng là cách đo thiếu chiều sâu. Cần xem xét người dùng đạt được điều gì, mức độ chủ động của họ và chi phí cơ hội của thời gian đã bỏ ra. Điều này không có nghĩa mọi hình thức giải trí trực tuyến đều vô ích. Vấn đề nằm ở việc phân biệt sử dụng có chủ đích với hành vi bị dẫn dắt bởi cơ chế giữ chân. Khi thiết kế được đánh giá bằng giá trị người dùng nhận được thay vì chỉ bằng mức độ tương tác, mục tiêu công nghệ có thể gần hơn với lợi ích con người.",
+  "explanation": "Đây là phản biện có trọng lượng vì “giá trị” có thể bao gồm thư giãn; nó bổ sung tiêu chí mà không bác bỏ hoàn toàn luận đề.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 12,
+   "answerPage": 17
+  }
  },
  {
   "n": 77,
@@ -1103,11 +1483,16 @@
    "Ý kiến của một người dùng nổi tiếng.",
    "Số lượt tải ứng dụng trong một ngày."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Tiếng Anh",
-  "difficulty": 3,
-  "passage": "- LẬP LUẬN (Câu 71-85) Trong môi trường số, sự chú ý trở thành một nguồn lực cạnh tranh. Nhiều nền tảng tối ưu hóa thiết kế để người dùng ở lại lâu hơn, nhưng thời lượng sử dụng không đồng nghĩa với giá trị nhận được. Một người có thể dành hàng giờ xem nội dung liên tiếp mà không hình thành thêm hiểu biết đáng kể. Ngược lại, một phiên đọc ngắn nhưng có mục tiêu rõ ràng có thể tạo ra kết quả học tập sâu hơn. Vì thế, đánh giá chất lượng một sản phẩm số chỉ bằng số phút sử dụng là cách đo thiếu chiều sâu. Cần xem xét người dùng đạt được điều gì, mức độ chủ động của họ và chi phí cơ hội của thời gian đã bỏ ra. Điều này không có nghĩa mọi hình thức giải trí trực tuyến đều vô ích. Vấn đề nằm ở việc phân biệt sử dụng có chủ đích với hành vi bị dẫn dắt bởi cơ chế giữ chân. Khi thiết kế được đánh giá bằng giá trị người dùng nhận được thay vì chỉ bằng mức độ tương tác, mục tiêu công nghệ có thể gần hơn với lợi ích con người."
+  "topicId": "Tiếng Việt",
+  "difficulty": 0.75,
+  "passage": "VĂN BẢN C - LẬP LUẬN (Câu 71-85)\nTrong môi trường số, sự chú ý trở thành một nguồn lực cạnh tranh. Nhiều nền tảng tối ưu hóa thiết kế để người dùng ở lại lâu hơn, nhưng thời lượng sử dụng không đồng nghĩa với giá trị nhận được. Một người có thể dành hàng giờ xem nội dung liên tiếp mà không hình thành thêm hiểu biết đáng kể. Ngược lại, một phiên đọc ngắn nhưng có mục tiêu rõ ràng có thể tạo ra kết quả học tập sâu hơn. Vì thế, đánh giá chất lượng một sản phẩm số chỉ bằng số phút sử dụng là cách đo thiếu chiều sâu. Cần xem xét người dùng đạt được điều gì, mức độ chủ động của họ và chi phí cơ hội của thời gian đã bỏ ra. Điều này không có nghĩa mọi hình thức giải trí trực tuyến đều vô ích. Vấn đề nằm ở việc phân biệt sử dụng có chủ đích với hành vi bị dẫn dắt bởi cơ chế giữ chân. Khi thiết kế được đánh giá bằng giá trị người dùng nhận được thay vì chỉ bằng mức độ tương tác, mục tiêu công nghệ có thể gần hơn với lợi ích con người.",
+  "explanation": "Bằng chứng cần đo trực tiếp giá trị/kết quả người dùng nhận được thay vì chỉ mức độ phổ biến.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 12,
+   "answerPage": 17
+  }
  },
  {
   "n": 78,
@@ -1118,11 +1503,16 @@
    "Chỉ sử dụng doanh thu làm thước đo.",
    "Đo cảm xúc người dùng bằng một câu hỏi duy nhất."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Tiếng Anh",
-  "difficulty": 3,
-  "passage": "- LẬP LUẬN (Câu 71-85) Trong môi trường số, sự chú ý trở thành một nguồn lực cạnh tranh. Nhiều nền tảng tối ưu hóa thiết kế để người dùng ở lại lâu hơn, nhưng thời lượng sử dụng không đồng nghĩa với giá trị nhận được. Một người có thể dành hàng giờ xem nội dung liên tiếp mà không hình thành thêm hiểu biết đáng kể. Ngược lại, một phiên đọc ngắn nhưng có mục tiêu rõ ràng có thể tạo ra kết quả học tập sâu hơn. Vì thế, đánh giá chất lượng một sản phẩm số chỉ bằng số phút sử dụng là cách đo thiếu chiều sâu. Cần xem xét người dùng đạt được điều gì, mức độ chủ động của họ và chi phí cơ hội của thời gian đã bỏ ra. Điều này không có nghĩa mọi hình thức giải trí trực tuyến đều vô ích. Vấn đề nằm ở việc phân biệt sử dụng có chủ đích với hành vi bị dẫn dắt bởi cơ chế giữ chân. Khi thiết kế được đánh giá bằng giá trị người dùng nhận được thay vì chỉ bằng mức độ tương tác, mục tiêu công nghệ có thể gần hơn với lợi ích con người."
+  "topicId": "Tiếng Việt",
+  "difficulty": 0.75,
+  "passage": "VĂN BẢN C - LẬP LUẬN (Câu 71-85)\nTrong môi trường số, sự chú ý trở thành một nguồn lực cạnh tranh. Nhiều nền tảng tối ưu hóa thiết kế để người dùng ở lại lâu hơn, nhưng thời lượng sử dụng không đồng nghĩa với giá trị nhận được. Một người có thể dành hàng giờ xem nội dung liên tiếp mà không hình thành thêm hiểu biết đáng kể. Ngược lại, một phiên đọc ngắn nhưng có mục tiêu rõ ràng có thể tạo ra kết quả học tập sâu hơn. Vì thế, đánh giá chất lượng một sản phẩm số chỉ bằng số phút sử dụng là cách đo thiếu chiều sâu. Cần xem xét người dùng đạt được điều gì, mức độ chủ động của họ và chi phí cơ hội của thời gian đã bỏ ra. Điều này không có nghĩa mọi hình thức giải trí trực tuyến đều vô ích. Vấn đề nằm ở việc phân biệt sử dụng có chủ đích với hành vi bị dẫn dắt bởi cơ chế giữ chân. Khi thiết kế được đánh giá bằng giá trị người dùng nhận được thay vì chỉ bằng mức độ tương tác, mục tiêu công nghệ có thể gần hơn với lợi ích con người.",
+  "explanation": "Tác giả nói không chỉ dựa vào thời lượng; không yêu cầu loại bỏ mọi chỉ số khác.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 12,
+   "answerPage": 17
+  }
  },
  {
   "n": 79,
@@ -1133,11 +1523,16 @@
    "Kể chuyện theo trình tự thời gian.",
    "Liệt kê các nền tảng và doanh thu."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Tiếng Anh",
-  "difficulty": 3,
-  "passage": "- LẬP LUẬN (Câu 71-85) Trong môi trường số, sự chú ý trở thành một nguồn lực cạnh tranh. Nhiều nền tảng tối ưu hóa thiết kế để người dùng ở lại lâu hơn, nhưng thời lượng sử dụng không đồng nghĩa với giá trị nhận được. Một người có thể dành hàng giờ xem nội dung liên tiếp mà không hình thành thêm hiểu biết đáng kể. Ngược lại, một phiên đọc ngắn nhưng có mục tiêu rõ ràng có thể tạo ra kết quả học tập sâu hơn. Vì thế, đánh giá chất lượng một sản phẩm số chỉ bằng số phút sử dụng là cách đo thiếu chiều sâu. Cần xem xét người dùng đạt được điều gì, mức độ chủ động của họ và chi phí cơ hội của thời gian đã bỏ ra. Điều này không có nghĩa mọi hình thức giải trí trực tuyến đều vô ích. Vấn đề nằm ở việc phân biệt sử dụng có chủ đích với hành vi bị dẫn dắt bởi cơ chế giữ chân. Khi thiết kế được đánh giá bằng giá trị người dùng nhận được thay vì chỉ bằng mức độ tương tác, mục tiêu công nghệ có thể gần hơn với lợi ích con người."
+  "topicId": "Tiếng Việt",
+  "difficulty": 0.75,
+  "passage": "VĂN BẢN C - LẬP LUẬN (Câu 71-85)\nTrong môi trường số, sự chú ý trở thành một nguồn lực cạnh tranh. Nhiều nền tảng tối ưu hóa thiết kế để người dùng ở lại lâu hơn, nhưng thời lượng sử dụng không đồng nghĩa với giá trị nhận được. Một người có thể dành hàng giờ xem nội dung liên tiếp mà không hình thành thêm hiểu biết đáng kể. Ngược lại, một phiên đọc ngắn nhưng có mục tiêu rõ ràng có thể tạo ra kết quả học tập sâu hơn. Vì thế, đánh giá chất lượng một sản phẩm số chỉ bằng số phút sử dụng là cách đo thiếu chiều sâu. Cần xem xét người dùng đạt được điều gì, mức độ chủ động của họ và chi phí cơ hội của thời gian đã bỏ ra. Điều này không có nghĩa mọi hình thức giải trí trực tuyến đều vô ích. Vấn đề nằm ở việc phân biệt sử dụng có chủ đích với hành vi bị dẫn dắt bởi cơ chế giữ chân. Khi thiết kế được đánh giá bằng giá trị người dùng nhận được thay vì chỉ bằng mức độ tương tác, mục tiêu công nghệ có thể gần hơn với lợi ích con người.",
+  "explanation": "Cấu trúc văn bản thể hiện nhận định - đối chiếu - tiêu chí - kết luận.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 12,
+   "answerPage": 17
+  }
  },
  {
   "n": 80,
@@ -1148,11 +1543,16 @@
    "Thời lượng sử dụng không bao giờ có ý nghĩa.",
    "Các nền tảng không cần doanh thu."
   ],
-  "correctLetter": "A",
   "correct": 0,
-  "topicId": "Tiếng Anh",
-  "difficulty": 3,
-  "passage": "- LẬP LUẬN (Câu 71-85) Trong môi trường số, sự chú ý trở thành một nguồn lực cạnh tranh. Nhiều nền tảng tối ưu hóa thiết kế để người dùng ở lại lâu hơn, nhưng thời lượng sử dụng không đồng nghĩa với giá trị nhận được. Một người có thể dành hàng giờ xem nội dung liên tiếp mà không hình thành thêm hiểu biết đáng kể. Ngược lại, một phiên đọc ngắn nhưng có mục tiêu rõ ràng có thể tạo ra kết quả học tập sâu hơn. Vì thế, đánh giá chất lượng một sản phẩm số chỉ bằng số phút sử dụng là cách đo thiếu chiều sâu. Cần xem xét người dùng đạt được điều gì, mức độ chủ động của họ và chi phí cơ hội của thời gian đã bỏ ra. Điều này không có nghĩa mọi hình thức giải trí trực tuyến đều vô ích. Vấn đề nằm ở việc phân biệt sử dụng có chủ đích với hành vi bị dẫn dắt bởi cơ chế giữ chân. Khi thiết kế được đánh giá bằng giá trị người dùng nhận được thay vì chỉ bằng mức độ tương tác, mục tiêu công nghệ có thể gần hơn với lợi ích con người."
+  "topicId": "Tiếng Việt",
+  "difficulty": 0.75,
+  "passage": "VĂN BẢN C - LẬP LUẬN (Câu 71-85)\nTrong môi trường số, sự chú ý trở thành một nguồn lực cạnh tranh. Nhiều nền tảng tối ưu hóa thiết kế để người dùng ở lại lâu hơn, nhưng thời lượng sử dụng không đồng nghĩa với giá trị nhận được. Một người có thể dành hàng giờ xem nội dung liên tiếp mà không hình thành thêm hiểu biết đáng kể. Ngược lại, một phiên đọc ngắn nhưng có mục tiêu rõ ràng có thể tạo ra kết quả học tập sâu hơn. Vì thế, đánh giá chất lượng một sản phẩm số chỉ bằng số phút sử dụng là cách đo thiếu chiều sâu. Cần xem xét người dùng đạt được điều gì, mức độ chủ động của họ và chi phí cơ hội của thời gian đã bỏ ra. Điều này không có nghĩa mọi hình thức giải trí trực tuyến đều vô ích. Vấn đề nằm ở việc phân biệt sử dụng có chủ đích với hành vi bị dẫn dắt bởi cơ chế giữ chân. Khi thiết kế được đánh giá bằng giá trị người dùng nhận được thay vì chỉ bằng mức độ tương tác, mục tiêu công nghệ có thể gần hơn với lợi ích con người.",
+  "explanation": "Muốn đề xuất tiêu chí thay thế, tác giả cần giả định có thể đánh giá giá trị/kết quả bằng các chỉ báo thích hợp.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 12,
+   "answerPage": 17
+  }
  },
  {
   "n": 81,
@@ -1163,11 +1563,16 @@
    "Nó luôn đánh giá thấp mọi người đọc nhanh.",
    "Nó chỉ có thể dùng cho văn bản tiếng Anh."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Tiếng Anh",
-  "difficulty": 3,
-  "passage": "- LẬP LUẬN (Câu 71-85) Trong môi trường số, sự chú ý trở thành một nguồn lực cạnh tranh. Nhiều nền tảng tối ưu hóa thiết kế để người dùng ở lại lâu hơn, nhưng thời lượng sử dụng không đồng nghĩa với giá trị nhận được. Một người có thể dành hàng giờ xem nội dung liên tiếp mà không hình thành thêm hiểu biết đáng kể. Ngược lại, một phiên đọc ngắn nhưng có mục tiêu rõ ràng có thể tạo ra kết quả học tập sâu hơn. Vì thế, đánh giá chất lượng một sản phẩm số chỉ bằng số phút sử dụng là cách đo thiếu chiều sâu. Cần xem xét người dùng đạt được điều gì, mức độ chủ động của họ và chi phí cơ hội của thời gian đã bỏ ra. Điều này không có nghĩa mọi hình thức giải trí trực tuyến đều vô ích. Vấn đề nằm ở việc phân biệt sử dụng có chủ đích với hành vi bị dẫn dắt bởi cơ chế giữ chân. Khi thiết kế được đánh giá bằng giá trị người dùng nhận được thay vì chỉ bằng mức độ tương tác, mục tiêu công nghệ có thể gần hơn với lợi ích con người."
+  "topicId": "Tiếng Việt",
+  "difficulty": 0.75,
+  "passage": "VĂN BẢN C - LẬP LUẬN (Câu 71-85)\nTrong môi trường số, sự chú ý trở thành một nguồn lực cạnh tranh. Nhiều nền tảng tối ưu hóa thiết kế để người dùng ở lại lâu hơn, nhưng thời lượng sử dụng không đồng nghĩa với giá trị nhận được. Một người có thể dành hàng giờ xem nội dung liên tiếp mà không hình thành thêm hiểu biết đáng kể. Ngược lại, một phiên đọc ngắn nhưng có mục tiêu rõ ràng có thể tạo ra kết quả học tập sâu hơn. Vì thế, đánh giá chất lượng một sản phẩm số chỉ bằng số phút sử dụng là cách đo thiếu chiều sâu. Cần xem xét người dùng đạt được điều gì, mức độ chủ động của họ và chi phí cơ hội của thời gian đã bỏ ra. Điều này không có nghĩa mọi hình thức giải trí trực tuyến đều vô ích. Vấn đề nằm ở việc phân biệt sử dụng có chủ đích với hành vi bị dẫn dắt bởi cơ chế giữ chân. Khi thiết kế được đánh giá bằng giá trị người dùng nhận được thay vì chỉ bằng mức độ tương tác, mục tiêu công nghệ có thể gần hơn với lợi ích con người.",
+  "explanation": "Tương tự thời lượng, số trang là chỉ số lượng, chưa phản ánh kết quả tiếp nhận.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 12,
+   "answerPage": 17
+  }
  },
  {
   "n": 82,
@@ -1178,11 +1583,16 @@
    "Mọi nền tảng có thời lượng sử dụng cao đều gây hại cho người dùng.",
    "Giá trị và mục tiêu sử dụng cần được xem xét."
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "topicId": "Tiếng Anh",
-  "difficulty": 3,
-  "passage": "- LẬP LUẬN (Câu 71-85) Trong môi trường số, sự chú ý trở thành một nguồn lực cạnh tranh. Nhiều nền tảng tối ưu hóa thiết kế để người dùng ở lại lâu hơn, nhưng thời lượng sử dụng không đồng nghĩa với giá trị nhận được. Một người có thể dành hàng giờ xem nội dung liên tiếp mà không hình thành thêm hiểu biết đáng kể. Ngược lại, một phiên đọc ngắn nhưng có mục tiêu rõ ràng có thể tạo ra kết quả học tập sâu hơn. Vì thế, đánh giá chất lượng một sản phẩm số chỉ bằng số phút sử dụng là cách đo thiếu chiều sâu. Cần xem xét người dùng đạt được điều gì, mức độ chủ động của họ và chi phí cơ hội của thời gian đã bỏ ra. Điều này không có nghĩa mọi hình thức giải trí trực tuyến đều vô ích. Vấn đề nằm ở việc phân biệt sử dụng có chủ đích với hành vi bị dẫn dắt bởi cơ chế giữ chân. Khi thiết kế được đánh giá bằng giá trị người dùng nhận được thay vì chỉ bằng mức độ tương tác, mục tiêu công nghệ có thể gần hơn với lợi ích con người."
+  "topicId": "Tiếng Việt",
+  "difficulty": 0.75,
+  "passage": "VĂN BẢN C - LẬP LUẬN (Câu 71-85)\nTrong môi trường số, sự chú ý trở thành một nguồn lực cạnh tranh. Nhiều nền tảng tối ưu hóa thiết kế để người dùng ở lại lâu hơn, nhưng thời lượng sử dụng không đồng nghĩa với giá trị nhận được. Một người có thể dành hàng giờ xem nội dung liên tiếp mà không hình thành thêm hiểu biết đáng kể. Ngược lại, một phiên đọc ngắn nhưng có mục tiêu rõ ràng có thể tạo ra kết quả học tập sâu hơn. Vì thế, đánh giá chất lượng một sản phẩm số chỉ bằng số phút sử dụng là cách đo thiếu chiều sâu. Cần xem xét người dùng đạt được điều gì, mức độ chủ động của họ và chi phí cơ hội của thời gian đã bỏ ra. Điều này không có nghĩa mọi hình thức giải trí trực tuyến đều vô ích. Vấn đề nằm ở việc phân biệt sử dụng có chủ đích với hành vi bị dẫn dắt bởi cơ chế giữ chân. Khi thiết kế được đánh giá bằng giá trị người dùng nhận được thay vì chỉ bằng mức độ tương tác, mục tiêu công nghệ có thể gần hơn với lợi ích con người.",
+  "explanation": "Tác giả không khái quát rằng tất cả nền tảng tương tác cao đều có hại; kết luận đó vượt quá bằng chứng.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 12,
+   "answerPage": 17
+  }
  },
  {
   "n": 83,
@@ -1193,11 +1603,16 @@
    "Chỉ số duy nhất cần quan tâm là lợi nhuận.",
    "Mọi nền tảng nên giới hạn thời gian còn một phút."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Tiếng Anh",
-  "difficulty": 3,
-  "passage": "- LẬP LUẬN (Câu 71-85) Trong môi trường số, sự chú ý trở thành một nguồn lực cạnh tranh. Nhiều nền tảng tối ưu hóa thiết kế để người dùng ở lại lâu hơn, nhưng thời lượng sử dụng không đồng nghĩa với giá trị nhận được. Một người có thể dành hàng giờ xem nội dung liên tiếp mà không hình thành thêm hiểu biết đáng kể. Ngược lại, một phiên đọc ngắn nhưng có mục tiêu rõ ràng có thể tạo ra kết quả học tập sâu hơn. Vì thế, đánh giá chất lượng một sản phẩm số chỉ bằng số phút sử dụng là cách đo thiếu chiều sâu. Cần xem xét người dùng đạt được điều gì, mức độ chủ động của họ và chi phí cơ hội của thời gian đã bỏ ra. Điều này không có nghĩa mọi hình thức giải trí trực tuyến đều vô ích. Vấn đề nằm ở việc phân biệt sử dụng có chủ đích với hành vi bị dẫn dắt bởi cơ chế giữ chân. Khi thiết kế được đánh giá bằng giá trị người dùng nhận được thay vì chỉ bằng mức độ tương tác, mục tiêu công nghệ có thể gần hơn với lợi ích con người."
+  "topicId": "Tiếng Việt",
+  "difficulty": 0.75,
+  "passage": "VĂN BẢN C - LẬP LUẬN (Câu 71-85)\nTrong môi trường số, sự chú ý trở thành một nguồn lực cạnh tranh. Nhiều nền tảng tối ưu hóa thiết kế để người dùng ở lại lâu hơn, nhưng thời lượng sử dụng không đồng nghĩa với giá trị nhận được. Một người có thể dành hàng giờ xem nội dung liên tiếp mà không hình thành thêm hiểu biết đáng kể. Ngược lại, một phiên đọc ngắn nhưng có mục tiêu rõ ràng có thể tạo ra kết quả học tập sâu hơn. Vì thế, đánh giá chất lượng một sản phẩm số chỉ bằng số phút sử dụng là cách đo thiếu chiều sâu. Cần xem xét người dùng đạt được điều gì, mức độ chủ động của họ và chi phí cơ hội của thời gian đã bỏ ra. Điều này không có nghĩa mọi hình thức giải trí trực tuyến đều vô ích. Vấn đề nằm ở việc phân biệt sử dụng có chủ đích với hành vi bị dẫn dắt bởi cơ chế giữ chân. Khi thiết kế được đánh giá bằng giá trị người dùng nhận được thay vì chỉ bằng mức độ tương tác, mục tiêu công nghệ có thể gần hơn với lợi ích con người.",
+  "explanation": "B bảo toàn ý phê phán nhưng tránh tuyệt đối hóa.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 12,
+   "answerPage": 17
+  }
  },
  {
   "n": 84,
@@ -1208,11 +1623,16 @@
    "Chứng minh thiết kế nền tảng không ảnh hưởng hành vi.",
    "Bác bỏ vai trò của mục tiêu sử dụng."
   ],
-  "correctLetter": "A",
   "correct": 0,
-  "topicId": "Tiếng Anh",
-  "difficulty": 3,
-  "passage": "- LẬP LUẬN (Câu 71-85) Trong môi trường số, sự chú ý trở thành một nguồn lực cạnh tranh. Nhiều nền tảng tối ưu hóa thiết kế để người dùng ở lại lâu hơn, nhưng thời lượng sử dụng không đồng nghĩa với giá trị nhận được. Một người có thể dành hàng giờ xem nội dung liên tiếp mà không hình thành thêm hiểu biết đáng kể. Ngược lại, một phiên đọc ngắn nhưng có mục tiêu rõ ràng có thể tạo ra kết quả học tập sâu hơn. Vì thế, đánh giá chất lượng một sản phẩm số chỉ bằng số phút sử dụng là cách đo thiếu chiều sâu. Cần xem xét người dùng đạt được điều gì, mức độ chủ động của họ và chi phí cơ hội của thời gian đã bỏ ra. Điều này không có nghĩa mọi hình thức giải trí trực tuyến đều vô ích. Vấn đề nằm ở việc phân biệt sử dụng có chủ đích với hành vi bị dẫn dắt bởi cơ chế giữ chân. Khi thiết kế được đánh giá bằng giá trị người dùng nhận được thay vì chỉ bằng mức độ tương tác, mục tiêu công nghệ có thể gần hơn với lợi ích con người."
+  "topicId": "Tiếng Việt",
+  "difficulty": 0.75,
+  "passage": "VĂN BẢN C - LẬP LUẬN (Câu 71-85)\nTrong môi trường số, sự chú ý trở thành một nguồn lực cạnh tranh. Nhiều nền tảng tối ưu hóa thiết kế để người dùng ở lại lâu hơn, nhưng thời lượng sử dụng không đồng nghĩa với giá trị nhận được. Một người có thể dành hàng giờ xem nội dung liên tiếp mà không hình thành thêm hiểu biết đáng kể. Ngược lại, một phiên đọc ngắn nhưng có mục tiêu rõ ràng có thể tạo ra kết quả học tập sâu hơn. Vì thế, đánh giá chất lượng một sản phẩm số chỉ bằng số phút sử dụng là cách đo thiếu chiều sâu. Cần xem xét người dùng đạt được điều gì, mức độ chủ động của họ và chi phí cơ hội của thời gian đã bỏ ra. Điều này không có nghĩa mọi hình thức giải trí trực tuyến đều vô ích. Vấn đề nằm ở việc phân biệt sử dụng có chủ đích với hành vi bị dẫn dắt bởi cơ chế giữ chân. Khi thiết kế được đánh giá bằng giá trị người dùng nhận được thay vì chỉ bằng mức độ tương tác, mục tiêu công nghệ có thể gần hơn với lợi ích con người.",
+  "explanation": "Kết quả ủng hộ sự phân biệt giữa thời lượng và giá trị, nhưng không tạo ra quy tắc tuyệt đối cho mọi người.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 13,
+   "answerPage": 17
+  }
  },
  {
   "n": 85,
@@ -1223,11 +1643,16 @@
    "Phủ nhận mọi lợi ích công nghệ.",
    "Đưa ra một mốc thời gian cụ thể."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Tiếng Anh",
-  "difficulty": 3,
-  "passage": "- LẬP LUẬN (Câu 71-85) Trong môi trường số, sự chú ý trở thành một nguồn lực cạnh tranh. Nhiều nền tảng tối ưu hóa thiết kế để người dùng ở lại lâu hơn, nhưng thời lượng sử dụng không đồng nghĩa với giá trị nhận được. Một người có thể dành hàng giờ xem nội dung liên tiếp mà không hình thành thêm hiểu biết đáng kể. Ngược lại, một phiên đọc ngắn nhưng có mục tiêu rõ ràng có thể tạo ra kết quả học tập sâu hơn. Vì thế, đánh giá chất lượng một sản phẩm số chỉ bằng số phút sử dụng là cách đo thiếu chiều sâu. Cần xem xét người dùng đạt được điều gì, mức độ chủ động của họ và chi phí cơ hội của thời gian đã bỏ ra. Điều này không có nghĩa mọi hình thức giải trí trực tuyến đều vô ích. Vấn đề nằm ở việc phân biệt sử dụng có chủ đích với hành vi bị dẫn dắt bởi cơ chế giữ chân. Khi thiết kế được đánh giá bằng giá trị người dùng nhận được thay vì chỉ bằng mức độ tương tác, mục tiêu công nghệ có thể gần hơn với lợi ích con người."
+  "topicId": "Tiếng Việt",
+  "difficulty": 0.75,
+  "passage": "VĂN BẢN C - LẬP LUẬN (Câu 71-85)\nTrong môi trường số, sự chú ý trở thành một nguồn lực cạnh tranh. Nhiều nền tảng tối ưu hóa thiết kế để người dùng ở lại lâu hơn, nhưng thời lượng sử dụng không đồng nghĩa với giá trị nhận được. Một người có thể dành hàng giờ xem nội dung liên tiếp mà không hình thành thêm hiểu biết đáng kể. Ngược lại, một phiên đọc ngắn nhưng có mục tiêu rõ ràng có thể tạo ra kết quả học tập sâu hơn. Vì thế, đánh giá chất lượng một sản phẩm số chỉ bằng số phút sử dụng là cách đo thiếu chiều sâu. Cần xem xét người dùng đạt được điều gì, mức độ chủ động của họ và chi phí cơ hội của thời gian đã bỏ ra. Điều này không có nghĩa mọi hình thức giải trí trực tuyến đều vô ích. Vấn đề nằm ở việc phân biệt sử dụng có chủ đích với hành vi bị dẫn dắt bởi cơ chế giữ chân. Khi thiết kế được đánh giá bằng giá trị người dùng nhận được thay vì chỉ bằng mức độ tương tác, mục tiêu công nghệ có thể gần hơn với lợi ích con người.",
+  "explanation": "“Gần hơn” mang sắc thái định hướng và mức độ, không khẳng định hoàn tất.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 13,
+   "answerPage": 17
+  }
  },
  {
   "n": 86,
@@ -1238,11 +1663,16 @@
    "To compare school attendance with hospital costs.",
    "To show that all institutions manipulate their data."
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Anh",
-  "difficulty": 3,
-  "passage": "In many fields, researchers rely on proxies: observable measures used to represent concepts that are difficult to measure directly. A school may use attendance as an indicator of engagement; a public-health agency may use hospital admissions to estimate disease burden. Proxies are useful because they make complex phenomena measurable, but they can also distort the picture. Attendance does not reveal whether students are intellectually involved, and hospital admissions may reflect access to care as well as disease prevalence. A proxy becomes especially misleading when institutions begin optimizing the measure itself. If a school is rewarded only for attendance, it may overlook the quality of learning. Responsible measurement therefore requires asking not only whether a metric is reliable, but also what aspect of reality it leaves out and how people might respond to the incentives it creates."
+  "difficulty": 0.75,
+  "passage": "READING TEXT B - QUESTIONS 86-93\nIn many fields, researchers rely on proxies: observable measures used to represent concepts that are difficult to measure directly. A school may use attendance as an indicator of engagement; a public-health agency may use hospital admissions to estimate disease burden. Proxies are useful because they make complex phenomena measurable, but they can also distort the picture. Attendance does not reveal whether students are intellectually involved, and hospital admissions may reflect access to care as well as disease prevalence. A proxy becomes especially misleading when institutions begin optimizing the measure itself. If a school is rewarded only for attendance, it may overlook the quality of learning. Responsible measurement therefore requires asking not only whether a metric is reliable, but also what aspect of reality it leaves out and how people might respond to the incentives it creates.",
+  "explanation": "The text explains why proxies are useful and how they can misrepresent the underlying concept.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 13,
+   "answerPage": 17
+  }
  },
  {
   "n": 87,
@@ -1253,11 +1683,16 @@
    "Disease prevalence cannot be estimated.",
    "All patients avoid hospitals."
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Anh",
-  "difficulty": 3,
-  "passage": "In many fields, researchers rely on proxies: observable measures used to represent concepts that are difficult to measure directly. A school may use attendance as an indicator of engagement; a public-health agency may use hospital admissions to estimate disease burden. Proxies are useful because they make complex phenomena measurable, but they can also distort the picture. Attendance does not reveal whether students are intellectually involved, and hospital admissions may reflect access to care as well as disease prevalence. A proxy becomes especially misleading when institutions begin optimizing the measure itself. If a school is rewarded only for attendance, it may overlook the quality of learning. Responsible measurement therefore requires asking not only whether a metric is reliable, but also what aspect of reality it leaves out and how people might respond to the incentives it creates."
+  "difficulty": 0.75,
+  "passage": "READING TEXT B - QUESTIONS 86-93\nIn many fields, researchers rely on proxies: observable measures used to represent concepts that are difficult to measure directly. A school may use attendance as an indicator of engagement; a public-health agency may use hospital admissions to estimate disease burden. Proxies are useful because they make complex phenomena measurable, but they can also distort the picture. Attendance does not reveal whether students are intellectually involved, and hospital admissions may reflect access to care as well as disease prevalence. A proxy becomes especially misleading when institutions begin optimizing the measure itself. If a school is rewarded only for attendance, it may overlook the quality of learning. Responsible measurement therefore requires asking not only whether a metric is reliable, but also what aspect of reality it leaves out and how people might respond to the incentives it creates.",
+  "explanation": "The text explicitly identifies access to care as another factor influencing admissions.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 13,
+   "answerPage": 17
+  }
  },
  {
   "n": 88,
@@ -1268,11 +1703,16 @@
    "stops collecting data",
    "uses several indicators at once"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Anh",
-  "difficulty": 3,
-  "passage": "In many fields, researchers rely on proxies: observable measures used to represent concepts that are difficult to measure directly. A school may use attendance as an indicator of engagement; a public-health agency may use hospital admissions to estimate disease burden. Proxies are useful because they make complex phenomena measurable, but they can also distort the picture. Attendance does not reveal whether students are intellectually involved, and hospital admissions may reflect access to care as well as disease prevalence. A proxy becomes especially misleading when institutions begin optimizing the measure itself. If a school is rewarded only for attendance, it may overlook the quality of learning. Responsible measurement therefore requires asking not only whether a metric is reliable, but also what aspect of reality it leaves out and how people might respond to the incentives it creates."
+  "difficulty": 0.75,
+  "passage": "READING TEXT B - QUESTIONS 86-93\nIn many fields, researchers rely on proxies: observable measures used to represent concepts that are difficult to measure directly. A school may use attendance as an indicator of engagement; a public-health agency may use hospital admissions to estimate disease burden. Proxies are useful because they make complex phenomena measurable, but they can also distort the picture. Attendance does not reveal whether students are intellectually involved, and hospital admissions may reflect access to care as well as disease prevalence. A proxy becomes especially misleading when institutions begin optimizing the measure itself. If a school is rewarded only for attendance, it may overlook the quality of learning. Responsible measurement therefore requires asking not only whether a metric is reliable, but also what aspect of reality it leaves out and how people might respond to the incentives it creates.",
+  "explanation": "The school attendance example shows the metric becoming a target while learning quality is neglected.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 13,
+   "answerPage": 17
+  }
  },
  {
   "n": 89,
@@ -1283,11 +1723,16 @@
    "All proxies are deliberately misleading.",
    "The underlying concept is always directly observable."
   ],
-  "correctLetter": "A",
   "correct": 0,
   "topicId": "Tiếng Anh",
-  "difficulty": 3,
-  "passage": "In many fields, researchers rely on proxies: observable measures used to represent concepts that are difficult to measure directly. A school may use attendance as an indicator of engagement; a public-health agency may use hospital admissions to estimate disease burden. Proxies are useful because they make complex phenomena measurable, but they can also distort the picture. Attendance does not reveal whether students are intellectually involved, and hospital admissions may reflect access to care as well as disease prevalence. A proxy becomes especially misleading when institutions begin optimizing the measure itself. If a school is rewarded only for attendance, it may overlook the quality of learning. Responsible measurement therefore requires asking not only whether a metric is reliable, but also what aspect of reality it leaves out and how people might respond to the incentives it creates."
+  "difficulty": 0.75,
+  "passage": "READING TEXT B - QUESTIONS 86-93\nIn many fields, researchers rely on proxies: observable measures used to represent concepts that are difficult to measure directly. A school may use attendance as an indicator of engagement; a public-health agency may use hospital admissions to estimate disease burden. Proxies are useful because they make complex phenomena measurable, but they can also distort the picture. Attendance does not reveal whether students are intellectually involved, and hospital admissions may reflect access to care as well as disease prevalence. A proxy becomes especially misleading when institutions begin optimizing the measure itself. If a school is rewarded only for attendance, it may overlook the quality of learning. Responsible measurement therefore requires asking not only whether a metric is reliable, but also what aspect of reality it leaves out and how people might respond to the incentives it creates.",
+  "explanation": "The passage asks how people may respond to incentives created by a metric.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 13,
+   "answerPage": 17
+  }
  },
  {
   "n": 90,
@@ -1298,11 +1743,16 @@
    "Attendance is a perfect measure of intellectual engagement.",
    "Institutions should avoid setting measurable objectives."
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Anh",
-  "difficulty": 3,
-  "passage": "In many fields, researchers rely on proxies: observable measures used to represent concepts that are difficult to measure directly. A school may use attendance as an indicator of engagement; a public-health agency may use hospital admissions to estimate disease burden. Proxies are useful because they make complex phenomena measurable, but they can also distort the picture. Attendance does not reveal whether students are intellectually involved, and hospital admissions may reflect access to care as well as disease prevalence. A proxy becomes especially misleading when institutions begin optimizing the measure itself. If a school is rewarded only for attendance, it may overlook the quality of learning. Responsible measurement therefore requires asking not only whether a metric is reliable, but also what aspect of reality it leaves out and how people might respond to the incentives it creates."
+  "difficulty": 0.75,
+  "passage": "READING TEXT B - QUESTIONS 86-93\nIn many fields, researchers rely on proxies: observable measures used to represent concepts that are difficult to measure directly. A school may use attendance as an indicator of engagement; a public-health agency may use hospital admissions to estimate disease burden. Proxies are useful because they make complex phenomena measurable, but they can also distort the picture. Attendance does not reveal whether students are intellectually involved, and hospital admissions may reflect access to care as well as disease prevalence. A proxy becomes especially misleading when institutions begin optimizing the measure itself. If a school is rewarded only for attendance, it may overlook the quality of learning. Responsible measurement therefore requires asking not only whether a metric is reliable, but also what aspect of reality it leaves out and how people might respond to the incentives it creates.",
+  "explanation": "The author stresses that responsible measurement asks what a metric leaves out.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 13,
+   "answerPage": 17
+  }
  },
  {
   "n": 91,
@@ -1313,11 +1763,16 @@
    "Removing all attendance records.",
    "Assuming that every present student is engaged."
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Anh",
-  "difficulty": 3,
-  "passage": "In many fields, researchers rely on proxies: observable measures used to represent concepts that are difficult to measure directly. A school may use attendance as an indicator of engagement; a public-health agency may use hospital admissions to estimate disease burden. Proxies are useful because they make complex phenomena measurable, but they can also distort the picture. Attendance does not reveal whether students are intellectually involved, and hospital admissions may reflect access to care as well as disease prevalence. A proxy becomes especially misleading when institutions begin optimizing the measure itself. If a school is rewarded only for attendance, it may overlook the quality of learning. Responsible measurement therefore requires asking not only whether a metric is reliable, but also what aspect of reality it leaves out and how people might respond to the incentives it creates."
+  "difficulty": 0.75,
+  "passage": "READING TEXT B - QUESTIONS 86-93\nIn many fields, researchers rely on proxies: observable measures used to represent concepts that are difficult to measure directly. A school may use attendance as an indicator of engagement; a public-health agency may use hospital admissions to estimate disease burden. Proxies are useful because they make complex phenomena measurable, but they can also distort the picture. Attendance does not reveal whether students are intellectually involved, and hospital admissions may reflect access to care as well as disease prevalence. A proxy becomes especially misleading when institutions begin optimizing the measure itself. If a school is rewarded only for attendance, it may overlook the quality of learning. Responsible measurement therefore requires asking not only whether a metric is reliable, but also what aspect of reality it leaves out and how people might respond to the incentives it creates.",
+  "explanation": "Multiple complementary indicators capture dimensions that attendance alone misses.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 14,
+   "answerPage": 17
+  }
  },
  {
   "n": 92,
@@ -1328,11 +1783,16 @@
    "celebratory and uncritical",
    "emotional and nostalgic"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Anh",
-  "difficulty": 3,
-  "passage": "In many fields, researchers rely on proxies: observable measures used to represent concepts that are difficult to measure directly. A school may use attendance as an indicator of engagement; a public-health agency may use hospital admissions to estimate disease burden. Proxies are useful because they make complex phenomena measurable, but they can also distort the picture. Attendance does not reveal whether students are intellectually involved, and hospital admissions may reflect access to care as well as disease prevalence. A proxy becomes especially misleading when institutions begin optimizing the measure itself. If a school is rewarded only for attendance, it may overlook the quality of learning. Responsible measurement therefore requires asking not only whether a metric is reliable, but also what aspect of reality it leaves out and how people might respond to the incentives it creates."
+  "difficulty": 0.75,
+  "passage": "READING TEXT B - QUESTIONS 86-93\nIn many fields, researchers rely on proxies: observable measures used to represent concepts that are difficult to measure directly. A school may use attendance as an indicator of engagement; a public-health agency may use hospital admissions to estimate disease burden. Proxies are useful because they make complex phenomena measurable, but they can also distort the picture. Attendance does not reveal whether students are intellectually involved, and hospital admissions may reflect access to care as well as disease prevalence. A proxy becomes especially misleading when institutions begin optimizing the measure itself. If a school is rewarded only for attendance, it may overlook the quality of learning. Responsible measurement therefore requires asking not only whether a metric is reliable, but also what aspect of reality it leaves out and how people might respond to the incentives it creates.",
+  "explanation": "The text weighs advantages against risks and recommends careful interpretation.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 14,
+   "answerPage": 17
+  }
  },
  {
   "n": 93,
@@ -1343,11 +1803,16 @@
    "The History of Public Hospitals",
    "Attendance as the Only Measure of Learning"
   ],
-  "correctLetter": "A",
   "correct": 0,
   "topicId": "Tiếng Anh",
-  "difficulty": 3,
-  "passage": "In many fields, researchers rely on proxies: observable measures used to represent concepts that are difficult to measure directly. A school may use attendance as an indicator of engagement; a public-health agency may use hospital admissions to estimate disease burden. Proxies are useful because they make complex phenomena measurable, but they can also distort the picture. Attendance does not reveal whether students are intellectually involved, and hospital admissions may reflect access to care as well as disease prevalence. A proxy becomes especially misleading when institutions begin optimizing the measure itself. If a school is rewarded only for attendance, it may overlook the quality of learning. Responsible measurement therefore requires asking not only whether a metric is reliable, but also what aspect of reality it leaves out and how people might respond to the incentives it creates."
+  "difficulty": 0.75,
+  "passage": "READING TEXT B - QUESTIONS 86-93\nIn many fields, researchers rely on proxies: observable measures used to represent concepts that are difficult to measure directly. A school may use attendance as an indicator of engagement; a public-health agency may use hospital admissions to estimate disease burden. Proxies are useful because they make complex phenomena measurable, but they can also distort the picture. Attendance does not reveal whether students are intellectually involved, and hospital admissions may reflect access to care as well as disease prevalence. A proxy becomes especially misleading when institutions begin optimizing the measure itself. If a school is rewarded only for attendance, it may overlook the quality of learning. Responsible measurement therefore requires asking not only whether a metric is reliable, but also what aspect of reality it leaves out and how people might respond to the incentives it creates.",
+  "explanation": "The title reflects the warning that measures can distort reality when optimized as ends in themselves.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 14,
+   "answerPage": 18
+  }
  },
  {
   "n": 94,
@@ -1358,11 +1823,16 @@
    "Native plants always prevent recovery.",
    "Engineering interventions eliminate all ecological interactions."
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Anh",
-  "difficulty": 3,
-  "passage": "Restoring a wetland is sometimes presented as a straightforward engineering task: remove barriers, reintroduce native plants, and allow water to return. In practice, ecological recovery is less predictable. Hydrology, soil conditions, species interactions, and nearby land use can all shape the outcome. A site may regain its original water level yet fail to recover its former biodiversity if invasive species dominate or if surrounding habitats remain fragmented. For this reason, restoration projects increasingly use adaptive management. Managers define measurable objectives, monitor indicators over time, and revise interventions when evidence suggests that an approach is not working. Adaptive management does not eliminate uncertainty; it makes uncertainty part of the decision process. Its success depends on transparent monitoring and a willingness to change course rather than defend an initial plan."
+  "difficulty": 0.75,
+  "passage": "READING TEXT C - QUESTIONS 94-100\nRestoring a wetland is sometimes presented as a straightforward engineering task: remove barriers, reintroduce native plants, and allow water to return. In practice, ecological recovery is less predictable. Hydrology, soil conditions, species interactions, and nearby land use can all shape the outcome. A site may regain its original water level yet fail to recover its former biodiversity if invasive species dominate or if surrounding habitats remain fragmented. For this reason, restoration projects increasingly use adaptive management. Managers define measurable objectives, monitor indicators over time, and revise interventions when evidence suggests that an approach is not working. Adaptive management does not eliminate uncertainty; it makes uncertainty part of the decision process. Its success depends on transparent monitoring and a willingness to change course rather than defend an initial plan.",
+  "explanation": "The passage lists invasive species and habitat fragmentation as reasons recovery may fail.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 14,
+   "answerPage": 18
+  }
  },
  {
   "n": 95,
@@ -1373,11 +1843,16 @@
    "Removing uncertainty from ecological systems.",
    "Measuring only the initial water level."
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Anh",
-  "difficulty": 3,
-  "passage": "Restoring a wetland is sometimes presented as a straightforward engineering task: remove barriers, reintroduce native plants, and allow water to return. In practice, ecological recovery is less predictable. Hydrology, soil conditions, species interactions, and nearby land use can all shape the outcome. A site may regain its original water level yet fail to recover its former biodiversity if invasive species dominate or if surrounding habitats remain fragmented. For this reason, restoration projects increasingly use adaptive management. Managers define measurable objectives, monitor indicators over time, and revise interventions when evidence suggests that an approach is not working. Adaptive management does not eliminate uncertainty; it makes uncertainty part of the decision process. Its success depends on transparent monitoring and a willingness to change course rather than defend an initial plan."
+  "difficulty": 0.75,
+  "passage": "READING TEXT C - QUESTIONS 94-100\nRestoring a wetland is sometimes presented as a straightforward engineering task: remove barriers, reintroduce native plants, and allow water to return. In practice, ecological recovery is less predictable. Hydrology, soil conditions, species interactions, and nearby land use can all shape the outcome. A site may regain its original water level yet fail to recover its former biodiversity if invasive species dominate or if surrounding habitats remain fragmented. For this reason, restoration projects increasingly use adaptive management. Managers define measurable objectives, monitor indicators over time, and revise interventions when evidence suggests that an approach is not working. Adaptive management does not eliminate uncertainty; it makes uncertainty part of the decision process. Its success depends on transparent monitoring and a willingness to change course rather than defend an initial plan.",
+  "explanation": "Adaptive management explicitly uses monitoring and revision when evidence indicates a plan is ineffective.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 14,
+   "answerPage": 18
+  }
  },
  {
   "n": 96,
@@ -1388,11 +1863,16 @@
    "can guarantee a successful outcome",
    "requires no measurable objectives"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Anh",
-  "difficulty": 3,
-  "passage": "Restoring a wetland is sometimes presented as a straightforward engineering task: remove barriers, reintroduce native plants, and allow water to return. In practice, ecological recovery is less predictable. Hydrology, soil conditions, species interactions, and nearby land use can all shape the outcome. A site may regain its original water level yet fail to recover its former biodiversity if invasive species dominate or if surrounding habitats remain fragmented. For this reason, restoration projects increasingly use adaptive management. Managers define measurable objectives, monitor indicators over time, and revise interventions when evidence suggests that an approach is not working. Adaptive management does not eliminate uncertainty; it makes uncertainty part of the decision process. Its success depends on transparent monitoring and a willingness to change course rather than defend an initial plan."
+  "difficulty": 0.75,
+  "passage": "READING TEXT C - QUESTIONS 94-100\nRestoring a wetland is sometimes presented as a straightforward engineering task: remove barriers, reintroduce native plants, and allow water to return. In practice, ecological recovery is less predictable. Hydrology, soil conditions, species interactions, and nearby land use can all shape the outcome. A site may regain its original water level yet fail to recover its former biodiversity if invasive species dominate or if surrounding habitats remain fragmented. For this reason, restoration projects increasingly use adaptive management. Managers define measurable objectives, monitor indicators over time, and revise interventions when evidence suggests that an approach is not working. Adaptive management does not eliminate uncertainty; it makes uncertainty part of the decision process. Its success depends on transparent monitoring and a willingness to change course rather than defend an initial plan.",
+  "explanation": "Uncertainty is acknowledged and incorporated into ongoing decisions.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 14,
+   "answerPage": 18
+  }
  },
  {
   "n": 97,
@@ -1403,11 +1883,16 @@
    "The project has completed its first week.",
    "The original plan was approved by a large committee."
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Anh",
-  "difficulty": 3,
-  "passage": "Restoring a wetland is sometimes presented as a straightforward engineering task: remove barriers, reintroduce native plants, and allow water to return. In practice, ecological recovery is less predictable. Hydrology, soil conditions, species interactions, and nearby land use can all shape the outcome. A site may regain its original water level yet fail to recover its former biodiversity if invasive species dominate or if surrounding habitats remain fragmented. For this reason, restoration projects increasingly use adaptive management. Managers define measurable objectives, monitor indicators over time, and revise interventions when evidence suggests that an approach is not working. Adaptive management does not eliminate uncertainty; it makes uncertainty part of the decision process. Its success depends on transparent monitoring and a willingness to change course rather than defend an initial plan."
+  "difficulty": 0.75,
+  "passage": "READING TEXT C - QUESTIONS 94-100\nRestoring a wetland is sometimes presented as a straightforward engineering task: remove barriers, reintroduce native plants, and allow water to return. In practice, ecological recovery is less predictable. Hydrology, soil conditions, species interactions, and nearby land use can all shape the outcome. A site may regain its original water level yet fail to recover its former biodiversity if invasive species dominate or if surrounding habitats remain fragmented. For this reason, restoration projects increasingly use adaptive management. Managers define measurable objectives, monitor indicators over time, and revise interventions when evidence suggests that an approach is not working. Adaptive management does not eliminate uncertainty; it makes uncertainty part of the decision process. Its success depends on transparent monitoring and a willingness to change course rather than defend an initial plan.",
+  "explanation": "Repeated evidence of declining target species and expanding invasive species indicates the intervention is not meeting objectives.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 14,
+   "answerPage": 18
+  }
  },
  {
   "n": 98,
@@ -1418,11 +1903,16 @@
    "Restoration outcomes are completely predictable.",
    "Soil and land use have no influence."
   ],
-  "correctLetter": "A",
   "correct": 0,
   "topicId": "Tiếng Anh",
-  "difficulty": 3,
-  "passage": "Restoring a wetland is sometimes presented as a straightforward engineering task: remove barriers, reintroduce native plants, and allow water to return. In practice, ecological recovery is less predictable. Hydrology, soil conditions, species interactions, and nearby land use can all shape the outcome. A site may regain its original water level yet fail to recover its former biodiversity if invasive species dominate or if surrounding habitats remain fragmented. For this reason, restoration projects increasingly use adaptive management. Managers define measurable objectives, monitor indicators over time, and revise interventions when evidence suggests that an approach is not working. Adaptive management does not eliminate uncertainty; it makes uncertainty part of the decision process. Its success depends on transparent monitoring and a willingness to change course rather than defend an initial plan."
+  "difficulty": 0.75,
+  "passage": "READING TEXT C - QUESTIONS 94-100\nRestoring a wetland is sometimes presented as a straightforward engineering task: remove barriers, reintroduce native plants, and allow water to return. In practice, ecological recovery is less predictable. Hydrology, soil conditions, species interactions, and nearby land use can all shape the outcome. A site may regain its original water level yet fail to recover its former biodiversity if invasive species dominate or if surrounding habitats remain fragmented. For this reason, restoration projects increasingly use adaptive management. Managers define measurable objectives, monitor indicators over time, and revise interventions when evidence suggests that an approach is not working. Adaptive management does not eliminate uncertainty; it makes uncertainty part of the decision process. Its success depends on transparent monitoring and a willingness to change course rather than defend an initial plan.",
+  "explanation": "The text explicitly says success depends on transparent monitoring and willingness to change course.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 15,
+   "answerPage": 18
+  }
  },
  {
   "n": 99,
@@ -1433,11 +1923,16 @@
    "Text B supports fixed targets, while Text C rejects monitoring.",
    "Text B concerns ecology, while Text C concerns school attendance."
   ],
-  "correctLetter": "A",
   "correct": 0,
   "topicId": "Tiếng Anh",
-  "difficulty": 3,
-  "passage": "Restoring a wetland is sometimes presented as a straightforward engineering task: remove barriers, reintroduce native plants, and allow water to return. In practice, ecological recovery is less predictable. Hydrology, soil conditions, species interactions, and nearby land use can all shape the outcome. A site may regain its original water level yet fail to recover its former biodiversity if invasive species dominate or if surrounding habitats remain fragmented. For this reason, restoration projects increasingly use adaptive management. Managers define measurable objectives, monitor indicators over time, and revise interventions when evidence suggests that an approach is not working. Adaptive management does not eliminate uncertainty; it makes uncertainty part of the decision process. Its success depends on transparent monitoring and a willingness to change course rather than defend an initial plan."
+  "difficulty": 0.75,
+  "passage": "READING TEXT B - QUESTIONS 86-93\nIn many fields, researchers rely on proxies: observable measures used to represent concepts that are difficult to measure directly. A school may use attendance as an indicator of engagement; a public-health agency may use hospital admissions to estimate disease burden. Proxies are useful because they make complex phenomena measurable, but they can also distort the picture. Attendance does not reveal whether students are intellectually involved, and hospital admissions may reflect access to care as well as disease prevalence. A proxy becomes especially misleading when institutions begin optimizing the measure itself. If a school is rewarded only for attendance, it may overlook the quality of learning. Responsible measurement therefore requires asking not only whether a metric is reliable, but also what aspect of reality it leaves out and how people might respond to the incentives it creates.\n\nREADING TEXT C - QUESTIONS 94-100\nRestoring a wetland is sometimes presented as a straightforward engineering task: remove barriers, reintroduce native plants, and allow water to return. In practice, ecological recovery is less predictable. Hydrology, soil conditions, species interactions, and nearby land use can all shape the outcome. A site may regain its original water level yet fail to recover its former biodiversity if invasive species dominate or if surrounding habitats remain fragmented. For this reason, restoration projects increasingly use adaptive management. Managers define measurable objectives, monitor indicators over time, and revise interventions when evidence suggests that an approach is not working. Adaptive management does not eliminate uncertainty; it makes uncertainty part of the decision process. Its success depends on transparent monitoring and a willingness to change course rather than defend an initial plan.",
+  "explanation": "Both texts caution against over-reliance on simplified measures and emphasize context, omissions, and feedback.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 15,
+   "answerPage": 18
+  }
  },
  {
   "n": 100,
@@ -1448,10 +1943,15 @@
    "Because wetland restoration is uncertain, no intervention is justified.",
    "Because indicators are measurable, they fully represent reality."
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Tiếng Anh",
-  "difficulty": 3,
-  "passage": "Restoring a wetland is sometimes presented as a straightforward engineering task: remove barriers, reintroduce native plants, and allow water to return. In practice, ecological recovery is less predictable. Hydrology, soil conditions, species interactions, and nearby land use can all shape the outcome. A site may regain its original water level yet fail to recover its former biodiversity if invasive species dominate or if surrounding habitats remain fragmented. For this reason, restoration projects increasingly use adaptive management. Managers define measurable objectives, monitor indicators over time, and revise interventions when evidence suggests that an approach is not working. Adaptive management does not eliminate uncertainty; it makes uncertainty part of the decision process. Its success depends on transparent monitoring and a willingness to change course rather than defend an initial plan."
+  "difficulty": 0.75,
+  "passage": "READING TEXT B - QUESTIONS 86-93\nIn many fields, researchers rely on proxies: observable measures used to represent concepts that are difficult to measure directly. A school may use attendance as an indicator of engagement; a public-health agency may use hospital admissions to estimate disease burden. Proxies are useful because they make complex phenomena measurable, but they can also distort the picture. Attendance does not reveal whether students are intellectually involved, and hospital admissions may reflect access to care as well as disease prevalence. A proxy becomes especially misleading when institutions begin optimizing the measure itself. If a school is rewarded only for attendance, it may overlook the quality of learning. Responsible measurement therefore requires asking not only whether a metric is reliable, but also what aspect of reality it leaves out and how people might respond to the incentives it creates.\n\nREADING TEXT C - QUESTIONS 94-100\nRestoring a wetland is sometimes presented as a straightforward engineering task: remove barriers, reintroduce native plants, and allow water to return. In practice, ecological recovery is less predictable. Hydrology, soil conditions, species interactions, and nearby land use can all shape the outcome. A site may regain its original water level yet fail to recover its former biodiversity if invasive species dominate or if surrounding habitats remain fragmented. For this reason, restoration projects increasingly use adaptive management. Managers define measurable objectives, monitor indicators over time, and revise interventions when evidence suggests that an approach is not working. Adaptive management does not eliminate uncertainty; it makes uncertainty part of the decision process. Its success depends on transparent monitoring and a willingness to change course rather than defend an initial plan.",
+  "explanation": "B avoids both extremes: it recognizes limitations but retains the practical value of evidence when interpreted carefully.",
+  "source": {
+   "pdf": "100_cau_Su_dung_ngon_ngu_DGNL.pdf",
+   "page": 15,
+   "answerPage": 18
+  }
  }
 ]

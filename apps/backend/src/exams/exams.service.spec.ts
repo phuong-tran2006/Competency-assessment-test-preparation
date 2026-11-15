@@ -24,6 +24,7 @@ describe('ExamsService', () => {
             question: {
               id: 'q1',
               content: 'c1',
+              explanation: 'The correct answer is A.',
               options: [
                 { id: 'o1', content: 'A', order: 0, isCorrect: true },
                 { id: 'o2', content: 'B', order: 1, isCorrect: false },
@@ -36,6 +37,7 @@ describe('ExamsService', () => {
       const exam = await service.getExamById('e1');
       expect(exam.questions).toHaveLength(1);
       for (const q of exam.questions) {
+        expect(q).not.toHaveProperty('explanation');
         for (const opt of q.options) {
           expect(opt).not.toHaveProperty('isCorrect');
           expect(Object.keys(opt).sort()).toEqual(['content', 'id', 'order']);

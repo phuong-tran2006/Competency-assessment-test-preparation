@@ -13,7 +13,7 @@ import { PrismaPg } from '@prisma/adapter-pg';
 import { Pool } from 'pg';
 
 const BASE = process.env.E2E_BASE ?? 'http://localhost:3000/api';
-const EXAM_ID = 'vact-exam-demo-120';
+const EXAM_ID = 'vact-exam-2026';
 
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 const prisma = new PrismaClient({ adapter: new PrismaPg(pool) });
