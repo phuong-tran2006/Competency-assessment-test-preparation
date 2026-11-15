@@ -8,24 +8,32 @@
    "64",
    "80"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 2,
+   "answerPage": 10
+  }
  },
  {
   "n": 2,
-  "content": "Nghiệm thực của phương trình (2x + 3) = x là√",
+  "content": "Nghiệm thực của phương trình √(2x + 3) = x là",
   "options": [
    "3",
    "− 1",
    "− 1 và 3",
    "Không có nghiệm"
   ],
-  "correctLetter": "A",
   "correct": 0,
   "topicId": "Toán",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 2,
+   "answerPage": 10
+  }
  },
  {
   "n": 3,
@@ -36,24 +44,32 @@
    "8",
    "9"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 2,
+   "answerPage": 10
+  }
  },
  {
   "n": 4,
   "content": "Nghiệm của phương trình log₂(x − 1) + log₂(x + 1) = 3 là",
   "options": [
    "− 3",
-   "7√",
+   "√ 7",
    "3",
    "7"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Toán",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 2,
+   "answerPage": 10
+  }
  },
  {
   "n": 5,
@@ -64,10 +80,14 @@
    "3",
    "4"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 2,
+   "answerPage": 10
+  }
  },
  {
   "n": 6,
@@ -78,10 +98,14 @@
    "244",
    "486"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 2,
+   "answerPage": 10
+  }
  },
  {
   "n": 7,
@@ -92,10 +116,14 @@
    "31",
    "36"
   ],
-  "correctLetter": "A",
   "correct": 0,
   "topicId": "Toán",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 2,
+   "answerPage": 10
+  }
  },
  {
   "n": 8,
@@ -106,38 +134,50 @@
    "5",
    "6"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 2,
+   "answerPage": 10
+  }
  },
  {
   "n": 9,
   "content": "Tiếp tuyến của đồ thị y = x³ − 3x² + 2 tại điểm có hoành độ x = 2 có phương trình",
   "options": [
    "y = 2x − 6",
-   "y = − 2",
+   "y = −2",
    "y = 2",
-   "y = − 2x + 2"
+   "y = −2x + 2"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 2,
+   "answerPage": 10
+  }
  },
  {
   "n": 10,
-  "content": "Giá trị của tích phân ₀³ (x² + 2x) dx bằng ∫",
+  "content": "Giá trị của tích phân ∫₀³ (x² + 2x) dx bằng",
   "options": [
    "15",
    "18",
    "21",
    "27"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 2,
+   "answerPage": 10
+  }
  },
  {
   "n": 11,
@@ -148,38 +188,50 @@
    "4",
    "5"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 2,
+   "answerPage": 10
+  }
  },
  {
   "n": 12,
-  "content": "Khoảng cách từ điểm P(2; − 1) đến đường thẳng 3x − 4y + 5 = 0 bằng",
+  "content": "Khoảng cách từ điểm P(2; −1) đến đường thẳng 3x − 4y + 5 = 0 bằng",
   "options": [
    "1",
    "2",
    "3",
    "5"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Toán",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 2,
+   "answerPage": 10
+  }
  },
  {
   "n": 13,
   "content": "Đường tròn (x − 2)² + (y + 1)² = 25 cắt trục Ox tại hai điểm. Độ dài dây cung nằm trên Ox bằng",
   "options": [
-   "2 √ 6",
-   "4 √ 6",
-   "5 √ 6",
-   "4 √ 5"
+   "2 √6",
+   "4 √6",
+   "5√6",
+   "4 √5"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 2,
+   "answerPage": 10
+  }
  },
  {
   "n": 14,
@@ -190,24 +242,32 @@
    "24π",
    "30π"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Toán",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 2,
+   "answerPage": 10
+  }
  },
  {
   "n": 15,
   "content": "Cho hai vectơ a = (1; 2; 2), b = (2; 1; 0). cosin góc giữa a và b bằng",
   "options": [
    "2/3",
-   "4/(3 √ 5)",
+   "4/(3 √5)",
    "1/ √ 5",
    "4/5"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 2,
+   "answerPage": 10
+  }
  },
  {
   "n": 16,
@@ -218,10 +278,14 @@
    "1/2",
    "2/3"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 3,
+   "answerPage": 10
+  }
  },
  {
   "n": 17,
@@ -232,10 +296,14 @@
    "9",
    "10"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 3,
+   "answerPage": 10
+  }
  },
  {
   "n": 18,
@@ -246,10 +314,14 @@
    "1800",
    "2160"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Toán",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 3,
+   "answerPage": 10
+  }
  },
  {
   "n": 19,
@@ -260,10 +332,14 @@
    "40",
    "80"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 3,
+   "answerPage": 10
+  }
  },
  {
   "n": 20,
@@ -274,10 +350,14 @@
    "Giảm 1%",
    "Giảm 2%"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Toán",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 3,
+   "answerPage": 10
+  }
  },
  {
   "n": 21,
@@ -288,10 +368,14 @@
    "56,18",
    "56,36"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Toán",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 3,
+   "answerPage": 10
+  }
  },
  {
   "n": 22,
@@ -302,10 +386,14 @@
    "2 giờ 30 phút",
    "3 giờ"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 3,
+   "answerPage": 10
+  }
  },
  {
   "n": 23,
@@ -316,10 +404,14 @@
    "16",
    "17"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 3,
+   "answerPage": 10
+  }
  },
  {
   "n": 24,
@@ -330,10 +422,14 @@
    "6",
    "8"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Toán",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 3,
+   "answerPage": 10
+  }
  },
  {
   "n": 25,
@@ -344,10 +440,14 @@
    "8",
    "12"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 3,
+   "answerPage": 10
+  }
  },
  {
   "n": 26,
@@ -358,24 +458,32 @@
    "1/2",
    "3"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 3,
+   "answerPage": 10
+  }
  },
  {
   "n": 27,
-  "content": "Giá trị lớn nhất của hàm số f(x) = − 2x² + 8x − 3 trên ℝ là",
+  "content": "Giá trị lớn nhất của hàm số f(x) = −2x² + 8x − 3 trên ℝ là",
   "options": [
    "3",
    "5",
    "7",
    "8"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 3,
+   "answerPage": 10
+  }
  },
  {
   "n": 28,
@@ -386,24 +494,32 @@
    "x > 3",
    "x < 3"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Toán",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 3,
+   "answerPage": 10
+  }
  },
  {
   "n": 29,
-  "content": "Giá trị ₀¹ (3x² + 2x + 1) dx bằng ∫",
+  "content": "Giá trị ∫₀¹ (3x² + 2x + 1) dx bằng",
   "options": [
    "2",
    "5/2",
    "3",
    "7/2"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Toán",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 3,
+   "answerPage": 10
+  }
  },
  {
   "n": 30,
@@ -411,27 +527,35 @@
   "options": [
    "14√3",
    "21√3",
-   "28√3",
+   "28 √ 3",
    "56"
   ],
-  "correctLetter": "A",
   "correct": 0,
   "topicId": "Toán",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 3,
+   "answerPage": 10
+  }
  },
  {
   "n": 31,
-  "content": "Trong không gian Oxyz, khoảng cách giữa A(1; − 2; 3) và B(4; 2; 3) bằng",
+  "content": "Trong không gian Oxyz, khoảng cách giữa A(1; −2; 3) và B(4; 2; 3) bằng",
   "options": [
    "4",
    "5",
    "√29",
    "6"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 3,
+   "answerPage": 10
+  }
  },
  {
   "n": 32,
@@ -442,10 +566,14 @@
    "59",
    "60"
   ],
-  "correctLetter": "A",
   "correct": 0,
   "topicId": "Toán",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 4,
+   "answerPage": 10
+  }
  },
  {
   "n": 33,
@@ -456,10 +584,14 @@
    "7/9",
    "4/5"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 4,
+   "answerPage": 10
+  }
  },
  {
   "n": 34,
@@ -470,10 +602,14 @@
    "180",
    "210"
   ],
-  "correctLetter": "D",
   "correct": 3,
   "topicId": "Toán",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 4,
+   "answerPage": 10
+  }
  },
  {
   "n": 35,
@@ -484,10 +620,14 @@
    "70 km/h",
    "72 km/h"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 4,
+   "answerPage": 10
+  }
  },
  {
   "n": 36,
@@ -498,10 +638,14 @@
    "m > 0 và m ≠ 1",
    "m ≠ 1"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 5,
+   "answerPage": 10
+  }
  },
  {
   "n": 37,
@@ -512,10 +656,14 @@
    "[1; 5]",
    "(2; 4)"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 5,
+   "answerPage": 10
+  }
  },
  {
   "n": 38,
@@ -526,10 +674,14 @@
    "{2; 4}",
    "∅"
   ],
-  "correctLetter": "A",
   "correct": 0,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 5,
+   "answerPage": 10
+  }
  },
  {
   "n": 39,
@@ -540,10 +692,14 @@
    "1",
    "2"
   ],
-  "correctLetter": "D",
   "correct": 3,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 5,
+   "answerPage": 10
+  }
  },
  {
   "n": 40,
@@ -554,10 +710,14 @@
    "2",
    "3"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 5,
+   "answerPage": 10
+  }
  },
  {
   "n": 41,
@@ -568,24 +728,32 @@
    "96",
    "100"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 5,
+   "answerPage": 10
+  }
  },
  {
   "n": 42,
-  "content": "Giá trị tích phân ₀¹ x·e^(x²) dx bằng ∫",
+  "content": "Giá trị tích phân ∫₀¹ x·e^(x²) dx bằng",
   "options": [
    "e − 1",
    "(e − 1)/2",
    "e/2",
    "1/2"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 5,
+   "answerPage": 10
+  }
  },
  {
   "n": 43,
@@ -596,10 +764,14 @@
    "4",
    "5"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 5,
+   "answerPage": 10
+  }
  },
  {
   "n": 44,
@@ -610,10 +782,14 @@
    "41",
    "43"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 5,
+   "answerPage": 10
+  }
  },
  {
   "n": 45,
@@ -624,38 +800,50 @@
    "3x + 4y + 17 = 0",
    "3x + 4y − 7 = 0"
   ],
-  "correctLetter": "A",
   "correct": 0,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 5,
+   "answerPage": 10
+  }
  },
  {
   "n": 46,
   "content": "Elip x²/9 + y²/4 = 1 có khoảng cách giữa hai tiêu điểm bằng",
   "options": [
-   "√5",
-   "2√5",
+   "√ 5",
+   "2 √5",
    "3√5",
    "5"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 5,
+   "answerPage": 10
+  }
  },
  {
   "n": 47,
   "content": "Hình chóp tứ giác đều có cạnh đáy 6, chiều cao 4. Độ dài đường cao mặt bên bằng",
   "options": [
    "4",
-   "√13",
+   "√ 13",
    "5",
-   "√34"
+   "√ 34"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 5,
+   "answerPage": 10
+  }
  },
  {
   "n": 48,
@@ -666,10 +854,14 @@
    "4",
    "5"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 5,
+   "answerPage": 10
+  }
  },
  {
   "n": 49,
@@ -680,10 +872,14 @@
    "1/2",
    "4/5"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 5,
+   "answerPage": 10
+  }
  },
  {
   "n": 50,
@@ -694,10 +890,14 @@
    "0,8",
    "1,1"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 5,
+   "answerPage": 10
+  }
  },
  {
   "n": 51,
@@ -708,10 +908,14 @@
    "18",
    "24"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 6,
+   "answerPage": 10
+  }
  },
  {
   "n": 52,
@@ -722,10 +926,14 @@
    "22",
    "27"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 6,
+   "answerPage": 10
+  }
  },
  {
   "n": 53,
@@ -736,10 +944,14 @@
    "3",
    "6"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 6,
+   "answerPage": 10
+  }
  },
  {
   "n": 54,
@@ -750,10 +962,14 @@
    "8",
    "9"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 6,
+   "answerPage": 10
+  }
  },
  {
   "n": 55,
@@ -764,24 +980,32 @@
    "4",
    "5"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 6,
+   "answerPage": 10
+  }
  },
  {
   "n": 56,
   "content": "Tập nghiệm của bất phương trình 2ˣ + 2⁻ˣ ≤ 5/2 là",
   "options": [
-   "( − 1; 1)",
-   "[ − 1; 1]",
+   "(−1; 1)",
+   "[ −1; 1]",
    "[0; 1]",
-   "( −∞− ; 1] ∪ [1; ∞ )"
+   "(−∞−; 1] ∪ [1; ∞)"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 6,
+   "answerPage": 10
+  }
  },
  {
   "n": 57,
@@ -792,10 +1016,14 @@
    "2",
    "8/3"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 6,
+   "answerPage": 10
+  }
  },
  {
   "n": 58,
@@ -806,10 +1034,14 @@
    "6P₀",
    "8P₀"
   ],
-  "correctLetter": "D",
   "correct": 3,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 6,
+   "answerPage": 10
+  }
  },
  {
   "n": 59,
@@ -820,10 +1052,14 @@
    "8",
    "10"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 6,
+   "answerPage": 10
+  }
  },
  {
   "n": 60,
@@ -834,10 +1070,14 @@
    "91/6",
    "18"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 6,
+   "answerPage": 10
+  }
  },
  {
   "n": 61,
@@ -848,10 +1088,14 @@
    "128/625",
    "160/625"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 6,
+   "answerPage": 10
+  }
  },
  {
   "n": 62,
@@ -862,10 +1106,14 @@
    "25",
    "30"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 6,
+   "answerPage": 10
+  }
  },
  {
   "n": 63,
@@ -876,24 +1124,32 @@
    "16000/27 cm³",
    "20000/27 cm³"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 6,
+   "answerPage": 10
+  }
  },
  {
   "n": 64,
   "content": "Parabol y² = 8x có tiêu điểm và đường chuẩn lần lượt là",
   "options": [
-   "(2; 0) và x = − 2",
-   "(4; 0) và x = − 4",
-   "(0; 2) và y = − 2",
+   "(2; 0) và x = −2",
+   "(4; 0) và x = −4",
+   "(0; 2) và y = −2",
    "(2; 0) và x = 2"
   ],
-  "correctLetter": "A",
   "correct": 0,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 6,
+   "answerPage": 10
+  }
  },
  {
   "n": 65,
@@ -901,27 +1157,35 @@
   "options": [
    "c = 1",
    "c = 0",
-   "c = − 1",
-   "c = − 2"
+   "c = −1",
+   "c = −2"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 6,
+   "answerPage": 10
+  }
  },
  {
   "n": 66,
-  "content": "Hai vectơ a = (1; 2; 2), b = (2; 1; − 2) có tính chất",
+  "content": "Hai vectơ a = (1; 2; 2), b = (2; 1; −2) có tính chất",
   "options": [
    "Cùng phương",
    "Vuông góc",
    "Có góc 60°",
    "Có tích vô hướng bằng 6"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 7,
+   "answerPage": 10
+  }
  },
  {
   "n": 67,
@@ -932,10 +1196,14 @@
    "2",
    "3"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 7,
+   "answerPage": 10
+  }
  },
  {
   "n": 68,
@@ -946,10 +1214,14 @@
    "125,9712",
    "126,4"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 7,
+   "answerPage": 10
+  }
  },
  {
   "n": 69,
@@ -960,10 +1232,14 @@
    "2,5 giờ",
    "3 giờ"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 7,
+   "answerPage": 10
+  }
  },
  {
   "n": 70,
@@ -974,10 +1250,14 @@
    "8",
    "10"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 7,
+   "answerPage": 10
+  }
  },
  {
   "n": 71,
@@ -988,38 +1268,50 @@
    "2",
    "5/2"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 7,
+   "answerPage": 10
+  }
  },
  {
   "n": 72,
-  "content": "Giá trị tích phân ₁ᵉ (ln x)/x dx bằng ∫",
+  "content": "Giá trị tích phân ∫₁ᵉ (ln x)/x dx bằng",
   "options": [
    "1/4",
    "1/2",
    "1",
    "e − 1"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 7,
+   "answerPage": 10
+  }
  },
  {
   "n": 73,
   "content": "Hai số thực x, y thỏa mãn x² + y² = 10 và xy = 3. Giá trị có thể của x + y là",
   "options": [
    "Chỉ 4",
-   "Chỉ − 4",
-   "4 hoặc − 4",
-   "2 hoặc − 2"
+   "Chỉ −4",
+   "4 hoặc −4",
+   "2 hoặc −2"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 7,
+   "answerPage": 10
+  }
  },
  {
   "n": 74,
@@ -1030,10 +1322,14 @@
    "84",
    "90"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 7,
+   "answerPage": 10
+  }
  },
  {
   "n": 75,
@@ -1044,10 +1340,14 @@
    "2/5",
    "1/2"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 7,
+   "answerPage": 10
+  }
  },
  {
   "n": 76,
@@ -1058,10 +1358,14 @@
    "m > 1/4",
    "0 < m < 1/4"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 4
+  "difficulty": 1,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 8,
+   "answerPage": 10
+  }
  },
  {
   "n": 77,
@@ -1072,10 +1376,14 @@
    "98",
    "100"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Toán",
-  "difficulty": 4
+  "difficulty": 1,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 8,
+   "answerPage": 10
+  }
  },
  {
   "n": 78,
@@ -1086,10 +1394,14 @@
    "2",
    "3"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Toán",
-  "difficulty": 4
+  "difficulty": 1,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 8,
+   "answerPage": 10
+  }
  },
  {
   "n": 79,
@@ -1100,10 +1412,14 @@
    "4",
    "5"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 4
+  "difficulty": 1,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 8,
+   "answerPage": 10
+  }
  },
  {
   "n": 80,
@@ -1114,10 +1430,14 @@
    "4",
    "8"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Toán",
-  "difficulty": 4
+  "difficulty": 1,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 8,
+   "answerPage": 10
+  }
  },
  {
   "n": 81,
@@ -1128,10 +1448,14 @@
    "32/3",
    "16"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Toán",
-  "difficulty": 4
+  "difficulty": 1,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 8,
+   "answerPage": 10
+  }
  },
  {
   "n": 82,
@@ -1142,24 +1466,32 @@
    "5π/3",
    "2π"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 4
+  "difficulty": 1,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 8,
+   "answerPage": 10
+  }
  },
  {
   "n": 83,
-  "content": "Đường tròn tâm I(1; − 2), bán kính 5 tiếp xúc với đường thẳng y = 2x + k. Các giá trị k có thể là",
+  "content": "Đường tròn tâm I(1; −2), bán kính 5 tiếp xúc với đường thẳng y = 2x + k. Các giá trị k có thể là",
   "options": [
-   "− 4 ± 5 √ 5",
-   "4 ± 5 √ 5",
-   "− 2 ± 5 √ 5",
-   "2 ± 5 √ 5"
+   "− 4 ± 5√5",
+   "4 ± 5 √5",
+   "− 2 ± 5 √5",
+   "2 ± 5 √5"
   ],
-  "correctLetter": "A",
   "correct": 0,
   "topicId": "Toán",
-  "difficulty": 4
+  "difficulty": 1,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 8,
+   "answerPage": 10
+  }
  },
  {
   "n": 84,
@@ -1170,10 +1502,14 @@
    "y = 2x + 1",
    "y = 2x − 1"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 4
+  "difficulty": 1,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 8,
+   "answerPage": 10
+  }
  },
  {
   "n": 85,
@@ -1184,24 +1520,32 @@
    "√2",
    "2"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 4
+  "difficulty": 1,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 8,
+   "answerPage": 10
+  }
  },
  {
   "n": 86,
   "content": "Một hình chóp có đáy là tam giác đều cạnh 6 và chiều cao bằng 4. Thể tích hình chóp bằng",
   "options": [
-   "9√3",
+   "9 √3",
    "12√3",
-   "18√3",
+   "18 √ 3",
    "24√3"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 4
+  "difficulty": 1,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 8,
+   "answerPage": 10
+  }
  },
  {
   "n": 87,
@@ -1212,10 +1556,14 @@
    "1/2",
    "11/21"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 4
+  "difficulty": 1,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 8,
+   "answerPage": 10
+  }
  },
  {
   "n": 88,
@@ -1226,10 +1574,14 @@
    "2640",
    "2880"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Toán",
-  "difficulty": 4
+  "difficulty": 1,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 8,
+   "answerPage": 10
+  }
  },
  {
   "n": 89,
@@ -1240,10 +1592,14 @@
    "12/7",
    "2"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Toán",
-  "difficulty": 4
+  "difficulty": 1,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 8,
+   "answerPage": 10
+  }
  },
  {
   "n": 90,
@@ -1254,10 +1610,14 @@
    "43",
    "1"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 4
+  "difficulty": 1,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 9,
+   "answerPage": 10
+  }
  },
  {
   "n": 91,
@@ -1268,24 +1628,32 @@
    "1535",
    "2047"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 4
+  "difficulty": 1,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 9,
+   "answerPage": 10
+  }
  },
  {
   "n": 92,
   "content": "Tấm bìa hình chữ nhật 24 cm × 16 cm được cắt bốn hình vuông cạnh x ở bốn góc rồi gấp thành hộp không nắp. Giá trị x để thể tích hộp lớn nhất là",
   "options": [
-   "(20 − 4 √ 7)/3 cm",
-   "(20 + 4 √ 7)/3 cm",
-   "(16 − 2 √ 7)/3 cm",
+   "(20 − 4 √7)/3 cm",
+   "(20 + 4 √7)/3 cm",
+   "(16 − 2 √7)/3 cm",
    "4 cm"
   ],
-  "correctLetter": "A",
   "correct": 0,
   "topicId": "Toán",
-  "difficulty": 4
+  "difficulty": 1,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 9,
+   "answerPage": 10
+  }
  },
  {
   "n": 93,
@@ -1296,10 +1664,14 @@
    "18",
    "36"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Toán",
-  "difficulty": 4
+  "difficulty": 1,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 9,
+   "answerPage": 10
+  }
  },
  {
   "n": 94,
@@ -1310,24 +1682,32 @@
    "34",
    "36"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Toán",
-  "difficulty": 4
+  "difficulty": 1,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 9,
+   "answerPage": 10
+  }
  },
  {
   "n": 95,
-  "content": "Giá trị tích phân ₋₁¹ |x³ ∫ − x| dx bằng",
+  "content": "Giá trị tích phân ∫₋₁¹ |x³ − x| dx bằng",
   "options": [
    "1/4",
    "1/2",
    "3/4",
    "1"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 4
+  "difficulty": 1,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 9,
+   "answerPage": 10
+  }
  },
  {
   "n": 96,
@@ -1338,10 +1718,14 @@
    "8",
    "10"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Toán",
-  "difficulty": 4
+  "difficulty": 1,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 9,
+   "answerPage": 10
+  }
  },
  {
   "n": 97,
@@ -1352,38 +1736,50 @@
    "21",
    "27"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Toán",
-  "difficulty": 4
+  "difficulty": 1,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 9,
+   "answerPage": 10
+  }
  },
  {
   "n": 98,
   "content": "Cho x, y là hai số thực thỏa mãn x² + y² = 10 và x + y = m. Giá trị lớn nhất của |m| bằng",
   "options": [
-   "2√5",
-   "√10",
+   "2 √5",
+   "√ 10",
    "4",
    "5"
   ],
-  "correctLetter": "A",
   "correct": 0,
   "topicId": "Toán",
-  "difficulty": 4
+  "difficulty": 1,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 9,
+   "answerPage": 10
+  }
  },
  {
   "n": 99,
   "content": "Tam giác có các đỉnh A(0; 0), B(8; 0), C(2; 6). Bán kính đường tròn ngoại tiếp tam giác bằng",
   "options": [
-   "√5",
-   "2√5",
+   "√ 5",
+   "2 √5",
    "3√5",
-   "4√5"
+   "4 √5"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 4
+  "difficulty": 1,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 9,
+   "answerPage": 10
+  }
  },
  {
   "n": 100,
@@ -1394,9 +1790,13 @@
    "341",
    "351"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Toán",
-  "difficulty": 4
+  "difficulty": 1,
+  "source": {
+   "pdf": "100_cau_Toan_DGNL_nang_cao.pdf",
+   "page": 9,
+   "answerPage": 10
+  }
  }
 ]

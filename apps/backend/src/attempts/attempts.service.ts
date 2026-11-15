@@ -8,10 +8,16 @@ import { CreateAttemptDto } from './dto/create-attempt.dto';
 import { CreatePlacementDto } from './dto/create-placement.dto';
 import { SubmitAnswerDto } from './dto/submit-answer.dto';
 import { isAnswerCorrect, questionWeight, roundScore } from './scoring';
+import { Prisma } from '@prisma/client';
+import {
+  answerQuestion,
+  questionSnapshot,
+  SnapshotQuestion,
+} from './question-snapshot';
 
 @Injectable()
 export class AttemptsService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) {}
 
   private resolveTimeLimit(dto: { timeLimit?: number; durationMin?: number }, fallback: number) {
     if (dto.timeLimit !== undefined) return dto.timeLimit;
@@ -25,7 +31,7 @@ export class AttemptsService {
     if (dto.examId) {
       const exam = await this.prisma.exam.findUnique({
         where: { id: dto.examId },
-        include: { questions: true },
+        include: { questions: { orderBy: [{ order: 'asc' }, { questionId: 'asc' }] } },
       });
       if (!exam) throw new NotFoundException('Không tìm thấy đề thi');
 
@@ -71,8 +77,8 @@ export class AttemptsService {
     const topicIds = dto.topicIds?.length
       ? dto.topicIds
       : (await this.prisma.question.groupBy({ by: ['topicId'] })).map(
-          (row) => row.topicId,
-        );
+        (row) => row.topicId,
+      );
 
     if (!topicIds.length) {
       throw new NotFoundException('Ngân hàng câu hỏi đang trống');
@@ -105,25 +111,29 @@ export class AttemptsService {
     const startedAt = new Date();
     const deadlineAt = new Date(startedAt.getTime() + timeLimit * 1000);
 
-    const attempt = await this.prisma.examAttempt.create({
-      data: {
-        userId,
-        examId,
-        timeLimit,
-        startedAt,
-        deadlineAt,
-        status: 'IN_PROGRESS',
-        total: questionIds.length,
-      },
-    });
-
-    await this.prisma.examAnswer.createMany({
-      data: questionIds.map((qId) => ({
-        attemptId: attempt.id,
-        questionId: qId,
-        selectedOptionIds: [],
-      })),
-    });
+    const attempt = await this.prisma.$transaction(async (tx) => {
+      const questions = await tx.question.findMany({
+        where: { id: { in: questionIds } },
+        include: { options: { orderBy: { order: 'asc' } }, topic: { select: { id: true, name: true } } },
+      });
+      const byId = new Map(questions.map((question) => [question.id, question]));
+      if (questions.length !== questionIds.length) throw new NotFoundException('Câu hỏi trong đề không còn tồn tại');
+      return tx.examAttempt.create({
+        data: {
+          userId, examId, timeLimit, startedAt, deadlineAt,
+          status: 'IN_PROGRESS', total: questionIds.length,
+          answers: {
+            create: questionIds.map((questionId) => ({
+              questionId, selectedOptionIds: [],
+              // Keep the topic referenced while the attempt is still in progress.
+              topicIdAtSubmission: byId.get(questionId)!.topicId,
+              difficultyAtSubmission: byId.get(questionId)!.difficulty,
+              questionSnapshot: questionSnapshot(byId.get(questionId)!),
+            }))
+          },
+        },
+      });
+    }, { isolationLevel: Prisma.TransactionIsolationLevel.RepeatableRead });
 
     return {
       attemptId: attempt.id,
@@ -251,53 +261,66 @@ export class AttemptsService {
     dto: SubmitAnswerDto,
     userId: string,
   ) {
-    const attempt = await this.prisma.examAttempt.findFirst({
-      where: { id: attemptId, userId },
-    });
-    if (!attempt) throw new NotFoundException('Không tìm thấy lượt làm bài');
-    if (attempt.status !== 'IN_PROGRESS') {
-      throw new BadRequestException('Lượt làm bài đã kết thúc');
-    }
-
-    if (this.isExpired(attempt)) {
-      await this.finalizeAttempt(attemptId);
-      throw new BadRequestException(
-        'Đã hết thời gian làm bài, bài đã được nộp tự động',
-      );
-    }
-
-    const answer = await this.prisma.examAnswer.findUnique({
-      where: { attemptId_questionId: { attemptId, questionId } },
-    });
-    if (!answer) {
-      throw new NotFoundException('Câu hỏi không thuộc lượt làm bài này');
-    }
-
-    const selectedOptionIds = [...new Set(dto.selectedOptionIds)];
-    if (selectedOptionIds.length) {
-      const validOptions = await this.prisma.questionOption.count({
-        where: { questionId, id: { in: selectedOptionIds } },
+    const result = await this.prisma.$transaction(async (tx) => {
+      await tx.$queryRaw`SELECT "id" FROM "exam_attempts" WHERE "id" = ${attemptId} AND "userId" = ${userId} FOR UPDATE`;
+      const attempt = await tx.examAttempt.findFirst({
+        where: { id: attemptId, userId },
       });
-      if (validOptions !== selectedOptionIds.length) {
-        throw new BadRequestException('Có đáp án không thuộc câu hỏi này');
+      if (!attempt) throw new NotFoundException('Không tìm thấy lượt làm bài');
+      if (attempt.status !== 'IN_PROGRESS') {
+        throw new BadRequestException('Lượt làm bài đã kết thúc');
       }
-    }
 
-    const updated = await this.prisma.examAnswer.update({
-      where: { attemptId_questionId: { attemptId, questionId } },
-      data: {
-        selectedOptionIds,
-        ...(dto.timeSpent !== undefined ? { timeSpent: dto.timeSpent } : {}),
-      },
+      if (this.isExpired(attempt)) {
+        return { expired: true as const };
+      }
+
+      const answer = await tx.examAnswer.findUnique({
+        where: { attemptId_questionId: { attemptId, questionId } },
+      });
+      if (!answer) {
+        throw new NotFoundException('Câu hỏi không thuộc lượt làm bài này');
+      }
+
+      const selectedOptionIds = [...new Set(dto.selectedOptionIds)];
+      if (selectedOptionIds.length > 1) {
+        throw new BadRequestException('Câu trắc nghiệm chỉ được chọn một đáp án');
+      }
+      if (selectedOptionIds.length) {
+        const snapshot = answer.questionSnapshot as unknown as SnapshotQuestion | null;
+        const validOptions = snapshot
+          ? snapshot.options.filter((option) => selectedOptionIds.includes(option.id)).length
+          : await tx.questionOption.count({
+            where: { questionId, id: { in: selectedOptionIds } },
+          });
+        if (validOptions !== selectedOptionIds.length) {
+          throw new BadRequestException('Có đáp án không thuộc câu hỏi này');
+        }
+      }
+
+      const updated = await tx.examAnswer.update({
+        where: { attemptId_questionId: { attemptId, questionId } },
+        data: {
+          selectedOptionIds,
+          ...(dto.timeSpent !== undefined ? { timeSpent: dto.timeSpent } : {}),
+        },
+      });
+
+      return {
+        expired: false as const, answer: {
+          id: updated.id,
+          attemptId: updated.attemptId,
+          questionId: updated.questionId,
+          selectedOptionIds: updated.selectedOptionIds,
+          timeSpent: updated.timeSpent,
+        }
+      };
     });
-
-    return {
-      id: updated.id,
-      attemptId: updated.attemptId,
-      questionId: updated.questionId,
-      selectedOptionIds: updated.selectedOptionIds,
-      timeSpent: updated.timeSpent,
-    };
+    if (result.expired) {
+      await this.finalizeAttempt(attemptId);
+      throw new BadRequestException('Đã hết thời gian làm bài, bài đã được nộp tự động');
+    }
+    return result.answer;
   }
 
   async submitAttempt(attemptId: string, userId: string) {
@@ -313,9 +336,16 @@ export class AttemptsService {
   }
 
   async finalizeAttempt(attemptId: string) {
-    const attempt = await this.prisma.examAttempt.findUnique({
+    return this.prisma.$transaction(async (tx) => {
+      await tx.$queryRaw`SELECT "id" FROM "exam_attempts" WHERE "id" = ${attemptId} FOR UPDATE`;
+      return this.finalizeLockedAttempt(tx, attemptId);
+    }, { timeout: 15000 });
+  }
+
+  private async finalizeLockedAttempt(tx: Prisma.TransactionClient, attemptId: string) {
+    const attempt = await tx.examAttempt.findUnique({
       where: { id: attemptId },
-      include: { answers: true },
+      include: { answers: { orderBy: { id: 'asc' } } },
     });
     if (!attempt) throw new NotFoundException('Không tìm thấy bài làm');
 
@@ -336,14 +366,16 @@ export class AttemptsService {
     const submittedAt = deadline && now > deadline ? deadline : now;
 
     const questionIds = attempt.answers.map((a) => a.questionId);
-    const questions = await this.prisma.question.findMany({
+    const questions = await tx.question.findMany({
       where: { id: { in: questionIds } },
-      include: { options: true },
+      include: { options: true, topic: { select: { id: true, name: true } } },
     });
+
+    const byQuestion = new Map(questions.map((question) => [question.id, question]));
 
     let score = 0;
     let weightedScore = 0;
-    const updates: any[] = [];
+    const updates: Prisma.PrismaPromise<unknown>[] = [];
 
     const topicStats = new Map<
       string,
@@ -357,8 +389,9 @@ export class AttemptsService {
     >();
 
     for (const answer of attempt.answers) {
-      const question = questions.find((q) => q.id === answer.questionId);
-      if (!question) continue;
+      const live = byQuestion.get(answer.questionId);
+      if (!live) throw new NotFoundException('Không tìm thấy câu hỏi của bài làm');
+      const question = answerQuestion({ ...answer, question: live });
 
       const correctOptionIds = question.options
         .filter((o) => o.isCorrect)
@@ -391,9 +424,9 @@ export class AttemptsService {
       topicStats.set(question.topicId, topic);
 
       updates.push(
-        this.prisma.examAnswer.update({
+        tx.examAnswer.update({
           where: { id: answer.id },
-          data: { isCorrect },
+          data: { isCorrect, difficultyAtSubmission: question.difficulty, topicIdAtSubmission: question.topicId },
         }),
       );
     }
@@ -410,23 +443,19 @@ export class AttemptsService {
       timeSpent: row.timeSpent,
     }));
 
-    await this.prisma.$transaction([
-      ...updates,
-      this.prisma.attemptTopicResult.deleteMany({ where: { attemptId } }),
-      ...(topicRows.length
-        ? [this.prisma.attemptTopicResult.createMany({ data: topicRows })]
-        : []),
-      this.prisma.examAttempt.update({
-        where: { id: attemptId },
-        data: {
-          status: 'SUBMITTED',
-          submittedAt,
-          score,
-          weightedScore: roundedWeightedScore,
-          total,
-        },
-      }),
-    ]);
+    await Promise.all(updates);
+    await tx.attemptTopicResult.deleteMany({ where: { attemptId } });
+    if (topicRows.length) await tx.attemptTopicResult.createMany({ data: topicRows });
+    await tx.examAttempt.update({
+      where: { id: attemptId },
+      data: {
+        status: 'SUBMITTED',
+        submittedAt,
+        score,
+        weightedScore: roundedWeightedScore,
+        total,
+      },
+    });
 
     return {
       message: 'Nộp bài thành công',
@@ -495,20 +524,23 @@ export class AttemptsService {
       answeredCount: attempt.answers.filter(
         (a) => a.selectedOptionIds.length > 0,
       ).length,
-      questions: attempt.answers.map((a) => ({
-        questionId: a.questionId,
-        content: a.question.content,
-        type: a.question.type,
-        difficulty: a.question.difficulty,
-        topic: a.question.topic,
-        options: a.question.options.map((o) => ({
-          id: o.id,
-          content: o.content,
-          order: o.order,
-        })),
-        selectedOptionIds: a.selectedOptionIds,
-        timeSpent: a.timeSpent,
-      })),
+      questions: attempt.answers.map((row) => {
+        const a = { ...row, question: answerQuestion(row) };
+        return ({
+          questionId: a.questionId,
+          content: a.question.content,
+          type: a.question.type,
+          difficulty: a.question.difficulty,
+          topic: a.question.topic,
+          options: a.question.options.map((o) => ({
+            id: o.id,
+            content: o.content,
+            order: o.order,
+          })),
+          selectedOptionIds: a.selectedOptionIds,
+          timeSpent: a.timeSpent,
+        });
+      }),
     };
   }
 
@@ -517,6 +549,7 @@ export class AttemptsService {
       where: { id: attemptId, userId },
       include: {
         answers: {
+          orderBy: { id: 'asc' },
           include: {
             question: {
               include: {
@@ -536,20 +569,23 @@ export class AttemptsService {
       throw new BadRequestException('Bài làm chưa được nộp, chưa có kết quả');
     }
 
-    const details = attempt.answers.map((a) => ({
-      questionId: a.questionId,
-      content: a.question.content,
-      explanation: a.question.explanation,
-      difficulty: a.question.difficulty,
-      topic: a.question.topic,
-      isCorrect: a.isCorrect,
-      timeSpent: a.timeSpent,
-      selectedOptionIds: a.selectedOptionIds,
-      correctOptionIds: a.question.options
-        .filter((o) => o.isCorrect)
-        .map((o) => o.id),
-      options: a.question.options,
-    }));
+    const details = attempt.answers.map((row) => {
+      const a = { ...row, question: answerQuestion(row) };
+      return ({
+        questionId: a.questionId,
+        content: a.question.content,
+        explanation: a.question.explanation,
+        difficulty: a.question.difficulty,
+        topic: a.question.topic,
+        isCorrect: a.isCorrect,
+        timeSpent: a.timeSpent,
+        selectedOptionIds: a.selectedOptionIds,
+        correctOptionIds: a.question.options
+          .filter((o) => o.isCorrect)
+          .map((o) => o.id),
+        options: a.question.options,
+      });
+    });
 
     const total = attempt.total || details.length;
     const correctCount = details.filter((d) => d.isCorrect).length;
@@ -571,14 +607,14 @@ export class AttemptsService {
 
     const topicSummary = attempt.topicResults.length
       ? attempt.topicResults.map((r) => ({
-          topicId: r.topicId,
-          name: r.topic.name,
-          correct: r.correct,
-          total: r.total,
-          percentage: r.total > 0 ? roundScore((r.correct / r.total) * 100) : 0,
-          weightedScore: r.weightedScore,
-          timeSpent: r.timeSpent,
-        }))
+        topicId: r.topicId,
+        name: r.topic.name,
+        correct: r.correct,
+        total: r.total,
+        percentage: r.total > 0 ? roundScore((r.correct / r.total) * 100) : 0,
+        weightedScore: r.weightedScore,
+        timeSpent: r.timeSpent,
+      }))
       : this.buildTopicSummary(details);
 
     return {
@@ -679,28 +715,31 @@ export class AttemptsService {
 
     const topicAnalysis = persistedTopics.length
       ? persistedTopics.map((r) => ({
-          topicId: r.topicId,
-          name: r.topic.name,
-          correct: r.correct,
-          total: r.total,
-          totalTime: r.timeSpent,
-        }))
-      : this.buildTopicAnalysis(answers);
+        topicId: r.topicId,
+        name: r.topic.name,
+        correct: r.correct,
+        total: r.total,
+        totalTime: r.timeSpent,
+      }))
+      : this.buildTopicAnalysis(answers.map((answer) => ({ ...answer, question: answerQuestion(answer) })));
 
-    const questionAnalysis = answers.map((a) => ({
-      questionId: a.questionId,
-      content: a.question.content,
-      type: a.question.type,
-      difficulty: a.question.difficulty,
-      topic: a.question.topic,
-      explanation: a.question.explanation,
-      selectedOptionIds: a.selectedOptionIds,
-      correctOptionIds: a.question.options
-        .filter((o) => o.isCorrect)
-        .map((o) => o.id),
-      isCorrect: a.isCorrect,
-      timeSpent: a.timeSpent,
-    }));
+    const questionAnalysis = answers.map((row) => {
+      const a = { ...row, question: answerQuestion(row) };
+      return ({
+        questionId: a.questionId,
+        content: a.question.content,
+        type: a.question.type,
+        difficulty: a.question.difficulty,
+        topic: a.question.topic,
+        explanation: a.question.explanation,
+        selectedOptionIds: a.selectedOptionIds,
+        correctOptionIds: a.question.options
+          .filter((o) => o.isCorrect)
+          .map((o) => o.id),
+        isCorrect: a.isCorrect,
+        timeSpent: a.timeSpent,
+      });
+    });
 
     const totalTime = questionAnalysis.reduce((sum, q) => sum + q.timeSpent, 0);
     const answeredCount = questionAnalysis.filter(
@@ -779,6 +818,7 @@ export class AttemptsService {
       include: {
         exam: { select: { id: true, title: true } },
         answers: {
+          orderBy: { id: 'asc' },
           include: {
             question: {
               include: {
