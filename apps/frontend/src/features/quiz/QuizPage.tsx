@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { useQuizStore } from '../../store/quizStore';
-import { quizService } from '../../services/quiz.service';
-import { attemptService } from '../../services/attempt.service';
-import { QuizEngine } from './QuizEngine';
-import { BackButton } from '../../components/BackButton';
-import { toast } from '../../store/uiStore';
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { useQuizStore } from "../../store/quizStore";
+import { quizService } from "../../services/quiz.service";
+import { attemptService } from "../../services/attempt.service";
+import { QuizEngine } from "./QuizEngine";
+import { BackButton } from "../../components/BackButton";
+import { toast } from "../../store/uiStore";
 
 /**
  * Chuẩn hóa câu hỏi từ BE về shape FE đang dùng.
@@ -24,8 +24,8 @@ function mapQuestions(data: any[]) {
       text: opt.text || opt.content || String(opt),
       isCorrect: opt.isCorrect === true,
     })),
-    explanation: q.explanation || '',
-    topic: q.topic?.name ?? q.topic ?? '',
+    explanation: q.explanation || "",
+    topic: q.topic?.name ?? q.topic ?? "",
   }));
 }
 
@@ -50,38 +50,47 @@ const QuizIntro = ({
       <BackButton to="/exams" label="Chọn đề khác" />
 
       <div className="mt-6 p-8 bg-white rounded-2xl shadow-sm border border-gray-200">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-b pb-8 mb-8">
-        <div>
-          <h1 className="text-2xl md:text-3xl font-extrabold text-blue-900 mb-3">
-            {examMeta?.title ?? 'Bộ đề Đánh Giá Năng Lực V-ACT'}
-          </h1>
-          <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-            Đề ôn luyện được biên soạn theo định hướng bài thi Đánh giá năng lực, giúp học sinh làm quen với cấu trúc đề và áp lực thời gian.
-          </p>
-        </div>
-        <div className="bg-amber-50 border border-amber-200 p-4 rounded-xl text-center min-w-[200px]">
-          <span className="text-xs font-bold text-amber-600 uppercase tracking-wider block mb-1">V-ACT 2026</span>
-          <span className="text-lg font-black text-gray-800">Chuẩn cấu trúc ĐHQG</span>
-        </div>
-      </div>
-
-      <div className="bg-amber-50/50 border border-amber-200 rounded-2xl p-6 text-center max-w-xl mx-auto shadow-sm">
-        <p className="text-gray-600 text-sm mb-4">
-          Số câu: <strong className="text-gray-800">{questionCount > 0 ? `${questionCount} câu` : 'Đang tải...'}</strong> &nbsp;|&nbsp; Thời gian làm bài được tính từ lúc bấm bắt đầu
-        </p>
-        {startError && (
-          <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-600 text-sm rounded-lg font-medium">
-            {startError}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-b pb-8 mb-8">
+          <div>
+            <h1 className="text-2xl md:text-3xl font-extrabold text-blue-900 mb-3">
+              {examMeta?.title ?? "Bộ đề Đánh Giá Năng Lực V-ACT"}
+            </h1>
+            <p className="text-gray-600 leading-relaxed text-sm md:text-base">
+              Đề ôn luyện được biên soạn theo định hướng bài thi Đánh giá năng
+              lực, giúp học sinh làm quen với cấu trúc đề và áp lực thời gian.
+            </p>
           </div>
-        )}
-        <button
-          onClick={onStart}
-          disabled={starting}
-          className="w-full py-3.5 bg-amber-500 hover:bg-amber-600 disabled:bg-amber-300 text-white font-extrabold rounded-xl shadow-md transition duration-200 uppercase tracking-wider"
-        >
-          {starting ? 'ĐANG TẠO LƯỢT THI...' : 'BẮT ĐẦU LÀM BÀI'}
-        </button>
-      </div>
+          <div className="bg-amber-50 border border-amber-200 p-4 rounded-xl text-center min-w-[200px]">
+            <span className="text-xs font-bold text-amber-600 uppercase tracking-wider block mb-1">
+              V-ACT 2026
+            </span>
+            <span className="text-lg font-black text-gray-800">
+              Chuẩn cấu trúc ĐHQG
+            </span>
+          </div>
+        </div>
+
+        <div className="bg-amber-50/50 border border-amber-200 rounded-2xl p-6 text-center max-w-xl mx-auto shadow-sm">
+          <p className="text-gray-600 text-sm mb-4">
+            Số câu:{" "}
+            <strong className="text-gray-800">
+              {questionCount > 0 ? `${questionCount} câu` : "Đang tải..."}
+            </strong>{" "}
+            &nbsp;|&nbsp; Thời gian làm bài được tính từ lúc bấm bắt đầu
+          </p>
+          {startError && (
+            <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-600 text-sm rounded-lg font-medium">
+              {startError}
+            </div>
+          )}
+          <button
+            onClick={onStart}
+            disabled={starting}
+            className="w-full py-3.5 bg-amber-500 hover:bg-amber-600 disabled:bg-amber-300 text-white font-extrabold rounded-xl shadow-md transition duration-200 uppercase tracking-wider"
+          >
+            {starting ? "ĐANG TẠO LƯỢT THI..." : "BẮT ĐẦU LÀM BÀI"}
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -95,9 +104,15 @@ const QuizResult = () => {
 
   return (
     <div className="max-w-xl mx-auto mt-20 p-8 bg-white rounded-2xl shadow-sm border text-center font-sans">
-      <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl font-bold">✓</div>
-      <h1 className="text-2xl font-bold text-gray-800 mb-2">Đã Nộp Bài Thành Công!</h1>
-      <p className="text-gray-600 mb-6">Kết quả của bạn đã được ghi nhận vào hệ thống.</p>
+      <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl font-bold">
+        ✓
+      </div>
+      <h1 className="text-2xl font-bold text-gray-800 mb-2">
+        Đã Nộp Bài Thành Công!
+      </h1>
+      <p className="text-gray-600 mb-6">
+        Kết quả của bạn đã được ghi nhận vào hệ thống.
+      </p>
 
       {resultData?.summary && (
         <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6 text-left">
@@ -144,17 +159,28 @@ const QuizResult = () => {
 
 // --- COMPONENT TỔNG QUẢN LÝ ---
 export const QuizPage = () => {
-  const { currentStep, setQuestions, setStep, setAttemptId, setTimeLeft } =
-    useQuizStore();
+  const {
+    currentStep,
+    setQuestions,
+    setStep,
+    setAttemptId,
+    setTimeLeft,
+    resetQuiz,
+  } = useQuizStore();
   const [loading, setLoading] = useState(true);
   const [starting, setStarting] = useState(false);
-  const [startError, setStartError] = useState('');
-  const [examMeta, setExamMeta] = useState<{ title: string; questionCount: number } | null>(null);
+  const [startError, setStartError] = useState("");
+  const [examMeta, setExamMeta] = useState<{
+    title: string;
+    questionCount: number;
+  } | null>(null);
   const { examId } = useParams();
 
   // Chỉ tải metadata đề cho màn giới thiệu — nội dung câu hỏi thật
   // chỉ tải sau khi POST /attempts tạo lượt làm bài.
   useEffect(() => {
+    resetQuiz();
+
     if (!examId) {
       setLoading(false);
       return;
@@ -165,10 +191,10 @@ export const QuizPage = () => {
       .getExamMeta(examId)
       .then(setExamMeta)
       .catch((err) => {
-        console.error('Lỗi tải đề:', err);
+        console.error("Lỗi tải đề:", err);
         toast.error(
-          'Không tải được đề thi',
-          'Vui lòng kiểm tra kết nối và thử lại.',
+          "Không tải được đề thi",
+          "Vui lòng kiểm tra kết nối và thử lại.",
         );
       })
       .finally(() => setLoading(false));
@@ -179,7 +205,7 @@ export const QuizPage = () => {
     if (!examId) return;
 
     setStarting(true);
-    setStartError('');
+    setStartError("");
     try {
       // POST /attempts trả { attemptId, questionIds, timeLimit, ... }
       const created = await attemptService.start(examId);
@@ -192,16 +218,17 @@ export const QuizPage = () => {
         setQuestions(mapQuestions(detail.questions));
       }
 
-      setTimeLeft(
-        detail.remainingSeconds ?? created.timeLimit ?? 3600,
+      setTimeLeft(detail.remainingSeconds ?? created.timeLimit ?? 3600);
+      setStep("playing");
+      toast.info(
+        "Bài thi đã bắt đầu",
+        "Chúc bạn làm bài tốt. Hết giờ hệ thống sẽ tự nộp.",
       );
-      setStep('playing');
-      toast.info('Bài thi đã bắt đầu', 'Chúc bạn làm bài tốt. Hết giờ hệ thống sẽ tự nộp.');
     } catch (err: any) {
-      console.error('Lỗi tạo lượt làm bài:', err);
+      console.error("Lỗi tạo lượt làm bài:", err);
       const message =
         err.response?.data?.message ||
-        'Không tạo được lượt làm bài. Vui lòng đăng nhập và thử lại.';
+        "Không tạo được lượt làm bài. Vui lòng đăng nhập và thử lại.";
       setStartError(message);
       // Lỗi ở đây đã hiển thị ngay trên màn hình, không cần toast
     } finally {
@@ -233,7 +260,7 @@ export const QuizPage = () => {
 
   return (
     <div className="min-h-screen bg-[#fdfbf7] py-6 px-4">
-      {currentStep === 'intro' && (
+      {currentStep === "intro" && (
         <QuizIntro
           examMeta={examMeta}
           onStart={handleStart}
@@ -241,8 +268,10 @@ export const QuizPage = () => {
           startError={startError}
         />
       )}
-      {(currentStep === 'playing' || currentStep === 'review') && <QuizEngine />}
-      {currentStep === 'result' && <QuizResult />}
+      {(currentStep === "playing" || currentStep === "review") && (
+        <QuizEngine />
+      )}
+      {currentStep === "result" && <QuizResult />}
     </div>
   );
 };

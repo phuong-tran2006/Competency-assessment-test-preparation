@@ -1,11 +1,53 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../store/authStore";
 import { toast, confirmDialog } from "../../store/uiStore";
 import { authService } from "../../services/auth.service";
+import { quizService } from "../../services/quiz.service";
 import "./home.css";
 import { BRAND, ROUTES, STR } from "./strings";
 import ExamCard from "../../components/ExamCard";
+
+const FALLBACK_EXAMS = [
+  {
+    id: "vact-exam-2026",
+    title: "Đề minh họa ĐGNL ĐHQG TPHCM năm 2026",
+    description: "Bộ đề thi chuẩn cấu trúc mới nhất năm 2026.",
+    questionCount: 30,
+  },
+  {
+    id: "vact-exam-2025",
+    title: "Đề minh họa ĐGNL ĐHQG TPHCM năm 2025",
+    description:
+      "Đề thi chính thức và minh họa lưu trữ năm 2025, rèn luyện tư duy logic và phân tích số liệu.",
+    questionCount: 6,
+  },
+  {
+    id: "vact-exam-2024",
+    title: "Đề minh họa ĐGNL ĐHQG TPHCM năm 2024",
+    description:
+      "Bộ đề ôn tập nền tảng từ kỳ thi ĐGNL năm 2024, củng cố kiến thức cơ bản.",
+    questionCount: 6,
+  },
+];
+
+const FEATURED_COURSES = [
+  {
+    id: "toan-tu-duy",
+    title: "Toán tư duy",
+    text: "Ôn tập toàn diện kiến thức Toán học theo cấu trúc mới.",
+  },
+  {
+    id: "phan-tich-so-lieu-logic",
+    title: "Phân tích số liệu & Logic",
+    text: "Rèn luyện kỹ năng suy luận logic và đọc biểu đồ.",
+  },
+  {
+    id: "tieng-anh",
+    title: "Tiếng Anh",
+    text: "Hệ thống lại ngữ pháp và từ vựng thường gặp trong đề.",
+  },
+];
 
 /* ---------- sections ---------- */
 
@@ -54,19 +96,19 @@ function Navbar() {
           {user?.role === "INSTRUCTOR" ? (
             <>
               <Link
-                to="/instructor"
+                to="/instructor?tab=courses"
                 className="font-semibold text-gray-600 hover:text-amber-500 transition-colors"
               >
                 Quản lý Khóa học
               </Link>
               <Link
-                to="/instructor"
+                to="/instructor?tab=questions"
                 className="font-semibold text-gray-600 hover:text-amber-500 transition-colors"
               >
                 Ngân hàng Câu hỏi
               </Link>
               <Link
-                to="/instructor"
+                to="/instructor?tab=results"
                 className="font-semibold text-gray-600 hover:text-amber-500 transition-colors"
               >
                 Kết quả Học viên
@@ -120,7 +162,7 @@ function Navbar() {
 
               <button
                 onClick={handleLogout}
-                className="text-sm font-bold text-gray-500 hover:text-red-500 transition-colors"
+                className="text-sm font-medium text-red-600 hover:text-red-700 transition-colors"
               >
                 Đăng xuất
               </button>
@@ -192,7 +234,7 @@ function Hero() {
 
 function HowItWorks() {
   const { user } = useAuthStore();
-  if (user?.role === "INSTRUCTOR") return null; // Ẩn phần hướng dẫn học viên nếu là giảng viên
+  if (user?.role === "INSTRUCTOR") return null;
 
   return (
     <section id="how" className="section section--tint">
@@ -242,42 +284,64 @@ function ExamStructure() {
 
 function FeaturedExams() {
   const { user } = useAuthStore();
+  const exams = FALLBACK_EXAMS;
 
-  // Dữ liệu tĩnh tạm thời để test giao diện
-  // Sau khi backend có data, bạn dùng lại useFeaturedExams(3) để fetch API
-  const exams = [
-    {
-      id: "dgnl-2026",
-      title: "Đề minh họa ĐGNL ĐHQG TPHCM năm 2026",
-      description: "Bộ đề thi chuẩn cấu trúc mới nhất năm 2026.",
-      questionCount: 30,
-    },
-    {
-      id: "dgnl-2025",
-      title: "Đề minh họa ĐGNL ĐHQG TPHCM năm 2025",
-      description:
-        "Đề thi chính thức và minh họa lưu trữ năm 2025, rèn luyện tư duy logic và phân tích số liệu.",
-      questionCount: 6,
-    },
-    {
-      id: "dgnl-2024",
-      title: "Đề minh họa ĐGNL ĐHQG TPHCM năm 2024",
-      description:
-        "Bộ đề ôn tập nền tảng từ kỳ thi ĐGNL năm 2024, củng cố kiến thức cơ bản.",
-      questionCount: 6,
-    },
-  ];
 
-  // Nếu là giảng viên (Giữ nguyên như code cũ của bạn)
   if (user?.role === "INSTRUCTOR") {
     return (
       <section className="section section--tint">
-        {/* ... (Giữ nguyên phần code dành cho INSTRUCTOR từ dòng 173 - 210) ... */}
+        <div className="container">
+          <h2 className="section__title">
+            Khóa học & Ngân hàng câu hỏi của tôi
+          </h2>
+          <p className="section__lead text-center mb-8">
+            Truy cập nhanh vào các công cụ quản lý nội dung giảng dạy và theo
+            dõi tiến độ của học viên.
+          </p>
+          <div className="grid grid--3">
+            <div className="card exam">
+              <h3 className="card__title">Quản lý Khóa học</h3>
+              <p className="card__text">
+                Tạo mới, chỉnh sửa đề cương, xuất bản hoặc ẩn các chương trình
+                học.
+              </p>
+              <div className="exam__footer">
+                <Link to="/instructor?tab=courses" className="btn btn--primary">
+                  Truy cập
+                </Link>
+              </div>
+            </div>
+            <div className="card exam">
+              <h3 className="card__title">Ngân hàng Câu hỏi</h3>
+              <p className="card__text">
+                Quản lý kho câu hỏi trắc nghiệm, gắn thẻ chủ đề và độ khó.
+              </p>
+              <div className="exam__footer">
+                <Link
+                  to="/instructor?tab=questions"
+                  className="btn btn--primary"
+                >
+                  Quản lý kho đề
+                </Link>
+              </div>
+            </div>
+            <div className="card exam">
+              <h3 className="card__title">Kết quả Học viên</h3>
+              <p className="card__text">
+                Xem danh sách học viên đăng ký, chấm điểm và phản hồi bài làm.
+              </p>
+              <div className="exam__footer">
+                <Link to="/instructor?tab=results" className="btn btn--primary">
+                  Xem thống kê
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     );
   }
 
-  // --- GIAO DIỆN BỘ ĐỀ DÀNH CHO HỌC VIÊN (Thay đổi phần này) ---
   return (
     <section className="bg-[#FFFDF5] py-20">
       <div className="max-w-7xl mx-auto px-4 text-center">
@@ -314,16 +378,15 @@ function Courses() {
       <div className="container">
         <h2 className="section__title text-center">Khóa học</h2>
         <div className="grid grid--3">
-          {STR.courses.items.map((course) => (
-            <article key={course.title} className="card">
+          {FEATURED_COURSES.map((course) => (
+            <article key={course.id} className="card">
               <h3 className="card__title font-bold text-center">
                 {course.title}
               </h3>
               <p className="card__text">{course.text}</p>
 
-              {/* Thêm div bọc ngoài để căn giữa nút */}
               <div className="flex justify-center w-full mt-4">
-                <Link to={course.link} className="btn btn--primary">
+                <Link to={`/courses/${course.id}`} className="btn btn--primary">
                   {STR.courses.open}
                 </Link>
               </div>

@@ -14,6 +14,7 @@ import { ResultPage } from "./features/attempts/ResultPage";
 import { HistoryPage } from "./features/attempts/HistoryPage";
 import { Toaster } from "./components/Toaster";
 import { ConfirmDialog } from "./components/ConfirmDialog";
+import { CourseDetailPage } from "./features/courses/CourseDetailPage";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/" element={<HomePage />} />
+        <Route path="/courses/:courseId" element={<CourseDetailPage />} />
         <Route path="/courses" element={<CourseList />} />
         <Route path="/exams" element={<ExamList />} />
 
@@ -37,7 +39,6 @@ function App() {
           <Route path="/results/:attemptId" element={<ResultPage />} />
           <Route path="/history" element={<HistoryPage />} />
         </Route>
-
 
         {/* 3. Nhóm trang dành cho GIẢNG VIÊN (INSTRUCTOR) */}
         <Route element={<ProtectedRoute allowedRoles={["INSTRUCTOR"]} />}>
