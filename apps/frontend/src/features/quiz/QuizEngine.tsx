@@ -139,12 +139,13 @@ export const QuizEngine = () => {
     if (ok) navigate("/exams");
   };
 
-  const formatTime = (seconds: number) => {
-    const m = Math.floor(seconds / 60)
-      .toString()
-      .padStart(2, "0");
-    const s = (seconds % 60).toString().padStart(2, "0");
-    return `${m}:${s}`;
+  const formatTime = (totalSeconds: number) => {
+    const safe = Math.max(0, totalSeconds);
+    const hours = Math.floor(safe / 3600);
+    const minutes = Math.floor((safe % 3600) / 60);
+    const seconds = safe % 60;
+
+    return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
   };
 
   // Lưu đáp án lên server ngay khi chọn, kèm thời gian đã dùng cho câu đó
@@ -154,11 +155,14 @@ export const QuizEngine = () => {
     const now = Date.now();
     const last = lastInteractionRef.current;
     lastInteractionRef.current = now;
-    const timeSpent = Math.min(600, Math.max(0, Math.round((now - last) / 1000)));
+    const timeSpent = Math.min(
+      600,
+      Math.max(0, Math.round((now - last) / 1000)),
+    );
 
     attemptService
       .saveAnswer(attemptId, questionId, [optionId], timeSpent)
-      .catch((err) => console.error('Không lưu được đáp án:', err));
+      .catch((err) => console.error("Không lưu được đáp án:", err));
   };
 
   const handleScrollToQuestion = (index: number) => {
@@ -177,7 +181,7 @@ export const QuizEngine = () => {
     const topic = (questions[index] as any)?.topic;
     if (!topic) return [];
     if (index > 0 && (questions[index - 1] as any)?.topic === topic) return [];
-    return [{ type: 'main' as const, text: String(topic).toUpperCase() }];
+    return [{ type: "main" as const, text: String(topic).toUpperCase() }];
   };
 
   useEffect(() => {

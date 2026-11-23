@@ -20,7 +20,7 @@ export class AttemptsService {
   }
 
   async startAttempt(userId: string | null, dto: CreateAttemptDto) {
-    const timeLimit = this.resolveTimeLimit(dto, 3600);
+    const timeLimit = this.resolveTimeLimit(dto, 9000);
 
     if (dto.examId) {
       const exam = await this.prisma.exam.findUnique({
@@ -66,7 +66,7 @@ export class AttemptsService {
 
   async startPlacement(userId: string, dto: CreatePlacementDto) {
     const requestedCount = dto.questionCount ?? 20;
-    const timeLimit = this.resolveTimeLimit(dto, 1800);
+    const timeLimit = this.resolveTimeLimit(dto, 9000);
 
     const topicIds = dto.topicIds?.length
       ? dto.topicIds

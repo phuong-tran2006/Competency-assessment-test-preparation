@@ -7,18 +7,66 @@ import { QuizEngine } from "./QuizEngine";
 import { BackButton } from "../../components/BackButton";
 import { toast } from "../../store/uiStore";
 
-/**
- * Chuẩn hóa câu hỏi từ BE về shape FE đang dùng.
- * Hỗ trợ cả `/exams/:id/questions` (có `options[].content`)
- * và `/attempts` (`questions[].options[].content`, không trả isCorrect).
- * BE không bao giờ trả `isCorrect` ở các endpoint này nên mọi kiểm tra
- * đáp án ở client chỉ mang tính hiển thị lại (review), kết quả chuẩn
- * lấy từ GET /attempts/:id/results.
- */
+function formatContent(html: string): string {
+  if (!html) return "";
+  if (/overflow-y:\s*auto/i.test(html)) return html;
+
+  let excerptPart = "";
+  let authorPart = "";
+  let questionPart = "";
+
+  const brSeparator = /<br\s*\/?>\s*<br\s*\/?>/i;
+  const authorDivRegex = /(<div[^>]*text-align:\s*right[^>]*>[\s\S]*?<\/div>)/i;
+
+  if (brSeparator.test(html)) {
+    const parts = html.split(brSeparator);
+    questionPart = parts.pop() ?? "";
+    excerptPart = parts.join("<br/><br/>");
+  } else if (authorDivRegex.test(html)) {
+    const match = html.match(authorDivRegex);
+    if (match && match.index !== undefined) {
+      excerptPart = html.slice(0, match.index);
+      authorPart = match[1];
+      questionPart = html.slice(match.index + match[1].length);
+    }
+  } else {
+    return html;
+  }
+
+  if (
+    /<center|text-align:\s*center|^<div\b|^<table\b/i.test(excerptPart.trim())
+  ) {
+    return `${excerptPart}${authorPart}<div style="margin-top: 1rem;">${questionPart}</div>`;
+  }
+
+  const formattedExcerpt = excerptPart
+    .split(/<br\s*\/?>/i)
+    .map((line) => {
+      const trimmed = line.trim();
+      if (!trimmed) return "";
+      if (/^<i\b/i.test(trimmed)) {
+        return `<div style="text-align: right; margin-top: 0.25rem;">${trimmed}</div>`;
+      }
+      if (/^<div\b/i.test(trimmed)) {
+        return trimmed;
+      }
+      return `<p style="text-indent: 2rem; margin-bottom: 0.4rem; text-align: justify;">${trimmed}</p>`;
+    })
+    .join("");
+
+  return `${formattedExcerpt}${authorPart}<div style="margin-top: 1rem;">${questionPart}</div>`;
+}
+
 function mapQuestions(data: any[]) {
-  return data.map((q: any) => ({
+  const sorted = [...data].sort((a, b) => {
+    const idA = String(a.id ?? a.questionId ?? "");
+    const idB = String(b.id ?? b.questionId ?? "");
+    return idA.localeCompare(idB, undefined, { numeric: true });
+  });
+
+  return sorted.map((q: any) => ({
     id: q.id ?? q.questionId,
-    content: q.content,
+    content: formatContent(q.content),
     options: (q.options ?? []).map((opt: any, index: number) => ({
       id: opt.id !== undefined ? String(opt.id) : String(index),
       text: opt.text || opt.content || String(opt),
@@ -161,6 +209,7 @@ const QuizResult = () => {
 export const QuizPage = () => {
   const {
     currentStep,
+    attemptId,
     setQuestions,
     setStep,
     setAttemptId,
@@ -176,15 +225,37 @@ export const QuizPage = () => {
   } | null>(null);
   const { examId } = useParams();
 
-  // Chỉ tải metadata đề cho màn giới thiệu — nội dung câu hỏi thật
-  // chỉ tải sau khi POST /attempts tạo lượt làm bài.
   useEffect(() => {
-    resetQuiz();
-
     if (!examId) {
       setLoading(false);
       return;
     }
+
+    const savedExamId = localStorage.getItem("vact_active_exam_id");
+    const isResumingSameExam =
+      Boolean(attemptId) && currentStep === "playing" && savedExamId === examId;
+
+    // Nếu F5 khi đang làm dở chính đề này -> Giữ nguyên bài, đồng bộ lại thời gian từ backend
+    if (isResumingSameExam && attemptId) {
+      setLoading(true);
+      attemptService
+        .getAttempt(attemptId)
+        .then((detail) => {
+          if (Array.isArray(detail.questions) && detail.questions.length) {
+            setQuestions(mapQuestions(detail.questions));
+          }
+          if (typeof detail.remainingSeconds === "number") {
+            setTimeLeft(detail.remainingSeconds);
+          }
+        })
+        .catch((err) => console.error("Lỗi khôi phục lượt thi:", err))
+        .finally(() => setLoading(false));
+      return;
+    }
+
+    // Nếu mở đề khác hoặc chưa thi -> Reset như bình thường và tải metadata đề
+    resetQuiz();
+    localStorage.removeItem("vact_active_exam_id");
 
     setLoading(true);
     quizService
@@ -218,7 +289,8 @@ export const QuizPage = () => {
         setQuestions(mapQuestions(detail.questions));
       }
 
-      setTimeLeft(detail.remainingSeconds ?? created.timeLimit ?? 3600);
+      localStorage.setItem("vact_active_exam_id", examId);
+      setTimeLeft(detail.remainingSeconds ?? created.timeLimit ?? 9000);
       setStep("playing");
       toast.info(
         "Bài thi đã bắt đầu",

@@ -3,7 +3,11 @@ import { PrismaClient, QuestionType, Role } from '@prisma/client';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { Pool } from 'pg';
 import { questions2026 } from './examData2026';
+import { questions2025 } from './examData2025';
+import { questions2026_Dot1 } from './DethiDot1_2026';
 import * as bcrypt from 'bcrypt';
+import { questions2025_Dot1 } from './DethiDot1_2025';
+import { questions2025_Dot2 } from './DethiDot2_2025';
 
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 const adapter = new PrismaPg(pool);
@@ -79,112 +83,32 @@ async function main() {
     {
       id: 'vact-exam-2026',
       title: 'Đề minh họa ĐGNL ĐHQG TPHCM năm 2026',
-      description: 'Bộ đề thi chuẩn cấu trúc mới nhất năm 2026.',
+      description: 'Đề minh họa ĐGNL ĐHQG TPHCM năm 2026',
       questions: questions2026,
     },
     {
       id: 'vact-exam-2025',
       title: 'Đề minh họa ĐGNL ĐHQG TPHCM năm 2025',
-      description:
-        'Đề thi chính thức và minh họa lưu trữ năm 2025, rèn luyện tư duy logic và phân tích số liệu.',
-      questions: [
-        {
-          id: 'q-2025-1',
-          content:
-            'Thể loại của tác phẩm "Đăm Săn" trong kho tàng văn học dân gian là gì?',
-          correct: 2,
-          options: ['Thần thoại', 'Truyền thuyết', 'Sử thi', 'Truyện cổ tích'],
-        },
-        {
-          id: 'q-2025-2',
-          content:
-            'Cho cấp số cộng có u1 = 3 và công sai d = 2. Giá trị của u4 là:',
-          correct: 1,
-          options: ['7', '9', '11', '13'],
-        },
-        {
-          id: 'q-2025-3',
-          content:
-            'Từ "long lanh" trong câu "Nước hồ long lanh" thuộc loại từ nào?',
-          correct: 2,
-          options: ['Từ đơn', 'Từ ghép', 'Từ láy', 'Từ phức'],
-        },
-        {
-          id: 'q-2025-4',
-          content:
-            'Tích phân từ 0 đến 1 của hàm số f(x) = 2xdx có giá trị bằng:',
-          correct: 0,
-          options: ['1', '2', '0.5', '0'],
-        },
-        {
-          id: 'q-2025-5',
-          content: 'Giải phương trình log2(x) = 3. Nghiệm của phương trình là:',
-          correct: 2,
-          options: ['6', '9', '8', '3'],
-        },
-        {
-          id: 'q-2025-6',
-          content: 'Thị Phương là nhân vật trong vở chèo cổ nào?',
-          correct: 3,
-          options: [
-            'Quan Âm Thị Kính',
-            'Lưu Bình - Dương Lễ',
-            'Súy Vân',
-            'Trương Viên',
-          ],
-        },
-      ],
+      description: 'Đề minh họa ĐGNL ĐHQG TPHCM năm 2025',
+      questions: questions2025,
     },
     {
-      id: 'vact-exam-2024',
-      title: 'Đề minh họa ĐGNL ĐHQG TPHCM năm 2024',
-      description:
-        'Bộ đề ôn tập nền tảng từ kỳ thi ĐGNL năm 2024, củng cố kiến thức cơ bản.',
-      questions: [
-        {
-          id: 'q-2024-1',
-          content: 'Số phức z = 3 - 4i có phần thực và phần ảo lần lượt là:',
-          correct: 0,
-          options: ['3 và -4', '-3 và 4', '3 và 4', '-3 và -4'],
-        },
-        {
-          id: 'q-2024-2',
-          content: 'Tập nghiệm của bất phương trình 2^x > 4 là:',
-          correct: 1,
-          options: ['(1; +inf)', '(2; +inf)', '(0; 2)', '(-inf; 2)'],
-        },
-        {
-          id: 'q-2024-3',
-          content:
-            'Tác giả của đoạn trích "Đất nước" trong chương trình Ngữ văn là ai?',
-          correct: 2,
-          options: ['Tố Hữu', 'Huy Cận', 'Nguyễn Khoa Điềm', 'Xuân Quỳnh'],
-        },
-        {
-          id: 'q-2024-4',
-          content:
-            'Cho tam giác ABC vuông tại A có AB = 3cm, AC = 4cm. Độ dài cạnh huyền BC là:',
-          correct: 1,
-          options: ['6 cm', '5 cm', '7 cm', 'sqrt(7) cm'],
-        },
-        {
-          id: 'q-2024-5',
-          content: 'Hàm số y = -x^3 + 3x nghịch biến trên khoảng nào dưới đây?',
-          correct: 3,
-          options: [
-            '(-1; 1)',
-            '(0; +inf)',
-            '(-inf; -1)',
-            '(-inf; -1) và (1; +inf)',
-          ],
-        },
-        {
-          id: 'q-2024-6',
-          content: 'Điền từ còn thiếu vào câu tục ngữ: "Uống nước nhớ ..."',
-          correct: 0,
-          options: ['nguồn', 'nơi', 'ông', 'cha'],
-        },
-      ],
+      id: 'vact-exam-2026-1',
+      title: 'Đề chính thức ĐGNL ĐHQG TPHCM năm 2026 - Đợt 1',
+      description: 'Đề chính thức ĐGNL ĐHQG TPHCM năm 2026.',
+      questions: questions2026_Dot1,
+    },
+    {
+      id: 'vact-exam-20251',
+      title: 'Đề chính thức ĐGNL ĐHQG TPHCM năm 2025 - Đợt 1',
+      description: 'Đề chính thức ĐGNL ĐHQG TPHCM năm 2025.',
+      questions: questions2025_Dot1,
+    },
+    {
+      id: 'vact-exam-20252',
+      title: 'Đề chính thức ĐGNL ĐHQG TPHCM năm 2025 - Đợt 2',
+      description: 'Đề chính thức ĐGNL ĐHQG TPHCM năm 2025.',
+      questions: questions2025_Dot2,
     },
   ];
 
@@ -488,9 +412,9 @@ async function main() {
       examId: 'exam-1',
       status: 'SUBMITTED',
       startedAt: startedAt1,
-      deadlineAt: new Date(startedAt1.getTime() + 1800 * 1000),
+      deadlineAt: new Date(startedAt1.getTime() + 9000 * 1000),
       submittedAt: submittedAt1,
-      timeLimit: 1800,
+      timeLimit: 9000,
       total: 6,
       score: 4,
       weightedScore: 5.2,
@@ -546,9 +470,9 @@ async function main() {
       examId: 'exam-1',
       status: 'SUBMITTED',
       startedAt: startedAt2,
-      deadlineAt: new Date(startedAt2.getTime() + 1800 * 1000),
+      deadlineAt: new Date(startedAt2.getTime() + 9000 * 1000),
       submittedAt: submittedAt2,
-      timeLimit: 1800,
+      timeLimit: 9000,
       total: 6,
       score: 6,
       weightedScore: 7.9,
@@ -571,8 +495,8 @@ async function main() {
       examId: null,
       status: 'IN_PROGRESS',
       startedAt: startedAt3,
-      deadlineAt: new Date(startedAt3.getTime() + 1800 * 1000),
-      timeLimit: 1800,
+      deadlineAt: new Date(startedAt3.getTime() + 9000 * 1000),
+      timeLimit: 9000,
       total: 3,
       score: 0,
       weightedScore: 0,
