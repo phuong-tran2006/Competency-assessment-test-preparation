@@ -10,7 +10,10 @@ export const BANK_FILES = [
   { file: 'bank_adv100.json', prefix: 'q-ta' },
   { file: 'bank_sci100.json', prefix: 'q-s' },
 ];
-export const DATA_DIR = path.resolve(__dirname, '..');
+// npm runs tests from the backend directory; ESM tests have no __dirname.
+export const DATA_DIR = typeof __dirname === 'string'
+  ? path.resolve(__dirname, '..')
+  : path.resolve('prisma');
 
 // Cơ cấu đã có trong seed_exam_demo.ts, dùng chung cho ba đề năm.
 export const EXAM_BLUEPRINT = [

@@ -2,8 +2,11 @@
   "moduleFileExtensions": ["js", "json", "ts"],
   "rootDir": ".",
   "testEnvironment": "node",
+  "extensionsToTreatAsEsm": [".ts"],
+  "setupFilesAfterEnv": ["<rootDir>/jest.setup.mjs"],
   "testRegex": ".e2e-spec.ts$",
   "transform": {
-    "^.+\\.(t|j)s$": "ts-jest"
-  }
+    "^.+\\.(t|j)s$": ["ts-jest", { "useESM": true, "tsconfig": { "module": "ESNext" } }]
+  },
+  "transformIgnorePatterns": ["node_modules/"]
 }

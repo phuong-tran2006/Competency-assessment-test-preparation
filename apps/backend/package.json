@@ -18,7 +18,8 @@
     "test:cov": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
     "test:debug": "node --experimental-vm-modules --inspect-brk node_modules/jest/bin/jest.js --runInBand",
     "test:e2e": "node --experimental-vm-modules node_modules/jest/bin/jest.js --config ./test/jest-e2e.json",
-    "seed": "ts-node prisma/seed.ts",
+    "seed": "node prisma/run-seed.cjs",
+    "seed:production": "node prisma/run-seed.cjs --production",
     "seed:bank": "ts-node prisma/seed_bank.ts",
     "seed:topics": "ts-node prisma/seed_topics.ts",
     "seed:exam": "ts-node prisma/seed_exam_demo.ts",
@@ -29,6 +30,7 @@
     "audit:assessment": "ts-node prisma/audit_assessment.ts",
     "check:types": "tsc --noEmit --incremental false",
     "test:assessment:integration": "ts-node test/assessment-proof.ts",
+    "test:seed:integration": "ts-node test/seed-proof.ts",
     "db:backup": "ts-node prisma/backup_database.ts",
     "db:restore": "ts-node prisma/restore_database.ts"
   },
@@ -86,12 +88,18 @@
       "ts"
     ],
     "rootDir": "src",
+    "extensionsToTreatAsEsm": [".ts"],
+    "setupFilesAfterEnv": ["<rootDir>/../test/jest.setup.mjs"],
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": [
         "ts-jest",
         {
-          "diagnostics": false
+          "diagnostics": false,
+          "useESM": true,
+          "tsconfig": {
+            "module": "ESNext"
+          }
         }
       ]
     },

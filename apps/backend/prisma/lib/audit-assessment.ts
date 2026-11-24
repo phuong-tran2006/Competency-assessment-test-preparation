@@ -13,7 +13,7 @@ export async function auditAssessment(prisma: PrismaClient) {
     prisma.exam.findMany({ include: { questions: { orderBy: { order: 'asc' } } } }),
     prisma.examAttempt.findMany({
       where: { status: 'SUBMITTED' },
-      include: { answers: { include: { question: { include: { options: true, topic: true } } } } },
+      include: { topicResults: true, answers: { include: { question: { include: { options: true, topic: true } } } } },
     }),
     prisma.topicMastery.findMany(),
     prisma.user.groupBy({ by: ['role'], _count: { _all: true } }),
@@ -87,16 +87,33 @@ export async function auditAssessment(prisma: PrismaClient) {
   for (const attempt of attempts) {
     let score = 0;
     let weighted = 0;
+    const topicTotals = new Map<string, { correct: number; total: number; weightedScore: number; timeSpent: number }>();
     for (const answer of attempt.answers) {
       if (!answer.questionSnapshot) missingSnapshots += 1;
       const question = answerQuestion(answer);
+      if (answer.selectedOptionIds.length > 1 || answer.selectedOptionIds.some((id) => !question.options.some((option) => option.id === id))) {
+        issues.push(answer.id + ': lựa chọn không thuộc snapshot');
+      }
+      if (answer.difficultyAtSubmission !== question.difficulty || answer.topicIdAtSubmission !== question.topicId) {
+        issues.push(answer.id + ': metadata khác snapshot');
+      }
+      if (answer.timeSpent < 0) issues.push(answer.id + ': thời gian âm');
       const correct = isAnswerCorrect(answer.selectedOptionIds, question.options.filter((option) => option.isCorrect).map((option) => option.id));
       if (correct !== answer.isCorrect) issues.push(answer.id + ': isCorrect khác snapshot');
       if (correct) { score += 1; weighted += questionWeight(question.difficulty); }
+      const topic = topicTotals.get(question.topicId) ?? { correct: 0, total: 0, weightedScore: 0, timeSpent: 0 };
+      topic.total += 1; topic.timeSpent += answer.timeSpent;
+      if (correct) { topic.correct += 1; topic.weightedScore += questionWeight(question.difficulty); }
+      topicTotals.set(question.topicId, topic);
     }
     if (attempt.total !== attempt.answers.length || score !== attempt.score || roundScore(weighted) !== attempt.weightedScore) {
       issues.push(attempt.id + ': tổng câu/điểm khác answers');
     }
+    if (attempt.topicResults.length !== topicTotals.size || attempt.topicResults.some((row) => {
+      const expected = topicTotals.get(row.topicId);
+      return !expected || row.correct !== expected.correct || row.total !== expected.total ||
+        row.weightedScore !== roundScore(expected.weightedScore) || row.timeSpent !== expected.timeSpent;
+    })) issues.push(attempt.id + ': kết quả theo topic khác answers');
   }
   for (const mastery of masteries) {
     if (!Number.isFinite(mastery.masteryScore) || mastery.attempts < 0) issues.push(mastery.id + ': mastery không hợp lệ');

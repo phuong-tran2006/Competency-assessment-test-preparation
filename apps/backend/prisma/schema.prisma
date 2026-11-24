@@ -277,6 +277,7 @@ model ExamAttempt {
 
   @@index([status, deadlineAt])
   @@index([userId, status, submittedAt])
+  @@index([examId])
   @@map("exam_attempts")
 }
 
@@ -296,6 +297,7 @@ model ExamAnswer {
   question Question    @relation(fields: [questionId], references: [id], onDelete: Restrict)
   topicAtSubmission Topic? @relation("AnswerTopicSnapshot", fields: [topicIdAtSubmission], references: [id], onDelete: Restrict)
   @@unique([attemptId, questionId])
+  @@index([attemptId, id])
   @@index([questionId, attemptId])
   @@index([topicIdAtSubmission, attemptId])
   @@map("exam_answers")

@@ -1,0 +1,10 @@
+{
+  "name": "Competency-assessment-test-preparation",
+  "private": true,
+  "scripts": {
+    "seed": "npm --prefix apps/backend run seed",
+    "seed:production": "npm --prefix apps/backend run seed:production",
+    "validate:bank": "npm --prefix apps/backend run validate:bank",
+    "test:seed:integration": "npm --prefix apps/backend run test:seed:integration"
+  }
+}

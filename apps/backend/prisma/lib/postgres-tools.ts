@@ -3,6 +3,7 @@ import * as path from 'node:path';
 import * as os from 'node:os';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
+import { randomUUID } from 'node:crypto';
 import { Pool } from 'pg';
 
 const exec = promisify(execFile);
@@ -37,9 +38,16 @@ export async function backupDatabase(connection: string, output: string) {
   const target = path.resolve(output);
   fs.mkdirSync(path.dirname(target), { recursive: true });
   if (fs.existsSync(target)) throw new Error('File backup đã tồn tại; chọn tên file mới: ' + target);
-  await exec(binary('pg_dump'), ['--format=custom', '--no-owner', '--no-privileges', '--file', target], {
-    env: pgEnv(connection), maxBuffer: 4 * 1024 * 1024,
-  });
+  const temporary = target + '.' + randomUUID() + '.partial';
+  fs.closeSync(fs.openSync(temporary, 'wx', 0o600));
+  try {
+    await exec(binary('pg_dump'), ['--format=custom', '--no-owner', '--no-privileges', '--file', temporary], {
+      env: pgEnv(connection), maxBuffer: 4 * 1024 * 1024,
+    });
+    await exec(binary('pg_restore'), ['--list', temporary], { maxBuffer: 16 * 1024 * 1024 });
+    // Publish the completed archive atomically without overwriting any existing file.
+    fs.linkSync(temporary, target);
+  } finally { if (fs.existsSync(temporary)) fs.unlinkSync(temporary); }
   return target;
 }
 

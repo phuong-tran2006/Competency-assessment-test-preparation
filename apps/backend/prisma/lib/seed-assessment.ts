@@ -54,6 +54,11 @@ export function selectExamQuestions(
 
 /** Validate before writing. Serialize seed runs and import all data atomically. */
 export async function seedAssessment(prisma: PrismaClient) {
+  return prisma.$transaction(seedAssessmentData, { timeout: 120000 });
+}
+
+/** Also used inside the full seed transaction so accounts/history commit together. */
+export async function seedAssessmentData(tx: Prisma.TransactionClient) {
   const banks = readBanks();
   const exams = readCatalog();
   const plannedEnglishIds = new Set<string>();
@@ -64,57 +69,55 @@ export async function seedAssessment(prisma: PrismaClient) {
     }
   }
 
-  return prisma.$transaction(async (tx) => {
-    await tx.$executeRaw`SELECT pg_advisory_xact_lock(hashtext('assessment-seed'))`;
-    const topicIds = new Map<string, string>();
-    for (const name of TOPIC_NAMES) {
-      const topic = await tx.topic.upsert({ where: { name }, create: { name }, update: {} });
-      topicIds.set(name, topic.id);
+  await tx.$executeRaw`SELECT pg_advisory_xact_lock(hashtext('assessment-seed'))`;
+  const topicIds = new Map<string, string>();
+  for (const name of TOPIC_NAMES) {
+    const topic = await tx.topic.upsert({ where: { name }, create: { name }, update: {} });
+    topicIds.set(name, topic.id);
+  }
+  for (const bank of banks) {
+    for (const question of bank.items) {
+      await seedQuestion(tx, bank.prefix + question.n, question, topicIds.get(question.topicId)!, bank.file);
     }
-    for (const bank of banks) {
-      for (const question of bank.items) {
-        await seedQuestion(tx, bank.prefix + question.n, question, topicIds.get(question.topicId)!, bank.file);
-      }
-    }
+  }
 
-    const reports: Array<{ id: string; questions: number; groups: Record<string, number> }> = [];
-    const usedEnglishIds = new Set<string>();
-    for (const exam of exams) {
-      const description = '120 câu luyện tập, gồm 30 Tiếng Việt, 30 Tiếng Anh, 30 Toán và 30 Logic/Suy luận khoa học. Tiếng Anh gồm câu bổ sung và câu ngân hàng, được phân bổ riêng giữa ba năm.';
-      await tx.exam.upsert({
-        where: { id: exam.id },
-        create: { id: exam.id, title: exam.title, description },
-        update: { title: exam.title, description },
-      });
-      const existing = await tx.examQuestion.findMany({
-        where: { examId: exam.id }, orderBy: [{ order: 'asc' }, { questionId: 'asc' }],
-      });
-      const selected = selectExamQuestions(exam, banks, existing.map((link) => link.questionId), usedEnglishIds);
-      for (const item of selected) {
-        if (item.question.topicId === 'Tiếng Anh') usedEnglishIds.add(item.id);
-      }
-      for (const question of exam.questions) {
-        await seedQuestion(tx, 'q-' + exam.year + '-' + question.n, question, topicIds.get(question.topicId)!, exam.file);
-      }
-      for (const [order, item] of selected.entries()) {
-        await tx.examQuestion.upsert({
-          where: { examId_questionId: { examId: exam.id, questionId: item.id } },
-          create: { examId: exam.id, questionId: item.id, order },
-          update: { order },
-        });
-      }
-      await tx.examQuestion.deleteMany({
-        where: { examId: exam.id, questionId: { notIn: selected.map((item) => item.id) } },
-      });
-      reports.push({
-        id: exam.id, questions: selected.length,
-        groups: Object.fromEntries(EXAM_BLUEPRINT.map((group) => [
-          group.name, selected.filter((item) => group.topics.includes(item.question.topicId)).length,
-        ])),
+  const reports: Array<{ id: string; questions: number; groups: Record<string, number> }> = [];
+  const usedEnglishIds = new Set<string>();
+  for (const exam of exams) {
+    const description = '120 câu luyện tập, gồm 30 Tiếng Việt, 30 Tiếng Anh, 30 Toán và 30 Logic/Suy luận khoa học. Tiếng Anh gồm câu bổ sung và câu ngân hàng, được phân bổ riêng giữa ba năm.';
+    await tx.exam.upsert({
+      where: { id: exam.id },
+      create: { id: exam.id, title: exam.title, description },
+      update: { title: exam.title, description },
+    });
+    const existing = await tx.examQuestion.findMany({
+      where: { examId: exam.id }, orderBy: [{ order: 'asc' }, { questionId: 'asc' }],
+    });
+    const selected = selectExamQuestions(exam, banks, existing.map((link) => link.questionId), usedEnglishIds);
+    for (const item of selected) {
+      if (item.question.topicId === 'Tiếng Anh') usedEnglishIds.add(item.id);
+    }
+    for (const question of exam.questions) {
+      await seedQuestion(tx, 'q-' + exam.year + '-' + question.n, question, topicIds.get(question.topicId)!, exam.file);
+    }
+    for (const [order, item] of selected.entries()) {
+      await tx.examQuestion.upsert({
+        where: { examId_questionId: { examId: exam.id, questionId: item.id } },
+        create: { examId: exam.id, questionId: item.id, order },
+        update: { order },
       });
     }
-    return { bankQuestions: banks.reduce((sum, bank) => sum + bank.items.length, 0), exams: reports };
-  }, { timeout: 60000 });
+    await tx.examQuestion.deleteMany({
+      where: { examId: exam.id, questionId: { notIn: selected.map((item) => item.id) } },
+    });
+    reports.push({
+      id: exam.id, questions: selected.length,
+      groups: Object.fromEntries(EXAM_BLUEPRINT.map((group) => [
+        group.name, selected.filter((item) => group.topics.includes(item.question.topicId)).length,
+      ])),
+    });
+  }
+  return { bankQuestions: banks.reduce((sum, bank) => sum + bank.items.length, 0), exams: reports };
 }
 
 export async function seedQuestion(tx: Prisma.TransactionClient, id: string, q: BankQ, topicId: string, source: string) {
