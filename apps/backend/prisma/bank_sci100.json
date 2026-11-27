@@ -8,24 +8,34 @@
    "48",
    "50"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Logic - Suy luận",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "explanation": "Hiệu lần lượt là 5, 7, 9, 11; hiệu tiếp theo là 13 nên số kế tiếp là 48.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 2,
+   "answerPage": 16
+  }
  },
  {
   "n": 2,
-  "content": "Một nhóm có 5 người A, B, C, D, E. A cao điểm hơn B; C thấp điểm hơn B; D cao điểm hơn A; E thấp điểm hơn",
+  "content": "Một nhóm có 5 người A, B, C, D, E. A cao điểm hơn B; C thấp điểm hơn B; D cao điểm hơn A; E thấp điểm hơn C. Ai có điểm cao nhất?",
   "options": [
    "A",
-   "B C. C",
-   "Ai có điểm cao nhất?",
+   "B",
+   "C",
    "D"
   ],
-  "correctLetter": "D",
   "correct": 3,
   "topicId": "Logic - Suy luận",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "explanation": "Ta có D > A > B > C > E, nên D cao nhất.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 2,
+   "answerPage": 16
+  }
  },
  {
   "n": 3,
@@ -36,10 +46,15 @@
    "Mẫu M chắc chắn bị loại.",
    "Mẫu M thuộc lô khác."
   ],
-  "correctLetter": "A",
   "correct": 0,
   "topicId": "Logic - Suy luận",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "explanation": "Từ “mọi mẫu thuộc X đều được kiểm tra” và “M thuộc X” suy ra M đã được kiểm tra.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 2,
+   "answerPage": 16
+  }
  },
  {
   "n": 4,
@@ -50,10 +65,15 @@
    "Chi",
    "Dũng"
   ],
-  "correctLetter": "D",
   "correct": 3,
   "topicId": "Logic - Suy luận",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "explanation": "Quan hệ thứ tự là Dũng trước An trước Bình trước Chi.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 2,
+   "answerPage": 16
+  }
  },
  {
   "n": 5,
@@ -64,10 +84,15 @@
    "4",
    "9"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Logic - Suy luận",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "explanation": "Mức tăng tổng là 27 - 18 = 9 trong 3 khoảng ngày, trung bình 3 sản phẩm/ngày.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 2,
+   "answerPage": 16
+  }
  },
  {
   "n": 6,
@@ -78,10 +103,15 @@
    "Máy chủ hoạt động vì hệ thống mất điện.",
    "Không thể suy ra điều gì."
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Logic - Suy luận",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "explanation": "Phủ định hệ quả của mệnh đề kéo theo cho phép phủ định tiền đề (modus tollens).",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 2,
+   "answerPage": 16
+  }
  },
  {
   "n": 7,
@@ -92,10 +122,15 @@
    "3",
    "Không xác định"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Logic - Suy luận",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "explanation": "Vàng ở vị trí 4 và xanh ngay bên trái nên xanh ở vị trí 3.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 2,
+   "answerPage": 16
+  }
  },
  {
   "n": 8,
@@ -106,10 +141,15 @@
    "Hai nhóm bằng nhau",
    "Không thể so sánh"
   ],
-  "correctLetter": "A",
   "correct": 0,
   "topicId": "Logic - Suy luận",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "explanation": "A: 30/40 = 75%; B: 35/50 = 70%.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 2,
+   "answerPage": 16
+  }
  },
  {
   "n": 9,
@@ -120,10 +160,15 @@
    "6",
    "8"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Logic - Suy luận",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "explanation": "Chọn 2 chữ số bất kỳ từ 4 chữ số, mỗi cặp chỉ có một cách sắp giảm dần: C(4,2)=6.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 3,
+   "answerPage": 16
+  }
  },
  {
   "n": 10,
@@ -134,10 +179,15 @@
    "Không thể kết luận có nhà nghiên cứu nào lập trình thành thạo.",
    "Không ai trong nhóm biết lập trình."
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Logic - Suy luận",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "explanation": "Nhóm “một số người biết thống kê và lập trình” không được xác định là nhà nghiên cứu; không có giao nhau chắc chắn.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 3,
+   "answerPage": 16
+  }
  },
  {
   "n": 11,
@@ -148,10 +198,15 @@
    "Q - P - S - R",
    "S - Q - R - P"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Logic - Suy luận",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "explanation": "Thứ tự S trước P trước Q trước R thỏa mãn cả ba điều kiện.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 3,
+   "answerPage": 16
+  }
  },
  {
   "n": 12,
@@ -162,10 +217,15 @@
    "10",
    "13"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Logic - Suy luận",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "explanation": "Có 7 giá trị đã sắp xếp; trung vị là giá trị thứ tư, bằng 9.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 3,
+   "answerPage": 16
+  }
  },
  {
   "n": 13,
@@ -176,24 +236,34 @@
    "M chưa từng được sản xuất.",
    "M chắc chắn bị hỏng."
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Logic - Suy luận",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "explanation": "Nếu đạt chuẩn thì phải qua kiểm định; không qua kiểm định nên không thể đạt chuẩn (modus tollens).",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 3,
+   "answerPage": 16
+  }
  },
  {
   "n": 14,
-  "content": "Trong một cuộc khảo sát, 60% chọn phương án A, 50% chọn B và 20% chọn cả A lẫn",
+  "content": "Trong một cuộc khảo sát, 60% chọn phương án A, 50% chọn B và 20% chọn cả A lẫn B. Tỷ lệ chọn ít nhất một trong hai phương án là bao nhiêu?",
   "options": [
-   "70% B. 80%",
-   "Tỷ lệ chọn ít nhất một trong hai phương án là bao nhiêu?",
+   "70%",
+   "80%",
    "90%",
-   "110% Suy luận khoa học - Đọc dữ kiện và đánh giá giả thuyết"
+   "110%"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Logic - Suy luận",
-  "difficulty": 2
+  "difficulty": 0.5,
+  "explanation": "P(A ∪B)=60%+50%-20%=90%.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 3,
+   "answerPage": 16
+  }
  },
  {
   "n": 15,
@@ -204,10 +274,15 @@
    "Chỉ quan sát một cây trong một ngày.",
    "Bón nhiều phân hơn cho nhóm được chiếu sáng lâu."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 2
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.5,
+  "explanation": "Chỉ thay đổi biến độc lập (thời gian chiếu sáng) và giữ các yếu tố khác ổn định.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 3,
+   "answerPage": 16
+  }
  },
  {
   "n": 16,
@@ -218,10 +293,15 @@
    "Thuốc không có tác dụng.",
    "Tác dụng chắc chắn do thuốc vì 18 người cải thiện."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 2
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.5,
+  "explanation": "Chưa có nhóm đối chứng, cỡ mẫu nhỏ; chưa loại trừ tác động giả dược hay diễn biến tự nhiên.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 3,
+   "answerPage": 16
+  }
  },
  {
   "n": 17,
@@ -232,10 +312,15 @@
    "Nhiệt độ không liên quan đến oxy.",
    "Oxy tăng 10 đơn vị."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 2
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.5,
+  "explanation": "Quan sát cho thấy nhiệt độ tăng còn oxy hòa tan giảm; không nên suy rộng quan hệ nhân quả chỉ từ dữ kiện này.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 4,
+   "answerPage": 16
+  }
  },
  {
   "n": 18,
@@ -246,10 +331,15 @@
    "Ngủ đủ giấc là nguyên nhân duy nhất làm điểm tăng.",
    "Cần xem xét yếu tố khác như thời gian học và sức khỏe."
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 2
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.5,
+  "explanation": "Tương quan không chứng minh nguyên nhân duy nhất; có thể có biến gây nhiễu.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 4,
+   "answerPage": 16
+  }
  },
  {
   "n": 19,
@@ -260,10 +350,15 @@
    "Được nhận gấp đôi lượng phân.",
    "Được đặt trong bóng tối hoàn toàn."
   ],
-  "correctLetter": "A",
   "correct": 0,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 2
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.5,
+  "explanation": "Nhóm đối chứng chỉ khác nhóm thử nghiệm ở biến cần kiểm tra.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 4,
+   "answerPage": 16
+  }
  },
  {
   "n": 20,
@@ -274,10 +369,15 @@
    "Sai số do chọn mẫu.",
    "Không có sai số."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 2
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.5,
+  "explanation": "Độ lệch cố định theo một hướng cho thấy sai số hệ thống/hiệu chuẩn.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 4,
+   "answerPage": 16
+  }
  },
  {
   "n": 21,
@@ -288,24 +388,34 @@
    "Không thể ghi nhận thời gian.",
    "Không có biến cần đo."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 2
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.5,
+  "explanation": "Nhóm không dùng mạng xã hội bị loại khỏi khung mẫu; mẫu có thể không đại diện.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 4,
+   "answerPage": 16
+  }
  },
  {
   "n": 22,
   "content": "Khi một giả thuyết dự đoán kết quả A nhưng thí nghiệm lặp lại cho kết quả B, nhà nghiên cứu nên làm gì?",
   "options": [
-   "Che giấu kết quả",
-   "B. Kiểm tra quy trình, dữ liệu và điều chỉnh hoặc bác bỏ giả thuyết khi cần.",
+   "Che giấu kết quả B.",
+   "Kiểm tra quy trình, dữ liệu và điều chỉnh hoặc bác bỏ giả thuyết khi cần.",
    "Giữ giả thuyết vì đã công bố.",
    "Chọn riêng lần thử cho kết quả A."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 2
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.5,
+  "explanation": "Khoa học yêu cầu kiểm tra khả năng sai sót và điều chỉnh giả thuyết theo bằng chứng.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 4,
+   "answerPage": 16
+  }
  },
  {
   "n": 23,
@@ -316,10 +426,15 @@
    "Hai mẫu có độ axit giống nhau.",
    "pH càng cao thì càng axit."
   ],
-  "correctLetter": "A",
   "correct": 0,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 2
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.5,
+  "explanation": "pH thấp hơn biểu thị môi trường axit hơn.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 4,
+   "answerPage": 16
+  }
  },
  {
   "n": 24,
@@ -330,10 +445,15 @@
    "Không thể tính phần trăm.",
    "Mức tăng 50% luôn rất nhỏ."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 2
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.5,
+  "explanation": "Tăng từ 2 lên 3 khác xa tăng từ 2.000 lên 3.000 về quy mô tuyệt đối.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 4,
+   "answerPage": 16
+  }
  },
  {
   "n": 25,
@@ -344,10 +464,15 @@
    "Dùng chung vật dụng cá nhân.",
    "Tăng mật độ tập trung."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 2
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.5,
+  "explanation": "Giảm tiếp xúc và tăng thông khí làm giảm cơ hội phơi nhiễm trong cơ chế lây truyền giả định.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 4,
+   "answerPage": 16
+  }
  },
  {
   "n": 26,
@@ -358,10 +483,15 @@
    "Thước luôn tạo sai số hệ thống 1 cm.",
    "Mọi cây đều cao bằng nhau."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 2
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.5,
+  "explanation": "Độ chia nhỏ nhất ảnh hưởng độ phân giải; thay đổi nhỏ hơn 1 cm khó xác định chính xác.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 5,
+   "answerPage": 16
+  }
  },
  {
   "n": 27,
@@ -372,10 +502,15 @@
    "Cỏ chắc chắn biến mất.",
    "Rắn không bị ảnh hưởng."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 2
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.5,
+  "explanation": "Giảm sinh vật ăn châu chấu có thể làm quần thể châu chấu tăng, dù thực tế còn phụ thuộc các yếu tố khác.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 5,
+   "answerPage": 16
+  }
  },
  {
   "n": 28,
@@ -386,10 +521,15 @@
    "Số mẫu luôn phải đúng 5.",
    "Thí nghiệm không cần lặp lại."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 2
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.5,
+  "explanation": "Cỡ mẫu nhỏ và thiếu lặp lại không đủ hỗ trợ kết luận tuyệt đối.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 5,
+   "answerPage": 16
+  }
  },
  {
   "n": 29,
@@ -400,10 +540,15 @@
    "Màu sắc vỏ pin.",
    "Ngày mua pin."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 2
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.5,
+  "explanation": "Muốn so sánh công bằng cần kiểm soát điều kiện ảnh hưởng tới hiệu suất.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 5,
+   "answerPage": 16
+  }
  },
  {
   "n": 30,
@@ -414,10 +559,15 @@
    "Vi khuẩn luôn phát triển nhanh hơn khi nóng hơn.",
    "60°C là nhiệt độ tối ưu."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 2
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.5,
+  "explanation": "Dữ liệu minh họa phản ứng sinh trưởng phụ thuộc nhiệt độ và có giới hạn.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 5,
+   "answerPage": 16
+  }
  },
  {
   "n": 31,
@@ -428,10 +578,15 @@
    "Điểm bài kiểm tra.",
    "Số câu hỏi."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 2
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.5,
+  "explanation": "Độ ồn khác biệt có thể tác động đến tập trung, khiến không thể quy kết khác biệt cho âm nhạc.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 5,
+   "answerPage": 16
+  }
  },
  {
   "n": 32,
@@ -442,10 +597,15 @@
    "Không thay đổi trong mọi trường hợp.",
    "Bị bác bỏ tự động."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 2
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.5,
+  "explanation": "Tái lập độc lập giúp đánh giá độ tin cậy và khả năng khái quát.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 5,
+   "answerPage": 16
+  }
  },
  {
   "n": 33,
@@ -456,10 +616,15 @@
    "Mẫu có thể tích 12 ml.",
    "Sai số bằng 0."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 2
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.5,
+  "explanation": "Số chữ số có nghĩa thể hiện độ chính xác được báo cáo, không đồng nghĩa chính xác tuyệt đối.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 5,
+   "answerPage": 16
+  }
  },
  {
   "n": 34,
@@ -470,10 +635,15 @@
    "Tiêu đề gây bất ngờ.",
    "Tác giả khẳng định không thể sai."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 2
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.5,
+  "explanation": "Tính minh bạch về phương pháp, dữ liệu và giới hạn cho phép thẩm định kết quả.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 5,
+   "answerPage": 16
+  }
  },
  {
   "n": 35,
@@ -482,12 +652,17 @@
    "Chỉ hỏi ý kiến người dân.",
    "So sánh với khu vực tương đồng không trồng cây, đồng thời kiểm soát thời tiết và thời điểm đo.",
    "Đo nhiệt độ duy nhất một lần sau trồng.",
-   "Không cần dữ liệu trước khi trồng. MỨC 2 - VẬN DỤNG CAO (CÂU 36-75) Logic và phân tích dữ liệu - Bài toán nhiều điều kiện"
+   "Không cần dữ liệu trước khi trồng."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 2
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.5,
+  "explanation": "Thiết kế so sánh có đối chứng và kiểm soát yếu tố thời tiết giúp củng cố suy luận nhân quả.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 6,
+   "answerPage": 16
+  }
  },
  {
   "n": 36,
@@ -498,10 +673,15 @@
    "50%",
    "60%"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "explanation": "Tăng 60 triệu trên nền 120 triệu: 60/120 = 50%.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 7,
+   "answerPage": 16
+  }
  },
  {
   "n": 37,
@@ -512,10 +692,15 @@
    "18",
    "20"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "explanation": "Tổng C(6,3)=20; số nhóm có cả An và Bình là chọn thêm 1 trong 4 người = 4. Còn 16.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 7,
+   "answerPage": 16
+  }
  },
  {
   "n": 38,
@@ -526,10 +711,15 @@
    "R",
    "Không xác định"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "explanation": "Thử R đúng: khi đó P sai; P sai nghĩa là Q sai. Q sai phù hợp vì Q nói R sai, trong khi R đúng. Chỉ R đúng.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 7,
+   "answerPage": 16
+  }
  },
  {
   "n": 39,
@@ -540,24 +730,34 @@
    "33,3%",
    "40%"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "explanation": "Mức tăng 30 trên nền 90 = 1/3 ≈ 33,3%.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 7,
+   "answerPage": 16
+  }
  },
  {
   "n": 40,
-  "content": "Năm người A, B, C, D, E xếp hàng. A đứng trước C; B đứng sau D; E đứng trước A; C đứng trước",
+  "content": "Năm người A, B, C, D, E xếp hàng. A đứng trước C; B đứng sau D; E đứng trước A; C đứng trước D. Ai chắc chắn đứng trước B?",
   "options": [
    "Chỉ D",
    "A, C và D",
-   "E, A, C và D D. Không ai",
-   "Ai chắc chắn đứng trước B?"
+   "E, A, C và D",
+   "Không ai"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "explanation": "Các quan hệ bắt buộc: E < A < C < D < B, nên E, A, C, D đều đứng trước B.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 7,
+   "answerPage": 16
+  }
  },
  {
   "n": 41,
@@ -568,10 +768,15 @@
    "9",
    "11"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "explanation": "Học ít nhất một: 22+18-7=33; không học: 40-33=7.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 7,
+   "answerPage": 16
+  }
  },
  {
   "n": 42,
@@ -582,10 +787,15 @@
    "V6",
    "W6"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "explanation": "Vị trí chữ cái tăng +2, +3, +4, +5; tiếp theo +6: O (15) + 6 = U (21), số tiếp là 6.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 7,
+   "answerPage": 16
+  }
  },
  {
   "n": 43,
@@ -596,10 +806,15 @@
    "Thấp hơn 4%",
    "Thấp hơn 2%"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "explanation": "Giá cuối = 0,8 × 1,2 = 0,96 giá gốc, tức thấp hơn 4%.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 7,
+   "answerPage": 16
+  }
  },
  {
   "n": 44,
@@ -610,10 +825,15 @@
    "85%",
    "90%"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "explanation": "Dùng bao hàm - loại trừ: 48+42+30-18-12-10+5 = 85%.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 8,
+   "answerPage": 16
+  }
  },
  {
   "n": 45,
@@ -624,10 +844,15 @@
    "0,40",
    "0,64"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "explanation": "P(không Y)=0,2+0,3=0,5; hai lần độc lập: 0,5×0,5=0,25.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 8,
+   "answerPage": 17
+  }
  },
  {
   "n": 46,
@@ -638,10 +863,15 @@
    "80",
    "90"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "explanation": "A có 1.000×2%=20 lỗi; B có 2.000×3%=60 lỗi; tổng 80.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 8,
+   "answerPage": 17
+  }
  },
  {
   "n": 47,
@@ -652,10 +882,15 @@
    "Có thiết bị mới.",
    "Có khách tham quan."
   ],
-  "correctLetter": "A",
   "correct": 0,
   "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "explanation": "“Chỉ khi P thì Q” nghĩa là Q kéo theo P; giấy phép là điều kiện cần.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 8,
+   "answerPage": 17
+  }
  },
  {
   "n": 48,
@@ -666,10 +901,15 @@
    "70,0%",
    "72,5%"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "explanation": "0,9 × 0,8 × 0,95 = 0,684 = 68,4%.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 8,
+   "answerPage": 17
+  }
  },
  {
   "n": 49,
@@ -680,10 +920,15 @@
    "S-P-Q-R",
    "P-R-S-Q"
   ],
-  "correctLetter": "A",
   "correct": 0,
   "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "explanation": "P đứng đầu, S ngay sau; Q ở vị trí 3 và R ở vị trí 4: thỏa mãn.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 8,
+   "answerPage": 17
+  }
  },
  {
   "n": 50,
@@ -694,10 +939,15 @@
    "16",
    "17"
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "explanation": "Tổng 5 số = 5×18=90; bỏ 30 còn 60; trung bình 4 số =15.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 8,
+   "answerPage": 17
+  }
  },
  {
   "n": 51,
@@ -706,12 +956,17 @@
    "5",
    "10",
    "15",
-   "20 Suy luận khoa học - Thiết kế nghiên cứu và diễn giải dữ liệu"
+   "20"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "difficulty": 0.75,
+  "explanation": "Ít nhất một =60+45-20=85; không thuộc hai nhóm =100-85=15.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 8,
+   "answerPage": 17
+  }
  },
  {
   "n": 52,
@@ -722,10 +977,15 @@
    "Mức độ yêu thích mọi môn học.",
    "Khả năng ghi nhớ suốt đời."
   ],
-  "correctLetter": "A",
   "correct": 0,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.75,
+  "explanation": "Giữ thời lượng học bằng nhau giúp so sánh phương pháp thay vì thời gian học.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 9,
+   "answerPage": 17
+  }
  },
  {
   "n": 53,
@@ -736,10 +996,15 @@
    "Nhóm đối chứng.",
    "Sai số đo lường tất yếu."
   ],
-  "correctLetter": "A",
   "correct": 0,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.75,
+  "explanation": "Thu nhập có thể liên quan cả thói quen uống cà phê và nguy cơ bệnh, làm nhiễu mối liên hệ.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 9,
+   "answerPage": 17
+  }
  },
  {
   "n": 54,
@@ -750,10 +1015,15 @@
    "Nhiệt độ không thể đo.",
    "Hai biến luôn triệt tiêu nhau."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.75,
+  "explanation": "Hai biến độc lập cùng thay đổi khiến tác động của từng biến bị lẫn.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 9,
+   "answerPage": 17
+  }
  },
  {
   "n": 55,
@@ -764,10 +1034,15 @@
    "95% kết quả dương tính chắc chắn là thật.",
    "Xét nghiệm không có âm tính giả."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.75,
+  "explanation": "Độ nhạy là xác suất xét nghiệm dương tính khi người đó thực sự có bệnh.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 9,
+   "answerPage": 17
+  }
  },
  {
   "n": 56,
@@ -778,10 +1053,15 @@
    "98% dân số mắc bệnh.",
    "Kết quả dương tính luôn chính xác 98%."
   ],
-  "correctLetter": "A",
   "correct": 0,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.75,
+  "explanation": "Độ đặc hiệu là xác suất kết quả âm tính khi người đó không mắc bệnh.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 9,
+   "answerPage": 17
+  }
  },
  {
   "n": 57,
@@ -792,10 +1072,15 @@
    "Bỏ qua mực nước.",
    "Chỉ hỏi ngư dân một lần."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.75,
+  "explanation": "Cần kiểm tra các yếu tố cạnh tranh và so sánh với khu vực phù hợp.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 9,
+   "answerPage": 17
+  }
  },
  {
   "n": 58,
@@ -806,10 +1091,15 @@
    "Thay đổi dữ liệu thô.",
    "Tạo thêm quan sát mới."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.75,
+  "explanation": "Cắt trục có thể làm chênh lệch nhỏ trông lớn hơn thực tế.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 9,
+   "answerPage": 17
+  }
  },
  {
   "n": 59,
@@ -820,10 +1110,15 @@
    "Loại bỏ nhu cầu nhóm đối chứng.",
    "Làm kết quả luôn có ý nghĩa thống kê."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.75,
+  "explanation": "Ngẫu nhiên hóa giúp cân bằng các yếu tố đã biết và chưa biết trung bình giữa nhóm.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 9,
+   "answerPage": 17
+  }
  },
  {
   "n": 60,
@@ -834,10 +1129,15 @@
    "Có 97% khả năng kết quả sẽ lặp lại.",
    "Hiệu ứng chắc chắn lớn và có ý nghĩa thực tiễn."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.75,
+  "explanation": "p-value không phải xác suất giả thuyết không đúng hay xác suất tái lập; nó là xác suất dữ liệu theo giả thuyết không.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 9,
+   "answerPage": 17
+  }
  },
  {
   "n": 61,
@@ -848,10 +1148,15 @@
    "Hiệu ứng chắc chắn bằng 3.",
    "95% cá thể có mức tăng trong khoảng này."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.75,
+  "explanation": "Khoảng tin cậy 95% không chứa 0 tương ứng với kiểm định hai phía có ý nghĩa ở mức 5% trong điều kiện chuẩn.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 10,
+   "answerPage": 17
+  }
  },
  {
   "n": 62,
@@ -862,10 +1167,15 @@
    "Mẫu chắc chắn lớn hơn dân số.",
    "Mọi câu trả lời đều sai."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.75,
+  "explanation": "Người tự nguyện tham gia có thể có đặc điểm hoặc động lực khác biệt.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 10,
+   "answerPage": 17
+  }
  },
  {
   "n": 63,
@@ -876,24 +1186,34 @@
    "Tổng",
    "Khoảng biến thiên"
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.75,
+  "explanation": "Trung vị ít bị kéo lệch bởi các giá trị ngoại lai.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 10,
+   "answerPage": 17
+  }
  },
  {
   "n": 64,
-  "content": "Một nhà nghiên cứu muốn xác định liệu vật liệu A cách nhiệt tốt hơn",
+  "content": "Một nhà nghiên cứu muốn xác định liệu vật liệu A cách nhiệt tốt hơn B. Cách đo phù hợp nhất là gì?",
   "options": [
-   "Đo màu sắc của hai vật liệu. B. Đặt trong cùng điều kiện nhiệt và đo tốc độ truyền nhiệt/độ giảm nhiệt phía bên kia.",
-   "Cách đo phù hợp nhất là gì?",
+   "Đo màu sắc của hai vật liệu.",
+   "Đặt trong cùng điều kiện nhiệt và đo tốc độ truyền nhiệt/độ giảm nhiệt phía bên kia.",
    "Hỏi người bán vật liệu.",
    "So sánh khối lượng riêng mà không xét nhiệt."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.75,
+  "explanation": "Cần một biến kết quả trực tiếp phản ánh khả năng truyền nhiệt trong điều kiện được kiểm soát.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 10,
+   "answerPage": 17
+  }
  },
  {
   "n": 65,
@@ -904,10 +1224,15 @@
    "Luôn đúng với mọi trường hợp.",
    "Chỉ dựa trên niềm tin của nhà nghiên cứu."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.75,
+  "explanation": "Tính kiểm tra được và có thể bị bác bỏ là đặc trưng quan trọng của giả thuyết khoa học.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 10,
+   "answerPage": 17
+  }
  },
  {
   "n": 66,
@@ -918,10 +1243,15 @@
    "Hiệu ứng chắc chắn bằng 0.",
    "Nghiên cứu đã chứng minh hai nhóm giống hệt nhau."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.75,
+  "explanation": "Không có ý nghĩa thống kê không chứng minh không có hiệu ứng; khoảng rộng thể hiện độ bất định lớn.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 10,
+   "answerPage": 17
+  }
  },
  {
   "n": 67,
@@ -932,10 +1262,15 @@
    "Số ca mới là dữ liệu sai.",
    "Nhập viện không liên quan bệnh."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.75,
+  "explanation": "Một số kết quả y tế xuất hiện sau thời gian trễ; không thể kết luận từ một thời điểm.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 10,
+   "answerPage": 17
+  }
  },
  {
   "n": 68,
@@ -946,10 +1281,15 @@
    "Không có biến phụ thuộc.",
    "Không cần lặp lại thí nghiệm."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.75,
+  "explanation": "Phạm vi giống và môi trường hẹp hạn chế khả năng khái quát.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 10,
+   "answerPage": 17
+  }
  },
  {
   "n": 69,
@@ -960,10 +1300,15 @@
    "Y chắc chắn là nguyên nhân của X.",
    "Không có quan hệ thống kê."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.75,
+  "explanation": "Tương quan mô tả đồng biến/ nghịch biến, không tự chứng minh nhân quả.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 10,
+   "answerPage": 17
+  }
  },
  {
   "n": 70,
@@ -974,10 +1319,15 @@
    "Tăng tính tái lập.",
    "Giảm mọi sai số đo."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.75,
+  "explanation": "Loại dữ liệu hậu nghiệm không minh bạch có thể tạo thiên lệch báo cáo.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 11,
+   "answerPage": 17
+  }
  },
  {
   "n": 71,
@@ -988,10 +1338,15 @@
    "Bài báo có nhiều hình minh họa.",
    "Nghiên cứu chỉ được nhắc lại trên mạng xã hội."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.75,
+  "explanation": "Tái lập độc lập là một nền tảng để củng cố độ tin cậy.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 11,
+   "answerPage": 17
+  }
  },
  {
   "n": 72,
@@ -1002,10 +1357,15 @@
    "Thiết bị tự động chính xác hơn.",
    "Mọi phép đo đều không hợp lệ."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.75,
+  "explanation": "Điều kiện sử dụng khác điều kiện hiệu chuẩn có thể gây sai số; cần đánh giá phụ thuộc nhiệt.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 11,
+   "answerPage": 17
+  }
  },
  {
   "n": 73,
@@ -1016,10 +1376,15 @@
    "Nói nguy cơ biến mất hoàn toàn.",
    "Không công bố mẫu số."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.75,
+  "explanation": "Cả mức tương đối và tuyệt đối giúp người đọc đánh giá ý nghĩa thực tế.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 11,
+   "answerPage": 17
+  }
  },
  {
   "n": 74,
@@ -1030,10 +1395,15 @@
    "Không có biến giải thích.",
    "Mọi tác động đều bằng 0."
   ],
-  "correctLetter": "A",
   "correct": 0,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.75,
+  "explanation": "Động lực, nền tảng và điều kiện ban đầu có thể khác biệt giữa người tham gia và không tham gia.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 11,
+   "answerPage": 17
+  }
  },
  {
   "n": 75,
@@ -1042,26 +1412,36 @@
    "Chỉ số lượt khách du lịch.",
    "Chuỗi dữ liệu nhiều năm về nhiệt độ, thời điểm di cư và các yếu tố khác như nguồn thức ăn.",
    "Màu lông chim trong một ngày.",
-   "Số lượng cây cảnh trong thành phố. MỨC 3 - KHÓ / PHÂN HÓA MẠNH (CÂU 76-100) Logic và phân tích dữ liệu - Phân hóa cao"
+   "Số lượng cây cảnh trong thành phố."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 3
+  "topicId": "Suy luận khoa học",
+  "difficulty": 0.75,
+  "explanation": "Dữ liệu theo thời gian và biến liên quan giúp đánh giá quan hệ, xu hướng và yếu tố gây nhiễu.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 11,
+   "answerPage": 17
+  }
  },
  {
   "n": 76,
-  "content": "Một khảo sát có 3 lựa chọn A, B,",
+  "content": "Một khảo sát có 3 lựa chọn A, B, C. 55% chọn A, 50% chọn B, 45% chọn C; 25% chọn cả A và B, 20% cả A và C, 15% cả B và C, 10% chọn cả ba. Tỷ lệ không chọn lựa chọn nào là bao nhiêu?",
   "options": [
    "0%",
-   "5% C. 10%",
-   "55% chọn A, 50% chọn B, 45% chọn C; 25% chọn cả A và B, 20% cả A và C, 15% cả B và C, 10% chọn cả ba. Tỷ lệ không chọn lựa chọn nào là bao nhiêu?",
+   "5%",
+   "10%",
    "15%"
   ],
-  "correctLetter": "A",
   "correct": 0,
   "topicId": "Logic - Suy luận",
-  "difficulty": 4
+  "difficulty": 1,
+  "explanation": "Bao hàm - loại trừ: 55+50+45-25-20-15+10 = 100%; không ai nằm ngoài hợp.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 12,
+   "answerPage": 17
+  }
  },
  {
   "n": 77,
@@ -1072,10 +1452,15 @@
    "P và S",
    "Q và R"
   ],
-  "correctLetter": "A",
   "correct": 0,
   "topicId": "Logic - Suy luận",
-  "difficulty": 4
+  "difficulty": 1,
+  "explanation": "Chuỗi suy luận nhất quán là P đúng, Q sai, R đúng, S sai; đúng chính xác hai người là P và R.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 12,
+   "answerPage": 17
+  }
  },
  {
   "n": 78,
@@ -1086,10 +1471,15 @@
    "23/28",
    "25/28"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Logic - Suy luận",
-  "difficulty": 4
+  "difficulty": 1,
+  "explanation": "P(không có nam)=C(5,3)/C(8,3)=10/56=5/28; do đó ít nhất một nam = 1-5/28=23/28.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 12,
+   "answerPage": 17
+  }
  },
  {
   "n": 79,
@@ -1100,24 +1490,34 @@
    "5",
    "6"
   ],
-  "correctLetter": "D",
   "correct": 3,
   "topicId": "Logic - Suy luận",
-  "difficulty": 4
+  "difficulty": 1,
+  "explanation": "Chọn 2 vị trí trong 5 sao cho không kề nhau: các cặp (1,3), (1,4), (1,5), (2,4), (2,5), (3,5), có 6 chuỗi.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 12,
+   "answerPage": 17
+  }
  },
  {
   "n": 80,
-  "content": "Một công ty có ba nhà máy A, B,",
+  "content": "Một công ty có ba nhà máy A, B, C. A sản xuất 50% hàng, lỗi 2%; B sản xuất 30%, lỗi 3%; C sản xuất 20%, lỗi 5%. Chọn ngẫu nhiên một sản phẩm bị lỗi. Xác suất sản phẩm đến từ C gần nhất là bao nhiêu?",
   "options": [
    "20%",
-   "25% C. 34,5%",
-   "A sản xuất 50% hàng, lỗi 2%; B sản xuất 30%, lỗi 3%; C sản xuất 20%, lỗi 5%. Chọn ngẫu nhiên một sản phẩm bị lỗi. Xác suất sản phẩm đến từ C gần nhất là bao nhiêu?",
+   "25%",
+   "34,5%",
    "40%"
   ],
-  "correctLetter": "C",
   "correct": 2,
   "topicId": "Logic - Suy luận",
-  "difficulty": 4
+  "difficulty": 1,
+  "explanation": "P(lỗi)=0,5×0,02+0,3×0,03+0,2×0,05=0,029. P(C|lỗi)=0,01/0,029≈34,48%, xấp xỉ 34,5%.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 12,
+   "answerPage": 17
+  }
  },
  {
   "n": 81,
@@ -1128,10 +1528,15 @@
    "S-Q-P-T-R",
    "S-P-Q-R-T"
   ],
-  "correctLetter": "A",
   "correct": 0,
   "topicId": "Logic - Suy luận",
-  "difficulty": 4
+  "difficulty": 1,
+  "explanation": "Ở phương án A, S đứng trước P, P ngay trước Q, R đứng sau Q và T đứng vị trí thứ tư chứ không ở cuối. Các phương án còn lại vi phạm ít nhất một điều kiện.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 12,
+   "answerPage": 17
+  }
  },
  {
   "n": 82,
@@ -1142,24 +1547,34 @@
    "9",
    "10"
   ],
-  "correctLetter": "D",
   "correct": 3,
   "topicId": "Logic - Suy luận",
-  "difficulty": 4
+  "difficulty": 1,
+  "explanation": "Ô hàng 1 cột 1 = 18-11=7; tổng cột 1 là 17 nên ô hàng 2 cột 1 = 17-7=10.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 12,
+   "answerPage": 17
+  }
  },
  {
   "n": 83,
-  "content": "Ba biến cố A, B, C có P(A)=0,6; P(B)=0,5; P(A∩B)=0,35. Biến cố C độc lập với biến cố A B và ∪ P(C)=0,2. Xác suất xảy ra ít nhất một trong A, B, C là bao nhiêu?",
+  "content": "Ba biến cố A, B, C có P(A)=0,6; P(B)=0,5; P(A∩B)=0,35. Biến cố C độc lập với biến cố A ∪B và P(C)=0,2. Xác suất xảy ra ít nhất một trong A, B, C là bao nhiêu?",
   "options": [
    "0,72",
    "0,76",
    "0,78",
    "0,80"
   ],
-  "correctLetter": "D",
   "correct": 3,
   "topicId": "Logic - Suy luận",
-  "difficulty": 4
+  "difficulty": 1,
+  "explanation": "P(A ∪B)=0,6+0,5-0,35=0,75. Vì C độc lập với A ∪B, xác suất hợp ba biến cố là 0,75+0,2-(0,75×0,2)=0,80.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 13,
+   "answerPage": 17
+  }
  },
  {
   "n": 84,
@@ -1170,10 +1585,15 @@
    "Quy trình dừng ở lần 2.",
    "Không thể xác định."
   ],
-  "correctLetter": "B",
   "correct": 1,
   "topicId": "Logic - Suy luận",
-  "difficulty": 4
+  "difficulty": 1,
+  "explanation": "Chuỗi H-T-H-T-H không chứa cặp kết quả liền kề giống nhau nên điều kiện dừng chưa xuất hiện.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 13,
+   "answerPage": 17
+  }
  },
  {
   "n": 85,
@@ -1182,12 +1602,17 @@
    "Tăng 2 điểm phần trăm, tương đương tăng tương đối 50%.",
    "Tăng 2 điểm phần trăm, tương đương tăng tương đối 2%.",
    "Tăng 50 điểm phần trăm.",
-   "Giảm 2 điểm phần trăm. Suy luận khoa học - Phân tích bằng chứng và giới hạn kết luận"
+   "Giảm 2 điểm phần trăm."
   ],
-  "correctLetter": "A",
   "correct": 0,
   "topicId": "Logic - Suy luận",
-  "difficulty": 4
+  "difficulty": 1,
+  "explanation": "Chênh lệch tuyệt đối là 2 điểm phần trăm; mức tăng tương đối trên nền 4% là 2/4=50%.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 13,
+   "answerPage": 17
+  }
  },
  {
   "n": 86,
@@ -1198,10 +1623,15 @@
    "Thuốc không có tác dụng vì nhóm giả dược cũng cải thiện.",
    "Có 70% xác suất thuốc chữa khỏi mọi bệnh nhân."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 4
+  "topicId": "Suy luận khoa học",
+  "difficulty": 1,
+  "explanation": "Chênh lệch thô là 10 điểm phần trăm; cỡ mẫu nhỏ và thiết kế chưa rõ nên chưa thể kết luận mạnh.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 13,
+   "answerPage": 17
+  }
  },
  {
   "n": 87,
@@ -1212,10 +1642,15 @@
    "Không có biến kết quả.",
    "Mẫu chắc chắn ngẫu nhiên."
   ],
-  "correctLetter": "A",
   "correct": 0,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 4
+  "topicId": "Suy luận khoa học",
+  "difficulty": 1,
+  "explanation": "Kỳ vọng của người tham gia và người đánh giá có thể ảnh hưởng báo cáo hoặc chấm kết quả.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 13,
+   "answerPage": 17
+  }
  },
  {
   "n": 88,
@@ -1226,10 +1661,15 @@
    "Không thể có biến gây nhiễu.",
    "Có thể kết luận chắc chắn điện thoại gây lo âu."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 4
+  "topicId": "Suy luận khoa học",
+  "difficulty": 1,
+  "explanation": "Nghiên cứu cắt ngang khó xác định điều gì xảy ra trước và loại trừ quan hệ ngược.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 13,
+   "answerPage": 17
+  }
  },
  {
   "n": 89,
@@ -1240,10 +1680,15 @@
    "Sản phẩm chứa X được bán chạy.",
    "Enzyme Y thường xuất hiện trong cơ thể."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 4
+  "topicId": "Suy luận khoa học",
+  "difficulty": 1,
+  "explanation": "Đo trực tiếp hoạt tính enzyme trong điều kiện kiểm soát gắn với cơ chế giả thuyết.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 13,
+   "answerPage": 17
+  }
  },
  {
   "n": 90,
@@ -1254,10 +1699,15 @@
    "Không thể có dương tính giả.",
    "Cỡ mẫu tự động tăng."
   ],
-  "correctLetter": "A",
   "correct": 0,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 4
+  "topicId": "Suy luận khoa học",
+  "difficulty": 1,
+  "explanation": "Nhiều phép kiểm định làm tăng xác suất có ít nhất một phát hiện tình cờ nếu không điều chỉnh.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 13,
+   "answerPage": 17
+  }
  },
  {
   "n": 91,
@@ -1268,10 +1718,15 @@
    "Số lượng tác giả có tên ngắn.",
    "Ngày trong tuần công bố."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 4
+  "topicId": "Suy luận khoa học",
+  "difficulty": 1,
+  "explanation": "Khác biệt về thiết kế, dân số và thang đo có thể làm cho hiệu ứng tổng hợp khó diễn giải.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 14,
+   "answerPage": 17
+  }
  },
  {
   "n": 92,
@@ -1282,10 +1737,15 @@
    "Dữ liệu mới chắc chắn sai.",
    "Độ chính xác huấn luyện luôn vô nghĩa."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 4
+  "topicId": "Suy luận khoa học",
+  "difficulty": 1,
+  "explanation": "Khoảng cách lớn giữa hiệu suất huấn luyện và dữ liệu mới là dấu hiệu quá khớp.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 14,
+   "answerPage": 18
+  }
  },
  {
   "n": 93,
@@ -1296,10 +1756,15 @@
    "Mô hình không cần kiểm định.",
    "Dự báo không thể sai."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 4
+  "topicId": "Suy luận khoa học",
+  "difficulty": 1,
+  "explanation": "Thay đổi phân phối đầu vào hoặc quan hệ giữa biến làm hiệu suất mô hình suy giảm.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 14,
+   "answerPage": 18
+  }
  },
  {
   "n": 94,
@@ -1310,10 +1775,15 @@
    "Có thể kết luận can thiệp tại A là nguyên nhân duy nhất.",
    "Thời gian không liên quan."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 4
+  "topicId": "Suy luận khoa học",
+  "difficulty": 1,
+  "explanation": "Thay đổi đồng thời trên diện rộng là yếu tố gây nhiễu trong so sánh trước-sau.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 14,
+   "answerPage": 18
+  }
  },
  {
   "n": 95,
@@ -1324,10 +1794,15 @@
    "Nhiều cây luôn làm sai kết quả.",
    "Nguồn nước không thể ảnh hưởng."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 4
+  "topicId": "Suy luận khoa học",
+  "difficulty": 1,
+  "explanation": "Đơn vị thí nghiệm là ô ruộng; cây trong cùng ô có tương quan do cùng điều kiện (giả lặp).",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 14,
+   "answerPage": 18
+  }
  },
  {
   "n": 96,
@@ -1338,10 +1813,15 @@
    "Bỏ qua kích thước hiệu ứng.",
    "Chỉ xem p-value."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 4
+  "topicId": "Suy luận khoa học",
+  "difficulty": 1,
+  "explanation": "Ý nghĩa thống kê không đồng nghĩa ý nghĩa thực tiễn; cần đặt hiệu ứng vào bối cảnh.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 14,
+   "answerPage": 18
+  }
  },
  {
   "n": 97,
@@ -1352,10 +1832,15 @@
    "Tái lập độc lập.",
    "Hiệu chuẩn thiết bị."
   ],
-  "correctLetter": "A",
   "correct": 0,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 4
+  "topicId": "Suy luận khoa học",
+  "difficulty": 1,
+  "explanation": "Chỉ chọn kết quả thuận lợi làm tăng khả năng báo cáo phát hiện dương tính giả.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 14,
+   "answerPage": 18
+  }
  },
  {
   "n": 98,
@@ -1366,10 +1851,15 @@
    "Có, nếu p-value nhỏ.",
    "Không, vì nghiên cứu dinh dưỡng không thể áp dụng."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 4
+  "topicId": "Suy luận khoa học",
+  "difficulty": 1,
+  "explanation": "Đối tượng nghiên cứu khác với nhóm đích nên cần bằng chứng bổ sung.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 14,
+   "answerPage": 18
+  }
  },
  {
   "n": 99,
@@ -1380,10 +1870,15 @@
    "Nó bảo đảm một kết quả chính xác.",
    "Nó loại bỏ nhu cầu kiểm định."
   ],
-  "correctLetter": "B",
   "correct": 1,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 4
+  "topicId": "Suy luận khoa học",
+  "difficulty": 1,
+  "explanation": "Khoảng/kịch bản giúp truyền đạt độ bất định thay vì tạo cảm giác chắc chắn giả tạo.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 15,
+   "answerPage": 18
+  }
  },
  {
   "n": 100,
@@ -1394,9 +1889,14 @@
    "Uống bất kỳ lượng nước đóng chai nào cũng chắc chắn gây bệnh.",
    "Tần suất phát hiện trong mẫu là 95%."
   ],
-  "correctLetter": "C",
   "correct": 2,
-  "topicId": "Logic - Suy luận",
-  "difficulty": 4
+  "topicId": "Suy luận khoa học",
+  "difficulty": 1,
+  "explanation": "Phát hiện chất trong mẫu không tự chứng minh liều lượng gây hại hoặc quan hệ nhân quả với bệnh.",
+  "source": {
+   "pdf": "100_cau_Tu_duy_khoa_hoc_DGNL.pdf",
+   "page": 15,
+   "answerPage": 18
+  }
  }
 ]

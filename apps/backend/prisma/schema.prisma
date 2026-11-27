@@ -9,7 +9,6 @@ enum Role {
   STUDENT
   INSTRUCTOR
   ADMIN
-  LEARNER
 }
 enum UserStatus {
   ACTIVE
@@ -147,6 +146,7 @@ model Topic {
   courseTopics CourseTopic[]
   attemptTopicResults AttemptTopicResult[]
   masteries    TopicMastery[]
+  historicalAnswers ExamAnswer[] @relation("AnswerTopicSnapshot")
   
   prerequisites   TopicPrerequisite[] @relation("TopicIsDependent")
   dependentTopics TopicPrerequisite[] @relation("TopicIsPrerequisite")
@@ -224,6 +224,7 @@ model QuestionOption {
   question Question @relation(fields: [questionId], references: [id], onDelete: Restrict)
 
   @@index([questionId])
+  @@unique([questionId, order])
   @@map("question_options")
 }
 
@@ -242,11 +243,14 @@ model Exam {
 model ExamQuestion {
   examId     String
   questionId String
+  order      Int @default(0)
 
   exam     Exam     @relation(fields: [examId], references: [id], onDelete: Restrict)
   question Question @relation(fields: [questionId], references: [id], onDelete: Restrict)
 
   @@id([examId, questionId])
+  @@index([questionId])
+  @@index([examId, order])
   @@map("exam_questions")
 }
 
@@ -259,6 +263,7 @@ model ExamAttempt {
   startedAt     DateTime      @default(now())
   deadlineAt    DateTime?
   submittedAt   DateTime?
+  masteryUpdatedAt DateTime?
   timeLimit     Int?
 
   score       Float    @default(0)
@@ -272,6 +277,7 @@ model ExamAttempt {
 
   @@index([status, deadlineAt])
   @@index([userId, status, submittedAt])
+  @@index([examId])
   @@map("exam_attempts")
 }
 
@@ -281,12 +287,19 @@ model ExamAnswer {
   questionId        String
   isCorrect         Boolean   @default(false)
   timeSpent         Int       @default(0) 
+  questionSnapshot  Json?
+  difficultyAtSubmission Float?
+  topicIdAtSubmission String?
 
   selectedOptionIds String[] 
 
   attempt ExamAttempt @relation(fields: [attemptId], references: [id], onDelete: Restrict)
   question Question    @relation(fields: [questionId], references: [id], onDelete: Restrict)
+  topicAtSubmission Topic? @relation("AnswerTopicSnapshot", fields: [topicIdAtSubmission], references: [id], onDelete: Restrict)
   @@unique([attemptId, questionId])
+  @@index([attemptId, id])
+  @@index([questionId, attemptId])
+  @@index([topicIdAtSubmission, attemptId])
   @@map("exam_answers")
 }
 
@@ -313,7 +326,7 @@ model TopicMastery {
   id        String   @id @default(cuid())
   userId    String
   topicId   String
-  rating    Float    @default(1200)
+  masteryScore Float @default(1200)
   attempts  Int      @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

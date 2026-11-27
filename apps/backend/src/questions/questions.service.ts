@@ -8,6 +8,7 @@ import { CreateQuestionDto } from './dto/create-question.dto';
 import { UpdateQuestionDto } from './dto/update-question.dto';
 import { QueryQuestionDto } from './dto/query-question.dto';
 import { QuestionType } from '@prisma/client';
+import { publicQuestion } from './public-question';
 
 @Injectable()
 export class QuestionsService {
@@ -77,7 +78,7 @@ export class QuestionsService {
       this.prisma.question.count({ where }),
     ]);
 
-    return { items, total, page, limit, totalPages: Math.ceil(total / limit) };
+    return { items: items.map(publicQuestion), total, page, limit, totalPages: Math.ceil(total / limit) };
   }
 
   async findOne(id: string) {
@@ -89,7 +90,7 @@ export class QuestionsService {
       },
     });
     if (!question) throw new NotFoundException('Không tìm thấy câu hỏi');
-    return question;
+    return publicQuestion(question);
   }
 
   async update(id: string, dto: UpdateQuestionDto) {

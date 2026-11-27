@@ -1,0 +1,306 @@
+[
+  {
+    "n": 1,
+    "content": "Thể loại của tác phẩm \"Đăm Săn\" trong kho tàng văn học dân gian là gì?",
+    "options": [
+      "Thần thoại",
+      "Truyền thuyết",
+      "Sử thi",
+      "Truyện cổ tích"
+    ],
+    "correct": 2,
+    "topicId": "Tiếng Việt",
+    "difficulty": 0.5
+  },
+  {
+    "n": 2,
+    "content": "Cho cấp số cộng có u1 = 3 và công sai d = 2. Giá trị của u4 là:",
+    "options": [
+      "7",
+      "9",
+      "11",
+      "13"
+    ],
+    "correct": 1,
+    "topicId": "Toán",
+    "difficulty": 0.5
+  },
+  {
+    "n": 3,
+    "content": "Từ \"long lanh\" trong câu \"Nước hồ long lanh\" thuộc loại từ nào?",
+    "options": [
+      "Từ đơn",
+      "Từ ghép",
+      "Từ láy",
+      "Từ phức"
+    ],
+    "correct": 2,
+    "topicId": "Tiếng Việt",
+    "difficulty": 0.5
+  },
+  {
+    "n": 4,
+    "content": "Tích phân từ 0 đến 1 của hàm số f(x) = 2xdx có giá trị bằng:",
+    "options": [
+      "1",
+      "2",
+      "0.5",
+      "0"
+    ],
+    "correct": 0,
+    "topicId": "Toán",
+    "difficulty": 0.5
+  },
+  {
+    "n": 5,
+    "content": "Giải phương trình log2(x) = 3. Nghiệm của phương trình là:",
+    "options": [
+      "6",
+      "9",
+      "8",
+      "3"
+    ],
+    "correct": 2,
+    "topicId": "Toán",
+    "difficulty": 0.5
+  },
+  {
+    "n": 6,
+    "content": "Thị Phương là nhân vật trong vở chèo cổ nào?",
+    "options": [
+      "Quan Âm Thị Kính",
+      "Lưu Bình - Dương Lễ",
+      "Súy Vân",
+      "Trương Viên"
+    ],
+    "correct": 3,
+    "topicId": "Tiếng Việt",
+    "difficulty": 0.5
+  },
+  {
+    "n": 7,
+    "content": "She _____ English for five years before she moved to London.",
+    "options": [
+      "studied",
+      "has studied",
+      "had studied",
+      "studies"
+    ],
+    "correct": 2,
+    "topicId": "Tiếng Anh",
+    "difficulty": 0.5
+  },
+  {
+    "n": 8,
+    "content": "He suggested _____ a meeting to discuss the problem.",
+    "options": [
+      "to organize",
+      "organizing",
+      "organize",
+      "organized"
+    ],
+    "correct": 1,
+    "topicId": "Tiếng Anh",
+    "difficulty": 0.5
+  },
+  {
+    "n": 9,
+    "content": "You _____ smoke in the hospital. It is strictly prohibited.",
+    "options": [
+      "mustn't",
+      "needn't",
+      "couldn't",
+      "wouldn't"
+    ],
+    "correct": 0,
+    "topicId": "Tiếng Anh",
+    "difficulty": 0.25
+  },
+  {
+    "n": 10,
+    "content": "I wish I _____ more time to prepare for the examination.",
+    "options": [
+      "have",
+      "had",
+      "will have",
+      "am having"
+    ],
+    "correct": 1,
+    "topicId": "Tiếng Anh",
+    "difficulty": 0.5
+  },
+  {
+    "n": 11,
+    "content": "This is the first time I _____ such an interesting documentary.",
+    "options": [
+      "watch",
+      "watched",
+      "had watched",
+      "have watched"
+    ],
+    "correct": 3,
+    "topicId": "Tiếng Anh",
+    "difficulty": 0.5
+  },
+  {
+    "n": 12,
+    "content": "The word \"significant\" in the sentence \"The study revealed a significant improvement in students' performance\" is closest in meaning to _____.",
+    "options": [
+      "minor",
+      "considerable",
+      "temporary",
+      "ordinary"
+    ],
+    "correct": 1,
+    "topicId": "Tiếng Anh",
+    "difficulty": 0.25
+  },
+  {
+    "n": 13,
+    "content": "Renewable energy is considered a more _____ alternative to fossil fuels.",
+    "options": [
+      "sustainable",
+      "destructive",
+      "temporary",
+      "harmful"
+    ],
+    "correct": 0,
+    "topicId": "Tiếng Anh",
+    "difficulty": 0.5
+  },
+  {
+    "n": 14,
+    "content": "The word \"scarce\" is OPPOSITE in meaning to _____.",
+    "options": [
+      "rare",
+      "limited",
+      "abundant",
+      "insufficient"
+    ],
+    "correct": 2,
+    "topicId": "Tiếng Anh",
+    "difficulty": 0.25
+  },
+  {
+    "n": 15,
+    "content": "Anna: \"Would you mind opening the window?\"\n\nBen: \"_____\"",
+    "options": [
+      "Yes, I would love to.",
+      "Not at all.",
+      "Yes, please.",
+      "I'm afraid you don't."
+    ],
+    "correct": 1,
+    "topicId": "Tiếng Anh",
+    "difficulty": 0.25
+  },
+  {
+    "n": 16,
+    "content": "Linda: \"I think online learning is more convenient than traditional learning.\"\n\nDavid: \"_____. However, face-to-face interaction is also important.\"",
+    "options": [
+      "I completely disagree",
+      "I agree to some extent",
+      "That's impossible",
+      "You're absolutely wrong"
+    ],
+    "correct": 1,
+    "topicId": "Tiếng Anh",
+    "difficulty": 0.5
+  },
+  {
+    "n": 17,
+    "content": "Choose the sentence that is closest in meaning to the original sentence.\n\"Although the weather was bad, they continued their journey.\"",
+    "options": [
+      "Because the weather was bad, they continued their journey.",
+      "Despite the bad weather, they continued their journey.",
+      "The weather was bad, so they stopped their journey.",
+      "They continued their journey because of the good weather."
+    ],
+    "correct": 1,
+    "topicId": "Tiếng Anh",
+    "difficulty": 0.5
+  },
+  {
+    "n": 18,
+    "content": "Choose the sentence that is closest in meaning to the original sentence.\n\"They believe that the ancient temple was built over 500 years ago.\"",
+    "options": [
+      "The ancient temple believes to be built over 500 years ago.",
+      "The ancient temple is believed to have been built over 500 years ago.",
+      "The ancient temple believed building over 500 years ago.",
+      "The ancient temple is believing to build over 500 years ago."
+    ],
+    "correct": 1,
+    "topicId": "Tiếng Anh",
+    "difficulty": 0.75
+  },
+  {
+    "n": 19,
+    "content": "What is the main idea of the passage?",
+    "options": [
+      "AI will completely replace teachers in the future.",
+      "AI has both benefits and challenges in education.",
+      "Traditional classrooms are no longer useful.",
+      "Students should stop using technology."
+    ],
+    "correct": 1,
+    "topicId": "Tiếng Anh",
+    "difficulty": 0.5,
+    "passage": "Artificial Intelligence in Education\nArtificial intelligence (AI) is becoming increasingly common in educational environments. From personalized learning platforms to automated assessment systems, AI offers opportunities to improve teaching and learning.\n\nOne major advantage of AI is its ability to adapt educational content to individual students. Traditional classrooms often require teachers to deliver the same lesson to students with different abilities. AI-powered platforms, however, can analyze students' performance and recommend exercises that match their learning needs.\n\nAnother benefit is immediate feedback. Instead of waiting for teachers to grade assignments, students can receive instant responses from automated systems. This allows them to identify mistakes and improve their understanding more efficiently.\n\nDespite these advantages, the use of AI in education also raises concerns. Some educators worry that excessive dependence on technology may reduce students' ability to think independently. Privacy is another issue because AI systems often collect large amounts of personal learning data.\n\nTherefore, experts suggest that AI should support rather than replace teachers. Human interaction remains essential for developing creativity, communication skills and emotional intelligence."
+  },
+  {
+    "n": 20,
+    "content": "According to the passage, how can AI improve personalized learning?",
+    "options": [
+      "By giving every student the same exercises.",
+      "By reducing the number of school subjects.",
+      "By analyzing students' performance and recommending suitable tasks.",
+      "By eliminating all examinations."
+    ],
+    "correct": 2,
+    "topicId": "Tiếng Anh",
+    "difficulty": 0.5,
+    "passage": "Artificial Intelligence in Education\nArtificial intelligence (AI) is becoming increasingly common in educational environments. From personalized learning platforms to automated assessment systems, AI offers opportunities to improve teaching and learning.\n\nOne major advantage of AI is its ability to adapt educational content to individual students. Traditional classrooms often require teachers to deliver the same lesson to students with different abilities. AI-powered platforms, however, can analyze students' performance and recommend exercises that match their learning needs.\n\nAnother benefit is immediate feedback. Instead of waiting for teachers to grade assignments, students can receive instant responses from automated systems. This allows them to identify mistakes and improve their understanding more efficiently.\n\nDespite these advantages, the use of AI in education also raises concerns. Some educators worry that excessive dependence on technology may reduce students' ability to think independently. Privacy is another issue because AI systems often collect large amounts of personal learning data.\n\nTherefore, experts suggest that AI should support rather than replace teachers. Human interaction remains essential for developing creativity, communication skills and emotional intelligence."
+  },
+  {
+    "n": 21,
+    "content": "The word \"immediate\" in paragraph 3 is closest in meaning to _____.",
+    "options": [
+      "delayed",
+      "instant",
+      "occasional",
+      "unexpected"
+    ],
+    "correct": 1,
+    "topicId": "Tiếng Anh",
+    "difficulty": 0.25,
+    "passage": "Artificial Intelligence in Education\nArtificial intelligence (AI) is becoming increasingly common in educational environments. From personalized learning platforms to automated assessment systems, AI offers opportunities to improve teaching and learning.\n\nOne major advantage of AI is its ability to adapt educational content to individual students. Traditional classrooms often require teachers to deliver the same lesson to students with different abilities. AI-powered platforms, however, can analyze students' performance and recommend exercises that match their learning needs.\n\nAnother benefit is immediate feedback. Instead of waiting for teachers to grade assignments, students can receive instant responses from automated systems. This allows them to identify mistakes and improve their understanding more efficiently.\n\nDespite these advantages, the use of AI in education also raises concerns. Some educators worry that excessive dependence on technology may reduce students' ability to think independently. Privacy is another issue because AI systems often collect large amounts of personal learning data.\n\nTherefore, experts suggest that AI should support rather than replace teachers. Human interaction remains essential for developing creativity, communication skills and emotional intelligence."
+  },
+  {
+    "n": 22,
+    "content": "Which of the following is NOT mentioned as a concern about AI in education?",
+    "options": [
+      "Students may become too dependent on technology.",
+      "Personal learning data may raise privacy concerns.",
+      "Students may lose some independent thinking skills.",
+      "AI systems require expensive physical textbooks."
+    ],
+    "correct": 3,
+    "topicId": "Tiếng Anh",
+    "difficulty": 0.75,
+    "passage": "Artificial Intelligence in Education\nArtificial intelligence (AI) is becoming increasingly common in educational environments. From personalized learning platforms to automated assessment systems, AI offers opportunities to improve teaching and learning.\n\nOne major advantage of AI is its ability to adapt educational content to individual students. Traditional classrooms often require teachers to deliver the same lesson to students with different abilities. AI-powered platforms, however, can analyze students' performance and recommend exercises that match their learning needs.\n\nAnother benefit is immediate feedback. Instead of waiting for teachers to grade assignments, students can receive instant responses from automated systems. This allows them to identify mistakes and improve their understanding more efficiently.\n\nDespite these advantages, the use of AI in education also raises concerns. Some educators worry that excessive dependence on technology may reduce students' ability to think independently. Privacy is another issue because AI systems often collect large amounts of personal learning data.\n\nTherefore, experts suggest that AI should support rather than replace teachers. Human interaction remains essential for developing creativity, communication skills and emotional intelligence."
+  },
+  {
+    "n": 23,
+    "content": "What can be inferred from the final paragraph?",
+    "options": [
+      "Teachers will no longer be needed.",
+      "Technology should be banned from schools.",
+      "AI and teachers can complement each other.",
+      "Students learn better without human interaction."
+    ],
+    "correct": 2,
+    "topicId": "Tiếng Anh",
+    "difficulty": 0.75,
+    "passage": "Artificial Intelligence in Education\nArtificial intelligence (AI) is becoming increasingly common in educational environments. From personalized learning platforms to automated assessment systems, AI offers opportunities to improve teaching and learning.\n\nOne major advantage of AI is its ability to adapt educational content to individual students. Traditional classrooms often require teachers to deliver the same lesson to students with different abilities. AI-powered platforms, however, can analyze students' performance and recommend exercises that match their learning needs.\n\nAnother benefit is immediate feedback. Instead of waiting for teachers to grade assignments, students can receive instant responses from automated systems. This allows them to identify mistakes and improve their understanding more efficiently.\n\nDespite these advantages, the use of AI in education also raises concerns. Some educators worry that excessive dependence on technology may reduce students' ability to think independently. Privacy is another issue because AI systems often collect large amounts of personal learning data.\n\nTherefore, experts suggest that AI should support rather than replace teachers. Human interaction remains essential for developing creativity, communication skills and emotional intelligence."
+  }
+]

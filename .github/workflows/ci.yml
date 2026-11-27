@@ -2,19 +2,37 @@ name: Continuous Integration
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [main, develop]
   pull_request:
-    branches: [ main, develop ]
+    branches: [main, develop]
 
 jobs:
   backend-checks:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: app_db
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/app_db?schema=public"
+      TEST_DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/postgres?schema=public"
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
-          cache: 'npm'
+          node-version: "22.22.3"
+          cache: "npm"
           cache-dependency-path: apps/backend/package-lock.json
 
       - name: Install Dependencies
@@ -28,8 +46,36 @@ jobs:
       - name: Build Backend
         run: cd apps/backend && npm run build
 
+      - name: Check backend and seed types
+        run: cd apps/backend && npm run check:types
+
       - name: Run Unit Tests
         run: cd apps/backend && npm run test
+
+      - name: Run HTTP smoke test
+        run: cd apps/backend && npm run test:e2e -- --runInBand
+        env:
+          JWT_SECRET: "ci-smoke-test-secret"
+
+      - name: Validate assessment banks
+        run: cd apps/backend && npm run validate:bank
+
+      - name: Install PostgreSQL backup tools
+        run: sudo apt-get update && sudo apt-get install -y postgresql-client-16
+
+      - name: Verify blank database seed and production backups
+        run: cd apps/backend && npm run test:seed:integration
+
+      - name: Verify assessment HTTP flow and restore
+        run: cd apps/backend && npm run test:assessment:integration
+
+      - name: Upload database verification reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: database-verification
+          path: apps/backend/test-results/**/report.json
+          if-no-files-found: ignore
 
   frontend-checks:
     runs-on: ubuntu-latest
@@ -37,8 +83,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
-          cache: 'npm'
+          node-version: "22.22.3"
+          cache: "npm"
           cache-dependency-path: apps/frontend/package-lock.json
 
       - name: Install Dependencies

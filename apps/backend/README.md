@@ -1,114 +1,146 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Backend V-ACT
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+NestJS, Prisma 7 và PostgreSQL. Các lệnh dưới đây chạy trong `apps/backend`, trừ khi ghi rõ.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Demo một lệnh
 
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Project setup
+Cài dependency bằng `npm ci`, sao chép `.env.example` thành `.env` và đặt `DATABASE_URL`. PostgreSQL 16+ phải chạy sẵn, database phải tồn tại nhưng chưa cần có bảng.
 
 ```bash
-$ npm install
+npm run seed
 ```
 
-## Compile and run the project
+Lệnh chạy `prisma migrate deploy`, `prisma generate`, seed và audit. Không dùng `db push` hoặc `migrate reset` để dựng bản demo/release. Có thể chạy cùng lệnh từ thư mục gốc repository.
+
+Kết quả trên DB trắng:
+
+| Dữ liệu | Kết quả |
+| --- | --- |
+| Tài khoản ACTIVE | `admin@vact.com` (ADMIN), `instructor@vact.com` (INSTRUCTOR), `learner@vact.com` (STUDENT) |
+| Mật khẩu demo khi tạo mới | `admin123` |
+| Topics | Toán, Tiếng Việt, Tiếng Anh, Logic - Suy luận, Suy luận khoa học |
+| Câu hỏi | 492: 400 câu ngân hàng và 92 câu từ ba file đề năm |
+| Đề | `vact-exam-2024`, `vact-exam-2025`, `vact-exam-2026`: mỗi đề 120 câu |
+| Cơ cấu mỗi đề | 30 Tiếng Việt + 30 Tiếng Anh + 30 Toán + 30 Logic/Suy luận khoa học |
+| Nội dung học | 1 khóa PUBLISHED của instructor, 2 chương, 3 bài học, 1 tài liệu TEXT có ví dụ |
+| Học viên | 1 ghi danh, 1 bài học hoàn thành |
+| Lịch sử demo | 3 lượt SUBMITTED, 360 answers có snapshot; điểm lần lượt 60, 72, 84 trên 120 |
+| Elo mẫu | Tính lại từ đáp án mẫu bằng `INITIAL_RATING=1200`, `K=32`; bỏ qua câu bỏ trống |
+
+Ba đề dùng file nguồn năm riêng và bổ sung từ ngân hàng chung. Tổng 90 câu Tiếng Anh được phân bổ riêng giữa ba đề; các nhóm khác có thể dùng chung câu ngân hàng. Seed giữ các câu đã chọn và option ID khi chạy lại.
+
+Seed dùng transaction và advisory lock chung với importer. Không xóa câu hỏi, topic hoặc lịch sử để vượt FK Restrict. Mật khẩu, lịch sử và mastery hiện có được giữ lại. Nếu email seed đã có sai role hoặc không ACTIVE, seed báo lỗi và rollback thay vì tự đổi quyền. Dữ liệu lịch sử/Elo demo là mô phỏng để trình diễn, chưa phải kết quả hiệu chuẩn trên người học thật. Elo hiện được triển khai dưới dạng công thức/prototype, API nộp bài chưa tự cập nhật mastery cho các bài mới.
+
+## Kiểm chứng trước bàn giao
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm run validate:bank
+npm run check:types
+npm run build
+npm test -- --runInBand
+npm run test:e2e -- --runInBand
+npm run test:seed:integration
+npm run test:assessment:integration
 ```
 
-## Run tests
+Đặt `TEST_DATABASE_URL` tới PostgreSQL kiểm thử có quyền `CREATE DATABASE`. Hai bài integration tự tạo database tên ngẫu nhiên, áp dụng toàn bộ migration và xóa đúng các DB vừa tạo khi kết thúc. Nếu không có biến này, chúng dùng server trong `DATABASE_URL` làm nơi tạo DB tạm.
+
+- `test:seed:integration`: chạy CLI seed từ DB trắng hai lần; kiểm tra tài khoản/mật khẩu, đề/câu hỏi, học liệu, snapshot, điểm và Elo; thử rollback khi role xung đột, FK Restrict, index/query plan và schema drift. Chạy production hai lần với tài khoản riêng; kiểm tra lỗi cấu hình/backup dừng trước khi ghi, checksum và restore toàn bộ bảng.
+- `test:assessment:integration`: khởi động API trên cổng tạm, đăng ký/đăng nhập, làm/nộp đủ ba đề, kiểm tra không lộ đáp án, snapshot sau sửa/reseed, từ chối nộp lại; so sánh count/hash của mọi bảng sau backup/restore.
+- Báo cáo: `test-results/seed/<run>/report.json` và `test-results/assessment/<run>/report.json`. CI chạy trên PostgreSQL 16 và lưu các báo cáo JSON.
+
+Audit chỉ đọc dữ liệu của DB đang cấu hình:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm run audit:assessment
 ```
 
-## Deployment
+Audit phải thoát mã 0, `issues=[]`, mỗi đề 120 câu với đúng cơ cấu, `missingSnapshots=0`. Audit còn đối chiếu dữ liệu JSON, đáp án đúng/sai, metadata snapshot, tổng điểm và tổng theo topic. Không tự sửa dữ liệu lịch sử khi audit gặp lỗi.
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+## Seed production và backup cuối
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+Cấu hình `DATABASE_URL` trỏ đúng DB đích, `NODE_ENV=production`, `JWT_SECRET` riêng và các biến bên dưới qua môi trường triển khai hoặc file `.env` không commit:
+
+```dotenv
+SEED_ADMIN_EMAIL=admin@your-domain.vn
+SEED_ADMIN_PASSWORD=<mat-khau-rieng-it-nhat-12-ky-tu>
+SEED_INSTRUCTOR_EMAIL=instructor@your-domain.vn
+SEED_INSTRUCTOR_PASSWORD=<mat-khau-rieng-it-nhat-12-ky-tu>
+SEED_STUDENT_EMAIL=student@your-domain.vn
+SEED_STUDENT_PASSWORD=<mat-khau-rieng-it-nhat-12-ky-tu>
+SEED_BACKUP_DIR=backups
+```
+
+Ba email phải khác nhau. Có thể thêm `SEED_ADMIN_NAME`, `SEED_INSTRUCTOR_NAME`, `SEED_STUDENT_NAME`. Chạy trong thời gian bảo trì để bản backup cuối phản ánh trạng thái phát hành đã audit:
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+npm run seed:production
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+Thứ tự thực thi:
 
-## Observability
+1. Sinh Prisma Client; kiểm tra cấu hình tài khoản và JSON nguồn trước thay đổi DB.
+2. Backup DB hiện tại thành `*-before.dump`. Backup thất bại thì không chạy migration/seed.
+3. `prisma migrate deploy`, sau đó seed topics, ngân hàng, ba đề và ba tài khoản trong một transaction.
+4. Audit dữ liệu thật, xác nhận đủ 120 câu/đề. Có lỗi thì lệnh thất bại và chưa được coi là sẵn sàng go-live.
+5. Tạo `*-ready.dump` và `*-report.json` chứa số lượng, kết quả audit, kích thước và SHA-256 của cả hai archive. Log/report không chứa mật khẩu hoặc connection URL.
 
-In production applications, observability is essential for understanding how your system behaves, detecting issues early, and maintaining reliable performance.
+Luồng production không tạo học liệu, lịch sử và Elo mô phỏng. Chạy lại giữ nguyên mật khẩu tài khoản đã tồn tại, không dùng seed để reset mật khẩu. Demo seed bị từ chối khi `NODE_ENV=production`. Migration và transaction seed là các bước riêng; nếu có lỗi sau migration, giữ bản backup trước thay đổi để phục hồi theo quy trình vận hành. Nếu backup cuối lỗi, chạy lại sau khi sửa nguyên nhân và lấy báo cáo PASS mới.
 
-[NestJS Observe](https://observe.nestjs.com) automatically instruments your NestJS application, giving you deep visibility into your system with minimal setup:
+PostgreSQL client tools phải có major version bằng hoặc cao hơn server. Trên Windows script tự tìm trong `C:/Program Files/PostgreSQL`; đặt `PG_BIN` nếu cần chọn phiên bản/thư mục khác. Backup dùng custom format, kiểm tra archive bằng `pg_restore --list`, chỉ công bố file khi hoàn tất và từ chối ghi đè file có sẵn. Chuyển backup/report cuối sang nơi lưu trữ bảo mật ngoài máy triển khai trước go-live.
 
-- **Distributed tracing:** Follow requests across services and understand how they flow through your system.
-- **Waterfall analysis:** Visualize request execution and identify slow operations, bottlenecks, and unexpected delays.
-- **Performance analysis:** Analyze application performance in real time and quickly pinpoint areas that need optimization.
-- **Metrics:** Track key application and infrastructure metrics to understand system health and performance trends.
-- **Logging:** Centralize and correlate logs with traces and other telemetry to make debugging easier.
-- **Error tracking:** Detect errors quickly and investigate their root causes with the surrounding context.
-- **SLA monitoring:** Track service-level objectives and identify when your application is approaching or exceeding defined thresholds.
-- **Alarms and alerts:** Set up alerts for critical errors, performance degradation, SLA violations, and other anomalies so your team can react quickly.
+Backup/restore thủ công:
 
-## Resources
+```bash
+npm run db:backup -- --output backups/release-final.dump
+# Đặt RESTORE_DATABASE_URL tới một DB kiểm thử mới, chưa có bảng
+npm run db:restore -- --input backups/release-final.dump
+# Sau restore: đặt DATABASE_URL tới DB kiểm thử vừa khôi phục
+npm run audit:assessment
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+Restore từ chối database đã có bảng; không ghi đè production. Kiểm thử integration đã chứng minh archive khôi phục được bằng cách so sánh count/hash mọi bảng, bao gồm lịch sử làm bài.
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Auto-instrument your application with [NestJS Observer](https://observer.nestjs.com). Distributed tracing, metrics, and logging made easy. Error tracking and performance monitoring for your NestJS applications.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+## Schema, FK và migration cuối
 
-## Support
+Nguồn chuẩn để bạn tự vẽ ERD: [prisma/schema.prisma](prisma/schema.prisma). Bản này không tạo hình ERD.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+| Nhóm quan hệ | Liên kết chính và chính sách xóa |
+| --- | --- |
+| Học liệu | User 1–N Course; Course 1–N Chapter; Chapter 1–N Lesson; Lesson 1–N Material. Chuỗi học liệu dùng Restrict. |
+| Chủ đề | Course N–N Topic qua CourseTopic; Topic tự liên kết N–N qua TopicPrerequisite; Course tự liên kết N–N qua CoursePrerequisite. Các bảng nối dùng khóa ghép và Restrict. |
+| Đề và câu hỏi | Topic 1–N Question; Question 1–N QuestionOption; Exam N–N Question qua ExamQuestion. Restrict giữ nội dung đang được tham chiếu. |
+| Bài làm | User 1–N ExamAttempt (xóa user: SetNull); Exam 1–N ExamAttempt (Restrict); ExamAttempt 1–N ExamAnswer (Restrict); Question 1–N ExamAnswer (Restrict). |
+| Snapshot/topic | ExamAnswer lưu JSON câu hỏi/options và FK topic tại lúc làm bài; Topic dùng Restrict. `selectedOptionIds` là mảng ID, không phải FK tới QuestionOption; snapshot giữ ý nghĩa lịch sử. |
+| Kết quả/Elo | ExamAttempt 1–N AttemptTopicResult (Cascade khi xóa attempt); User 1–N TopicMastery (Cascade khi xóa user); FK về Topic đều Restrict. |
+| Tương tác | Enrollment nối User–Course; LessonProgress và Comment nối User–Lesson; Notification thuộc User. Report giữ reporter bằng Restrict; AuditLog.admin dùng SetNull. |
 
-## Stay in touch
+Migration cuối: [20261122000000_finalize_seed_indexes](prisma/migrations/20261122000000_finalize_seed_indexes/migration.sql), chỉ thêm index, không sửa/xóa dữ liệu:
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+| Index | Truy vấn được phục vụ |
+| --- | --- |
+| `exam_attempts_userId_status_submittedAt_idx` (đã có) | Lịch sử theo user/status và thời gian nộp; lọc attempt trước khi join answers |
+| `exam_answers_attemptId_id_idx` (mới) | Đọc answers của một attempt theo thứ tự ID cho kết quả/phân tích |
+| `exam_attempts_examId_idx` (mới) | Đếm lượt làm theo đề và kiểm tra FK khi thao tác Exam |
+| Unique `(attemptId, questionId)` | Lưu/tìm đáp án của một câu trong một lượt thi |
+| `exam_answers_questionId_attemptId_idx`, `exam_answers_topicIdAtSubmission_attemptId_idx` | Truy vết answers theo câu/topic |
+| `exam_attempts_status_deadlineAt_idx` | Tìm bài đang làm đã hết hạn |
 
-## License
+`userId` và `status` nằm ở ExamAttempt nên không thêm cột/index trùng sang ExamAnswer. Integration xác nhận index tồn tại và planner dùng được; đây không phải benchmark tải production. Kiểm tra drift sau deploy:
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+```bash
+npx prisma migrate status
+npx prisma migrate diff --from-config-datasource --to-schema prisma/schema.prisma --exit-code
+```
+
+Không sửa migration đã áp dụng. Các CHECK constraint dữ liệu (thang difficulty, mastery hữu hạn, số attempts không âm, prerequisite không tự trỏ) nằm trong SQL migration. Hai constraint difficulty được giữ `NOT VALID` để dữ liệu cũ không chặn deploy; audit chỉ rõ dữ liệu cần xử lý trước go-live.
+
+## Các lệnh seed bổ trợ
+
+`seed:bank` nhập dữ liệu assessment chuẩn (topics, ngân hàng, ba đề); `seed:topics` chỉ khởi tạo topics chuẩn và báo difficulty cũ sai thang. `seed:exam` dùng cùng importer với `seed:bank`, thay cho script đề demo cũ. Các lệnh bổ trợ cần DB đã migrate; đường dẫn bàn giao chính vẫn là `npm run seed` hoặc `npm run seed:production`.
+
+## Kết quả rà soát ngày 22/11/2026
+
+Đã kiểm thử cục bộ trên Windows, Node.js 24.21.0 và PostgreSQL 18.6: validate ngân hàng, typecheck, build backend/frontend, 80 unit test, 1 HTTP smoke test và cả hai bài integration đều đạt. Schema sau toàn bộ migration khớp `schema.prisma`. Seed từ thư mục gốc chạy lại thành công; backup/restore so khớp count/hash của 24 bảng public, gồm bảng lịch sử migration. CI được cấu hình chạy lại các bước tương ứng trên PostgreSQL 16.
+
+Production mode đã được kiểm chứng bằng database tạm và tài khoản riêng. Chưa chạy trên production thật vì cấu hình hiện có chỉ trỏ tới database local; cần cung cấp cấu hình đích và các biến tài khoản để thực hiện seed/backup go-live thật.

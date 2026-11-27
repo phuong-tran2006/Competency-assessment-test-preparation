@@ -4,25 +4,11 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
+import { publicQuestion } from '../questions/public-question';
 
 // Các API public của module này KHÔNG BAO GIỜ trả về `isCorrect`.
 // Đáp án đúng chỉ được chấm ở phía server qua luồng Attempts
 // (POST /attempts → PUT answers → POST /attempts/:id/submit).
-function sanitizeOption(option: {
-  id: string;
-  content: string;
-  order: number;
-}) {
-  return { id: option.id, content: option.content, order: option.order };
-}
-
-function sanitizeQuestion(question: any) {
-  const { ...rest } = question;
-  return {
-    ...rest,
-    options: (question.options ?? []).map(sanitizeOption),
-  };
-}
 
 @Injectable()
 export class ExamsService {
@@ -46,6 +32,7 @@ export class ExamsService {
       where: { id },
       include: {
         questions: {
+          orderBy: [{ order: 'asc' }, { questionId: 'asc' }],
           include: {
             question: {
               include: {
@@ -67,14 +54,14 @@ export class ExamsService {
     // Ép phẳng mảng câu hỏi lồng nhau từ bảng trung gian để Frontend hiển thị được số câu
     return {
       ...exam,
-      questions: exam.questions.map((eq) => sanitizeQuestion(eq.question)),
+      questions: exam.questions.map((eq) => publicQuestion(eq.question)),
     };
   }
 
   // Lấy riêng danh sách câu hỏi (đã strip `isCorrect`)
   async getQuestionsByExamId(id: string) {
     const exam = await this.getExamById(id);
-    return exam.questions.map(sanitizeQuestion);
+    return exam.questions.map(publicQuestion);
   }
 
   /**

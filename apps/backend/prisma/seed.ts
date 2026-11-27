@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { PrismaClient, QuestionType, Role } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { Pool } from 'pg';
 import { questions2026 } from './examData2026';
@@ -570,12 +570,4 @@ async function main() {
   );
 }
 
-main()
-  .catch((e) => {
-    console.error('❌ Lỗi seed:', e);
-    process.exit(1);
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-    await pool.end();
-  });
+main().catch((error) => { console.error(error.message); process.exitCode = 1; });
