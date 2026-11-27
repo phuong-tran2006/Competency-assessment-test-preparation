@@ -1,31 +1,79 @@
-import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { useQuizStore } from '../../store/quizStore';
-import { quizService } from '../../services/quiz.service';
-import { attemptService } from '../../services/attempt.service';
-import { QuizEngine } from './QuizEngine';
-import { BackButton } from '../../components/BackButton';
-import { toast } from '../../store/uiStore';
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { useQuizStore } from "../../store/quizStore";
+import { quizService } from "../../services/quiz.service";
+import { attemptService } from "../../services/attempt.service";
+import { QuizEngine } from "./QuizEngine";
+import { BackButton } from "../../components/BackButton";
+import { toast } from "../../store/uiStore";
 
-/**
- * Chuẩn hóa câu hỏi từ BE về shape FE đang dùng.
- * Hỗ trợ cả `/exams/:id/questions` (có `options[].content`)
- * và `/attempts` (`questions[].options[].content`, không trả isCorrect).
- * BE không bao giờ trả `isCorrect` ở các endpoint này nên mọi kiểm tra
- * đáp án ở client chỉ mang tính hiển thị lại (review), kết quả chuẩn
- * lấy từ GET /attempts/:id/results.
- */
+function formatContent(html: string): string {
+  if (!html) return "";
+  if (/overflow-y:\s*auto/i.test(html)) return html;
+
+  let excerptPart = "";
+  let authorPart = "";
+  let questionPart = "";
+
+  const brSeparator = /<br\s*\/?>\s*<br\s*\/?>/i;
+  const authorDivRegex = /(<div[^>]*text-align:\s*right[^>]*>[\s\S]*?<\/div>)/i;
+
+  if (brSeparator.test(html)) {
+    const parts = html.split(brSeparator);
+    questionPart = parts.pop() ?? "";
+    excerptPart = parts.join("<br/><br/>");
+  } else if (authorDivRegex.test(html)) {
+    const match = html.match(authorDivRegex);
+    if (match && match.index !== undefined) {
+      excerptPart = html.slice(0, match.index);
+      authorPart = match[1];
+      questionPart = html.slice(match.index + match[1].length);
+    }
+  } else {
+    return html;
+  }
+
+  if (
+    /<center|text-align:\s*center|^<div\b|^<table\b/i.test(excerptPart.trim())
+  ) {
+    return `${excerptPart}${authorPart}<div style="margin-top: 1rem;">${questionPart}</div>`;
+  }
+
+  const formattedExcerpt = excerptPart
+    .split(/<br\s*\/?>/i)
+    .map((line) => {
+      const trimmed = line.trim();
+      if (!trimmed) return "";
+      if (/^<i\b/i.test(trimmed)) {
+        return `<div style="text-align: right; margin-top: 0.25rem;">${trimmed}</div>`;
+      }
+      if (/^<div\b/i.test(trimmed)) {
+        return trimmed;
+      }
+      return `<p style="text-indent: 2rem; margin-bottom: 0.4rem; text-align: justify;">${trimmed}</p>`;
+    })
+    .join("");
+
+  return `${formattedExcerpt}${authorPart}<div style="margin-top: 1rem;">${questionPart}</div>`;
+}
+
 function mapQuestions(data: any[]) {
-  return data.map((q: any) => ({
+  const sorted = [...data].sort((a, b) => {
+    const idA = String(a.id ?? a.questionId ?? "");
+    const idB = String(b.id ?? b.questionId ?? "");
+    return idA.localeCompare(idB, undefined, { numeric: true });
+  });
+
+  return sorted.map((q: any) => ({
     id: q.id ?? q.questionId,
-    content: q.content,
+    content: formatContent(q.content),
     options: (q.options ?? []).map((opt: any, index: number) => ({
       id: opt.id !== undefined ? String(opt.id) : String(index),
       text: opt.text || opt.content || String(opt),
       isCorrect: opt.isCorrect === true,
     })),
-    explanation: q.explanation || '',
-    topic: q.topic?.name ?? q.topic ?? '',
+    explanation: q.explanation || "",
+    topic: q.topic?.name ?? q.topic ?? "",
   }));
 }
 
@@ -50,38 +98,47 @@ const QuizIntro = ({
       <BackButton to="/exams" label="Chọn đề khác" />
 
       <div className="mt-6 p-8 bg-white rounded-2xl shadow-sm border border-gray-200">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-b pb-8 mb-8">
-        <div>
-          <h1 className="text-2xl md:text-3xl font-extrabold text-blue-900 mb-3">
-            {examMeta?.title ?? 'Bộ đề Đánh Giá Năng Lực V-ACT'}
-          </h1>
-          <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-            Đề ôn luyện được biên soạn theo định hướng bài thi Đánh giá năng lực, giúp học sinh làm quen với cấu trúc đề và áp lực thời gian.
-          </p>
-        </div>
-        <div className="bg-amber-50 border border-amber-200 p-4 rounded-xl text-center min-w-[200px]">
-          <span className="text-xs font-bold text-amber-600 uppercase tracking-wider block mb-1">V-ACT 2026</span>
-          <span className="text-lg font-black text-gray-800">Chuẩn cấu trúc ĐHQG</span>
-        </div>
-      </div>
-
-      <div className="bg-amber-50/50 border border-amber-200 rounded-2xl p-6 text-center max-w-xl mx-auto shadow-sm">
-        <p className="text-gray-600 text-sm mb-4">
-          Số câu: <strong className="text-gray-800">{questionCount > 0 ? `${questionCount} câu` : 'Đang tải...'}</strong> &nbsp;|&nbsp; Thời gian làm bài được tính từ lúc bấm bắt đầu
-        </p>
-        {startError && (
-          <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-600 text-sm rounded-lg font-medium">
-            {startError}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-b pb-8 mb-8">
+          <div>
+            <h1 className="text-2xl md:text-3xl font-extrabold text-blue-900 mb-3">
+              {examMeta?.title ?? "Bộ đề Đánh Giá Năng Lực V-ACT"}
+            </h1>
+            <p className="text-gray-600 leading-relaxed text-sm md:text-base">
+              Đề ôn luyện được biên soạn theo định hướng bài thi Đánh giá năng
+              lực, giúp học sinh làm quen với cấu trúc đề và áp lực thời gian.
+            </p>
           </div>
-        )}
-        <button
-          onClick={onStart}
-          disabled={starting}
-          className="w-full py-3.5 bg-amber-500 hover:bg-amber-600 disabled:bg-amber-300 text-white font-extrabold rounded-xl shadow-md transition duration-200 uppercase tracking-wider"
-        >
-          {starting ? 'ĐANG TẠO LƯỢT THI...' : 'BẮT ĐẦU LÀM BÀI'}
-        </button>
-      </div>
+          <div className="bg-amber-50 border border-amber-200 p-4 rounded-xl text-center min-w-[200px]">
+            <span className="text-xs font-bold text-amber-600 uppercase tracking-wider block mb-1">
+              V-ACT 2026
+            </span>
+            <span className="text-lg font-black text-gray-800">
+              Chuẩn cấu trúc ĐHQG
+            </span>
+          </div>
+        </div>
+
+        <div className="bg-amber-50/50 border border-amber-200 rounded-2xl p-6 text-center max-w-xl mx-auto shadow-sm">
+          <p className="text-gray-600 text-sm mb-4">
+            Số câu:{" "}
+            <strong className="text-gray-800">
+              {questionCount > 0 ? `${questionCount} câu` : "Đang tải..."}
+            </strong>{" "}
+            &nbsp;|&nbsp; Thời gian làm bài được tính từ lúc bấm bắt đầu
+          </p>
+          {startError && (
+            <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-600 text-sm rounded-lg font-medium">
+              {startError}
+            </div>
+          )}
+          <button
+            onClick={onStart}
+            disabled={starting}
+            className="w-full py-3.5 bg-amber-500 hover:bg-amber-600 disabled:bg-amber-300 text-white font-extrabold rounded-xl shadow-md transition duration-200 uppercase tracking-wider"
+          >
+            {starting ? "ĐANG TẠO LƯỢT THI..." : "BẮT ĐẦU LÀM BÀI"}
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -95,9 +152,15 @@ const QuizResult = () => {
 
   return (
     <div className="max-w-xl mx-auto mt-20 p-8 bg-white rounded-2xl shadow-sm border text-center font-sans">
-      <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl font-bold">✓</div>
-      <h1 className="text-2xl font-bold text-gray-800 mb-2">Đã Nộp Bài Thành Công!</h1>
-      <p className="text-gray-600 mb-6">Kết quả của bạn đã được ghi nhận vào hệ thống.</p>
+      <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl font-bold">
+        ✓
+      </div>
+      <h1 className="text-2xl font-bold text-gray-800 mb-2">
+        Đã Nộp Bài Thành Công!
+      </h1>
+      <p className="text-gray-600 mb-6">
+        Kết quả của bạn đã được ghi nhận vào hệ thống.
+      </p>
 
       {resultData?.summary && (
         <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6 text-left">
@@ -144,31 +207,65 @@ const QuizResult = () => {
 
 // --- COMPONENT TỔNG QUẢN LÝ ---
 export const QuizPage = () => {
-  const { currentStep, setQuestions, setStep, setAttemptId, setTimeLeft } =
-    useQuizStore();
+  const {
+    currentStep,
+    attemptId,
+    setQuestions,
+    setStep,
+    setAttemptId,
+    setTimeLeft,
+    resetQuiz,
+  } = useQuizStore();
   const [loading, setLoading] = useState(true);
   const [starting, setStarting] = useState(false);
-  const [startError, setStartError] = useState('');
-  const [examMeta, setExamMeta] = useState<{ title: string; questionCount: number } | null>(null);
+  const [startError, setStartError] = useState("");
+  const [examMeta, setExamMeta] = useState<{
+    title: string;
+    questionCount: number;
+  } | null>(null);
   const { examId } = useParams();
 
-  // Chỉ tải metadata đề cho màn giới thiệu — nội dung câu hỏi thật
-  // chỉ tải sau khi POST /attempts tạo lượt làm bài.
   useEffect(() => {
     if (!examId) {
       setLoading(false);
       return;
     }
 
+    const savedExamId = localStorage.getItem("vact_active_exam_id");
+    const isResumingSameExam =
+      Boolean(attemptId) && currentStep === "playing" && savedExamId === examId;
+
+    // Nếu F5 khi đang làm dở chính đề này -> Giữ nguyên bài, đồng bộ lại thời gian từ backend
+    if (isResumingSameExam && attemptId) {
+      setLoading(true);
+      attemptService
+        .getAttempt(attemptId)
+        .then((detail) => {
+          if (Array.isArray(detail.questions) && detail.questions.length) {
+            setQuestions(mapQuestions(detail.questions));
+          }
+          if (typeof detail.remainingSeconds === "number") {
+            setTimeLeft(detail.remainingSeconds);
+          }
+        })
+        .catch((err) => console.error("Lỗi khôi phục lượt thi:", err))
+        .finally(() => setLoading(false));
+      return;
+    }
+
+    // Nếu mở đề khác hoặc chưa thi -> Reset như bình thường và tải metadata đề
+    resetQuiz();
+    localStorage.removeItem("vact_active_exam_id");
+
     setLoading(true);
     quizService
       .getExamMeta(examId)
       .then(setExamMeta)
       .catch((err) => {
-        console.error('Lỗi tải đề:', err);
+        console.error("Lỗi tải đề:", err);
         toast.error(
-          'Không tải được đề thi',
-          'Vui lòng kiểm tra kết nối và thử lại.',
+          "Không tải được đề thi",
+          "Vui lòng kiểm tra kết nối và thử lại.",
         );
       })
       .finally(() => setLoading(false));
@@ -179,7 +276,7 @@ export const QuizPage = () => {
     if (!examId) return;
 
     setStarting(true);
-    setStartError('');
+    setStartError("");
     try {
       // POST /attempts trả { attemptId, questionIds, timeLimit, ... }
       const created = await attemptService.start(examId);
@@ -192,16 +289,18 @@ export const QuizPage = () => {
         setQuestions(mapQuestions(detail.questions));
       }
 
-      setTimeLeft(
-        detail.remainingSeconds ?? created.timeLimit ?? 3600,
+      localStorage.setItem("vact_active_exam_id", examId);
+      setTimeLeft(detail.remainingSeconds ?? created.timeLimit ?? 9000);
+      setStep("playing");
+      toast.info(
+        "Bài thi đã bắt đầu",
+        "Chúc bạn làm bài tốt. Hết giờ hệ thống sẽ tự nộp.",
       );
-      setStep('playing');
-      toast.info('Bài thi đã bắt đầu', 'Chúc bạn làm bài tốt. Hết giờ hệ thống sẽ tự nộp.');
     } catch (err: any) {
-      console.error('Lỗi tạo lượt làm bài:', err);
+      console.error("Lỗi tạo lượt làm bài:", err);
       const message =
         err.response?.data?.message ||
-        'Không tạo được lượt làm bài. Vui lòng đăng nhập và thử lại.';
+        "Không tạo được lượt làm bài. Vui lòng đăng nhập và thử lại.";
       setStartError(message);
       // Lỗi ở đây đã hiển thị ngay trên màn hình, không cần toast
     } finally {
@@ -233,7 +332,7 @@ export const QuizPage = () => {
 
   return (
     <div className="min-h-screen bg-[#fdfbf7] py-6 px-4">
-      {currentStep === 'intro' && (
+      {currentStep === "intro" && (
         <QuizIntro
           examMeta={examMeta}
           onStart={handleStart}
@@ -241,8 +340,10 @@ export const QuizPage = () => {
           startError={startError}
         />
       )}
-      {(currentStep === 'playing' || currentStep === 'review') && <QuizEngine />}
-      {currentStep === 'result' && <QuizResult />}
+      {(currentStep === "playing" || currentStep === "review") && (
+        <QuizEngine />
+      )}
+      {currentStep === "result" && <QuizResult />}
     </div>
   );
 };

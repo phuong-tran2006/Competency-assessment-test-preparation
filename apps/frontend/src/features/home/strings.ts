@@ -90,17 +90,17 @@ export const STR = {
       {
         title: "Toán tư duy",
         text: "Ôn tập toàn diện kiến thức Toán học theo cấu trúc mới.",
-        link: ROUTES.exams,
+        link: "/courses/toan-tu-duy",
       },
       {
         title: "Phân tích số liệu & Logic",
         text: "Rèn luyện kỹ năng suy luận logic và đọc biểu đồ.",
-        link: ROUTES.exams,
+        link: "/courses/phan-tich-so-lieu-logic",
       },
       {
         title: "Tiếng Anh",
         text: "Hệ thống lại ngữ pháp và từ vựng thường gặp trong đề.",
-        link: ROUTES.exams,
+        link: "/courses/tieng-anh",
       },
     ],
   },

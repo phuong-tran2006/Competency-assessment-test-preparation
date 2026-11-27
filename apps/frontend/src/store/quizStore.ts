@@ -41,7 +41,7 @@ export const useQuizStore = create<QuizStore>()(
       score: 0,
       resultData: null,
       attemptId: null,
-      timeLeft: 3600,
+      timeLeft: 9000,
 
       setLoading: (loading) => set({ loading }),
       setQuestions: (questions) => set({ questions }),
@@ -96,7 +96,7 @@ export const useQuizStore = create<QuizStore>()(
           reviewList: {},
           currentStep: "intro",
           score: 0,
-          timeLeft: 3600,
+          timeLeft: 9000,
           attemptId: null,
           resultData: null,
         });

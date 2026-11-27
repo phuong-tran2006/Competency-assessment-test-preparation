@@ -147,7 +147,7 @@ describe('AttemptsService (M1)', () => {
         id: 'a1',
         status: 'IN_PROGRESS',
         startedAt: new Date(),
-        timeLimit: 3600,
+        timeLimit: 9000,
         deadlineAt: future(),
       });
       prisma.examAnswer.findUnique.mockResolvedValue(null);
@@ -162,7 +162,7 @@ describe('AttemptsService (M1)', () => {
         id: 'a1',
         status: 'IN_PROGRESS',
         startedAt: new Date(),
-        timeLimit: 3600,
+        timeLimit: 9000,
         deadlineAt: future(),
       });
       prisma.examAnswer.findUnique.mockResolvedValue({ id: 'ans1' });
@@ -227,7 +227,7 @@ describe('AttemptsService (M1)', () => {
         exam: null,
         startedAt: new Date(),
         submittedAt: null,
-        timeLimit: 3600,
+        timeLimit: 9000,
         deadlineAt: future(),
         score: 0,
         weightedScore: 0,
@@ -260,7 +260,7 @@ describe('AttemptsService (M1)', () => {
         id: 'a1',
         status: 'IN_PROGRESS',
         startedAt: new Date(),
-        timeLimit: 3600,
+        timeLimit: 9000,
         deadlineAt: future(),
         total: 0,
         answers: [

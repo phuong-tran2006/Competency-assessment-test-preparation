@@ -2,25 +2,572 @@ import 'dotenv/config';
 import { PrismaClient } from '@prisma/client';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { Pool } from 'pg';
-import { seedConfig } from './lib/seed-config';
-import { seedSystem } from './lib/seed-system';
-import { auditAssessment } from './lib/audit-assessment';
+import { questions2026 } from './examData2026';
+import { questions2025 } from './examData2025';
+import { questions2026_Dot1 } from './DethiDot1_2026';
+import * as bcrypt from 'bcrypt';
+import { questions2025_Dot1 } from './DethiDot1_2025';
+import { questions2025_Dot2 } from './DethiDot2_2025';
+
+const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+const adapter = new PrismaPg(pool);
+const prisma = new PrismaClient({ adapter });
 
 async function main() {
-  const config = seedConfig('demo');
-  if (!process.env.DATABASE_URL) throw new Error('Cần DATABASE_URL');
-  const pool = new Pool({ connectionString: process.env.DATABASE_URL });
-  const prisma = new PrismaClient({ adapter: new PrismaPg(pool) });
-  try {
-    console.log(JSON.stringify(await seedSystem(prisma, config), null, 2));
-    const audit = await auditAssessment(prisma);
-    console.log(JSON.stringify(audit, null, 2));
-    if (audit.issues.length) throw new Error('Audit sau seed thất bại');
-    console.log('Demo sẵn sàng: admin/instructor/learner @vact.com, mật khẩu mặc định admin123 (chỉ tài khoản mới).');
-  } finally {
-    await prisma.$disconnect();
-    await pool.end();
+  console.log(
+    '🌱 Bắt đầu seed dữ liệu chuẩn cho hệ thống V-ACT (giữ nguyên cơ chế chấm điểm)...',
+  );
+
+  const hashedPassword = await bcrypt.hash('admin123', 10);
+
+  // 1. Tạo tài khoản mẫu
+  const admin = await prisma.user.upsert({
+    where: { email: 'admin@vact.com' },
+    update: {},
+    create: {
+      email: 'admin@vact.com',
+      passwordHash: hashedPassword,
+      fullName: 'Quản trị viên Hệ thống',
+      role: Role.ADMIN,
+    },
+  });
+
+  await prisma.user.upsert({
+    where: { email: 'learner@vact.com' },
+    update: {},
+    create: {
+      email: 'learner@vact.com',
+      passwordHash: hashedPassword,
+      fullName: 'Học viên Test',
+      role: Role.LEARNER,
+    },
+  });
+
+  // 2. Tạo Chủ đề (Topic) theo đúng format ĐGNL: mỗi câu 1 topic
+  const topicDefs = [
+    { name: 'Toán', description: 'Toán học và tư duy định lượng' },
+    { name: 'Tiếng Việt', description: 'Ngữ văn và đọc hiểu tiếng Việt' },
+    { name: 'Tiếng Anh', description: 'Ngữ pháp và đọc hiểu tiếng Anh' },
+    {
+      name: 'Logic - Suy luận',
+      description: 'Tư duy logic và phân tích số liệu',
+    },
+  ];
+  const topics: Record<string, { id: string }> = {};
+  for (const t of topicDefs) {
+    topics[t.name] = await prisma.topic.upsert({
+      where: { name: t.name },
+      update: {},
+      create: t,
+    });
   }
+
+  // Map questionId -> topic
+  const questionTopics: Record<string, string> = {
+    'q-2025-1': 'Tiếng Việt',
+    'q-2025-2': 'Toán',
+    'q-2025-3': 'Tiếng Việt',
+    'q-2025-4': 'Toán',
+    'q-2025-5': 'Toán',
+    'q-2025-6': 'Tiếng Việt',
+    'q-2024-1': 'Toán',
+    'q-2024-2': 'Toán',
+    'q-2024-3': 'Tiếng Việt',
+    'q-2024-4': 'Toán',
+    'q-2024-5': 'Toán',
+    'q-2024-6': 'Tiếng Việt',
+  };
+
+  // 3. Cấu hình 3 bộ đề khớp đúng với giao diện
+  const examsConfig = [
+    {
+      id: 'vact-exam-2026',
+      title: 'Đề minh họa ĐGNL ĐHQG TPHCM năm 2026',
+      description: 'Đề minh họa ĐGNL ĐHQG TPHCM năm 2026',
+      questions: questions2026,
+    },
+    {
+      id: 'vact-exam-2025',
+      title: 'Đề minh họa ĐGNL ĐHQG TPHCM năm 2025',
+      description: 'Đề minh họa ĐGNL ĐHQG TPHCM năm 2025',
+      questions: questions2025,
+    },
+    {
+      id: 'vact-exam-2026-1',
+      title: 'Đề chính thức ĐGNL ĐHQG TPHCM năm 2026 - Đợt 1',
+      description: 'Đề chính thức ĐGNL ĐHQG TPHCM năm 2026.',
+      questions: questions2026_Dot1,
+    },
+    {
+      id: 'vact-exam-20251',
+      title: 'Đề chính thức ĐGNL ĐHQG TPHCM năm 2025 - Đợt 1',
+      description: 'Đề chính thức ĐGNL ĐHQG TPHCM năm 2025.',
+      questions: questions2025_Dot1,
+    },
+    {
+      id: 'vact-exam-20252',
+      title: 'Đề chính thức ĐGNL ĐHQG TPHCM năm 2025 - Đợt 2',
+      description: 'Đề chính thức ĐGNL ĐHQG TPHCM năm 2025.',
+      questions: questions2025_Dot2,
+    },
+  ];
+
+  for (const exData of examsConfig) {
+    await prisma.exam.upsert({
+      where: { id: exData.id },
+      update: {},
+      create: {
+        id: exData.id,
+        title: exData.title,
+        description: exData.description,
+      },
+    });
+
+    for (const qInfo of exData.questions as any[]) {
+      const topicKey = qInfo.topicId || questionTopics[qInfo.id];
+      const topic = topics[topicKey];
+      if (!topic) {
+        throw new Error(
+          `Câu ${qInfo.id}: không có topic "${topicKey}". Hiện có: ${Object.keys(topics).join(', ')}`,
+        );
+      }
+
+      const opts = qInfo.options.map((opt: any, i: number) => {
+        const isString = typeof opt === 'string';
+        return {
+          content: (isString ? opt : opt.text || opt.content || '').replace(
+            /^[A-D]\.\s*/,
+            '',
+          ),
+          isCorrect: isString ? i === qInfo.correct : !!opt.isCorrect,
+          order: i,
+        };
+      });
+      if (opts.filter((o: any) => o.isCorrect).length !== 1) {
+        throw new Error(`Câu ${qInfo.id}: phải có đúng 1 đáp án đúng`);
+      }
+
+      const fields = {
+        content: qInfo.content,
+        explanation: qInfo.explanation || null,
+        topicId: topic.id,
+      };
+
+      await prisma.$transaction(async (tx) => {
+        await tx.question.upsert({
+          where: { id: qInfo.id },
+          update: fields,
+          create: {
+            id: qInfo.id,
+            type: QuestionType.MULTIPLE_CHOICE,
+            difficulty: 0.5, // thang [0,1]; 1200 là rating Elo, không phải difficulty
+            ...fields,
+          },
+        });
+        await tx.questionOption.deleteMany({ where: { questionId: qInfo.id } });
+        await tx.questionOption.createMany({
+          data: opts.map((o: any) => ({ questionId: qInfo.id, ...o })),
+        });
+      });
+
+      await prisma.examQuestion.upsert({
+        where: {
+          examId_questionId: { examId: exData.id, questionId: qInfo.id },
+        },
+        update: {},
+        create: { examId: exData.id, questionId: qInfo.id },
+      });
+    }
+  }
+
+  console.log(
+    '✅ Exams + Questions đã tạo (3 đề, mỗi đề 6 câu, gắn đúng topic Toán/Tiếng Việt/Tiếng Anh)',
+  );
+
+  // ==================== 4. COURSES ====================
+  const course1 = await prisma.course.upsert({
+    where: { id: 'course-1' },
+    update: {},
+    create: {
+      id: 'course-1',
+      title: 'Toán nền tảng ĐGNL',
+      description: 'Khóa học giới hạn, đạo hàm, tích phân',
+      instructorId: admin.id,
+    },
+  });
+
+  // Gắn course với topic Toán (upsert từng topic để rerun an toàn)
+  for (const [idx, topicName] of [
+    'Toán',
+    'Tiếng Việt',
+    'Tiếng Anh',
+    'Logic - Suy luận',
+  ].entries()) {
+    await prisma.courseTopic.upsert({
+      where: {
+        courseId_topicId: {
+          courseId: course1.id,
+          topicId: topics[topicName].id,
+        },
+      },
+      update: {},
+      create: {
+        courseId: course1.id,
+        topicId: topics[topicName].id,
+        order: idx + 1,
+      },
+    });
+  }
+
+  console.log(`✅ Courses: ${course1.title}`);
+
+  // ==================== 5. CHAPTERS + LESSONS + MATERIALS ====================
+  const chapter1 = await prisma.chapter.upsert({
+    where: { id: 'chapter-1' },
+    update: {},
+    create: {
+      id: 'chapter-1',
+      courseId: course1.id,
+      title: 'Chương 1: Giới hạn và liên tục',
+      order: 1,
+    },
+  });
+
+  const lesson1 = await prisma.lesson.upsert({
+    where: { id: 'lesson-1' },
+    update: {},
+    create: {
+      id: 'lesson-1',
+      chapterId: chapter1.id,
+      title: 'Bài 1: Khái niệm giới hạn',
+      content: 'Giới hạn của hàm số là giá trị mà hàm số tiến tới...',
+      order: 1,
+      materials: {
+        create: [
+          {
+            type: 'TEXT',
+            title: 'Lý thuyết cơ bản',
+            content: 'Giới hạn là một khái niệm quan trọng trong giải tích...',
+            order: 1,
+          },
+          {
+            type: 'PDF',
+            title: 'Bài tập tự luyện',
+            url: 'https://example.com/exercises.pdf',
+            order: 2,
+          },
+        ],
+      },
+    },
+  });
+
+  const lesson2 = await prisma.lesson.upsert({
+    where: { id: 'lesson-2' },
+    update: {},
+    create: {
+      id: 'lesson-2',
+      chapterId: chapter1.id,
+      title: 'Bài 2: Các dạng giới hạn thường gặp',
+      content: 'Trong bài này ta sẽ học các dạng giới hạn vô định 0/0, ∞/∞...',
+      order: 2,
+    },
+  });
+
+  const chapter2 = await prisma.chapter.upsert({
+    where: { id: 'chapter-2' },
+    update: {},
+    create: {
+      id: 'chapter-2',
+      courseId: course1.id,
+      title: 'Chương 2: Đạo hàm',
+      order: 2,
+    },
+  });
+
+  const lesson3 = await prisma.lesson.upsert({
+    where: { id: 'lesson-3' },
+    update: {},
+    create: {
+      id: 'lesson-3',
+      chapterId: chapter2.id,
+      title: 'Bài 1: Định nghĩa đạo hàm',
+      content:
+        'Đạo hàm là giới hạn của tỉ số giữa số gia hàm số và số gia đối số...',
+      order: 1,
+    },
+  });
+
+  console.log('✅ Chapters, Lessons, Materials đã tạo');
+  console.log(`   - Chapter: ${chapter1.title}, ${chapter2.title}`);
+  console.log(
+    `   - Lesson: ${lesson1.title}, ${lesson2.title}, ${lesson3.title}`,
+  );
+
+  // ==================== 6. EXAM + ATTEMPTS (dùng câu hỏi 2026) ====================
+  const exam1 = await prisma.exam.upsert({
+    where: { id: 'exam-1' },
+    update: {},
+    create: {
+      id: 'exam-1',
+      title: 'Đề thi thử V-ACT số 1',
+      description: 'Đề thi mẫu',
+    },
+  });
+
+  // Gắn 6 câu 2026 vào exam-1 để attempts có dữ liệu chấm điểm
+  const exam1QuestionIds = [
+    'q-2026-1',
+    'q-2026-2',
+    'q-2026-3',
+    'q-2026-4',
+    'q-2026-5',
+    'q-2026-6',
+    'q-2026-7',
+    'q-2026-8',
+    'q-2026-9',
+    'q-2026-10',
+    'q-2026-11',
+    'q-2026-12',
+    'q-2026-13',
+    'q-2026-14',
+    'q-2026-15',
+    'q-2026-16',
+    'q-2026-17',
+    'q-2026-18',
+    'q-2026-19',
+    'q-2026-20',
+  ];
+  for (const questionId of exam1QuestionIds) {
+    await prisma.examQuestion.upsert({
+      where: { examId_questionId: { examId: exam1.id, questionId } },
+      update: {},
+      create: { examId: exam1.id, questionId },
+    });
+  }
+
+  const testPasswordHash = await bcrypt.hash('Test@123', 10);
+  const testUser = await prisma.user.upsert({
+    where: { email: 'test.learner@vact.com' },
+    update: {
+      passwordHash: testPasswordHash,
+      fullName: 'Learner Test API',
+      role: 'LEARNER',
+    },
+    create: {
+      email: 'test.learner@vact.com',
+      passwordHash: testPasswordHash,
+      fullName: 'Learner Test API',
+      role: 'LEARNER',
+      targetScore: 900,
+    },
+  });
+
+  const seededQuestions = await prisma.question.findMany({
+    where: { id: { in: exam1QuestionIds } },
+    include: { options: { orderBy: { order: 'asc' } } },
+  });
+
+  const questionById = new Map(seededQuestions.map((q) => [q.id, q]));
+
+  const correctOptionIds = (id: string) => {
+    const question = questionById.get(id);
+    if (!question) throw new Error(`Không tìm thấy câu hỏi ${id}`);
+    return question.options
+      .filter((option) => option.isCorrect)
+      .map((option) => option.id);
+  };
+
+  const wrongOptionId = (id: string) => {
+    const question = questionById.get(id);
+    if (!question) throw new Error(`Không tìm thấy câu hỏi ${id}`);
+    const option = question.options.find((item) => !item.isCorrect);
+    if (!option) throw new Error(`Câu hỏi ${id} không có đáp án sai`);
+    return option.id;
+  };
+
+  const attemptIds = [
+    'attempt-test-submitted',
+    'attempt-test-submitted-2',
+    'attempt-test-inprogress',
+    'attempt-test-expired',
+  ];
+
+  await prisma.examAnswer.deleteMany({
+    where: { attemptId: { in: attemptIds } },
+  });
+  await prisma.examAttempt.deleteMany({
+    where: { id: { in: attemptIds } },
+  });
+
+  const now = Date.now();
+  const minutes = (value: number) => value * 60 * 1000;
+  const [aq1, aq2, aq3, aq4, aq5, aq6] = exam1QuestionIds;
+
+  const submittedAt1 = new Date(now - 36 * 60 * 60 * 1000);
+  const startedAt1 = new Date(submittedAt1.getTime() - minutes(25));
+  await prisma.examAttempt.create({
+    data: {
+      id: 'attempt-test-submitted',
+      userId: testUser.id,
+      examId: 'exam-1',
+      status: 'SUBMITTED',
+      startedAt: startedAt1,
+      deadlineAt: new Date(startedAt1.getTime() + 9000 * 1000),
+      submittedAt: submittedAt1,
+      timeLimit: 9000,
+      total: 6,
+      score: 4,
+      weightedScore: 5.2,
+      answers: {
+        create: [
+          {
+            questionId: aq1,
+            selectedOptionIds: correctOptionIds(aq1),
+            isCorrect: true,
+            timeSpent: 45,
+          },
+          {
+            questionId: aq2,
+            selectedOptionIds: correctOptionIds(aq2),
+            isCorrect: true,
+            timeSpent: 20,
+          },
+          {
+            questionId: aq3,
+            selectedOptionIds: [wrongOptionId(aq3)],
+            isCorrect: false,
+            timeSpent: 80,
+          },
+          {
+            questionId: aq4,
+            selectedOptionIds: correctOptionIds(aq4),
+            isCorrect: true,
+            timeSpent: 30,
+          },
+          {
+            questionId: aq5,
+            selectedOptionIds: [wrongOptionId(aq5)],
+            isCorrect: false,
+            timeSpent: 25,
+          },
+          {
+            questionId: aq6,
+            selectedOptionIds: correctOptionIds(aq6),
+            isCorrect: true,
+            timeSpent: 40,
+          },
+        ],
+      },
+    },
+  });
+
+  const submittedAt2 = new Date(now - 3 * 60 * 60 * 1000);
+  const startedAt2 = new Date(submittedAt2.getTime() - minutes(30));
+  await prisma.examAttempt.create({
+    data: {
+      id: 'attempt-test-submitted-2',
+      userId: testUser.id,
+      examId: 'exam-1',
+      status: 'SUBMITTED',
+      startedAt: startedAt2,
+      deadlineAt: new Date(startedAt2.getTime() + 9000 * 1000),
+      submittedAt: submittedAt2,
+      timeLimit: 9000,
+      total: 6,
+      score: 6,
+      weightedScore: 7.9,
+      answers: {
+        create: exam1QuestionIds.map((questionId, index) => ({
+          questionId,
+          selectedOptionIds: correctOptionIds(questionId),
+          isCorrect: true,
+          timeSpent: [30, 18, 55, 22, 15, 35][index],
+        })),
+      },
+    },
+  });
+
+  const startedAt3 = new Date(now - minutes(2));
+  await prisma.examAttempt.create({
+    data: {
+      id: 'attempt-test-inprogress',
+      userId: testUser.id,
+      examId: null,
+      status: 'IN_PROGRESS',
+      startedAt: startedAt3,
+      deadlineAt: new Date(startedAt3.getTime() + 9000 * 1000),
+      timeLimit: 9000,
+      total: 3,
+      score: 0,
+      weightedScore: 0,
+      answers: {
+        create: [
+          {
+            questionId: aq1,
+            selectedOptionIds: correctOptionIds(aq1),
+            isCorrect: false,
+            timeSpent: 15,
+          },
+          {
+            questionId: aq2,
+            selectedOptionIds: [],
+            isCorrect: false,
+            timeSpent: 0,
+          },
+          {
+            questionId: aq3,
+            selectedOptionIds: [],
+            isCorrect: false,
+            timeSpent: 0,
+          },
+        ],
+      },
+    },
+  });
+
+  const startedAt4 = new Date(now - minutes(10));
+  await prisma.examAttempt.create({
+    data: {
+      id: 'attempt-test-expired',
+      userId: testUser.id,
+      examId: null,
+      status: 'IN_PROGRESS',
+      startedAt: startedAt4,
+      deadlineAt: new Date(startedAt4.getTime() + 60 * 1000),
+      timeLimit: 60,
+      total: 2,
+      score: 0,
+      weightedScore: 0,
+      answers: {
+        create: [
+          { questionId: aq1, selectedOptionIds: [], isCorrect: false },
+          { questionId: aq2, selectedOptionIds: [], isCorrect: false },
+        ],
+      },
+    },
+  });
+
+  // ==================== SUMMARY ====================
+  const counts = {
+    users: await prisma.user.count(),
+    topics: await prisma.topic.count(),
+    prerequisites: await prisma.topicPrerequisite.count(),
+    courses: await prisma.course.count(),
+    chapters: await prisma.chapter.count(),
+    lessons: await prisma.lesson.count(),
+    materials: await prisma.material.count(),
+    questions: await prisma.question.count(),
+    options: await prisma.questionOption.count(),
+    exam: await prisma.exam.count(),
+    attempts: await prisma.examAttempt.count(),
+    attemptAnswers: await prisma.examAnswer.count(),
+    attemptTopicResults: await prisma.attemptTopicResult.count(),
+  };
+  console.log('Counts:', counts);
+
+  console.log(
+    '🚀 Seed thành công toàn bộ đề thi kèm đáp án chuẩn để làm bài và chấm điểm tự động!',
+  );
 }
 
 main().catch((error) => { console.error(error.message); process.exitCode = 1; });
